@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HardHats</string>
+    <string name="login_LogIn">LOG IN</string>
 </resources>
