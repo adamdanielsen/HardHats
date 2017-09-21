@@ -36,11 +36,13 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
 
         String type=params[0];
-        String login_url= "http://192.168.1.7/login.php"; //THIS MUST BE YOUR IP IF YOU ARE RUNNING THE SERVER!
+        String login_url= "http://hardhatz.org/login.php"; //THIS MUST BE CHANGED YOUR IP IF YOU ARE RUNNING THE SERVER!
+        //DB Username: HardHatz
+        //DB Password: root123
         if (type.equals("login"))
         {
             try {
-
+                alertDialog.setTitle("Login Status");
                 String user_name=params[1];
                 String password=params[2];
 
@@ -86,8 +88,10 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPreExecute() {
+
         alertDialog=new AlertDialog.Builder(context).create();
         alertDialog.setTitle("Login Status");
+
     }
 
     @Override
