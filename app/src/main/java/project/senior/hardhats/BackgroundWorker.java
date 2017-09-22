@@ -25,24 +25,24 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     Context context;
     AlertDialog alertDialog;
-
+    String type;
+    String flag="";
     BackgroundWorker(Context ctx)
     {
         context=ctx;
-
     }
     @Override
     protected String doInBackground(String... params) {
 
 
-        String type=params[0];
+        type=params[0];
         String login_url= "http://hardhatz.org/login.php"; //THIS MUST BE CHANGED YOUR IP IF YOU ARE RUNNING THE SERVER!
         //DB Username: HardHatz
         //DB Password: root123
+        String createuser_url="http://hardhatz.org/createuser.php";
         if (type.equals("login"))
         {
             try {
-                alertDialog.setTitle("LoginActivity Status");
                 String user_name=params[1];
                 String password=params[2];
 
@@ -71,7 +71,14 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                return result;
+
+                if (result.equals("BAD")) {
+                    flag="loginfail";
+                    return flag;
+                }
+                    return result;
+
+
             } catch (MalformedURLException e) {
 
                 e.printStackTrace();
@@ -90,16 +97,16 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     protected void onPreExecute() {
 
         alertDialog=new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("LoginActivity Status");
 
     }
 
     @Override
     protected void onPostExecute(String result) {
-
-        alertDialog.setMessage(result);
-        alertDialog.show();
-
+        if(flag.equals("loginfail")) {
+            alertDialog.setTitle("Error");
+            alertDialog.setMessage("Incorrect Credentials");
+            alertDialog.show();
+        }
     }
 
     @Override
