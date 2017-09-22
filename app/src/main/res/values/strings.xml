@@ -2,4 +2,11 @@
     <string name="app_name">HardHats</string>
     <string name="login_LogIn">LOG IN</string>
     <string name="login_Register" >REGISTER</string>
+    <string name="login_Username">Username:</string>
+    <string name="login_Password">Password:</string>
+    <string name="register_Username">Username:</string>
+    <string name="register_Password">Password:</string>
+    <string name="register_ConfirmPassword">Confirm Password:</string>
+    <string name="register_register">REGISTER</string>
+
 </resources>

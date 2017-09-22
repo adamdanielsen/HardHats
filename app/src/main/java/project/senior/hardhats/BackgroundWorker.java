@@ -42,7 +42,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         if (type.equals("login"))
         {
             try {
-                alertDialog.setTitle("Login Status");
+                alertDialog.setTitle("LoginActivity Status");
                 String user_name=params[1];
                 String password=params[2];
 
@@ -90,7 +90,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     protected void onPreExecute() {
 
         alertDialog=new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Login Status");
+        alertDialog.setTitle("LoginActivity Status");
 
     }
 
