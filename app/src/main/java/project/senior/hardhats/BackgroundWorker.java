@@ -88,7 +88,59 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     return null;
     }
 
+    protected String RegisterProcedure(String...params)
+    {
 
+        try {
+            String user_name=params[1];
+            String password=params[2];
+            URL url = new URL(createuser_url);
+            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoInput(true);
+            httpURLConnection.setDoOutput(true);
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data= URLEncoder.encode("user_name","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"
+                    +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+            InputStream inputStream= httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+            String result="";
+            String line="";
+            while ((line=bufferedReader.readLine())!=null)
+            {
+                result +=line;
+            }
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            if (result.equals("TAKEN")) {
+                SessionData.getInstance().setLastStringResult("BAD");
+                return result;
+            }
+
+
+            SessionData.getInstance().setLastStringResult("GOOD");
+            return result;
+
+
+        } catch (MalformedURLException e) {
+
+            e.printStackTrace();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+
+        return null;
+    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -104,7 +156,10 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         //}
 
         if (type.equals("login")) {
-           return LoginProcedure(params);
+            return LoginProcedure(params);
+        }
+        if (type.equals("register")) {
+            return RegisterProcedure(params);
         }
 
         return "Unknown or misspelled type?";

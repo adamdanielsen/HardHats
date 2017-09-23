@@ -41,15 +41,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onRegister(View view) {
-
         Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(registerIntent);
     }
 
     public void OnLogin(View view)
     {
-        int tooLong=0;
-       // SessionData.getInstance().setUsername("WAIT");
         String username =usernameEditText.getText().toString();
         String password =passwordEditText.getText().toString();
         String type = "login";

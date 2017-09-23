@@ -1,4 +1,5 @@
 package project.senior.hardhats;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by theev on 9/21/2017.
@@ -17,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText passwordEditText;
         EditText confirmpasswordEditText;
         Button registerButton;
+        Button cancelButton;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
@@ -25,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
             passwordEditText = (EditText)findViewById(R.id.register_PasswordEditText);
             confirmpasswordEditText =(EditText) findViewById(R.id.register_ConfirmPasswordEditText);
             registerButton =(Button) findViewById(R.id.register_RegisterButton);
+            cancelButton=(Button) findViewById(R.id.register_CancelButton);
             registerButton.setEnabled(false);
             registerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -33,6 +38,12 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Register();
+                }
+            });
+            cancelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Cancel();
                 }
             });
             usernameEditText.addTextChangedListener(new TextWatcher() {
@@ -87,6 +98,8 @@ public class RegisterActivity extends AppCompatActivity {
             });
         }
 
+
+
     private void Refresh(){
 
         String password=passwordEditText.getText().toString();
@@ -132,10 +145,40 @@ public class RegisterActivity extends AppCompatActivity {
     private void Register() {
 
         //TODO this should pop up if the script returns some undetermined variable and if not then exit this screen because it succeeded
-        Toast.makeText(this, "Username already taken!", Toast.LENGTH_SHORT).show();
+        String type= "register";
+        String username= usernameEditText.getText().toString();
+        String password= passwordEditText.getText().toString();
+        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+        try {
+            backgroundWorker.execute(type,username,password).get();
+
+            if (SessionData.getInstance().getLastStringResult().equals("BAD")) {
+                Toast.makeText(this, "Username already taken!", Toast.LENGTH_SHORT).show();
+            }
+
+            if (SessionData.getInstance().getLastStringResult().equals("GOOD"))
+            {
+
+
+                Toast.makeText(this, "Username created!", Toast.LENGTH_SHORT).show();
+                Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                registerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(registerIntent);
+
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
 
     }
 
+    private void Cancel()
+    {
+        Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+        startActivity(registerIntent);
+    }
 
 }
