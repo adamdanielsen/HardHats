@@ -77,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     Refresh();
+
                 }
 
                 @Override
@@ -85,37 +86,42 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
+
     private void Refresh(){
-        if(passwordEditText.getText().toString().length()>20)
-        {
-            registerButton.setEnabled(false);
-            return;
-        }
-        if(passwordEditText.getText().toString().length()<5)
+
+        String password=passwordEditText.getText().toString();
+        String username=usernameEditText.getText().toString();
+        String confirmPassword=confirmpasswordEditText.getText().toString();
+
+        if(password.length()>R.integer.MAXPASSWORDLENGTH)
         {
             registerButton.setEnabled(false);
             return;
         }
 
-        if(usernameEditText.getText().toString().length()>20)
-        {
-            registerButton.setEnabled(false);
-            return;
-        }
-        if(usernameEditText.getText().toString().length()<5)
-        {
-            registerButton.setEnabled(false);
-            return;
-        }
-        if(!passwordEditText.getText().toString().equals(confirmpasswordEditText.getText().toString()))
+        if(password.length()<getResources().getInteger(R.integer.MINPASSWORDLENGTH))
         {
             registerButton.setEnabled(false);
             return;
         }
 
-        //hold on to your butts
+        if(username.length()>getResources().getInteger(R.integer.MAXUSERNAMELENGTH))
+        {
+            registerButton.setEnabled(false);
+            return;
+        }
+        if(username.length()<getResources().getInteger(R.integer.MINUSERNAMELENGTH))
+        {
+            registerButton.setEnabled(false);
+            return;
+        }
+        if(!(password.equals(confirmPassword)))
+        {
+            registerButton.setEnabled(false);
+            return;
+        }
 
-        if((passwordEditText.getText().toString().length()<=20)&&(passwordEditText.getText().toString().length()>=5)&&(usernameEditText.getText().toString().length()<=20)&&(usernameEditText.getText().toString().length()>=5)&&(passwordEditText.getText().toString().equals(confirmpasswordEditText.getText().toString())))
+        if((password.length()<=getResources().getInteger(R.integer.MAXPASSWORDLENGTH))&&(password.length()>=getResources().getInteger(R.integer.MINPASSWORDLENGTH))&&(username.length()<=getResources().getInteger(R.integer.MAXUSERNAMELENGTH))&&(username.length()>=getResources().getInteger(R.integer.MINUSERNAMELENGTH))&&(password.equals(confirmPassword)))
         {
             registerButton.setEnabled(true);
             return;
@@ -125,9 +131,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void Register() {
 
-
+        //TODO this should pop up if the script returns some undetermined variable and if not then exit this screen because it succeeded
         Toast.makeText(this, "Username already taken!", Toast.LENGTH_SHORT).show();
-
 
 
     }

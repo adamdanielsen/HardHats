@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -39,17 +42,42 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onRegister(View view) {
 
-        Intent registerintent = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(registerintent);
+        Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(registerIntent);
     }
 
     public void OnLogin(View view)
     {
+        int tooLong=0;
+       // SessionData.getInstance().setUsername("WAIT");
         String username =usernameEditText.getText().toString();
         String password =passwordEditText.getText().toString();
         String type = "login";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute (type,username,password);
+        try {
+
+            //very important to use ".get" after an execute so it waits until its done
+            backgroundWorker.execute(type,username,password).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+
+        if (!SessionData.getInstance().getUsername().equals("BAD"))
+        {
+            //TODO this toast should be the intent for the next activity
+            Toast.makeText(this, SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        if (SessionData.getInstance().getUsername().equals("BAD"))
+        {
+
+            Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
+
+        }
 
     }
 }
