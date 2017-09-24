@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
-
+    TextView aboutTextView;
     EditText usernameEditText;
     EditText passwordEditText;
     Button buttonLogin;
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         getWindow().getDecorView().setBackgroundColor(Color.CYAN);
+        aboutTextView=(TextView) findViewById(R.id.login_AboutTextView);
         usernameEditText= (EditText) findViewById(R.id.login_UserNameEditText);
         passwordEditText= (EditText) findViewById(R.id.login_PasswordEditText);
         buttonLogin = (Button) findViewById(R.id.login_LoginButton);
@@ -42,6 +44,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
         });
+        aboutTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onAbout();
+            }
+        });
+    }
+
+    private void onAbout() {
+        Intent aboutIntent = new Intent(LoginActivity.this, AboutActivity.class);
+        startActivity(aboutIntent);
+
     }
 
     private void onRegister(View view) {
