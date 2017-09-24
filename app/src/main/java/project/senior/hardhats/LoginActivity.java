@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        SessionData.getInstance().eraseUsername();
 
         getWindow().getDecorView().setBackgroundColor(Color.CYAN);
         aboutTextView=(TextView) findViewById(R.id.login_AboutTextView);
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onRegister(v);
+                onRegister();
             }
 
 
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void onRegister(View view) {
+    private void onRegister() {
         Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(registerIntent);
     }
@@ -79,15 +79,16 @@ public class LoginActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
-            Toast.makeText(this, "Server taking too long to respond", Toast.LENGTH_SHORT).show();;
+            Toast.makeText(this, "Request timed out", Toast.LENGTH_SHORT).show();;
         }
 
 
         if (SessionData.getInstance().getUsername().equals(""))
         {
             Toast.makeText(this, "Cannot connect to server", Toast.LENGTH_SHORT).show();
+            return;
         }
-        if (!SessionData.getInstance().getUsername().equals("BAD"))
+        if (!((SessionData.getInstance().getUsername().equals("BAD"))&&(SessionData.getInstance().getUsername().equals(""))))
         {
             //TODO this toast should be the intent for the next activity
             Toast.makeText(this, "Success: "+SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
