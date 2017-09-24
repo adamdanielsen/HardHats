@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class LoginActivity extends AppCompatActivity {
     TextView aboutTextView;
@@ -71,19 +73,24 @@ public class LoginActivity extends AppCompatActivity {
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         try {
 
-            //very important to use ".get" after an execute so it waits until its done
-            backgroundWorker.execute(type,username,password).get();
+            backgroundWorker.execute(type,username,password).get(5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
+        } catch (TimeoutException e) {
+            Toast.makeText(this, "Server taking too long to respond", Toast.LENGTH_SHORT).show();;
         }
 
 
+        if (SessionData.getInstance().getUsername().equals(""))
+        {
+            Toast.makeText(this, "Cannot connect to server", Toast.LENGTH_SHORT).show();
+        }
         if (!SessionData.getInstance().getUsername().equals("BAD"))
         {
             //TODO this toast should be the intent for the next activity
-            Toast.makeText(this, SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Success: "+SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
 
         }
 

@@ -1,5 +1,6 @@
 package project.senior.hardhats;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
 
+            getWindow().getDecorView().setBackgroundColor(Color.CYAN);
             usernameEditText =(EditText) findViewById(R.id.register_UserNameEditText);
             passwordEditText = (EditText)findViewById(R.id.register_PasswordEditText);
             confirmpasswordEditText =(EditText) findViewById(R.id.register_ConfirmPasswordEditText);
@@ -151,6 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             if (SessionData.getInstance().getLastStringResult().equals("BAD")) {
                 Toast.makeText(this, "Username already taken!", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             if (SessionData.getInstance().getLastStringResult().equals("GOOD"))
@@ -163,6 +166,10 @@ public class RegisterActivity extends AppCompatActivity {
                 registerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(registerIntent);
 
+            }
+            else
+            {
+                Toast.makeText(this, "Connection error", Toast.LENGTH_SHORT).show();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

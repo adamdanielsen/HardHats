@@ -25,32 +25,52 @@ public class SessionData {
         return mInstance;
     }
 
-    public String getUsername(){
-        return this.username;
-    }
-
-    public ArrayList<String> getLastStringArrayResult()
-    {
-        return lastStringArrayResult;
-    }
-
-    public String getLastStringResult()
-    {
-        return lastStringResult;
-    }
 
     public void setUsername(String value){
+
         username = value;
     }
 
-    public void setLastStringResult(String value)
-    {
-        lastStringResult=value;
+    public String getUsername(){
+
+        return this.username;
     }
 
-    public void setLastStringArrayResult(ArrayList<String> value)
-    {
+    public void eraseUsername(){
+
+        username="";
+    }
+
+    public void setLastStringArrayResult(ArrayList<String> value) {
         lastStringArrayResult=value;
 
     }
+
+    public ArrayList<String> getLastStringArrayResult() {
+        return lastStringArrayResult;
+    }
+
+    public ArrayList<String> getAndEraseLastStringArrayResult() {
+        ArrayList<String> temp = new ArrayList<String>();
+        temp=lastStringArrayResult;
+        lastStringArrayResult=new ArrayList<String>();
+        return temp;
+    }
+    public void setLastStringResult(String value) {
+        lastStringResult=value;
+    }
+
+    public String getLastStringResult() {
+        return lastStringResult;
+    }
+
+    public String getAndEraseLastStringResult() {
+        String temp=lastStringResult;
+        lastStringResult="";
+        return temp;
+    }
+
+
+
+
 }
