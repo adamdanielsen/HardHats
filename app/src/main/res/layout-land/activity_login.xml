@@ -7,11 +7,18 @@
     tools:context="project.senior.hardhats.LoginActivity">
 
     <LinearLayout
+        android:id="@+id/login_LogoImageView"
         android:layout_width="576dp"
         android:layout_height="368dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/textView3"

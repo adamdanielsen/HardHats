@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by theev on 9/21/2017.
- */
+
 
 public class RegisterActivity extends AppCompatActivity {
         EditText usernameEditText;
@@ -137,14 +135,13 @@ public class RegisterActivity extends AppCompatActivity {
         if((password.length()<=getResources().getInteger(R.integer.MAXPASSWORDLENGTH))&&(password.length()>=getResources().getInteger(R.integer.MINPASSWORDLENGTH))&&(username.length()<=getResources().getInteger(R.integer.MAXUSERNAMELENGTH))&&(username.length()>=getResources().getInteger(R.integer.MINUSERNAMELENGTH))&&(password.equals(confirmPassword)))
         {
             registerButton.setEnabled(true);
-            return;
+
         }
 
     }
 
     private void Register() {
 
-        //TODO this should pop up if the script returns some undetermined variable and if not then exit this screen because it succeeded
         String type= "register";
         String username= usernameEditText.getText().toString();
         String password= passwordEditText.getText().toString();
@@ -162,6 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 Toast.makeText(this, "Username created!", Toast.LENGTH_SHORT).show();
                 Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                //how not to add something to the backstack below
                 registerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(registerIntent);
 
@@ -178,6 +176,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void Cancel()
     {
         Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+        registerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(registerIntent);
     }
 
