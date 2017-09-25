@@ -24,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
 
-            getWindow().getDecorView().setBackgroundColor(Color.CYAN);
+            getWindow().getDecorView().setBackgroundColor(Color.WHITE);
             usernameEditText =(EditText) findViewById(R.id.register_UserNameEditText);
             passwordEditText = (EditText)findViewById(R.id.register_PasswordEditText);
             confirmpasswordEditText =(EditText) findViewById(R.id.register_ConfirmPasswordEditText);

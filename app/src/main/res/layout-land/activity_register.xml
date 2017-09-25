@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registration_registration"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
         android:id="@+id/textView5"
@@ -13,8 +22,8 @@
         android:id="@+id/register_UserNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="@integer/MAXUSERNAMELENGTH"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:maxLength="@integer/MAXUSERNAMELENGTH" />
 
     <TextView
         android:id="@+id/textView6"
@@ -26,9 +35,9 @@
         android:id="@+id/register_PasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="@integer/MAXPASSWORDLENGTH"
+        android:inputType="textPassword"
 
-        android:inputType="textPassword" />
+        android:maxLength="@integer/MAXPASSWORDLENGTH" />
 
     <TextView
         android:id="@+id/textView7"
@@ -40,9 +49,9 @@
         android:id="@+id/register_ConfirmPasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="@integer/MAXPASSWORDLENGTH"
+        android:inputType="textPassword"
 
-        android:inputType="textPassword" />
+        android:maxLength="@integer/MAXPASSWORDLENGTH" />
 
     <Button
         android:id="@+id/register_RegisterButton"

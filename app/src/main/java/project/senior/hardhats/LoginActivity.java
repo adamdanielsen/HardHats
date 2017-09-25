@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         SessionData.getInstance().eraseUsername();
 
-        getWindow().getDecorView().setBackgroundColor(Color.CYAN);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
         aboutTextView=(TextView) findViewById(R.id.login_AboutTextView);
         usernameEditText= (EditText) findViewById(R.id.login_UserNameEditText);
         passwordEditText= (EditText) findViewById(R.id.login_PasswordEditText);

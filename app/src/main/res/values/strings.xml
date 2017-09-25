@@ -11,5 +11,6 @@
     <string name="register_cancel">CANCEL</string>
     <string name="about_about">About\n\nAuthors:</string>
     <string name="login_About">About</string>
+    <string name="registration_registration">Registration</string>
 
 </resources>
