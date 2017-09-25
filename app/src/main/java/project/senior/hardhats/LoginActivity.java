@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
-            Toast.makeText(this, "Request timed out", Toast.LENGTH_SHORT).show();;
+            Toast.makeText(this, "Request timed out", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Cannot connect to server", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!((SessionData.getInstance().getUsername().equals("BAD"))&&(SessionData.getInstance().getUsername().equals(""))))
+        if (!((SessionData.getInstance().getUsername().equals("BAD"))||(SessionData.getInstance().getUsername().equals(""))))
         {
             //TODO this toast should be the intent for the next activity
             Toast.makeText(this, "Success: "+SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();

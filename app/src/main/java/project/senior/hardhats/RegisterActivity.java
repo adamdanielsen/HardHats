@@ -105,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
         String password=passwordEditText.getText().toString();
         String username=usernameEditText.getText().toString();
         String confirmPassword=confirmpasswordEditText.getText().toString();
-
+/*
         if(password.length()>R.integer.MAXPASSWORDLENGTH)
         {
             registerButton.setEnabled(false);
@@ -133,11 +133,16 @@ public class RegisterActivity extends AppCompatActivity {
             registerButton.setEnabled(false);
             return;
         }
-
+*/
         if((password.length()<=getResources().getInteger(R.integer.MAXPASSWORDLENGTH))&&(password.length()>=getResources().getInteger(R.integer.MINPASSWORDLENGTH))&&(username.length()<=getResources().getInteger(R.integer.MAXUSERNAMELENGTH))&&(username.length()>=getResources().getInteger(R.integer.MINUSERNAMELENGTH))&&(password.equals(confirmPassword)))
         {
             registerButton.setEnabled(true);
 
+        }
+
+        else
+        {
+            registerButton.setEnabled(false);
         }
 
     }

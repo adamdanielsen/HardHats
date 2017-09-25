@@ -148,18 +148,13 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         type = params[0];
 
 
-        //I don't know why but this commented out code is EXTREMELY SLOW compared to the type.equals if statement.
-        //switch (type)
-        //{
-        //    case "login":
-        //        return LoginProcedure(params);
-        //}
+        switch (type)
+        {
+            case "login":
+                return LoginProcedure(params);
 
-        if (type.equals("login")) {
-            return LoginProcedure(params);
-        }
-        if (type.equals("register")) {
-            return RegisterProcedure(params);
+            case "register":
+                return RegisterProcedure(params);
         }
 
         return "Unknown or misspelled type?";
