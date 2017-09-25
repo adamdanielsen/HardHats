@@ -13,7 +13,7 @@
         android:id="@+id/register_UserNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:maxLength="@integer/MAXUSERNAMELENGTH"
         android:inputType="textPersonName" />
 
     <TextView
@@ -26,6 +26,7 @@
         android:id="@+id/register_PasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLength="@integer/MAXPASSWORDLENGTH"
 
         android:inputType="textPassword" />
 
@@ -39,6 +40,7 @@
         android:id="@+id/register_ConfirmPasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLength="@integer/MAXPASSWORDLENGTH"
 
         android:inputType="textPassword" />
 

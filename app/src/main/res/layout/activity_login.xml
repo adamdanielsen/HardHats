@@ -30,6 +30,8 @@
             android:id="@+id/login_UserNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="@integer/MAXUSERNAMELENGTH"
+
             android:ems="10"
             android:inputType="textPersonName" />
 
@@ -43,6 +45,8 @@
             android:id="@+id/login_PasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="@integer/MAXPASSWORDLENGTH"
+
             android:ems="10"
             android:inputType="textPassword" />
 

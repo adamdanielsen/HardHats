@@ -18,6 +18,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
@@ -30,7 +31,8 @@
             android:id="@+id/login_UserNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:maxLength="@integer/MAXUSERNAMELENGTH"
+
             android:inputType="textPersonName" />
 
         <TextView
@@ -43,7 +45,8 @@
             android:id="@+id/login_PasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:maxLength="@integer/MAXPASSWORDLENGTH"
+
             android:inputType="textPassword" />
 
         <Button

@@ -12,9 +12,9 @@
 
     <EditText
         android:id="@+id/register_UserNameEditText"
+        android:maxLength="@integer/MAXUSERNAMELENGTH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName" />
 
     <TextView
@@ -25,6 +25,7 @@
 
     <EditText
         android:id="@+id/register_PasswordEditText"
+        android:maxLength="@integer/MAXPASSWORDLENGTH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
