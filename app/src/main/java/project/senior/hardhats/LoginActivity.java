@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
         String type = "login";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         try {
-
             backgroundWorker.execute(type,username,password).get(5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -80,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (TimeoutException e) {
             Toast.makeText(this, "Request timed out", Toast.LENGTH_SHORT).show();
+            return;
         }
 
 
@@ -92,14 +92,10 @@ public class LoginActivity extends AppCompatActivity {
         {
             //TODO this toast should be the intent for the next activity
             Toast.makeText(this, "Success: "+SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
-
         }
-
         if (SessionData.getInstance().getUsername().equals("BAD"))
         {
-
             Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
-
         }
 
     }
