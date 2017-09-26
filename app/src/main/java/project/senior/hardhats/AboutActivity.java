@@ -18,7 +18,7 @@ public class AboutActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        String Author1="Johnathan Cucuzza";
+        String Author1="Jonathan Cucuzza";
         String Author2="Evan Esatto";
         String Author3="Adam Danielsen";
         String Author4="Michael Kruger";
