@@ -11,9 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
-
-
-
 public class RegisterActivity extends AppCompatActivity {
         EditText usernameEditText;
         EditText passwordEditText;
