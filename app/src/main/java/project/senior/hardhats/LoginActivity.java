@@ -24,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         SessionData.getInstance().eraseUsername();
-
         getWindow().getDecorView().setBackgroundColor(Color.WHITE);
         aboutTextView=(TextView) findViewById(R.id.login_AboutTextView);
         usernameEditText= (EditText) findViewById(R.id.login_UserNameEditText);
@@ -90,8 +89,12 @@ public class LoginActivity extends AppCompatActivity {
         if (!((SessionData.getInstance().getUsername().equals("BAD"))||(SessionData.getInstance().getUsername().equals(""))))
         {
             //TODO this toast should be the intent for the next activity
-            Toast.makeText(this, "Success: "+SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
-            return;
+            Toast.makeText(this, "Welcome "+SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
+
+            Intent menuIntent = new Intent(LoginActivity.this, MenuActivity.class);
+
+            menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(menuIntent);
         }
         if (SessionData.getInstance().getUsername().equals("BAD"))
         {

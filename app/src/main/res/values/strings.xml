@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">HardHats</string>
     <string name="login_LogIn">LOG IN</string>
-    <string name="login_Register" >REGISTER</string>
+    <string name="login_Register">REGISTER</string>
     <string name="login_Username">Username</string>
     <string name="login_Password">Password</string>
     <string name="register_Username">Username (5-20 Characters)</string>
@@ -12,5 +12,12 @@
     <string name="about_about">About\n\nAuthors:</string>
     <string name="login_About">About</string>
     <string name="registration_registration">Registration</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="navigation_Invoices">Invoices</string>
+    <string name="navigation_Customers">Customers</string>
+    <string name="navigation_Reports">Reports</string>
 
 </resources>

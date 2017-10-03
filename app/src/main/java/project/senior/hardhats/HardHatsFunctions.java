@@ -3,7 +3,7 @@ import java.util.regex.Pattern;
 
 //This class is untested.
 
-public class HardHatsFunctions {
+public  class HardHatsFunctions {
 
 
     private String regexUsername = "^[a-zA-Z0-9]{5,20}+$";
