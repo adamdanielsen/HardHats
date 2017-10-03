@@ -17,15 +17,15 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.navigation_Customers:
                     //FRAGMENTS!!!!!!!
-                    mTextMessage.setText(R.string.title_home);
+                    mTextMessage.setText("Customer");
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_Invoices:
+                    mTextMessage.setText("Invoices");
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_Reports:
+                    mTextMessage.setText("Reports");
                     return true;
             }
             return false;
