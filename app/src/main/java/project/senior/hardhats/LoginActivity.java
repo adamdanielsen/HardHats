@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -92,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         {
             //TODO this toast should be the intent for the next activity
             Toast.makeText(this, "Success: "+SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
+            return;
         }
         if (SessionData.getInstance().getUsername().equals("BAD"))
         {
