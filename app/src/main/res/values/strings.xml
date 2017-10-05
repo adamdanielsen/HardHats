@@ -20,4 +20,9 @@
     <string name="navigation_Customers">Customers</string>
     <string name="navigation_Reports">Reports</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_Options">Options</string>
+    <string name="fragmentoptions_Logout">LOGOUT</string>
+
 </resources>
