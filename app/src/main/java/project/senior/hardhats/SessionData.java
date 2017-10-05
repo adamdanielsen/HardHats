@@ -83,7 +83,7 @@ public class SessionData {
 
 
     public static void Reset() {
-    getInstance().eraseUsername();
+        getInstance().eraseUsername();
         getInstance().eraseLastStringResult();
         getInstance().eraseLastStringArrayResult();
 
