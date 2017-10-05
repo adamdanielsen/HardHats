@@ -56,6 +56,12 @@ public class SessionData {
         lastStringArrayResult=new ArrayList<String>();
         return temp;
     }
+
+
+    private void eraseLastStringArrayResult() {
+        lastStringArrayResult=new ArrayList<String>();
+    }
+
     public void setLastStringResult(String value) {
         lastStringResult=value;
     }
@@ -70,7 +76,17 @@ public class SessionData {
         return temp;
     }
 
+    private void eraseLastStringResult()
+    {
+        lastStringResult="";
+    }
 
 
+    public static void Reset() {
+    getInstance().eraseUsername();
+        getInstance().eraseLastStringResult();
+        getInstance().eraseLastStringArrayResult();
+
+    }
 
 }

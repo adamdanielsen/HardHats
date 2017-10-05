@@ -50,12 +50,14 @@ public class LoginActivity extends AppCompatActivity {
                 onAbout();
             }
         });
+        SessionData.Reset();
     }
+
+
 
     private void onAbout() {
         Intent aboutIntent = new Intent(LoginActivity.this, AboutActivity.class);
         startActivity(aboutIntent);
-
     }
 
     private void onRegister() {
@@ -88,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         if (!((SessionData.getInstance().getUsername().equals("BAD"))||(SessionData.getInstance().getUsername().equals(""))))
         {
-            //TODO this toast should be the intent for the next activity
+
             Toast.makeText(this, "Welcome "+SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
 
             Intent menuIntent = new Intent(LoginActivity.this, MenuActivity.class);
@@ -102,4 +104,5 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
 }

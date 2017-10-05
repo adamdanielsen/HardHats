@@ -55,7 +55,7 @@
             android:id="@+id/login_LoginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_LogIn" />
+            android:text="@string/login_Login" />
 
         <Button
             android:id="@+id/login_RegisterButton"

@@ -62,7 +62,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         //FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.add(R.id.menu_FragmentFrameLayout,new CustomerFragment());
+        ft.add(R.id.menu_FragmentFrameLayout,new InvoiceFragment());
         ft.commit();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

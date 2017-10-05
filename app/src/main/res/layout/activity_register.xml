@@ -10,7 +10,7 @@
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/registration_registration"
+        android:text="@string/registration_Registration"
         android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
@@ -57,12 +57,12 @@
         android:id="@+id/register_RegisterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register_register" />
+        android:text="@string/register_Register" />
 
     <Button
         android:id="@+id/register_CancelButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register_cancel" />
+        android:text="@string/register_Cancel" />
 
 </LinearLayout>
