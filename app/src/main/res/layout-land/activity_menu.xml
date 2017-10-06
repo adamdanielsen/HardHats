@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context="project.senior.hardhats.MenuActivity">
 
+
     <FrameLayout
         android:id="@+id/menu_FragmentFrameLayout"
         android:layout_width="match_parent"
