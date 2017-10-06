@@ -13,7 +13,7 @@ package project.senior.hardhats;
         import java.net.URL;
         import java.net.URLEncoder;
 /**
- * Created by theev on 9/14/2017.
+ * Created on 9/14/2017.
  */
 
 //If you don't know how this class works ask Adam, he might know
@@ -25,7 +25,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     Context context;
     String type;
 
-    String login_url= "http://hardhatz.org/login.php"; //THIS MUST BE CHANGED YOUR IP IF YOU ARE RUNNING THE SERVER!
+    String login_url= "http://hardhatz.org/login.php"; //THIS MUST BE CHANGED TO YOUR IP IF YOU ARE RUNNING THE SERVER LOCAL!
     //DB Username: HardHatz
     //DB Password: root123
     String createuser_url="http://hardhatz.org/createuser.php";

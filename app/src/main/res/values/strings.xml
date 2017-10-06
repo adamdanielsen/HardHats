@@ -25,4 +25,8 @@
     <string name="title_Options">Options</string>
     <string name="fragmentoptions_Logout">LOGOUT</string>
 
+    <string name="reports_navigation_frag_text">Reports</string>
+    <string name="invoice_navigation_frag_text">Invoices</string>
+    <string name="customer_navigation_frag_text">Customer</string>
+    <string name="options_navigation_frag_text">Options</string>
 </resources>

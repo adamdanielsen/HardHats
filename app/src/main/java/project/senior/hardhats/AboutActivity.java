@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by theev on 9/24/2017.
+ * Created on 9/24/2017.
  */
 
 public class AboutActivity extends AppCompatActivity {
@@ -23,7 +23,7 @@ public class AboutActivity extends AppCompatActivity {
         String Author3="Adam Danielsen";
         String Author4="Michael Kruger";
         String Author5="Oscar Dass";
-        ArrayList<String> authorList= new ArrayList<String>();
+        ArrayList<String> authorList= new ArrayList<>();
         authorListView=(ListView) findViewById(R.id.about_authorListView);
         authorList.add(Author1);
         authorList.add(Author2);
@@ -32,7 +32,7 @@ public class AboutActivity extends AppCompatActivity {
         authorList.add(Author5);
         Collections.shuffle(authorList);
 
-        ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,R.layout.simplelistitem,authorList);
+        ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(this,R.layout.simplelistitem,authorList);
         authorListView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
 

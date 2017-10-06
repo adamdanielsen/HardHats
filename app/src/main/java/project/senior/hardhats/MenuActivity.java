@@ -1,80 +1,83 @@
 package project.senior.hardhats;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-public class MenuActivity extends AppCompatActivity {
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
 
 
-            switch (item.getItemId()) {
+public class MenuActivity extends AppCompatActivity{
 
-
-                case R.id.navigation_Customers:
-                    ft.replace(R.id.menu_FragmentFrameLayout,new CustomerFragment());
-                    ft.commit();
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    //ft.addToBackStack(null);
-                    return true;
-                case R.id.navigation_Invoices:
-                    ft.replace(R.id.menu_FragmentFrameLayout,new InvoiceFragment());
-                    ft.commit();
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    //ft.addToBackStack(null);
-                    return true;
-                case R.id.navigation_Reports:
-                    ft.replace(R.id.menu_FragmentFrameLayout,new ReportsFragment());
-                    ft.commit();
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                   // ft.addToBackStack(null);
-                    return true;
-                case R.id.navigation_Options:
-                    ft.replace(R.id.menu_FragmentFrameLayout,new OptionsFragment());
-                    ft.commit();
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                  //  ft.addToBackStack(null);
-                    return true;
-            }
-            return false;
-        }
-
-    };
+    // For Scrolling Tabs (using ViewPagerAdapter Class
+    private ViewPager viewPager;
+    MenuItem prevMenuItem;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        //FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.add(R.id.menu_FragmentFrameLayout,new InvoiceFragment());
-        ft.commit();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
+
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.navigation_Invoices:
+                                viewPager.setCurrentItem(0);
+                                break;
+                            case R.id.navigation_Customers:
+                                viewPager.setCurrentItem(1);
+                                break;
+                            case R.id.navigation_Reports:
+                                viewPager.setCurrentItem(2);
+                                break;
+                            case R.id.navigation_Options:
+                                viewPager.setCurrentItem(3);
+                                break;
+                        }
+                        return false;
+                    }
+                }
+        );
+        viewPager.addOnPageChangeListener( new ViewPager.OnPageChangeListener(){
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
+                }
+                else
+                {
+                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        setupViewPager(viewPager);
+   }
 
     protected void onResume() {
         super.onResume();
-
-      //  TipDetailFragment frag = (TipDetailFragment) getFragmentManager().findFragmentById(R.id.detail_fragmenttipdetailholder);
-      //  frag.populate(pos);
-
-
     }
 
     public void Logout()
@@ -82,5 +85,15 @@ public class MenuActivity extends AppCompatActivity {
         Intent logoutIntent = new Intent(MenuActivity.this, LoginActivity.class);
         logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(logoutIntent);
+    }
+
+    //For ViewPagerAdapter
+    public void setupViewPager(ViewPager viewPager){
+        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragment(new InvoiceFragment());
+        pagerAdapter.addFragment(new CustomerFragment());
+        pagerAdapter.addFragment(new ReportsFragment());
+        pagerAdapter.addFragment(new OptionsFragment());
+        viewPager.setAdapter(pagerAdapter);
     }
 }
