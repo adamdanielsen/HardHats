@@ -4,8 +4,8 @@
     <string name="login_Register">REGISTER</string>
     <string name="login_Username">Username</string>
     <string name="login_Password">Password</string>
-    <string name="register_Username">Username (5-20 Characters)</string>
-    <string name="register_Password">Password (5-20 Characters)</string>
+    <string name="register_Username">Username (5–20 Characters)</string>
+    <string name="register_Password">Password (5–20 Characters)</string>
     <string name="register_ConfirmPassword">Confirm Password:</string>
     <string name="register_Register">REGISTER</string>
     <string name="register_Cancel">CANCEL</string>
@@ -23,7 +23,7 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_Options">Options</string>
-    <string name="fragmentoptions_Logout">LOGOUT</string>
+    <string name="fragment_options_Logout">LOGOUT</string>
 
     <string name="reports_navigation_frag_text">Reports</string>
     <string name="invoice_navigation_frag_text">Invoices</string>

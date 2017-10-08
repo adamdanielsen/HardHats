@@ -15,6 +15,6 @@
             android:id="@+id/fragmentOptions_LogoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragmentoptions_Logout" />
+            android:text="@string/fragment_options_Logout" />
     </LinearLayout>
 </FrameLayout>

@@ -8,8 +8,8 @@ package project.senior.hardhats;
         import java.io.InputStreamReader;
         import java.io.OutputStream;
         import java.io.OutputStreamWriter;
+        import java.lang.reflect.Array;
         import java.net.HttpURLConnection;
-        import java.net.MalformedURLException;
         import java.net.URL;
         import java.net.URLEncoder;
 /**
@@ -25,92 +25,65 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     Context context;
     String type;
 
-    String login_url= "http://hardhatz.org/login.php"; //THIS MUST BE CHANGED TO YOUR IP IF YOU ARE RUNNING THE SERVER LOCAL!
+    String login_url= "http://hardhatz.org/login.php";
     //DB Username: HardHatz
     //DB Password: root123
     String createuser_url="http://hardhatz.org/createuser.php";
+
     BackgroundWorker(Context ctx)
     {
         context=ctx;
     }
 
-    protected String LoginProcedure(String...params)
+    //Easy way to make the Post rather then making that annoying string. Pass in the variable names in the first array, and then the values in the other. Obviously they have to be parallel
+
+    protected String PostBuilder (String[] phpVariableNames, String[] dataPassedIn)
+
     {
+        String postdata="";
 
-        try {
-            String user_name=params[1];
-            String password=params[2];
-            URL url = new URL(login_url);
-            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-            httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.setDoInput(true);
-            httpURLConnection.setDoOutput(true);
-            OutputStream outputStream = httpURLConnection.getOutputStream();
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-            String post_data= URLEncoder.encode("user_name","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"
-                    +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
-            bufferedWriter.write(post_data);
-            bufferedWriter.flush();
-            bufferedWriter.close();
-            outputStream.close();
-            InputStream inputStream= httpURLConnection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-            String result="";
-            String line="";
-            while ((line=bufferedReader.readLine())!=null)
-            {
-                result +=line;
-            }
-            bufferedReader.close();
-            inputStream.close();
-            httpURLConnection.disconnect();
+        if (Array.getLength(phpVariableNames)!=Array.getLength(dataPassedIn))
+        {
+            return postdata;
+        }
 
-            if (result.equals("BAD")) {
-                SessionData.getInstance().setUsername("BAD");
-                return result;
+        int loopLength = Array.getLength(phpVariableNames);
+
+        for (int i=0;i<loopLength;i++)
+        {
+            try {
+                postdata += URLEncoder.encode(phpVariableNames[i], "UTF-8")+"="+URLEncoder.encode(dataPassedIn[i],"UTF-8")+"&";
             }
 
-
-            SessionData.getInstance().setUsername(result);
-            return result;
-
-
-        } catch (MalformedURLException e) {
-
-            e.printStackTrace();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
+            catch (IOException e) {
+                return "";
+            }
 
         }
 
-    return null;
+        return postdata.substring(0, postdata.length() - 1);
     }
 
-    protected String RegisterProcedure(String...params)
+    protected String ExecuteRequest(String urlName, String[] phpVariableNames, String[] dataPassedIn)
     {
 
         try {
-            String user_name=params[1];
-            String password=params[2];
-            URL url = new URL(createuser_url);
-            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            URL url = new URL(urlName);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoInput(true);
             httpURLConnection.setDoOutput(true);
             OutputStream outputStream = httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-            String post_data= URLEncoder.encode("user_name","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"
-                    +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+            String post_data = PostBuilder(phpVariableNames, dataPassedIn);
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
             bufferedWriter.close();
             outputStream.close();
-            InputStream inputStream= httpURLConnection.getInputStream();
+            InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-            String result="";
-            String line="";
+            String result = "";
+            String line;
             while ((line=bufferedReader.readLine())!=null)
             {
                 result +=line;
@@ -118,28 +91,41 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
-
-            if (result.equals("TAKEN")) {
-                SessionData.getInstance().setLastStringResult("BAD");
-                return result;
-            }
-
-
-            SessionData.getInstance().setLastStringResult("GOOD");
             return result;
-
-
-        } catch (MalformedURLException e) {
-
-            e.printStackTrace();
-
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
 
             e.printStackTrace();
 
         }
 
         return null;
+    }
+
+    protected String LoginProcedure(String...params)
+    {
+
+
+            String[] phpVariableNames={"user_name","password"};
+            String[] dataPassedIn= {params[1],params[2]};
+            String result= ExecuteRequest(login_url,phpVariableNames,dataPassedIn);
+            SessionData.getInstance().setUsername(result);
+            return result;
+
+
+    }
+
+    protected String RegisterProcedure(String...params)
+    {
+            String[] phpVariableNames = {"user_name","password"};
+            String[] dataPassedIn={params[1],params[2]};
+            String result = ExecuteRequest(createuser_url,phpVariableNames,dataPassedIn);
+            if (result.equals("TAKEN")) {
+                SessionData.getInstance().setLastStringResult("BAD");
+                return result;
+            }
+            SessionData.getInstance().setLastStringResult("GOOD");
+            return result;
     }
 
     @Override
