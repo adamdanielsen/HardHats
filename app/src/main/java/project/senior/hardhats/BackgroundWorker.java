@@ -122,8 +122,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             String[] phpVariableNames = {"user_name","password"};
             String[] dataPassedIn={params[1],params[2]};
             String result = ExecuteRequest(createuser_url,phpVariableNames,dataPassedIn);
-            if (result.equals("TAKEN")) {
-                return "BAD";
+            if (result.equals("BAD")) {
+                return result;
             }
             return "GOOD";
     }
