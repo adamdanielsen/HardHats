@@ -122,8 +122,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             String[] phpVariableNames = {"user_name","password"};
             String[] dataPassedIn={params[1],params[2]};
             String result = ExecuteRequest(createuser_url,phpVariableNames,dataPassedIn);
-            if (result.equals("BAD")) {
-                return result;
+            if (result.equals("TAKEN")) {
+                return "BAD";
             }
             return "GOOD";
     }
@@ -154,7 +154,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        alertDialog.setTitle("Raw String");
+        alertDialog.setTitle("Check");
         alertDialog.setMessage(result);
         //debug stuff
         //alertDialog.show();
