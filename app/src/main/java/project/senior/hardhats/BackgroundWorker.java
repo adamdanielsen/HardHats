@@ -1,17 +1,21 @@
 package project.senior.hardhats;
-        import android.content.Context;
-        import android.os.AsyncTask;
-        import java.io.BufferedReader;
-        import java.io.BufferedWriter;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.io.OutputStream;
-        import java.io.OutputStreamWriter;
-        import java.lang.reflect.Array;
-        import java.net.HttpURLConnection;
-        import java.net.URL;
-        import java.net.URLEncoder;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 /**
  * Created on 9/14/2017.
  */
@@ -24,7 +28,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     Context context;
     String type;
-
+    ProgressDialog progressDialog;
+    AlertDialog alertDialog;
     String login_url= "http://hardhatz.org/login.php";
     //DB Username: HardHatz
     //DB Password: root123
@@ -60,7 +65,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             }
 
         }
-
         return postdata.substring(0, postdata.length() - 1);
     }
 
@@ -108,9 +112,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             String[] phpVariableNames={"user_name","password"};
             String[] dataPassedIn= {params[1],params[2]};
-            String result= ExecuteRequest(login_url,phpVariableNames,dataPassedIn);
-            SessionData.getInstance().setUsername(result);
-            return result;
+            return ExecuteRequest(login_url,phpVariableNames,dataPassedIn);
 
 
     }
@@ -121,11 +123,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             String[] dataPassedIn={params[1],params[2]};
             String result = ExecuteRequest(createuser_url,phpVariableNames,dataPassedIn);
             if (result.equals("TAKEN")) {
-                SessionData.getInstance().setLastStringResult("BAD");
-                return result;
+                return "BAD";
             }
-            SessionData.getInstance().setLastStringResult("GOOD");
-            return result;
+            return "GOOD";
     }
 
     @Override
@@ -148,11 +148,17 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPreExecute() {
-
+        super.onPreExecute();
+        alertDialog=new AlertDialog.Builder(context).create();
     }
 
     @Override
     protected void onPostExecute(String result) {
+        alertDialog.setTitle("Check");
+        alertDialog.setMessage(result);
+        //debug stuff
+        //alertDialog.show();
+
 
     }
 

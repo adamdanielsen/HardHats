@@ -2,16 +2,15 @@ package project.senior.hardhats;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class LoginActivity extends AppCompatActivity {
     TextView aboutTextView;
@@ -19,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText passwordEditText;
     Button buttonLogin;
     Button buttonRegister;
+    String returnedUsername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         SessionData.Reset();
+
+
     }
 
 
@@ -72,33 +74,27 @@ public class LoginActivity extends AppCompatActivity {
         String type = "login";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         try {
-            backgroundWorker.execute(type,username,password).get(5, TimeUnit.SECONDS);
+            returnedUsername = backgroundWorker.execute(type, username, password).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        } catch (TimeoutException e) {
-            Toast.makeText(this, "Request timed out", Toast.LENGTH_SHORT).show();
-            return;
         }
-
-
-        if (SessionData.getInstance().getUsername().equals(""))
+        if (returnedUsername.equals(""))
         {
             Toast.makeText(this, "Cannot connect to server", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!((SessionData.getInstance().getUsername().equals("BAD"))||(SessionData.getInstance().getUsername().equals(""))))
+        if (!((returnedUsername.equals("BAD"))||(returnedUsername.equals(""))))
         {
 
-            Toast.makeText(this, "Welcome "+SessionData.getInstance().getUsername(), Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(this, "Welcome "+returnedUsername, Toast.LENGTH_SHORT).show();
+            SessionData.getInstance().setUsername(returnedUsername);
             Intent menuIntent = new Intent(LoginActivity.this, MenuActivity.class);
-
             menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(menuIntent);
         }
-        if (SessionData.getInstance().getUsername().equals("BAD"))
+        if (returnedUsername.equals("BAD"))
         {
             Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
         }
