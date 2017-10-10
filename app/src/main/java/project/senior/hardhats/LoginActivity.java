@@ -72,9 +72,16 @@ public class LoginActivity extends AppCompatActivity {
         String username =usernameEditText.getText().toString();
         String password =passwordEditText.getText().toString();
         String type = "login";
+
+        DataContainer dataContainer= new DataContainer();
+        dataContainer.type=type;
+        dataContainer.phpVariableNames.add("user_name");
+        dataContainer.phpVariableNames.add("user_pass");
+        dataContainer.dataPassedIn.add(username);
+        dataContainer.dataPassedIn.add(password);
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         try {
-            returnedUsername = backgroundWorker.execute(type, username, password).get();
+            returnedUsername = backgroundWorker.execute(dataContainer).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

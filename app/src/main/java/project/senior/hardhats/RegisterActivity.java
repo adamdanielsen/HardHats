@@ -154,10 +154,17 @@ public class RegisterActivity extends AppCompatActivity {
         String registrationResult;
         String username= usernameEditText.getText().toString();
         String password= passwordEditText.getText().toString();
+
+        DataContainer dataContainer = new DataContainer();
+        dataContainer.type=type;
+        dataContainer.phpVariableNames.add("user_name");
+        dataContainer.phpVariableNames.add("user_pass");
+        dataContainer.dataPassedIn.add(username);
+        dataContainer.dataPassedIn.add(password);
+
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         try {
-           registrationResult = backgroundWorker.execute(type,username,password).get();
-
+           registrationResult = backgroundWorker.execute(dataContainer).get();
             if (registrationResult.equals("BAD")) {
                 Toast.makeText(this, "Username already taken!", Toast.LENGTH_SHORT).show();
                 return;
