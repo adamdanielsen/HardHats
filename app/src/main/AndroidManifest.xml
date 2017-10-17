@@ -24,5 +24,4 @@
             android:label="@string/title_activity_menu" />
         <activity android:name=".AboutActivity" />
     </application>
-
 </manifest>
