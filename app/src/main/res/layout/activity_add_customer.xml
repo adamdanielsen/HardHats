@@ -110,7 +110,7 @@
                 android:id="@+id/customer_zip_code_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/zip_code" />
 
             <EditText
                 android:id="@+id/customer_zip_code_editText"
