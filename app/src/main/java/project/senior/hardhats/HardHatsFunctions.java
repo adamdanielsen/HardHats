@@ -3,7 +3,7 @@ import java.util.regex.Pattern;
 
 //This class is untested.
 
-public  class HardHatsFunctions {
+public class HardHatsFunctions {
 
 
     private String regexUsername = "^[a-zA-Z0-9]{5,20}+$";
@@ -17,6 +17,8 @@ public  class HardHatsFunctions {
 
     private String otherRegexPassword = "^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]+$";
     //Made this one up too, should allow most characters for passwords.
+
+    private String regexName = "^[A-Za-z][1,100]+$";
 
     public boolean ValidateUsername (String username)
     {

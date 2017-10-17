@@ -31,7 +31,6 @@ public class AboutActivity extends AppCompatActivity {
         authorList.add(Author4);
         authorList.add(Author5);
         Collections.shuffle(authorList);
-
         ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(this,R.layout.simplelistitem,authorList);
         authorListView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();

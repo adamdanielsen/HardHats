@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class LoginActivity extends AppCompatActivity {
     TextView aboutTextView;
@@ -81,11 +83,13 @@ public class LoginActivity extends AppCompatActivity {
         dataContainer.dataPassedIn.add(password);
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         try {
-            returnedUsername = backgroundWorker.execute(dataContainer).get();
+            returnedUsername = backgroundWorker.execute(dataContainer).get(3, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
+        } catch (TimeoutException e) {
+            Toast.makeText(this, "Request Timed Out, Check Connection", Toast.LENGTH_SHORT).show();
         }
         if (returnedUsername.equals(""))
         {
