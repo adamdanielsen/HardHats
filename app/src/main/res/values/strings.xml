@@ -19,6 +19,18 @@
     <string name="navigation_Invoices">Invoices</string>
     <string name="navigation_Customers">Customers</string>
     <string name="navigation_Reports">Reports</string>
+    <string name="save">Save</string>
+
+
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email Address</string>
+    <string name="house_number">House/APT Number</string>
+    <string name="street">Street</string>
+    <string name="town">Town</string>
+    <string name="state">State</string>
+    <string name="zip_code">Zip Code</string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
