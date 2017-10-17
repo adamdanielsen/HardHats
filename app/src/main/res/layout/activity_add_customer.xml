@@ -65,6 +65,20 @@
                 android:text="" />
 
             <TextView
+                android:id="@+id/customer_email_address_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email" />
+
+            <EditText
+                android:id="@+id/customer_email_address_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:text="" />
+
+            <TextView
                 android:id="@+id/house_number_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,6 +100,34 @@
 
             <EditText
                 android:id="@+id/street_address_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/customer_zip_code_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/customer_zip_code_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/customer_state_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/state" />
+
+            <EditText
+                android:id="@+id/editText7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
