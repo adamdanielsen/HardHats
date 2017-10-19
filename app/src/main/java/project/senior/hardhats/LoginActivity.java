@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -20,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText passwordEditText;
     Button buttonLogin;
     Button buttonRegister;
-    String returnedUsername;
+    JSONObject returnedUsername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +84,9 @@ public class LoginActivity extends AppCompatActivity {
         dataContainer.phpVariableNames.add("user_pass");
         dataContainer.dataPassedIn.add(username);
         dataContainer.dataPassedIn.add(password);
-        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+        BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON(this);
         try {
+            returnedUsername = new JSONObject();
             returnedUsername = backgroundWorker.execute(dataContainer).get(3, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -91,24 +95,28 @@ public class LoginActivity extends AppCompatActivity {
         } catch (TimeoutException e) {
             Toast.makeText(this, "Request Timed Out, Check Connection", Toast.LENGTH_SHORT).show();
         }
-        if (returnedUsername.equals(""))
-        {
-            Toast.makeText(this, "Cannot connect to server", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (!((returnedUsername.equals("BAD"))||(returnedUsername.equals(""))))
-        {
-
-            Toast.makeText(this, "Welcome "+returnedUsername, Toast.LENGTH_SHORT).show();
-            SessionData.getInstance().setUsername(returnedUsername);
-            Intent menuIntent = new Intent(LoginActivity.this, MenuActivity.class);
-            menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(menuIntent);
-        }
-        if (returnedUsername.equals("BAD"))
+        String setusername= "";
+        //if its null that means it didn't get a user in the php script and we should say that
+        if (returnedUsername==null)
         {
             Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
+            return;
         }
+        //This is how you get the one field back from the JSONobject
+        try {
+            setusername = returnedUsername.getString("Username");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        Toast.makeText(this, "Welcome "+setusername, Toast.LENGTH_SHORT).show();
+        SessionData.getInstance().setUsername(setusername);
+        Intent menuIntent = new Intent(LoginActivity.this, MenuActivity.class);
+        menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(menuIntent);
 
     }
 
