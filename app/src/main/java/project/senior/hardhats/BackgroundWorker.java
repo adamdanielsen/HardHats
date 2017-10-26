@@ -1,8 +1,5 @@
 package project.senior.hardhats;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -37,19 +34,13 @@ import java.net.URLEncoder;
 
 public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
-    Context context;
     String type;
-    ProgressDialog progressDialog;
-    AlertDialog alertDialog;
     String login_url= "http://hardhatz.org/login.php";
     //DB Username: HardHatz
     //DB Password: root123
     String createuser_url="http://hardhatz.org/createuser.php";
 
-    BackgroundWorker(Context ctx)
-    {
-        context=ctx;
-    }
+    BackgroundWorker() {}
     /**
      * Returns a String object representing the created POST.
      * The DataContainer is read and the parallel arrays are used to create the post.
@@ -112,16 +103,16 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
             outputStream.close();
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-            String result = "";
+            StringBuilder result = new StringBuilder();
             String line;
             while ((line=bufferedReader.readLine())!=null)
             {
-                result +=line;
+                result.append(line);
             }
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
-            return result;
+            return result.toString();
         }
         catch (IOException e) {
 
@@ -153,7 +144,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     /**
      * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
      * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
-     * other coders.
+     * others.
      *
      * @param   dataContainer   Data to be passed to script.
      * @return  Returns the result of ExecuteRequest, which is the script echo.
@@ -202,34 +193,27 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
 
     /**
-     * This is called before doInBackground. Currently it just sets up an AlertDialog
+     * This is called before doInBackground.
      */
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        alertDialog=new AlertDialog.Builder(context).create();
+
     }
 
 
 
     /**
-     * This is called after doInBackground. It displays the data in an AlertDialog box.
+     * This is called after doInBackground.
      *
      */
     @Override
     protected void onPostExecute(String result) {
-        alertDialog.setTitle("Check");
-        alertDialog.setMessage(result);
-        //debug stuff
-        alertDialog.show();
+
 
 
     }
 
-    @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
-    }
 
 
 }

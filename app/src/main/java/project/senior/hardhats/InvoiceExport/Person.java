@@ -29,12 +29,27 @@ public class Person {
     String state;
 
 
+    Person (JSONObject personJSONObject) throws JSONException
+
+    {
+        firstName=personJSONObject.getString("FirstName");
+        lastName=personJSONObject.getString("LastName");
+        phoneNumber=personJSONObject.getString("PhoneNumber");
+        faxNumber=personJSONObject.getString("FaxNumber");
+        emailAddress=personJSONObject.getString("EmailAddress");
+        companyName=personJSONObject.getString("CompanyName");
+        street=personJSONObject.getString("Street");
+        city=personJSONObject.getString("City");
+        zipCode=personJSONObject.getString("ZipCode");
+        state=personJSONObject.getString("State");
+    }
+
     Person(Context context, String contractorOrCustomer, String id) throws ExecutionException, InterruptedException, JSONException {
         DataContainer idContainer = new DataContainer();
         idContainer.type=contractorOrCustomer;
         idContainer.phpVariableNames.add("ID");
         idContainer.dataPassedIn.add(id);
-        BackgroundWorkerJSON getAddressProcess = new BackgroundWorkerJSON(context);
+        BackgroundWorkerJSON getAddressProcess = new BackgroundWorkerJSON();
         JSONObject returnedData;
         returnedData = getAddressProcess.execute(idContainer).get();
         firstName=returnedData.getString("FirstName");
@@ -51,8 +66,11 @@ public class Person {
 
     public String BuildAddress()
     {
+        String address="";
 
-        return null;
+
+
+        return address;
     }
 
 }

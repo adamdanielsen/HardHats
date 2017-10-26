@@ -8,65 +8,47 @@
     android:orientation="vertical"
     tools:context="project.senior.hardhats.LoginActivity">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/login_LogoImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
 
-        <ImageView
-            android:id="@+id/login_LogoImageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo" />
 
-            app:srcCompat="@drawable/logo" />
+    <EditText
+        android:id="@+id/login_UserNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_Username"
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login_Username" />
+        android:inputType="textPersonName"
+        android:maxLength="@integer/MAXUSERNAMELENGTH" />
 
-        <EditText
-            android:id="@+id/login_UserNameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+    <EditText
+        android:id="@+id/login_PasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_Password"
 
-            android:maxLength="@integer/MAXUSERNAMELENGTH" />
+        android:inputType="textPassword"
+        android:maxLength="@integer/MAXPASSWORDLENGTH" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login_Password" />
+    <Button
+        android:id="@+id/login_LoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_Login" />
 
-        <EditText
-            android:id="@+id/login_PasswordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
+    <Button
+        android:id="@+id/login_RegisterButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_Register" />
 
-            android:maxLength="@integer/MAXPASSWORDLENGTH" />
+    <TextView
+        android:id="@+id/login_AboutTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_About" />
 
-        <Button
-            android:id="@+id/login_LoginButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login_Login" />
-
-        <Button
-            android:id="@+id/login_RegisterButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login_Register" />
-
-        <TextView
-            android:id="@+id/login_AboutTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login_About" />
-    </LinearLayout>
 </LinearLayout>

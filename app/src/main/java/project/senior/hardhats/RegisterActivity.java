@@ -106,39 +106,10 @@ public class RegisterActivity extends AppCompatActivity {
         String password=passwordEditText.getText().toString();
         String username=usernameEditText.getText().toString();
         String confirmPassword=confirmpasswordEditText.getText().toString();
-/*
-        if(password.length()>R.integer.MAXPASSWORDLENGTH)
-        {
-            registerButton.setEnabled(false);
-            return;
-        }
 
-        if(password.length()<getResources().getInteger(R.integer.MINPASSWORDLENGTH))
-        {
-            registerButton.setEnabled(false);
-            return;
-        }
-
-        if(username.length()>getResources().getInteger(R.integer.MAXUSERNAMELENGTH))
-        {
-            registerButton.setEnabled(false);
-            return;
-        }
-        if(username.length()<getResources().getInteger(R.integer.MINUSERNAMELENGTH))
-        {
-            registerButton.setEnabled(false);
-            return;
-        }
-        if(!(password.equals(confirmPassword)))
-        {
-            registerButton.setEnabled(false);
-            return;
-        }
-*/
         if((password.length()<=getResources().getInteger(R.integer.MAXPASSWORDLENGTH))&&(password.length()>=getResources().getInteger(R.integer.MINPASSWORDLENGTH))&&(username.length()<=getResources().getInteger(R.integer.MAXUSERNAMELENGTH))&&(username.length()>=getResources().getInteger(R.integer.MINUSERNAMELENGTH))&&(password.equals(confirmPassword)))
         {
             registerButton.setEnabled(true);
-
         }
 
         else
@@ -162,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
         dataContainer.dataPassedIn.add(username);
         dataContainer.dataPassedIn.add(password);
 
-        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+        BackgroundWorker backgroundWorker = new BackgroundWorker();
         try {
            registrationResult = backgroundWorker.execute(dataContainer).get();
             if (registrationResult.equals("BAD")) {

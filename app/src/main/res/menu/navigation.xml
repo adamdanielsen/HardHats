@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/navigation_Reports"
-        android:icon="@mipmap/ic_assignment_black_24dp"
+        android:icon="@mipmap/ic_assessment_black_24dp"
         android:title="@string/navigation_Reports" />
     <item
         android:id="@+id/navigation_Options"

@@ -1,7 +1,5 @@
 package project.senior.hardhats;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 
 import org.json.JSONException;
@@ -22,27 +20,46 @@ import java.net.URLEncoder;
  */
 
 
+/**
+ * A class that is used to run database operations. Parameters are passed in and then
+ * this class will pass them to the correct php script
+ * The only parameter passed in to the constructor is the context to make
+ * debugging easier.
+ * The way this class works is that when the execute function is called, three relevant functions
+ * are run. First PreExecute, then doInBackground, then PostExecute.
+ * This version of the class returns JSONObjects, not Strings.
+ *
+ */
+
+
 
 public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
 
 
-    public Context context;
     String type;
-    ProgressDialog progressDialog;
     String login_url= "http://hardhatz.org/loginJSON.php";
     String createuser_url="http://hardhatz.org/createuser.php";
     String customeraddress_url="http://hardhatz.org/customeraddress.php";
     String contractoraddress_url="http://hardhatz.org/contractoraddress.php";
     String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
 
-    public BackgroundWorkerJSON(Context ctx)
+    public BackgroundWorkerJSON()
     {
-        context=ctx;
+
     }
 
 
 
-    //Easy way to make the Post rather then making that annoying string. Pass in the variable names in the first array, and then the values in the other. Obviously they have to be parallel
+    /**
+     * Returns a String object representing the created POST.
+     * The DataContainer is read and the parallel arrays are used to create the post.
+     * If this function fails because the arrays are not parallel it returns an empty string.
+     * At the end the return function snips off the last character because it is always "&"
+     *
+     * @param   dataContainer The variables and data being passed in
+     * @return  The relevant POST created from the data.
+     */
+
 
     protected String PostBuilder (DataContainer dataContainer)
 
@@ -70,6 +87,15 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
         return postdata.substring(0, postdata.length() - 1);
     }
 
+    /**
+     * Returns the echo from the PHP script as a String. The correct php script is loaded
+     * from the urlName passed in. Then the correct protocols are used to setup a connection.
+     * PostBuilder creates the post data and then the URL is used with the Post attached.
+     * Then the echo is read back in to a string.
+     * @param   urlName   The URL of the script to be used.
+     * @param   dataContainer The data being passed to the PostBuilder
+     * @return  The result of the script.
+     */
 
     protected JSONObject ExecuteRequest(String urlName, DataContainer dataContainer)
     {
@@ -89,17 +115,17 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
             outputStream.close();
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-            String result = "";
+            StringBuilder result = new StringBuilder();
             String line;
             while ((line=bufferedReader.readLine())!=null)
             {
-                result +=line;
+                result.append(line);
             }
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
             //this is all you need to do to get the JsonObject back other then changing types, we might have to do JsonArray eventually
-            return new JSONObject(result);
+            return new JSONObject(result.toString());
         }
         catch (IOException e) {
 
@@ -112,22 +138,55 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
         return null;
     }
 
+
+    /**
+     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
+     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
+     * other coders.
+     *
+     * @param   dataContainer   Data to be passed to script.
+     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     */
     protected JSONObject LoginProcedure(DataContainer dataContainer)
     {
         return ExecuteRequest(login_url, dataContainer);
     }
-
+    /**
+     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
+     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
+     * other coders.
+     *
+     * @param   dataContainer   Data to be passed to script.
+     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     */
     protected JSONObject RegisterProcedure(DataContainer dataContainer)
     {
         return ExecuteRequest(createuser_url, dataContainer);
     }
-
+    /**
+     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
+     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
+     * other coders.
+     *
+     * @param   dataContainer   Data to be passed to script.
+     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     */
     protected JSONObject InvoiceExportProcedure(DataContainer dataContainer) {
         return ExecuteRequest(contractoraddress_url, dataContainer);
     }
 
 
 
+    /**
+     * After a few steps, this function returns the result of the echo from the script called.
+     * This function uses the type located in the DataContainer to figure out which script to use.
+     * This function should NOT BE REMOVED! It is an override of doInBackground from the base class
+     * ASyncTask. Without this function this class is just a regular class that runs on the UI
+     * Thread
+     *
+     * @param   params   Data to be passed to script. Just use index 0.
+     * @return  Returns the result of the relevant function, which is the script echo.
+     */
 
     @Override
     protected JSONObject doInBackground(DataContainer... params) {
@@ -154,23 +213,24 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
 
 
 
+
+    /**
+     * This is called before doInBackground.
+     */
     @Override
     protected void onPreExecute() {
-        super.onPreExecute();
+
 
     }
 
+    /**
+     * This is called after doInBackground.
+     *
+     */
     @Override
     protected void onPostExecute(JSONObject result) {
-
-
-
     }
 
-    @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
-    }
 
 
 }

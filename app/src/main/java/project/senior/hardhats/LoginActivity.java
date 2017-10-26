@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         dataContainer.phpVariableNames.add("user_pass");
         dataContainer.dataPassedIn.add(username);
         dataContainer.dataPassedIn.add(password);
-        BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON(this);
+        BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
         try {
             returnedUsername = new JSONObject();
             returnedUsername = backgroundWorker.execute(dataContainer).get(3, TimeUnit.SECONDS);
