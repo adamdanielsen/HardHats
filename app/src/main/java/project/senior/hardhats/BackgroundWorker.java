@@ -19,11 +19,23 @@ import java.net.URLEncoder;
  * Created on 9/14/2017.
  */
 
-//If you don't know how this class works ask Adam, he might know
-// - Adam
+
+
+/**
+ * A class that is used to run database operations. Parameters are passed in and then
+ * this class will pass them to the correct php script
+ * The only parameter passed in to the constructor is the context to make
+ * debugging easier.
+ * The way this class works is that when the execute function is called, three relevant functions
+ * are run. First PreExecute, then doInBackground, then PostExecute.
+ * This version of the class returns Strings, not JSONObject.
+ *
+ */
+
+
+
 
 public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
-
 
     Context context;
     String type;
@@ -38,9 +50,15 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     {
         context=ctx;
     }
-
-    //Easy way to make the Post rather then making that annoying string. Pass in the variable names in the first array, and then the values in the other. Obviously they have to be parallel
-
+    /**
+     * Returns a String object representing the created POST.
+     * The DataContainer is read and the parallel arrays are used to create the post.
+     * If this function fails because the arrays are not parallel it returns an empty string.
+     * At the end the return function snips off the last character because it is always "&"
+     *
+     * @param   dataContainer The variables and data being passed in
+     * @return  The relevant POST created from the data.
+     */
     protected String PostBuilder (DataContainer dataContainer)
 
     {
@@ -67,7 +85,15 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
         return postdata.substring(0, postdata.length() - 1);
     }
 
-
+    /**
+     * Returns the echo from the PHP script as a String. The correct php script is loaded
+     * from the urlName passed in. Then the correct protocols are used to setup a connection.
+     * PostBuilder creates the post data and then the URL is used with the Post attached.
+     * Then the echo is read back in to a string.
+     * @param   urlName   The URL of the script to be used.
+     * @param   dataContainer The data being passed to the PostBuilder
+     * @return  The result of the script.
+     */
     protected String ExecuteRequest(String urlName, DataContainer dataContainer)
     {
 
@@ -105,7 +131,16 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
         return null;
     }
-//todo these might need to be changed eventually
+
+    /**
+     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
+     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
+     * other coders.
+     *
+     * @param   dataContainer   Data to be passed to script.
+     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     */
+
     protected String LoginProcedure(DataContainer dataContainer)
     {
 
@@ -113,6 +148,16 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
 
     }
+
+
+    /**
+     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
+     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
+     * other coders.
+     *
+     * @param   dataContainer   Data to be passed to script.
+     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     */
 //todo This definitely needs to be changed.
     protected String RegisterProcedure(DataContainer dataContainer)
     {
@@ -123,6 +168,18 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
             return "GOOD";
     }
 
+
+
+    /**
+     * After a few steps, this function returns the result of the echo from the script called.
+     * This function uses the type located in the DataContainer to figure out which script to use.
+     * This function should NOT BE REMOVED! It is an override of doInBackground from the base class
+     * ASyncTask. Without this function this class is just a regular class that runs on the UI
+     * Thread
+     *
+     * @param   params   Data to be passed to script. Just use index 0.
+     * @return  Returns the result of the relevant function, which is the script echo.
+     */
 
     @Override
     protected String doInBackground(DataContainer... params) {
@@ -144,12 +201,21 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     }
 
 
+    /**
+     * This is called before doInBackground. Currently it just sets up an AlertDialog
+     */
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         alertDialog=new AlertDialog.Builder(context).create();
     }
 
+
+
+    /**
+     * This is called after doInBackground. It displays the data in an AlertDialog box.
+     *
+     */
     @Override
     protected void onPostExecute(String result) {
         alertDialog.setTitle("Check");

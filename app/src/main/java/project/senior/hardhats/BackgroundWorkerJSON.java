@@ -1,6 +1,5 @@
 package project.senior.hardhats;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -22,25 +21,26 @@ import java.net.URLEncoder;
  * Created on 9/14/2017.
  */
 
-//If you don't know how this class works ask Adam, he might know
-// - Adam
+
 
 public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
 
 
-    Context context;
+    public Context context;
     String type;
     ProgressDialog progressDialog;
-    AlertDialog alertDialog;
     String login_url= "http://hardhatz.org/loginJSON.php";
-    //DB Username: HardHatz
-    //DB Password: root123
     String createuser_url="http://hardhatz.org/createuser.php";
+    String customeraddress_url="http://hardhatz.org/customeraddress.php";
+    String contractoraddress_url="http://hardhatz.org/contractoraddress.php";
+    String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
 
-    BackgroundWorkerJSON(Context ctx)
+    public BackgroundWorkerJSON(Context ctx)
     {
         context=ctx;
     }
+
+
 
     //Easy way to make the Post rather then making that annoying string. Pass in the variable names in the first array, and then the values in the other. Obviously they have to be parallel
 
@@ -122,6 +122,12 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
         return ExecuteRequest(createuser_url, dataContainer);
     }
 
+    protected JSONObject InvoiceExportProcedure(DataContainer dataContainer) {
+        return ExecuteRequest(contractoraddress_url, dataContainer);
+    }
+
+
+
 
     @Override
     protected JSONObject doInBackground(DataContainer... params) {
@@ -137,24 +143,26 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
             case "register":
                 return RegisterProcedure(params[0]);
 
+            case "customer":
+                return InvoiceExportProcedure(params[0]);
+
+
         }
 
         return null;
     }
 
 
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        alertDialog=new AlertDialog.Builder(context).create();
+
     }
 
     @Override
     protected void onPostExecute(JSONObject result) {
-       //alertDialog.setTitle("Check");
-        //alertDialog.setMessage(result.toString());
-        //debug stuff
-        //alertDialog.show();
+
 
 
     }

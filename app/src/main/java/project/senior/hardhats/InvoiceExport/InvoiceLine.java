@@ -5,4 +5,19 @@ package project.senior.hardhats.InvoiceExport;
  */
 
 public class InvoiceLine {
+
+
+    int materialsID;
+    int invoiceFK;
+    String type;
+    int quantity;
+    int units;
+    int price;
+
+    public InvoiceLine()
+    {
+
+    }
+
+
 }

@@ -56,8 +56,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         SessionData.Reset();
-
-
     }
 
 
@@ -102,14 +100,12 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
             return;
         }
-        //This is how you get the one field back from the JSONobject
+        //This is how you get a field back from the JSONobject
         try {
             setusername = returnedUsername.getString("Username");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
 
 
         Toast.makeText(this, "Welcome "+setusername, Toast.LENGTH_SHORT).show();

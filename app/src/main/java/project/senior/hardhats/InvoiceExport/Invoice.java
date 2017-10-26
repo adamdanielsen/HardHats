@@ -8,19 +8,23 @@ import java.util.ArrayList;
 public class Invoice {
 
 
-    private Address customerAddress;
-    private Address contractorAddress;
+    private Person customerAddress;
+    private Person contractorAddress;
     ArrayList<InvoiceLine> invoiceLines;
-    int width;
-    int length;
-    int[] addressSpace;
 
 
-    Invoice(Address CustomerAddress, Address ContractorAddress, ArrayList<InvoiceLine> InvoiceLines)
+
+    Invoice(Person CustomerAddress, Person ContractorAddress, ArrayList<InvoiceLine> InvoiceLines)
     {
         customerAddress=CustomerAddress;
         contractorAddress=ContractorAddress;
         invoiceLines= new ArrayList<>(invoiceLines);
+    }
+
+    Invoice (int InvoiceId)
+    {
+        
+
     }
 
 
