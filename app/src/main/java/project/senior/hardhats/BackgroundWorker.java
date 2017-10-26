@@ -26,18 +26,12 @@ import java.net.URLEncoder;
  * The way this class works is that when the execute function is called, three relevant functions
  * are run. First PreExecute, then doInBackground, then PostExecute.
  * This version of the class returns Strings, not JSONObject.
- *
  */
-
-
-
 
 public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
     String type;
     String login_url= "http://hardhatz.org/login.php";
-    //DB Username: HardHatz
-    //DB Password: root123
     String createuser_url="http://hardhatz.org/createuser.php";
 
     BackgroundWorker() {}
@@ -53,11 +47,11 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     protected String PostBuilder (DataContainer dataContainer)
 
     {
-        String postdata="";
+        StringBuilder postdata= new StringBuilder();
 
         if (dataContainer.phpVariableNames.size()!=dataContainer.dataPassedIn.size())
         {
-            return postdata;
+            return postdata.toString();
         }
 
         int loopLength = dataContainer.phpVariableNames.size();
@@ -65,7 +59,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
         for (int i=0;i<loopLength;i++)
         {
             try {
-                postdata += URLEncoder.encode(dataContainer.phpVariableNames.get(i), "UTF-8")+"="+URLEncoder.encode(dataContainer.dataPassedIn.get(i),"UTF-8")+"&";
+                postdata.append(URLEncoder.encode(dataContainer.phpVariableNames.get(i), "UTF-8")).append("=").append(URLEncoder.encode(dataContainer.dataPassedIn.get(i), "UTF-8")).append("&");
             }
 
             catch (IOException e) {
@@ -150,6 +144,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
 //todo This definitely needs to be changed.
+
     protected String RegisterProcedure(DataContainer dataContainer)
     {
             String result = ExecuteRequest(createuser_url, dataContainer);
@@ -177,7 +172,6 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
         type = params[0].type;
 
-
         switch (type)
         {
             case "login":
@@ -201,20 +195,11 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
     }
 
-
-
     /**
      * This is called after doInBackground.
-     *
      */
     @Override
     protected void onPostExecute(String result) {
 
-
-
     }
-
-
-
 }
-

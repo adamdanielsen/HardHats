@@ -1,14 +1,7 @@
 package project.senior.hardhats.InvoiceExport;
 
-import android.content.Context;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.concurrent.ExecutionException;
-
-import project.senior.hardhats.BackgroundWorkerJSON;
-import project.senior.hardhats.DataContainer;
 
 /**
  * Created by theev on 10/12/2017.
@@ -22,6 +15,7 @@ public class Person {
     String phoneNumber;
     String faxNumber;
     String emailAddress;
+    String licenseNumber;
     String companyName;
     String street;
     String city;
@@ -29,48 +23,90 @@ public class Person {
     String state;
 
 
-    Person (JSONObject personJSONObject) throws JSONException
+
+    Person (JSONObject personJSONObject,String type) throws JSONException
 
     {
-        firstName=personJSONObject.getString("FirstName");
-        lastName=personJSONObject.getString("LastName");
-        phoneNumber=personJSONObject.getString("PhoneNumber");
-        faxNumber=personJSONObject.getString("FaxNumber");
-        emailAddress=personJSONObject.getString("EmailAddress");
-        companyName=personJSONObject.getString("CompanyName");
-        street=personJSONObject.getString("Street");
-        city=personJSONObject.getString("City");
-        zipCode=personJSONObject.getString("ZipCode");
-        state=personJSONObject.getString("State");
+
+        if (type.equals("Contractor"))
+        {
+            firstName = personJSONObject.getString("FirstName");
+            lastName = personJSONObject.getString("LastName");
+            phoneNumber = personJSONObject.getString("PhoneNumber");
+            faxNumber = personJSONObject.getString("FaxNumber");
+            emailAddress = personJSONObject.getString("EmailAddress");
+            licenseNumber= personJSONObject.getString("LicenseNumber");
+            companyName = personJSONObject.getString("CompanyName");
+            street = personJSONObject.getString("Street");
+            city = personJSONObject.getString("City");
+            zipCode = personJSONObject.getString("ZipCode");
+            state = personJSONObject.getString("State");
+        }
+
+        if (type.equals("Customer"))
+        {
+            firstName = personJSONObject.getString("FirstName");
+            lastName = personJSONObject.getString("LastName");
+            phoneNumber = personJSONObject.getString("PhoneNumber");
+            faxNumber = personJSONObject.getString("FaxNumber");
+            emailAddress = personJSONObject.getString("EmailAddress");
+            //licenseNumber= personJSONObject.getString("LicenseNumber");
+            companyName = personJSONObject.getString("CompanyName");
+            street = personJSONObject.getString("Street");
+            city = personJSONObject.getString("City");
+            zipCode = personJSONObject.getString("ZipCode");
+            state = personJSONObject.getString("State");
+        }
     }
 
-    Person(Context context, String contractorOrCustomer, String id) throws ExecutionException, InterruptedException, JSONException {
-        DataContainer idContainer = new DataContainer();
-        idContainer.type=contractorOrCustomer;
-        idContainer.phpVariableNames.add("ID");
-        idContainer.dataPassedIn.add(id);
-        BackgroundWorkerJSON getAddressProcess = new BackgroundWorkerJSON();
-        JSONObject returnedData;
-        returnedData = getAddressProcess.execute(idContainer).get();
-        firstName=returnedData.getString("FirstName");
-        lastName=returnedData.getString("LastName");
-        phoneNumber=returnedData.getString("PhoneNumber");
-        faxNumber=returnedData.getString("FaxNumber");
-        emailAddress=returnedData.getString("EmailAddress");
-        companyName=returnedData.getString("CompanyName");
-        street=returnedData.getString("Street");
-        city=returnedData.getString("City");
-        zipCode=returnedData.getString("ZipCode");
-        state=returnedData.getString("State");
-    }
 
-    public String BuildAddress()
+    public String BuildContractorAddress()
     {
-        String address="";
+        StringBuilder address = new StringBuilder();
 
 
+        address.append(companyName);
+        address.append("/n");
+        address.append(phoneNumber);
+        address.append("/n");
+        address.append(firstName);
+        address.append(" ");
+        address.append(lastName);
+        address.append("/n");
+        address.append(street);
+        address.append("/n");
+        address.append(city);
+        address.append(",");
+        address.append(state);
+        address.append(" ");
+        address.append(zipCode);
+        address.append("License #: ");
+        address.append(licenseNumber);
+        return address.toString();
+    }
 
-        return address;
+
+    public String BuildCustomerAddress()
+    {
+        StringBuilder address = new StringBuilder();
+
+        address.append(companyName);
+        address.append("/n");
+
+        address.append(phoneNumber);
+        address.append("/n");
+        address.append(firstName);
+        address.append(" ");
+        address.append(lastName);
+        address.append("/n");
+        address.append(street);
+        address.append("/n");
+        address.append(city);
+        address.append(",");
+        address.append(state);
+        address.append(" ");
+        address.append(zipCode);
+        return address.toString();
     }
 
 }

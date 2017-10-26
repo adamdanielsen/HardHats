@@ -64,11 +64,11 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
     protected String PostBuilder (DataContainer dataContainer)
 
     {
-        String postdata="";
+        StringBuilder postdata= new StringBuilder();
 
         if (dataContainer.phpVariableNames.size()!=dataContainer.dataPassedIn.size())
         {
-            return postdata;
+            return postdata.toString();
         }
 
         int loopLength = dataContainer.phpVariableNames.size();
@@ -76,7 +76,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
         for (int i=0;i<loopLength;i++)
         {
             try {
-                postdata += URLEncoder.encode(dataContainer.phpVariableNames.get(i), "UTF-8")+"="+URLEncoder.encode(dataContainer.dataPassedIn.get(i),"UTF-8")+"&";
+                postdata.append(URLEncoder.encode(dataContainer.phpVariableNames.get(i), "UTF-8")).append("=").append(URLEncoder.encode(dataContainer.dataPassedIn.get(i), "UTF-8")).append("&");
             }
 
             catch (IOException e) {
