@@ -3,8 +3,8 @@ package project.senior.hardhats;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,12 +74,9 @@ public class LoginActivity extends AppCompatActivity {
         try {
             Invoice test = new Invoice("1");
 
-            AlertDialog.Builder Test = new AlertDialog.Builder(v.getContext());
+
             String invoicestring = test.createTxtString();
-
-            System.out.println(invoicestring);
-
-
+            Log.d("",invoicestring);
 
 
 

@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -20,6 +21,7 @@ public class Invoice {
     private Person customerAddress;
     private Person contractorAddress;
     ArrayList<InvoiceLine> invoiceLines;
+    final DecimalFormat df = new DecimalFormat("$0.00");
 
 
     Invoice(Person CustomerAddress, Person ContractorAddress, InvoiceLine InvoiceLine)
@@ -67,7 +69,7 @@ public class Invoice {
         invoiceString.append(contractorAddress.BuildContractorAddress());
         invoiceString.append("\n\n");
         invoiceString.append(customerAddress.BuildCustomerAddress());
-        invoiceString.append("\n");
+        invoiceString.append("\n___________________________________________________________________________\n");
         double finalTotal = 0;
         for (InvoiceLine invoice : invoiceLines)
 
@@ -76,6 +78,9 @@ public class Invoice {
                 invoiceString.append(invoice.toString());
                 invoiceString.append("\n");
         }
+        invoiceString.append("___________________________________________________________________________\n");
+        invoiceString.append("TOTAL                                              ");
+        invoiceString.append(df.format(finalTotal));
 
         return invoiceString.toString();
     }
