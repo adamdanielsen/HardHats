@@ -3,6 +3,7 @@ package project.senior.hardhats;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -17,12 +18,15 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import project.senior.hardhats.InvoiceExport.Invoice;
+
 public class LoginActivity extends AppCompatActivity {
     TextView aboutTextView;
     EditText usernameEditText;
     EditText passwordEditText;
     Button buttonLogin;
     Button buttonRegister;
+    Button buttonDebug;
     JSONObject returnedUsername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,13 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText= (EditText) findViewById(R.id.login_PasswordEditText);
         buttonLogin = (Button) findViewById(R.id.login_LoginButton);
         buttonRegister= (Button) findViewById(R.id.login_RegisterButton);
+        buttonDebug=(Button) findViewById(R.id.main_debug);
+        buttonDebug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDebug(v);
+            }
+        });
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +69,29 @@ public class LoginActivity extends AppCompatActivity {
         SessionData.Reset();
     }
 
+    private void onDebug(View v) {
+
+        try {
+            Invoice test = new Invoice("1");
+
+            AlertDialog.Builder Test = new AlertDialog.Builder(v.getContext());
+            String invoicestring = test.createTxtString();
+
+            System.out.println(invoicestring);
+
+
+
+
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
     private void onAbout() {

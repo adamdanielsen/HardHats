@@ -4,7 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by theev on 10/12/2017.
+ * Created by on 10/12/2017.
  */
 
 public class Person {
@@ -24,7 +24,7 @@ public class Person {
 
 
 
-    Person (JSONObject personJSONObject,String type) throws JSONException
+   public Person (JSONObject personJSONObject,String type) throws JSONException
 
     {
 
@@ -66,20 +66,21 @@ public class Person {
 
 
         address.append(companyName);
-        address.append("/n");
+        address.append("\n");
         address.append(phoneNumber);
-        address.append("/n");
+        address.append("\n");
         address.append(firstName);
         address.append(" ");
         address.append(lastName);
-        address.append("/n");
+        address.append("\n");
         address.append(street);
-        address.append("/n");
+        address.append("\n");
         address.append(city);
         address.append(",");
         address.append(state);
         address.append(" ");
         address.append(zipCode);
+        address.append("\n");
         address.append("License #: ");
         address.append(licenseNumber);
         return address.toString();
@@ -91,16 +92,15 @@ public class Person {
         StringBuilder address = new StringBuilder();
 
         address.append(companyName);
-        address.append("/n");
-
+        address.append("\n");
         address.append(phoneNumber);
-        address.append("/n");
+        address.append("\n");
         address.append(firstName);
         address.append(" ");
         address.append(lastName);
-        address.append("/n");
+        address.append("\n");
         address.append(street);
-        address.append("/n");
+        address.append("\n");
         address.append(city);
         address.append(",");
         address.append(state);

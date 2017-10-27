@@ -2,8 +2,8 @@ package project.senior.hardhats;
 
 import android.os.AsyncTask;
 
+import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,6 +16,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+
+
 /**
  * A class that is used to run database operations. Parameters are passed in and then
  * this class will pass them to the correct php script
@@ -23,21 +25,19 @@ import java.net.URLEncoder;
  * debugging easier.
  * The way this class works is that when the execute function is called, three relevant functions
  * are run. First PreExecute, then doInBackground, then PostExecute.
- * This version of the class returns JSONObjects, not Strings.
+ * This version of the class returns JSONArrays, not Strings.
  *
  */
 
 
 
-public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
+public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSONArray> {
 
 
     String type;
-    String login_url= "http://hardhatz.org/loginJSON.php";
-    String createuser_url="http://hardhatz.org/createuser.php";
     String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
 
-    public BackgroundWorkerJSON()
+    public BackgroundWorkerJSONArray()
     {
 
     }
@@ -91,7 +91,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
      * @return  The result of the script.
      */
 
-    protected JSONObject ExecuteRequest(String urlName, DataContainer dataContainer)
+    protected JSONArray ExecuteRequest(String urlName, DataContainer dataContainer)
     {
 
         try {
@@ -118,8 +118,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
-            //this is all you need to do to get the JsonObject back other then changing types, we might have to do JsonArray eventually
-            return new JSONObject(result.toString());
+            return new JSONArray(result.toString());
         }
         catch (IOException e) {
 
@@ -133,6 +132,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
     }
 
 
+
     /**
      * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
      * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
@@ -141,31 +141,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
      * @param   dataContainer   Data to be passed to script.
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
-    protected JSONObject LoginProcedure(DataContainer dataContainer)
-    {
-        return ExecuteRequest(login_url, dataContainer);
-    }
-    /**
-     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
-     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
-     * other coders.
-     *
-     * @param   dataContainer   Data to be passed to script.
-     * @return  Returns the result of ExecuteRequest, which is the script echo.
-     */
-    protected JSONObject RegisterProcedure(DataContainer dataContainer)
-    {
-        return ExecuteRequest(createuser_url, dataContainer);
-    }
-    /**
-     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
-     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
-     * other coders.
-     *
-     * @param   dataContainer   Data to be passed to script.
-     * @return  Returns the result of ExecuteRequest, which is the script echo.
-     */
-    protected JSONObject InvoiceExportProcedure(DataContainer dataContainer) {
+    protected JSONArray InvoiceExportProcedure(DataContainer dataContainer) {
         return ExecuteRequest(invoiceexport_url, dataContainer);
     }
 
@@ -183,23 +159,15 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
      */
 
     @Override
-    protected JSONObject doInBackground(DataContainer... params) {
+    protected JSONArray doInBackground(DataContainer... params) {
 
         type = params[0].type;
 
 
         switch (type)
         {
-            case "login":
-                return LoginProcedure(params[0]);
-
-            case "register":
-                return RegisterProcedure(params[0]);
-
             case "invoiceexport":
                 return InvoiceExportProcedure(params[0]);
-
-
         }
 
         return null;
@@ -222,7 +190,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
      *
      */
     @Override
-    protected void onPostExecute(JSONObject result) {
+    protected void onPostExecute(JSONArray result) {
     }
 
 

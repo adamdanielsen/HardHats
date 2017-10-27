@@ -1,18 +1,17 @@
 package project.senior.hardhats.InvoiceExport;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
-import project.senior.hardhats.BackgroundWorkerJSON;
+import project.senior.hardhats.BackgroundWorkerJSONArray;
 import project.senior.hardhats.DataContainer;
 
 /**
- * Created by theev on 10/12/2017.
+ * Created by on 10/12/2017.
  */
 
 public class Invoice {
@@ -33,13 +32,14 @@ public class Invoice {
 
     }
 
-    Invoice (String InvoiceId) throws InterruptedException, ExecutionException, TimeoutException, JSONException {
-        BackgroundWorkerJSON getInvoiceData= new BackgroundWorkerJSON();
+    public Invoice (String InvoiceId) throws InterruptedException, ExecutionException, JSONException {
+        BackgroundWorkerJSONArray getInvoiceData= new BackgroundWorkerJSONArray();
         DataContainer invoiceIdData = new DataContainer();
-        invoiceIdData.type = "GetInvoice";
+        invoiceIdData.type = "invoiceexport";
         invoiceIdData.phpVariableNames.add("invoice_id");
         invoiceIdData.dataPassedIn.add(InvoiceId);
-        JSONArray returnedData = new JSONArray(getInvoiceData.execute(invoiceIdData).get(1, TimeUnit.SECONDS));
+        JSONArray returnedData = getInvoiceData.execute(invoiceIdData).get();
+
         customerAddress=new Person((JSONObject) returnedData.get(1), "Customer");
 
         contractorAddress=new Person((JSONObject) returnedData.get(2), "Contractor");
@@ -48,14 +48,36 @@ public class Invoice {
 
         invoiceLines = new ArrayList<>();
 
-        for ( int i=0; i<=returnedInvoiceLines.length();i++)
+        for ( int i=0; i<returnedInvoiceLines.length();i++)
         {
             invoiceLines.add(new InvoiceLine(returnedInvoiceLines.getJSONObject(i)));
+
         }
 
 
+    }
 
 
+  //  put linetotal in the invoiceline so we can make totals for each line easily.
+    //todo: Tidy up and make look like an invoice. Use finalTotal.
+    public String createTxtString()
+    {
+        StringBuilder invoiceString = new StringBuilder();
+
+        invoiceString.append(contractorAddress.BuildContractorAddress());
+        invoiceString.append("\n\n");
+        invoiceString.append(customerAddress.BuildCustomerAddress());
+        invoiceString.append("\n");
+        double finalTotal = 0;
+        for (InvoiceLine invoice : invoiceLines)
+
+        {
+                finalTotal+=invoice.lineTotal;
+                invoiceString.append(invoice.toString());
+                invoiceString.append("\n");
+        }
+
+        return invoiceString.toString();
     }
 
 

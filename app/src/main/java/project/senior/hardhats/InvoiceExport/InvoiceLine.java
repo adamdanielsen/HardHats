@@ -4,7 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by theev on 10/12/2017.
+ * Created by on 10/12/2017.
  */
 
 public class InvoiceLine {
@@ -16,7 +16,7 @@ public class InvoiceLine {
     int quantity;
     String units;
     double price;
-
+    double lineTotal;
     public InvoiceLine(JSONObject invoiceLineJsonObject) throws JSONException {
         materialsID=invoiceLineJsonObject.getInt("MaterialsID");
         invoiceFK=invoiceLineJsonObject.getInt("InvoiceFK");
@@ -24,10 +24,12 @@ public class InvoiceLine {
         quantity=invoiceLineJsonObject.getInt("Quantity");
         units=invoiceLineJsonObject.getString("Units");
         price=invoiceLineJsonObject.getDouble("Price");
+        lineTotal = quantity*price;
     }
 
     @Override
+    //todo: Make work.
     public String toString() {
-        return super.toString();
+        return "INVOICE LINE #\nTOTAL STUFF";
     }
 }
