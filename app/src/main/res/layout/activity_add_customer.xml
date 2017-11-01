@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPhonetic"
+                android:inputType="number"
                 android:text="" />
 
             <TextView
@@ -85,21 +85,21 @@
                 android:text="@string/house_number" />
 
             <EditText
-                android:id="@+id/house_number_editText"
+                android:id="@+id/customer_house_number_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:text="" />
 
             <TextView
-                android:id="@+id/street_address_label"
+                android:id="@+id/customer_street_address_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/street" />
 
             <EditText
-                android:id="@+id/street_address_editText"
+                android:id="@+id/customer_street_address_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -127,7 +127,7 @@
                 android:text="@string/state" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/customer_state_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
