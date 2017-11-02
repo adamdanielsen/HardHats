@@ -33,7 +33,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     String type;
     String login_url= "http://hardhatz.org/login.php";
     String createuser_url="http://hardhatz.org/createuser.php";
-
+    String sendinvoiceemail_url="http://hardhatz.org/sendinvoiceemail.php";
     BackgroundWorker() {}
     /**
      * Returns a String object representing the created POST.
@@ -154,7 +154,22 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
             return "GOOD";
     }
 
+    /**
+     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
+     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
+     * other coders.
+     *
+     * @param   dataContainer   Data to be passed to script.
+     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     */
 
+    protected String SendInvoiceEmail(DataContainer dataContainer)
+    {
+
+        return ExecuteRequest(sendinvoiceemail_url, dataContainer);
+
+
+    }
 
     /**
      * After a few steps, this function returns the result of the echo from the script called.
@@ -176,10 +191,10 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
         {
             case "login":
                 return LoginProcedure(params[0]);
-
             case "register":
                 return RegisterProcedure(params[0]);
-
+            case "sendinvoice":
+                return SendInvoiceEmail(params[0]);
         }
 
         return "Unknown or misspelled type?";

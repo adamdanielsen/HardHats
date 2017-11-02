@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,13 +38,16 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText= (EditText) findViewById(R.id.login_PasswordEditText);
         buttonLogin = (Button) findViewById(R.id.login_LoginButton);
         buttonRegister= (Button) findViewById(R.id.login_RegisterButton);
+        /*
         buttonDebug=(Button) findViewById(R.id.main_debug);
+
         buttonDebug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onDebug(v);
             }
         });
+        */
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +78,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
             String invoicestring = test.createTxtString();
-            Log.d("",invoicestring);
+            BackgroundWorker sendInvoice = new BackgroundWorker();
+            DataContainer dataContainer = new DataContainer();
+            dataContainer.type="sendinvoice";
+            dataContainer.dataPassedIn.add(invoicestring);
+            dataContainer.phpVariableNames.add("invoicestring");
+            dataContainer.dataPassedIn.add("adamdanielsen@gmail.com");
+            dataContainer.phpVariableNames.add("email");
+            sendInvoice.execute(dataContainer);
 
 
 
