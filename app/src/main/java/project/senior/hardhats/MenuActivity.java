@@ -11,7 +11,6 @@ import android.view.MenuItem;
 
 public class MenuActivity extends AppCompatActivity{
 
-    // For Scrolling Tabs (using ViewPagerAdapter Class
     private ViewPager viewPager;
     MenuItem prevMenuItem;
     BottomNavigationView bottomNavigationView;
@@ -93,5 +92,13 @@ public class MenuActivity extends AppCompatActivity{
         pagerAdapter.addFragment(new ReportsFragment());
         pagerAdapter.addFragment(new OptionsFragment());
         viewPager.setAdapter(pagerAdapter);
+    }
+
+
+    public void SwitchToGenerateInvoiceActivity() {
+
+        Intent generateInvoiceIntent = new Intent(MenuActivity.this, GenerateInvoiceActivity.class);
+        startActivity(generateInvoiceIntent);
+
     }
 }

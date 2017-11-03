@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +28,12 @@
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu" />
         <activity android:name=".AboutActivity" />
-        <activity android:name=".AddCustomer"></activity>
+        <activity android:name=".AddCustomer" />
+        <activity
+            android:name=".GenerateInvoiceActivity"
+            android:label="@string/title_activity_generate_invoice"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".InvoiceCreate"></activity>
     </application>
+
 </manifest>

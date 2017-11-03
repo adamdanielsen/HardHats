@@ -3,17 +3,20 @@ package project.senior.hardhats;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-//import android.app.Fragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+//import android.app.Fragment;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class InvoiceFragment extends Fragment {
+    Button generateInvoiceButton;
 
 
     public InvoiceFragment() {
@@ -30,7 +33,16 @@ public class InvoiceFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //change stuff here to give logic to layout
+        generateInvoiceButton=(Button) getView().findViewById(R.id.fragmentOptions_GenerateInvoiceButton);
+        generateInvoiceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ((MenuActivity)getActivity()).SwitchToGenerateInvoiceActivity();
+
+
+            }
+        });
 
     }
 }
