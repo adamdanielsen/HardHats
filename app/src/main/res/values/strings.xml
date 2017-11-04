@@ -58,4 +58,7 @@
     </string>
     <string name="title_activity_generate_invoice">GenerateInvoiceActivity</string>
     <string name="createinvoice_cancel">CANCEL</string>
+    <string name="generateinvoice_address">Address</string>
+    <string name="generateinvoice_choosecustomer">CHOOSE CUSTOMER</string>
+    <string name="generateinvoice_usegeneralcontractor">Use General Contractor Email?</string>
 </resources>
