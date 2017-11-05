@@ -134,6 +134,11 @@
                 android:inputType="textPersonName"
                 android:text="" />
 
+            <Spinner
+                android:id="@+id/customer_state_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
 
