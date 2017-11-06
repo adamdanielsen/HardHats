@@ -7,6 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import project.senior.hardhats.Documents.InvoiceLine;
 
 
 /**
@@ -14,6 +19,7 @@ import android.view.ViewGroup;
  */
 public class InvoicePreviewFragment extends Fragment {
 
+    ListView previewListView;
 
     public InvoicePreviewFragment() {
         // Required empty public constructor
@@ -32,5 +38,18 @@ public class InvoicePreviewFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //TODO Get invoice data from InvoiceCreate to populate list.
+        ArrayList<InvoiceLine> invoiceLines = getInvoiceLines();
+        previewListView=(ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
+
+        // todo need to figure this out. Can't do it right noe because arrayadapter doesn't know how to do anything but textview
+       // arrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.invoicelistitem,invoiceLines);
+       // previewListView.setAdapter(arrayAdapter);
+       // arrayAdapter.notifyDataSetChanged();
+
+    }
+
+    private ArrayList<InvoiceLine> getInvoiceLines() {
+
+        return ((InvoiceCreate)getActivity()).getinvoiceLines();
     }
 }
