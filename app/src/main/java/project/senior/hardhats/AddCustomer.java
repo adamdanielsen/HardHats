@@ -1,7 +1,7 @@
 package project.senior.hardhats;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.concurrent.ExecutionException;
 
 public class AddCustomer extends AppCompatActivity {
 
@@ -60,7 +62,18 @@ public class AddCustomer extends AppCompatActivity {
                     Toast.makeText(AddCustomer.this, "State Selected: " + customer_State, Toast.LENGTH_LONG).show();
                 }
                 //String customer_State = state.getText().toString();
-
+                DataContainer data = new DataContainer();
+                data.type="addcustomer";
+                data.phpVariableNames.add("customer_first");
+                data.dataPassedIn.add(customer_first);
+                BackgroundWorker database = new BackgroundWorker();
+                try {
+                    String result = database.execute(data).get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
 
             }
         });

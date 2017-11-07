@@ -91,10 +91,12 @@ public class InvoicePreviewFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View v = View.inflate(context, R.layout.invoicelistitem,null);
+            View v =null;
+            if (convertView==null) {
+                v = View.inflate(context, R.layout.invoicelistitem, null);
 
-            //need to declare textviews and set them equal to variables in the invoiceline
-
+                //need to declare textviews and set them equal to variables in the invoiceline
+            }
             return v;
         }
     }

@@ -34,6 +34,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     String login_url= "http://hardhatz.org/login.php";
     String createuser_url="http://hardhatz.org/createuser.php";
     String sendinvoiceemail_url="http://hardhatz.org/sendinvoiceemail.php";
+    String addcustomer_url = "http://hardhatz.org/addcustomer.php";
     BackgroundWorker() {}
     /**
      * Returns a String object representing the created POST.
@@ -148,6 +149,8 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     protected String RegisterProcedure(DataContainer dataContainer)
     {
             String result = ExecuteRequest(createuser_url, dataContainer);
+
+            //check null
             if (result.equals("BAD")) {
                 return result;
             }
@@ -168,6 +171,13 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
         return ExecuteRequest(sendinvoiceemail_url, dataContainer);
 
+
+    }
+
+    protected String AddCustomerProcedure(DataContainer dataContainer)
+    {
+
+        return ExecuteRequest(addcustomer_url,dataContainer);
 
     }
 
@@ -195,6 +205,9 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
                 return RegisterProcedure(params[0]);
             case "sendinvoice":
                 return SendInvoiceEmail(params[0]);
+            case "addcustomer":
+                return AddCustomerProcedure(params[0]);
+
         }
 
         return "Unknown or misspelled type?";
