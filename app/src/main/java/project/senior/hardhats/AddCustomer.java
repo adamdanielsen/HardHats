@@ -66,6 +66,17 @@ public class AddCustomer extends AppCompatActivity {
                 data.type="addcustomer";
                 data.phpVariableNames.add("customer_first");
                 data.dataPassedIn.add(customer_first);
+                data.phpVariableNames.add("customer_last");
+                data.dataPassedIn.add(customer_last);
+                data.phpVariableNames.add("customer_email");
+                data.dataPassedIn.add(customer_email);
+                data.phpVariableNames.add("customer_phoneNumber");
+                data.dataPassedIn.add(customer_phoneNumber);
+                data.phpVariableNames.add("customer_street");
+                data.dataPassedIn.add(customer_street);
+                data.phpVariableNames.add("customer_Zip");
+                data.dataPassedIn.add(customer_Zip);
+
                 BackgroundWorker database = new BackgroundWorker();
                 try {
                     String result = database.execute(data).get();
