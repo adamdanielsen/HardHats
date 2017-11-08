@@ -23,6 +23,7 @@ import static java.sql.Types.NULL;
 
 public class AddCustomer extends AppCompatActivity {
 
+    //test
     EditText firstName;
     EditText lastName;
     EditText company;
@@ -132,8 +133,8 @@ public class AddCustomer extends AppCompatActivity {
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
+                } catch (ExecutionException x) {
+                    x.printStackTrace();
                 }
 
                 finish();
