@@ -34,7 +34,7 @@
     <string name="zip_code">Zip Code</string>
     <string name="company">Company Name</string>
     <string name="fax_number">Fax Number</string>
-
+    <string name="city">City</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_Options">Options</string>

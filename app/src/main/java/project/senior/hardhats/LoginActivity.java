@@ -26,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     Button buttonLogin;
     Button buttonRegister;
     Button buttonDebug;
+
+
     JSONObject returnedUsername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         });
         SessionData.Reset();
     }
-
+    /*
     private void onDebug(View v) {
 
         try {
@@ -98,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-
+    */
 
     private void onAbout() {
         Intent aboutIntent = new Intent(LoginActivity.this, AboutActivity.class);

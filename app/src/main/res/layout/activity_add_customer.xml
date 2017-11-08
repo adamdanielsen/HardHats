@@ -149,7 +149,19 @@
                 android:inputType="number"
                 android:text="" />
 
+            <TextView
+                android:id="@+id/customer_city_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/city" />
 
+            <EditText
+                android:id="@+id/customer_city_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="" />
 
             <TextView
                 android:id="@+id/customer_state_label"

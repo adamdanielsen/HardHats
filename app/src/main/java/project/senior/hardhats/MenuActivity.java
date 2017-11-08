@@ -23,7 +23,7 @@ public class MenuActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        swipeBottomNavigation(1);
+        swipeBottomNavigation();
    }
 
     protected void onResume() {
@@ -55,7 +55,7 @@ public class MenuActivity extends AppCompatActivity{
 
     }
 
-    public void swipeBottomNavigation(final int rawr){
+    public void swipeBottomNavigation(){
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
