@@ -19,6 +19,7 @@ public class InvoiceLine {
     String units;
     double price;
     double lineTotal;
+
     public InvoiceLine(JSONObject invoiceLineJsonObject) throws JSONException {
         materialsID=invoiceLineJsonObject.getInt("MaterialsID");
         invoiceFK=invoiceLineJsonObject.getInt("InvoiceFK");
@@ -29,9 +30,10 @@ public class InvoiceLine {
         lineTotal = quantity*price;
     }
 
-    @Override
+    public InvoiceLine()
+    {}
 
-    public String toString() {
+    public String getInvoiceExportString() {
         int spaceRoom=51;
         int stringLength;
         String line1;
@@ -75,4 +77,34 @@ public class InvoiceLine {
     public double getLineTotal() {
         return lineTotal;
     }
+
+    public void setMaterialsID(int materialsID) {
+        this.materialsID = materialsID;
+    }
+
+    public void setInvoiceFK(int invoiceFK) {
+        this.invoiceFK = invoiceFK;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setLineTotal(double lineTotal) {
+        this.lineTotal = lineTotal;
+    }
 }
+
+

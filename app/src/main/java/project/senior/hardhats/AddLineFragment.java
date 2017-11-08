@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import project.senior.hardhats.Documents.InvoiceLine;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,16 +17,12 @@ import android.view.ViewGroup;
 public class AddLineFragment extends Fragment {
 
 
-    public interface AddLineButtonInterface
-    {
-        public void AddLine();
-        
-    }
-
     public AddLineFragment() {
         // Required empty public constructor
     }
 
+
+    InvoiceLine invoiceLine;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +35,16 @@ public class AddLineFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         // TODO Create edit texts, send data back to activity on click
+            invoiceLine = new InvoiceLine();
+
+    }
+
+    public InvoiceLine sendLineBack()
+    {
+
+        return invoiceLine;
+
     }
 }

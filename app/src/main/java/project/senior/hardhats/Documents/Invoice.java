@@ -75,7 +75,7 @@ public class Invoice {
 
         {
                 finalTotal+=invoice.lineTotal;
-                invoiceString.append(invoice.toString());
+                invoiceString.append(invoice.getInvoiceExportString());
                 invoiceString.append("\n");
         }
         invoiceString.append("___________________________________________________________________________\n");
