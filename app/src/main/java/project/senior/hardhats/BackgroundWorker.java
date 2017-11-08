@@ -35,6 +35,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     String createuser_url="http://hardhatz.org/createuser.php";
     String sendinvoiceemail_url="http://hardhatz.org/sendinvoiceemail.php";
     String addcustomer_url = "http://hardhatz.org/addcustomer.php";
+
     BackgroundWorker() {}
     /**
      * Returns a String object representing the created POST.
@@ -173,6 +174,16 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
 
     }
+
+
+    /**
+     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
+     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
+     * other coders.
+     *
+     * @param   dataContainer   Data to be passed to script.
+     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     */
 
     protected String AddCustomerProcedure(DataContainer dataContainer)
     {

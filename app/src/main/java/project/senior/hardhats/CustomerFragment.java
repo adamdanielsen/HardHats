@@ -40,6 +40,7 @@ public class CustomerFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddCustomer.class);
                 startActivity(intent);
+
             }
         });
     //change stuff here to give logic to layout

@@ -24,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
             getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-            ArrayList<String> stateList = new ArrayList<>(Arrays.asList("AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"));
+            //ArrayList<String> stateList = new ArrayList<>(Arrays.asList("AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"));
             usernameEditText =(EditText) findViewById(R.id.register_UserNameEditText);
             passwordEditText = (EditText)findViewById(R.id.register_PasswordEditText);
             confirmpasswordEditText =(EditText) findViewById(R.id.register_ConfirmPasswordEditText);
@@ -32,8 +32,6 @@ public class RegisterActivity extends AppCompatActivity {
             cancelButton=(Button) findViewById(R.id.register_CancelButton);
             registerButton.setEnabled(false);
             registerButton.setOnClickListener(new View.OnClickListener() {
-
-
 
                 @Override
                 public void onClick(View v) {

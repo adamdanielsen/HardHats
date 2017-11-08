@@ -51,10 +51,24 @@
                 android:text="" />
 
             <TextView
-                android:id="@+id/customer_phone_label"
+                android:id="@+id/customer_company_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/phone_number" />
+                android:text="@string/company" />
+
+            <EditText
+                android:id="@+id/customer_company_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="" />
+
+            <TextView
+            android:id="@+id/customer_phone_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number" />
 
             <EditText
                 android:id="@+id/customer_phone_editText"
@@ -63,6 +77,21 @@
                 android:ems="10"
                 android:inputType="number"
                 android:text="" />
+
+            <TextView
+                android:id="@+id/customer_fax_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fax_number" />
+
+            <EditText
+                android:id="@+id/customer_fax_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:text="" />
+
 
             <TextView
                 android:id="@+id/customer_email_address_label"
@@ -119,6 +148,8 @@
                 android:ems="10"
                 android:inputType="number"
                 android:text="" />
+
+
 
             <TextView
                 android:id="@+id/customer_state_label"

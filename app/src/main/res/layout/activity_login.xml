@@ -22,7 +22,8 @@
 
         android:hint="@string/login_Username"
         android:inputType="textPersonName"
-        android:maxLength="@integer/MAXUSERNAMELENGTH" />
+        android:maxLength="@integer/MAXUSERNAMELENGTH"
+        android:text="SoftHat"/>
 
     <EditText
         android:id="@+id/login_PasswordEditText"
@@ -32,7 +33,8 @@
 
         android:hint="@string/login_Password"
         android:inputType="textPassword"
-        android:maxLength="@integer/MAXPASSWORDLENGTH" />
+        android:maxLength="@integer/MAXPASSWORDLENGTH"
+        android:text="drips"/>
 
     <Button
         android:id="@+id/login_LoginButton"
