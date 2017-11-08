@@ -9,6 +9,7 @@ public class SessionData {
     private static SessionData mInstance = null;
 
     private String username;
+    private String UserID;
     private String lastStringResult;
     private ArrayList<String>  lastStringArrayResult;
     private SessionData(){
@@ -39,6 +40,19 @@ public class SessionData {
     public void eraseUsername(){
 
         username="";
+    }
+
+
+    public void setUserID(String userID) {
+        UserID = userID;
+    }
+    public String getUserID() {
+        return UserID;
+    }
+    public void eraseUserID()
+    {
+
+        UserID= "";
     }
 
     public void setLastStringArrayResult(ArrayList<String> value) {
@@ -86,7 +100,7 @@ public class SessionData {
         getInstance().eraseUsername();
         getInstance().eraseLastStringResult();
         getInstance().eraseLastStringArrayResult();
-
+        getInstance().eraseUserID();
     }
 
 }

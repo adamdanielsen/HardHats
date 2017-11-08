@@ -109,4 +109,47 @@ public class Person {
         return address.toString();
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getFaxNumber() {
+        return faxNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getState() {
+        return state;
+    }
 }

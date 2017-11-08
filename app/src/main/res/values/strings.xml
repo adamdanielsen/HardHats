@@ -66,6 +66,10 @@
     <string name="generateinvoice_usegeneralcontractor">Use General Contractor Email?</string>
     <string name="generateinvoice_AddLine">Add Line</string>
     <string name="generateinvoice_cancel">CANCEL</string>
+    <string name="fragmentaddline_price">Price</string>
+    <string name="fragmentaddline_units">Units</string>
+    <string name="fragmentaddline_quantity">Quantity</string>
+    <string name="fragmentaddline_description">Description</string>
 
     <string-array name="states">
         <item>AL</item>

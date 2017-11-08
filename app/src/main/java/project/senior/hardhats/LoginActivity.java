@@ -125,31 +125,43 @@ public class LoginActivity extends AppCompatActivity {
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
         try {
             returnedUsername = new JSONObject();
-            returnedUsername = backgroundWorker.execute(dataContainer).get(3, TimeUnit.SECONDS);
+            returnedUsername = backgroundWorker.execute(dataContainer).get(2, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
-            Toast.makeText(this, "Request Timed Out, Check Connection", Toast.LENGTH_SHORT).show();
-        }
-        String setusername= "";
-        //if its null that means it didn't get a user in the php script and we should say that
-        if (returnedUsername==null)
-        {
-            Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error connecting, check Connection", Toast.LENGTH_SHORT).show();
             return;
         }
-        //This is how you get a field back from the JSONobject
+        String setUsername;
+        String setUserID;
         try {
-            setusername = returnedUsername.getString("Username");
+            if (returnedUsername==null)
+            {
+                Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (returnedUsername.getString("Username").equals(""))
+            {
+                Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            setUsername = returnedUsername.getString("Username");
+            setUserID = returnedUsername.getString("UserID");
+
         } catch (JSONException e) {
-            e.printStackTrace();
+            Toast.makeText(this, "Error reading data!", Toast.LENGTH_SHORT).show();
+            return;
         }
 
 
-        Toast.makeText(this, "Welcome "+setusername, Toast.LENGTH_SHORT).show();
-        SessionData.getInstance().setUsername(setusername);
+
+        Toast.makeText(this, "Welcome "+setUsername+" "+setUserID, Toast.LENGTH_SHORT).show();
+        SessionData.getInstance().setUsername(setUsername);
+        SessionData.getInstance().setUsername(setUserID);
         Intent menuIntent = new Intent(LoginActivity.this, MenuActivity.class);
         menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(menuIntent);

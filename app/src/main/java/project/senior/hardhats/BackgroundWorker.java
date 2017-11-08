@@ -12,7 +12,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-/**
+/*
  * Created on 9/14/2017.
  */
 
@@ -151,10 +151,15 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     {
             String result = ExecuteRequest(createuser_url, dataContainer);
 
-            //check null
-            if (result.equals("BAD")) {
-                return result;
+            if (result == null)
+            {
+                return "CONNECTION";
             }
+            if (result.equals("BAD")) {
+                return "BAD";
+            }
+
+
             return "GOOD";
     }
 

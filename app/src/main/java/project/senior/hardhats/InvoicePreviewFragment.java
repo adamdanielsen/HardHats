@@ -47,11 +47,10 @@ public class InvoicePreviewFragment extends Fragment {
 
         // todo need to figure this out. Can't do it right noe because arrayadapter doesn't know how to do anything but textview
 
-
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.invoicelistitem,invoiceLines);
-        //previewListView.setAdapter(arrayAdapter);
-        //arrayAdapter.notifyDataSetChanged();
-
+        InvoiceAdapter invoiceAdapter = new InvoiceAdapter(getContext(),getInvoiceLines());
+//        previewListView.setAdapter(invoiceAdapter);
+//        invoiceAdapter.notifyDataSetChanged();
     }
 
 
@@ -94,7 +93,6 @@ public class InvoicePreviewFragment extends Fragment {
             View v =null;
             if (convertView==null) {
                 v = View.inflate(context, R.layout.invoicelistitem, null);
-
                 //need to declare textviews and set them equal to variables in the invoiceline
             }
             return v;

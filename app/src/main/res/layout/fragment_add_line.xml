@@ -5,9 +5,59 @@
     tools:context="project.senior.hardhats.AddLineFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text= "ADD LINE" />
+        android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/fragmentaddline_DescriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/fragmentaddline_description"
+            android:inputType="textPersonName"
+            android:singleLine="false" />
+
+        <EditText
+            android:id="@+id/fragmentaddline_QuantityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/fragmentaddline_quantity"
+            android:inputType="textPersonName" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/fragmentaddline_UnitsSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/fragmentaddline_UnitsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/fragmentaddline_units"
+
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/fragmentaddline_PriceEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/fragmentaddline_price"
+
+            android:inputType="textPersonName" />
+
+    </LinearLayout>
 </FrameLayout>

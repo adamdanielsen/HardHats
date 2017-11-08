@@ -61,7 +61,7 @@ public class Invoice {
 
 
   //  put linetotal in the invoiceline so we can make totals for each line easily.
-    //todo: Tidy up and make look like an invoice. Use finalTotal.
+    //todo: Tidy up and do checking.
     public String createTxtString()
     {
         StringBuilder invoiceString = new StringBuilder();
@@ -85,7 +85,27 @@ public class Invoice {
         return invoiceString.toString();
     }
 
+    public Person getCustomerAddress() {
+        return customerAddress;
+    }
 
+    public void setCustomerAddress(Person customerAddress) {
+        this.customerAddress = customerAddress;
+    }
 
+    public Person getContractorAddress() {
+        return contractorAddress;
+    }
 
+    public void setContractorAddress(Person contractorAddress) {
+        this.contractorAddress = contractorAddress;
+    }
+
+    public ArrayList<InvoiceLine> getInvoiceLines() {
+        return invoiceLines;
+    }
+
+    public void setInvoiceLines(ArrayList<InvoiceLine> invoiceLines) {
+        this.invoiceLines = invoiceLines;
+    }
 }

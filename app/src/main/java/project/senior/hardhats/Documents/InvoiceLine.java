@@ -30,12 +30,12 @@ public class InvoiceLine {
     }
 
     @Override
-    //todo: Make work.
+
     public String toString() {
         int spaceRoom=51;
         int stringLength;
-        String line1="";
-        StringBuilder line2= new StringBuilder();
+        String line1;
+        StringBuilder line2;
         line1=type+"\n";
         line2 = new StringBuilder(quantity + " " + units + " @ " + df.format(price));
         stringLength=line2.length();
@@ -43,9 +43,36 @@ public class InvoiceLine {
         for (int i=spaceRoom;i>0;i--)
         {
             line2.append(" ");
-
         }
         line2.append(df.format(lineTotal));
         return line1+line2;
+    }
+
+    public int getMaterialsID() {
+        return materialsID;
+    }
+
+    public int getInvoiceFK() {
+        return invoiceFK;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getLineTotal() {
+        return lineTotal;
     }
 }
