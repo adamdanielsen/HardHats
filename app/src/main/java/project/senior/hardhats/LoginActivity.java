@@ -163,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Welcome "+setUsername+" "+setUserID, Toast.LENGTH_SHORT).show();
         SessionData.getInstance().setUsername(setUsername);
-        SessionData.getInstance().setUsername(setUserID);
+        SessionData.getInstance().setUserID(setUserID);
         Intent menuIntent = new Intent(LoginActivity.this, MenuActivity.class);
         menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(menuIntent);

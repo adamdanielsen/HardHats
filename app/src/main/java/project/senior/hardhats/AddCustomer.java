@@ -1,23 +1,13 @@
 package project.senior.hardhats;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.internal.BottomNavigationMenu;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
-
-import java.util.concurrent.ExecutionException;
 
 import static java.sql.Types.NULL;
 
@@ -68,7 +58,6 @@ public class AddCustomer extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String addCustomerResult;
 
                 String customer_userid = SessionData.getInstance().getUserID();
                 String customer_first  = firstName.getText().toString();
@@ -85,9 +74,6 @@ public class AddCustomer extends AppCompatActivity {
 
                 if(customer_state.length() == 0 || customer_state.length() == NULL) {
                     customer_state = "AL";
-                    //Toast.makeText(AddCustomer.this, "State Selected: " + customer_state, Toast.LENGTH_LONG).show();
-                }else{
-                   // Toast.makeText(AddCustomer.this, "State Selected: " + customer_state, Toast.LENGTH_LONG).show();
                 }
 
                 DataContainer dataContainer = new DataContainer();
@@ -97,54 +83,31 @@ public class AddCustomer extends AppCompatActivity {
                 dataContainer.phpVariableNames.add("userid");
                 dataContainer.phpVariableNames.add("firstname");
                 dataContainer.phpVariableNames.add("lastname");
-                dataContainer.phpVariableNames.add("companyname");
-                dataContainer.phpVariableNames.add("emailaddress");
                 dataContainer.phpVariableNames.add("phonenumber");
                 dataContainer.phpVariableNames.add("faxnumber");
+                dataContainer.phpVariableNames.add("emailaddress");
+                dataContainer.phpVariableNames.add("companyname");
                 dataContainer.phpVariableNames.add("street");
+                dataContainer.phpVariableNames.add("city");
                 dataContainer.phpVariableNames.add("zipcode");
                 dataContainer.phpVariableNames.add("state");
-                dataContainer.phpVariableNames.add("city");
+
 
                 dataContainer.dataPassedIn.add(customer_userid);
                 dataContainer.dataPassedIn.add(customer_first);
                 dataContainer.dataPassedIn.add(customer_last);
-                dataContainer.dataPassedIn.add(customer_company);
-                dataContainer.dataPassedIn.add(customer_email);
                 dataContainer.dataPassedIn.add(customer_phoneNumber);
                 dataContainer.dataPassedIn.add(customer_faxNumber);
+                dataContainer.dataPassedIn.add(customer_email);
+                dataContainer.dataPassedIn.add(customer_company);
                 dataContainer.dataPassedIn.add(customer_street);
-                dataContainer.dataPassedIn.add(customer_Zip);
                 dataContainer.dataPassedIn.add(customer_city);
+                dataContainer.dataPassedIn.add(customer_Zip);
                 dataContainer.dataPassedIn.add(customer_state);
 
 
                 BackgroundWorker database = new BackgroundWorker();
-
-                try {
-
-                    addCustomerResult = database.execute(dataContainer).get();
-
-                    if (addCustomerResult.equals("BAD")) {
-                        Toast.makeText(AddCustomer.this,"Could not add Customer", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    if (addCustomerResult.equals("GOOD"))
-                    {
-                        Toast.makeText(AddCustomer.this, "Customer has been added", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                    else
-                    {
-                        Toast.makeText(AddCustomer.this, "Unable to load Customer to Database; check php script", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException x) {
-                    x.printStackTrace();
-                }
-
+                database.execute(dataContainer);
                 finish();
             }
         });
