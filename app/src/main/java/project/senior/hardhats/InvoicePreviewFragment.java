@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -45,12 +46,33 @@ public class InvoicePreviewFragment extends Fragment {
         ArrayList<InvoiceLine> invoiceLines = getInvoiceLines();
         previewListView = (ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
 
-        // todo need to figure this out. Can't do it right noe because arrayadapter doesn't know how to do anything but textview
 
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.invoicelistitem,invoiceLines);
-        InvoiceAdapter invoiceAdapter = new InvoiceAdapter(getContext(),getInvoiceLines());
-//        previewListView.setAdapter(invoiceAdapter);
-//        invoiceAdapter.notifyDataSetChanged();
+        InvoiceLine test = new InvoiceLine();
+        InvoiceLine test2 = new InvoiceLine();
+        InvoiceLine test3 = new InvoiceLine();
+        ArrayList<InvoiceLine> array = new ArrayList<>();
+        test.setPrice(1000);
+        test.setQuantity(10);
+        test.setType("Tomatos");
+        test.setUnits("PD");
+        test2.setPrice(500);
+        test2.setQuantity(30);
+        test2.setType("Bricks");
+        test2.setUnits("EA");
+        test3.setPrice(1000);
+        test3.setQuantity(5);
+        test3.setType("Labor");
+        test3.setUnits("HR");
+        array.add(test);
+
+        array.add(test2);
+
+        array.add(test3);
+
+        InvoiceAdapter invoiceAdapter = new InvoiceAdapter(getContext(),array);
+        previewListView.setAdapter(invoiceAdapter);
+        invoiceAdapter.notifyDataSetChanged();
     }
 
 
@@ -94,6 +116,11 @@ public class InvoicePreviewFragment extends Fragment {
             if (convertView==null) {
                 v = View.inflate(context, R.layout.invoicelistitem, null);
                 //need to declare textviews and set them equal to variables in the invoiceline
+                TextView line1 = (TextView) v.findViewById(R.id.invoicelistitem_line1TextView);
+                TextView line2 = (TextView) v.findViewById(R.id.invoicelistitem_line2TextView);
+                line1.setText(invoiceLines.get(position).getType());
+                line2.setText(invoiceLines.get(position).getPrice()+" @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
+
             }
             return v;
         }
