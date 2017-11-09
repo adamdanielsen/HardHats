@@ -108,8 +108,15 @@ public class AddLineFragment extends Fragment {
     {
         invoiceLine.setType(DescriptionEditText.getText().toString());
         invoiceLine.setQuantity(Integer.valueOf(QuantityEditText.getText().toString()));
-        invoiceLine.setUnits(UnitsSpinner.getSelectedItem().toString());
-        invoiceLine.setPrice(Double.valueOf(PriceEditText.toString()));
+        if (UnitsSpinner.getSelectedItem().toString().equals("Custom..."))
+        {
+            invoiceLine.setUnits(UnitsEditText.getText().toString());
+
+        }
+            else {
+            invoiceLine.setUnits(UnitsSpinner.getSelectedItem().toString());
+        }
+        invoiceLine.setPrice(Double.valueOf(PriceEditText.getText().toString()));
         invoiceLine.setLineTotal();
         invoiceLine.Verify();
         return invoiceLine;

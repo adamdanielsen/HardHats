@@ -2,6 +2,7 @@ package project.senior.hardhats;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -68,6 +69,19 @@ public class InvoiceCreate extends AppCompatActivity {
 
         if (myFragment != null && myFragment.isVisible()) {
             //Add Invoice to Database
+            BackgroundWorker dataInsert = new BackgroundWorker();
+
+            DataContainer dataContainer = new DataContainer();
+            dataContainer.type="generateinvoice";
+            dataContainer.phpVariableNames.add("InvoiceDate");
+            dataContainer.phpVariableNames.add("GCEmail");
+            dataContainer.phpVariableNames.add("CustomerEmail");
+            dataContainer.phpVariableNames.add("Price");
+            dataContainer.phpVariableNames.add("Quantity");
+            dataContainer.phpVariableNames.add("Type");
+            dataContainer.phpVariableNames.add("Units");
+            //dataInsert.doInBackground(dataContainer);
+            //todo Need to figure out a structure to pass an array in to php
             Intent menuIntent = new Intent(InvoiceCreate.this, MenuActivity.class);
             menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(menuIntent);
@@ -78,12 +92,16 @@ public class InvoiceCreate extends AppCompatActivity {
             InvoiceLine invoiceLine = addLineFragment.sendLineBack();
 
             if (invoiceLine.Verify()) {
+                Snackbar.make(v,"Line Added!",Snackbar.LENGTH_SHORT).show();
 
                 startInvoicePreview();
                 SetInvoiceLines(invoiceLine);
 
             }
-
+            else
+            {
+                //verify stuff
+            }
         }
 
     }

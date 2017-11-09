@@ -27,11 +27,7 @@
             android:ems="10"
             android:hint="@string/fragmentaddline_quantity"
             android:inputType="textPersonName" />
-        DescriptionEditText
-        QuantityEditText
-        UnitsSpinner
-        UnitsEditText
-        PriceEditText
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
