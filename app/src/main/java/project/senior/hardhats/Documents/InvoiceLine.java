@@ -1,5 +1,7 @@
 package project.senior.hardhats.Documents;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,7 +11,7 @@ import java.text.DecimalFormat;
  * Created by on 10/12/2017.
  */
 
-public class InvoiceLine {
+public class InvoiceLine{
 
     final DecimalFormat df = new DecimalFormat("$0.00");
     int materialsID;
@@ -109,6 +111,12 @@ public class InvoiceLine {
     public boolean Verify() {
         //do some verify stuff
         return true;
+    }
+
+    public String getJsonString()
+    {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }
 

@@ -8,7 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONArray;
+
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import project.senior.hardhats.Documents.InvoiceLine;
 
@@ -19,6 +23,9 @@ public class InvoiceCreate extends AppCompatActivity {
     Button addLineButton;
     Button doneOrFinishLineButton;
     Button cancelOrCancelLineButton;
+    String CustomerID;
+    String UserID;
+    String GCEmail;
     //boolean firstRun=false;
 
     @Override
@@ -26,6 +33,9 @@ public class InvoiceCreate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice_create);
 
+        UserID = SessionData.getInstance().getUserID();
+        //CustomerID = getIntent().getStringExtra("CustomerID");
+        //GCEmail = getIntent().getStringExtra("GCEmail");
         addLineButton = (Button) findViewById(R.id.invoicecreate_addLineButton);
         doneOrFinishLineButton = (Button) findViewById(R.id.invoicecreate_doneOrFinishLineButton);
         cancelOrCancelLineButton = (Button) findViewById(R.id.invoicecreate_cancelOrCancelLineButton);
@@ -65,23 +75,30 @@ public class InvoiceCreate extends AppCompatActivity {
     }
 
     private void HandleDoneOrFinishLineButton(View v) {
+
         Fragment myFragment =getSupportFragmentManager().findFragmentByTag("INVOICEPREVIEW");
 
         if (myFragment != null && myFragment.isVisible()) {
             //Add Invoice to Database
             BackgroundWorker dataInsert = new BackgroundWorker();
-
+            JSONArray invoiceLinesJSON = new JSONArray();
+            for (InvoiceLine eachLine : invoiceLines )
+            {
+                invoiceLinesJSON.put(eachLine.getJsonString());
+            }
             DataContainer dataContainer = new DataContainer();
             dataContainer.type="generateinvoice";
+            dataContainer.phpVariableNames.add("UserID");
+            dataContainer.phpVariableNames.add("CustomerID");
             dataContainer.phpVariableNames.add("InvoiceDate");
             dataContainer.phpVariableNames.add("GCEmail");
-            dataContainer.phpVariableNames.add("CustomerEmail");
-            dataContainer.phpVariableNames.add("Price");
-            dataContainer.phpVariableNames.add("Quantity");
-            dataContainer.phpVariableNames.add("Type");
-            dataContainer.phpVariableNames.add("Units");
-            //dataInsert.doInBackground(dataContainer);
-            //todo Need to figure out a structure to pass an array in to php
+            dataContainer.phpVariableNames.add("InvoiceArray");
+            dataContainer.dataPassedIn.add(UserID);
+            dataContainer.dataPassedIn.add(CustomerID);
+            dataContainer.dataPassedIn.add(DateFormat.getDateTimeInstance().format(new Date()));
+            dataContainer.dataPassedIn.add(GCEmail);
+            dataContainer.dataPassedIn.add(invoiceLinesJSON.toString());
+            dataInsert.execute(dataContainer);
             Intent menuIntent = new Intent(InvoiceCreate.this, MenuActivity.class);
             menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(menuIntent);
@@ -100,7 +117,7 @@ public class InvoiceCreate extends AppCompatActivity {
             }
             else
             {
-                //verify stuff
+                //todo verify stuff
             }
         }
 
@@ -111,7 +128,7 @@ public class InvoiceCreate extends AppCompatActivity {
         Fragment myFragment =getSupportFragmentManager().findFragmentByTag("INVOICEPREVIEW");
 
         if (myFragment != null && myFragment.isVisible()) {
-            //confirmation
+            //todo confirmation
             Intent menuIntent = new Intent(InvoiceCreate.this, MenuActivity.class);
             menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(menuIntent);
@@ -119,7 +136,7 @@ public class InvoiceCreate extends AppCompatActivity {
         }
         else
         {
-            //confirmation
+            //todo confirmation
             startInvoicePreview();
         }
 
