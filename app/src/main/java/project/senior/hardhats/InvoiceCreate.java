@@ -1,5 +1,6 @@
 package project.senior.hardhats;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +43,7 @@ public class InvoiceCreate extends AppCompatActivity {
         doneOrFinishLineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HandleDoneOrFinishLineButton();
+                HandleDoneOrFinishLineButton(v);
             }
         });
 
@@ -62,12 +63,14 @@ public class InvoiceCreate extends AppCompatActivity {
         startAddLine();
     }
 
-    private void HandleDoneOrFinishLineButton() {
+    private void HandleDoneOrFinishLineButton(View v) {
         Fragment myFragment =getSupportFragmentManager().findFragmentByTag("INVOICEPREVIEW");
 
         if (myFragment != null && myFragment.isVisible()) {
-
-            finish();
+            //Add Invoice to Database
+            Intent menuIntent = new Intent(InvoiceCreate.this, MenuActivity.class);
+            menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(menuIntent);
         }
         else
         {
@@ -84,7 +87,10 @@ public class InvoiceCreate extends AppCompatActivity {
 
         if (myFragment != null && myFragment.isVisible()) {
             //confirmation
-            finish();
+            Intent menuIntent = new Intent(InvoiceCreate.this, MenuActivity.class);
+            menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(menuIntent);
+
         }
         else
         {
@@ -98,19 +104,26 @@ public class InvoiceCreate extends AppCompatActivity {
 
     protected void startInvoicePreview()
     {
-        getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new InvoicePreviewFragment(),"INVOICEPREVIEW").commit();
 
+        addLineButton.setVisibility(View.VISIBLE);
+        addLineButton.setText("Add Line");
+        doneOrFinishLineButton.setText("Done");
+        cancelOrCancelLineButton.setText("Cancel");
+        getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new InvoicePreviewFragment(),"INVOICEPREVIEW").commit();
     }
 
     protected void startAddLine()
     {
 
+        addLineButton.setVisibility(View.INVISIBLE);
+        doneOrFinishLineButton.setText("Finish Line");
+        cancelOrCancelLineButton.setText("Cancel Line");
 
         getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new AddLineFragment(),"ADDLINE").commit();
 
     }
 
-    public ArrayList<InvoiceLine> getinvoiceLines() {
+    public ArrayList<InvoiceLine> GetInvoiceLines() {
         return invoiceLines;
     }
 

@@ -8,8 +8,26 @@
     <!-- TODO: Update blank fragment layout -->
 
     <Button
-        android:id="@+id/fragmentOptions_GenerateInvoiceButton"
+        android:id="@+id/fragmentInvoice_GenerateInvoiceButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fragment_generateinvoice_GenerateInvoice" />
+
+    <ListView
+        android:id="@+id/fragmentInvoice_Listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+
+    <!--
+    <Button
+        android:id="@+id/fragmentinvoice_ViewInvoicesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fragmentinvoice_viewinvoices" />
+-->
+
+
 </LinearLayout>
