@@ -102,8 +102,13 @@ public class InvoiceLine {
         this.price = price;
     }
 
-    public void setLineTotal(double lineTotal) {
-        this.lineTotal = lineTotal;
+    public void setLineTotal() {
+        this.lineTotal = price*quantity;
+    }
+
+    public boolean Verify() {
+        //do some verify stuff
+        return true;
     }
 }
 

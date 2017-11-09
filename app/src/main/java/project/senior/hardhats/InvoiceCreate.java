@@ -74,9 +74,16 @@ public class InvoiceCreate extends AppCompatActivity {
         }
         else
         {
+            AddLineFragment addLineFragment =(AddLineFragment) getSupportFragmentManager().findFragmentByTag("ADDLINE");
+            InvoiceLine invoiceLine = addLineFragment.sendLineBack();
 
-            //Add Line to Array
-            startInvoicePreview();
+            if (invoiceLine.Verify()) {
+
+                startInvoicePreview();
+                SetInvoiceLines(invoiceLine);
+
+            }
+
         }
 
     }
@@ -114,17 +121,23 @@ public class InvoiceCreate extends AppCompatActivity {
 
     protected void startAddLine()
     {
-
         addLineButton.setVisibility(View.INVISIBLE);
         doneOrFinishLineButton.setText("Finish Line");
         cancelOrCancelLineButton.setText("Cancel Line");
-
         getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new AddLineFragment(),"ADDLINE").commit();
-
     }
 
     public ArrayList<InvoiceLine> GetInvoiceLines() {
         return invoiceLines;
     }
+    public void SetInvoiceLines(InvoiceLine invoiceLine)
+    {
+        invoiceLines.add(invoiceLine);
 
+    }
+    public void RemoveInvoiceLine(int position)
+    {
+        invoiceLines.remove(position);
+
+    }
 }
