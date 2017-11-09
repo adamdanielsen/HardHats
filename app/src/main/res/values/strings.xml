@@ -70,6 +70,8 @@
     <string name="fragmentaddline_units">Units</string>
     <string name="fragmentaddline_quantity">Quantity</string>
     <string name="fragmentaddline_description">Description</string>
+    <string name="fragmentinvoice_viewinvoices">View Invoices</string>
+    <string name="fragmentcustomer_viewcustomers">View Customers</string>
 
     <string-array name="states">
         <item>AL</item>

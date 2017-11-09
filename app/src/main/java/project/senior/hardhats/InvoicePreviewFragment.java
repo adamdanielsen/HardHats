@@ -73,6 +73,7 @@ public class InvoicePreviewFragment extends Fragment {
         InvoiceAdapter invoiceAdapter = new InvoiceAdapter(getContext(),array);
         previewListView.setAdapter(invoiceAdapter);
         invoiceAdapter.notifyDataSetChanged();
+
     }
 
 
@@ -81,7 +82,7 @@ public class InvoicePreviewFragment extends Fragment {
 
     private ArrayList<InvoiceLine> getInvoiceLines() {
 
-        return ((InvoiceCreate) getActivity()).getinvoiceLines();
+        return ((InvoiceCreate) getActivity()).GetInvoiceLines();
 
     }
 
