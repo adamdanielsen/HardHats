@@ -24,15 +24,6 @@ public class Invoice {
     final DecimalFormat df = new DecimalFormat("$0.00");
 
 
-    Invoice(Person CustomerAddress, Person ContractorAddress, InvoiceLine InvoiceLine)
-    {
-        customerAddress=CustomerAddress;
-
-        contractorAddress=ContractorAddress;
-
-
-
-    }
 
     public Invoice (String InvoiceId) throws InterruptedException, ExecutionException, JSONException {
         BackgroundWorkerJSONArray getInvoiceData= new BackgroundWorkerJSONArray();

@@ -17,8 +17,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import project.senior.hardhats.Documents.Invoice;
-
 public class LoginActivity extends AppCompatActivity {
     TextView aboutTextView;
     EditText usernameEditText;

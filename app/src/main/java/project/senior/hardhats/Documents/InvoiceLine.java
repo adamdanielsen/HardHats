@@ -9,18 +9,18 @@ import java.text.DecimalFormat;
  * Created by on 10/12/2017.
  */
 
-public class InvoiceLine {
+public class InvoiceLine{
 
-    final DecimalFormat df = new DecimalFormat("$0.00");
-    int materialsID;
-    int invoiceFK;
-    String type;
-    int quantity;
-    String units;
-    double price;
+    private static final DecimalFormat df = new DecimalFormat("$0.00");
+    private int materialsID;
+    private int invoiceFK;
+    private String type;
+    private int quantity;
+    private String units;
+    private double price;
     double lineTotal;
 
-    public InvoiceLine(JSONObject invoiceLineJsonObject) throws JSONException {
+    InvoiceLine(JSONObject invoiceLineJsonObject) throws JSONException {
         materialsID=invoiceLineJsonObject.getInt("MaterialsID");
         invoiceFK=invoiceLineJsonObject.getInt("InvoiceFK");
         type=invoiceLineJsonObject.getString("Type");
@@ -33,7 +33,7 @@ public class InvoiceLine {
     public InvoiceLine()
     {}
 
-    public String getInvoiceExportString() {
+    String getInvoiceExportString() {
         int spaceRoom=51;
         int stringLength;
         String line1;
@@ -102,8 +102,19 @@ public class InvoiceLine {
         this.price = price;
     }
 
-    public void setLineTotal(double lineTotal) {
-        this.lineTotal = lineTotal;
+    public void setLineTotal() {
+        this.lineTotal = price*quantity;
+    }
+
+    public boolean Verify() {
+        //do some verify stuff
+        return true;
+    }
+
+    public String getJsonString() throws JSONException {
+
+    return "\"{\"invoiceFK\":"+invoiceFK+",\"lineTotal\":"+lineTotal+",\"materialsID\":"+materialsID+",\"price\":"+price+",\"quantity\":"+quantity+",\"type\":\""+type+"\",\"units\":\""+units+"\"}\"";
+
     }
 }
 

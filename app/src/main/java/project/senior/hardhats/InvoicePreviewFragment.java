@@ -42,33 +42,13 @@ public class InvoicePreviewFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TODO Get invoice data from InvoiceCreate to populate list.
+        //TODO Get invoice data from InvoiceCreateActivity to populate list.
         ArrayList<InvoiceLine> invoiceLines = getInvoiceLines();
         previewListView = (ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
 
 
-        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.invoicelistitem,invoiceLines);
-        InvoiceLine test = new InvoiceLine();
-        InvoiceLine test2 = new InvoiceLine();
-        InvoiceLine test3 = new InvoiceLine();
-        ArrayList<InvoiceLine> array = new ArrayList<>();
-        test.setPrice(1000);
-        test.setQuantity(10);
-        test.setType("Tomatos");
-        test.setUnits("PD");
-        test2.setPrice(500);
-        test2.setQuantity(30);
-        test2.setType("Bricks");
-        test2.setUnits("EA");
-        test3.setPrice(1000);
-        test3.setQuantity(5);
-        test3.setType("Labor");
-        test3.setUnits("HR");
-        array.add(test);
 
-        array.add(test2);
-
-        array.add(test3);
+        ArrayList<InvoiceLine> array = ((InvoiceCreateActivity)getActivity()).GetInvoiceLines();
 
         InvoiceAdapter invoiceAdapter = new InvoiceAdapter(getContext(),array);
         previewListView.setAdapter(invoiceAdapter);
@@ -82,7 +62,7 @@ public class InvoicePreviewFragment extends Fragment {
 
     private ArrayList<InvoiceLine> getInvoiceLines() {
 
-        return ((InvoiceCreate) getActivity()).GetInvoiceLines();
+        return ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
 
     }
 
@@ -91,7 +71,7 @@ public class InvoicePreviewFragment extends Fragment {
         Context context;
         ArrayList<InvoiceLine> invoiceLines;
 
-        public InvoiceAdapter(Context context, ArrayList<InvoiceLine> invoiceLines) {
+        InvoiceAdapter(Context context, ArrayList<InvoiceLine> invoiceLines) {
             this.context = context;
             this.invoiceLines = invoiceLines;
         }
@@ -120,7 +100,7 @@ public class InvoicePreviewFragment extends Fragment {
                 TextView line1 = (TextView) v.findViewById(R.id.invoicelistitem_line1TextView);
                 TextView line2 = (TextView) v.findViewById(R.id.invoicelistitem_line2TextView);
                 line1.setText(invoiceLines.get(position).getType());
-                line2.setText(invoiceLines.get(position).getPrice()+" @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
+                line2.setText("$ "+ invoiceLines.get(position).getPrice()+"0 @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
 
             }
             return v;
