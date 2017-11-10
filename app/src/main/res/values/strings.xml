@@ -72,6 +72,7 @@
     <string name="fragmentaddline_description">Description</string>
     <string name="fragmentinvoice_viewinvoices">View Invoices</string>
     <string name="fragmentcustomer_viewcustomers">View Customers</string>
+    <string name="cancel">cancel</string>
 
     <string-array name="states">
         <item>AL</item>

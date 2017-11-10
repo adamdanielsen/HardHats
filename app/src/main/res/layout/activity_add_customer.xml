@@ -11,22 +11,23 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <LinearLayout android:id="@+id/footer" android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:layout_alignParentBottom="true" >
 
-            <Button
-                android:id="@+id/save_customer_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/save" />
+                <Button android:id="@+id/save_customer_button" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="@string/save" />
 
-            <TextView
-                android:id="@+id/customer_first_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/first_name" />
+                <Button android:id="@+id/cancel_customer_button" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="@string/cancel" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/customer_first_editText"
@@ -34,13 +35,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:hint="@string/first_name"
                 android:text="" />
-
-            <TextView
-                android:id="@+id/customer_Last_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/last_name" />
 
             <EditText
                 android:id="@+id/customer_last_editText"
@@ -48,13 +44,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:hint="@string/last_name"
                 android:text="" />
-
-            <TextView
-                android:id="@+id/customer_company_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/company" />
 
             <EditText
                 android:id="@+id/customer_company_editText"
@@ -62,42 +53,36 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:hint="@string/company"
                 android:text="" />
 
-            <TextView
-            android:id="@+id/customer_phone_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/phone_number" />
-
-            <EditText
-                android:id="@+id/customer_phone_editText"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:text="" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/customer_fax_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/fax_number" />
+                <EditText
+                    android:id="@+id/customer_phone_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                   android:hint="@string/phone_number"
+                    android:text="" />
+                
+                <EditText
+                    android:id="@+id/customer_fax_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="@string/fax_number"
+                    android:text="" />
 
-            <EditText
-                android:id="@+id/customer_fax_editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:text="" />
 
-
-            <TextView
-                android:id="@+id/customer_email_address_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/email" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/customer_email_address_editText"
@@ -105,27 +90,9 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textEmailAddress"
+
+                android:hint="@string/email"
                 android:text="" />
-
-            <TextView
-                android:id="@+id/house_number_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/house_number" />
-
-            <EditText
-                android:id="@+id/customer_house_number_editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/customer_street_address_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/street" />
 
             <EditText
                 android:id="@+id/customer_street_address_editText"
@@ -133,48 +100,48 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:imeOptions="actionDone"
+                android:hint="@string/street"
                 android:text="" />
 
-            <TextView
-                android:id="@+id/customer_zip_code_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/zip_code" />
 
-            <EditText
-                android:id="@+id/customer_zip_code_editText"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:text="" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/customer_city_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/city" />
+                <EditText
+                    android:id="@+id/customer_city_editText"
+                    android:layout_width="154dp"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:hint="@string/city"
+                    android:inputType="textPersonName"
+                    android:imeOptions="actionDone"
+                    android:text="" />
 
-            <EditText
-                android:id="@+id/customer_city_editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="" />
+                <Spinner
+                    android:id="@+id/customer_state_spinner"
+                    android:layout_width="96dp"
+                    android:layout_height="match_parent" />
+                <EditText
+                    android:id="@+id/customer_zip_code_editText"
+                    android:layout_width="176dp"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:hint="@string/zip_code"
+                    android:inputType="number"
+                    android:imeOptions="actionDone"
+                    android:text="" />
 
-            <TextView
-                android:id="@+id/customer_state_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/state" />
+            </LinearLayout>
 
-            <Spinner
-                android:id="@+id/customer_state_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+
+
 
         </LinearLayout>
+
+
     </ScrollView>
 
 </LinearLayout>
