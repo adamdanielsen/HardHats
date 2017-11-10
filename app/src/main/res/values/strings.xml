@@ -72,6 +72,11 @@
     <string name="fragmentaddline_description">Description</string>
     <string name="fragmentinvoice_viewinvoices">View Invoices</string>
     <string name="fragmentcustomer_viewcustomers">View Customers</string>
+    <string name="invoicecreate_addline">Add Line</string>
+    <string name="invoicecreate_done">Done</string>
+    <string name="invoicecreate_cancel">Cancel</string>
+    <string name="invoicecreate_finishline">Finish Line</string>
+    <string name="invoicecreate_cancelline">Cancel Line</string>
 
     <string-array name="states">
         <item>AL</item>

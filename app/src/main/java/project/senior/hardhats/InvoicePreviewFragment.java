@@ -42,13 +42,13 @@ public class InvoicePreviewFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TODO Get invoice data from InvoiceCreate to populate list.
+        //TODO Get invoice data from InvoiceCreateActivity to populate list.
         ArrayList<InvoiceLine> invoiceLines = getInvoiceLines();
         previewListView = (ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
 
 
 
-        ArrayList<InvoiceLine> array = ((InvoiceCreate)getActivity()).GetInvoiceLines();
+        ArrayList<InvoiceLine> array = ((InvoiceCreateActivity)getActivity()).GetInvoiceLines();
 
         InvoiceAdapter invoiceAdapter = new InvoiceAdapter(getContext(),array);
         previewListView.setAdapter(invoiceAdapter);
@@ -62,7 +62,7 @@ public class InvoicePreviewFragment extends Fragment {
 
     private ArrayList<InvoiceLine> getInvoiceLines() {
 
-        return ((InvoiceCreate) getActivity()).GetInvoiceLines();
+        return ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
 
     }
 
@@ -71,7 +71,7 @@ public class InvoicePreviewFragment extends Fragment {
         Context context;
         ArrayList<InvoiceLine> invoiceLines;
 
-        public InvoiceAdapter(Context context, ArrayList<InvoiceLine> invoiceLines) {
+        InvoiceAdapter(Context context, ArrayList<InvoiceLine> invoiceLines) {
             this.context = context;
             this.invoiceLines = invoiceLines;
         }

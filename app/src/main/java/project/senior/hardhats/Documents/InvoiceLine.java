@@ -1,7 +1,5 @@
 package project.senior.hardhats.Documents;
 
-import com.google.gson.Gson;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,16 +11,16 @@ import java.text.DecimalFormat;
 
 public class InvoiceLine{
 
-    final DecimalFormat df = new DecimalFormat("$0.00");
-    int materialsID;
-    int invoiceFK;
-    String type;
-    int quantity;
-    String units;
-    double price;
+    private static final DecimalFormat df = new DecimalFormat("$0.00");
+    private int materialsID;
+    private int invoiceFK;
+    private String type;
+    private int quantity;
+    private String units;
+    private double price;
     double lineTotal;
 
-    public InvoiceLine(JSONObject invoiceLineJsonObject) throws JSONException {
+    InvoiceLine(JSONObject invoiceLineJsonObject) throws JSONException {
         materialsID=invoiceLineJsonObject.getInt("MaterialsID");
         invoiceFK=invoiceLineJsonObject.getInt("InvoiceFK");
         type=invoiceLineJsonObject.getString("Type");
@@ -35,7 +33,7 @@ public class InvoiceLine{
     public InvoiceLine()
     {}
 
-    public String getInvoiceExportString() {
+    String getInvoiceExportString() {
         int spaceRoom=51;
         int stringLength;
         String line1;
@@ -113,10 +111,10 @@ public class InvoiceLine{
         return true;
     }
 
-    public String getJsonString()
-    {
-        Gson gson = new Gson();
-        return gson.toJson(this);
+    public String getJsonString() throws JSONException {
+
+    return "\"{\"invoiceFK\":"+invoiceFK+",\"lineTotal\":"+lineTotal+",\"materialsID\":"+materialsID+",\"price\":"+price+",\"quantity\":"+quantity+",\"type\":\""+type+"\",\"units\":\""+units+"\"}\"";
+
     }
 }
 

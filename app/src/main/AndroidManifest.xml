@@ -33,7 +33,9 @@
             android:name=".GenerateInvoiceActivity"
             android:label="@string/title_activity_generate_invoice"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".InvoiceCreate"></activity>
+        <activity 
+            android:name=".InvoiceCreateActivity">
+        </activity>
     </application>
 
 </manifest>

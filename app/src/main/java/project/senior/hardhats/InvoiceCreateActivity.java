@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.Date;
 
 import project.senior.hardhats.Documents.InvoiceLine;
 
-public class InvoiceCreate extends AppCompatActivity {
+public class InvoiceCreateActivity extends AppCompatActivity {
 
 
     ArrayList<InvoiceLine> invoiceLines = new ArrayList<>();
@@ -34,16 +35,20 @@ public class InvoiceCreate extends AppCompatActivity {
         setContentView(R.layout.activity_invoice_create);
 
         UserID = SessionData.getInstance().getUserID();
-        //CustomerID = getIntent().getStringExtra("CustomerID");
-        //GCEmail = getIntent().getStringExtra("GCEmail");
+
+        CustomerID = getIntent().getStringExtra("CustomerID");
+
+
+
+        //check a null to see if we use gcemail
+        GCEmail = getIntent().getStringExtra("GCEmail");
+
         addLineButton = (Button) findViewById(R.id.invoicecreate_addLineButton);
         doneOrFinishLineButton = (Button) findViewById(R.id.invoicecreate_doneOrFinishLineButton);
         cancelOrCancelLineButton = (Button) findViewById(R.id.invoicecreate_cancelOrCancelLineButton);
-        addLineButton.setText("Add Line");
-        doneOrFinishLineButton.setText("Done");
-        cancelOrCancelLineButton.setText("Cancel");
-
-
+        addLineButton.setText(R.string.invoicecreate_addline);
+        doneOrFinishLineButton.setText(R.string.invoicecreate_done);
+        cancelOrCancelLineButton.setText(R.string.invoicecreate_cancel);
         addLineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,11 +86,19 @@ public class InvoiceCreate extends AppCompatActivity {
         if (myFragment != null && myFragment.isVisible()) {
             //Add Invoice to Database
             BackgroundWorker dataInsert = new BackgroundWorker();
-            JSONArray invoiceLinesJSON = new JSONArray();
+            StringBuilder invoiceLinesJSON = new StringBuilder();
+            invoiceLinesJSON.append("[");
             for (InvoiceLine eachLine : invoiceLines )
             {
-                invoiceLinesJSON.put(eachLine.getJsonString());
+                try {
+                    invoiceLinesJSON.append(eachLine.getJsonString()).append(",");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+            invoiceLinesJSON.setLength(invoiceLinesJSON.length() - 1);
+            invoiceLinesJSON.append("]");
+
             DataContainer dataContainer = new DataContainer();
             dataContainer.type="generateinvoice";
             dataContainer.phpVariableNames.add("UserID");
@@ -99,10 +112,12 @@ public class InvoiceCreate extends AppCompatActivity {
             dataContainer.dataPassedIn.add(GCEmail);
             dataContainer.dataPassedIn.add(invoiceLinesJSON.toString());
             dataInsert.execute(dataContainer);
-            Intent menuIntent = new Intent(InvoiceCreate.this, MenuActivity.class);
+            Log.d("LINES",invoiceLinesJSON.toString());
+            Intent menuIntent = new Intent(InvoiceCreateActivity.this, MenuActivity.class);
             menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(menuIntent);
         }
+
         else
         {
             AddLineFragment addLineFragment =(AddLineFragment) getSupportFragmentManager().findFragmentByTag("ADDLINE");
@@ -129,7 +144,7 @@ public class InvoiceCreate extends AppCompatActivity {
 
         if (myFragment != null && myFragment.isVisible()) {
             //todo confirmation
-            Intent menuIntent = new Intent(InvoiceCreate.this, MenuActivity.class);
+            Intent menuIntent = new Intent(InvoiceCreateActivity.this, MenuActivity.class);
             menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(menuIntent);
 
@@ -148,17 +163,17 @@ public class InvoiceCreate extends AppCompatActivity {
     {
 
         addLineButton.setVisibility(View.VISIBLE);
-        addLineButton.setText("Add Line");
-        doneOrFinishLineButton.setText("Done");
-        cancelOrCancelLineButton.setText("Cancel");
+        addLineButton.setText(R.string.invoicecreate_addline);
+        doneOrFinishLineButton.setText(R.string.invoicecreate_done);
+        cancelOrCancelLineButton.setText(R.string.invoicecreate_cancel);
         getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new InvoicePreviewFragment(),"INVOICEPREVIEW").commit();
     }
 
     protected void startAddLine()
     {
         addLineButton.setVisibility(View.INVISIBLE);
-        doneOrFinishLineButton.setText("Finish Line");
-        cancelOrCancelLineButton.setText("Cancel Line");
+        doneOrFinishLineButton.setText(R.string.invoicecreate_finishline);
+        cancelOrCancelLineButton.setText(R.string.invoicecreate_cancelline);
         getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new AddLineFragment(),"ADDLINE").commit();
     }
 

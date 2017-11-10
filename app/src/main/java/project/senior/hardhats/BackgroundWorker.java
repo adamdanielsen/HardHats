@@ -30,12 +30,12 @@ import java.net.URLEncoder;
 
 public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
-    String type;
-    String login_url= "http://hardhatz.org/login.php";
-    String createuser_url="http://hardhatz.org/createuser.php";
-    String sendinvoiceemail_url="http://hardhatz.org/sendinvoiceemail.php";
-    String addcustomer_url = "http://hardhatz.org/addcustomer.php";
-
+    private String type;
+    private String login_url= "http://hardhatz.org/login.php";
+    private String createuser_url="http://hardhatz.org/createuser.php";
+    private String sendinvoiceemail_url="http://hardhatz.org/sendinvoiceemail.php";
+    private String addcustomer_url = "http://hardhatz.org/addcustomer.php";
+    private String generateinvoice_url = "http://hardhatz.org/generateinvoice.php";
     BackgroundWorker() {}
     /**
      * Returns a String object representing the created POST.
@@ -46,7 +46,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * @param   dataContainer The variables and data being passed in
      * @return  The relevant POST created from the data.
      */
-    protected String PostBuilder (DataContainer dataContainer)
+    private String PostBuilder(DataContainer dataContainer)
 
     {
         StringBuilder postdata= new StringBuilder();
@@ -81,7 +81,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * @param   dataContainer The data being passed to the PostBuilder
      * @return  The result of the script.
      */
-    protected String ExecuteRequest(String urlName, DataContainer dataContainer)
+    private String ExecuteRequest(String urlName, DataContainer dataContainer)
     {
 
         try {
@@ -128,7 +128,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
 
-    protected String LoginProcedure(DataContainer dataContainer)
+    private String LoginProcedure(DataContainer dataContainer)
     {
 
             return ExecuteRequest(login_url, dataContainer);
@@ -146,8 +146,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
 //todo This definitely needs to be changed.
-
-    protected String RegisterProcedure(DataContainer dataContainer)
+    private String RegisterProcedure(DataContainer dataContainer)
     {
             String result = ExecuteRequest(createuser_url, dataContainer);
 
@@ -172,7 +171,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
 
-    protected String SendInvoiceEmail(DataContainer dataContainer)
+    private String SendInvoiceEmail(DataContainer dataContainer)
     {
 
         return ExecuteRequest(sendinvoiceemail_url, dataContainer);
@@ -190,12 +189,21 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
 
-    protected String AddCustomerProcedure(DataContainer dataContainer)
+    private String AddCustomerProcedure(DataContainer dataContainer)
     {
 
         return ExecuteRequest(addcustomer_url,dataContainer);
 
     }
+
+
+    private String GenerateInvoiceProcedure(DataContainer dataContainer) {
+
+        return ExecuteRequest(generateinvoice_url,dataContainer);
+
+    }
+
+
 
     /**
      * After a few steps, this function returns the result of the echo from the script called.
@@ -223,11 +231,14 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
                 return SendInvoiceEmail(params[0]);
             case "addcustomer":
                 return AddCustomerProcedure(params[0]);
+            case "generateinvoice":
+                return GenerateInvoiceProcedure(params[0]);
 
         }
 
         return "Unknown or misspelled type?";
     }
+
 
 
     /**
