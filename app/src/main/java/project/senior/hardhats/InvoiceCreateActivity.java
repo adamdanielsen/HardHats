@@ -37,11 +37,9 @@ public class InvoiceCreateActivity extends AppCompatActivity {
         UserID = SessionData.getInstance().getUserID();
 
         CustomerID = getIntent().getStringExtra("CustomerID");
+        GCEmail=getIntent().getStringExtra("GCEmail");
 
 
-
-        //check a null to see if we use gcemail
-        GCEmail = getIntent().getStringExtra("GCEmail");
 
         addLineButton = (Button) findViewById(R.id.invoicecreate_addLineButton);
         doneOrFinishLineButton = (Button) findViewById(R.id.invoicecreate_doneOrFinishLineButton);

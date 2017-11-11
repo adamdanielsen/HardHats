@@ -10,21 +10,23 @@ import org.json.JSONObject;
 public class Person {
 
     String table;
-    String firstName;
-    String lastName;
-    String phoneNumber;
-    String faxNumber;
-    String emailAddress;
-    String licenseNumber;
-    String companyName;
-    String street;
-    String city;
-    String zipCode;
-    String state;
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String faxNumber;
+    private String emailAddress;
+    private String licenseNumber;
+    private String companyName;
+    private String street;
+    private String city;
+    private String zipCode;
+    private String state;
 
+   public Person()
+   {}
 
-
-   public Person (JSONObject personJSONObject,String type) throws JSONException
+   Person(JSONObject personJSONObject, String type) throws JSONException
 
     {
 
@@ -109,6 +111,10 @@ public class Person {
         return address.toString();
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -151,5 +157,54 @@ public class Person {
 
     public String getState() {
         return state;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setFaxNumber(String faxNumber) {
+        this.faxNumber = faxNumber;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return id+"       "+firstName+" "+lastName;
     }
 }
