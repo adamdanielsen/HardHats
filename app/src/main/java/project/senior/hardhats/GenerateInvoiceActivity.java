@@ -32,13 +32,11 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_invoice);
-        //TODO populate spinner, maybe show detailed data, select customer, intent to InvoiceCreateActivity
         customerSpinner = (Spinner) findViewById(R.id.generateinvoice_chooseCustomerSpinner);
         chooseCustomerButton=(Button) findViewById(R.id.generateinvoice_chooseCustomerButton);
-
+        useGCEmailCheckBox = (CheckBox) findViewById(R.id.generateinvoice_useGeneralContractorEmailCheckBox);
 
         List<Person> customersForSpinnerList = new ArrayList<>();
-
         DataContainer listData = new DataContainer();
         listData.type = "populatecustomerspinner";
         listData.phpVariableNames.add("UserID");
@@ -46,10 +44,15 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
         JSONArray customerJSON;
         try {
             customerJSON = new BackgroundWorkerJSONArray().execute(listData).get();
-
+            Person noPerson = new Person();
+            noPerson.setId("No Customer Selected");
+            noPerson.setLastName("");
+            noPerson.setFirstName("");
+            customersForSpinnerList.add(noPerson);
             for (int i = 0; i<customerJSON.length(); i++)
             {
                 Person customerForSpinner = new Person();
+                customerForSpinner.setId(customerJSON.getJSONObject(i).getString("CustomerID"));
                 customerForSpinner.setCity(customerJSON.getJSONObject(i).getString("City"));
                 customerForSpinner.setCompanyName(customerJSON.getJSONObject(i).getString("CompanyName"));
                 customerForSpinner.setEmailAddress(customerJSON.getJSONObject(i).getString("EmailAddress"));
@@ -78,8 +81,17 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
         customerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                chooseCustomerButton.setEnabled(true);
-                //set them edittexts
+
+                Person selectedPerson = (Person) customerSpinner.getSelectedItem();
+                if (selectedPerson.getId().equals("No Customer Selected"))
+                {
+                    chooseCustomerButton.setEnabled(false);
+
+                }
+                else {
+                    chooseCustomerButton.setEnabled(true);
+                    //set them textviews
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {

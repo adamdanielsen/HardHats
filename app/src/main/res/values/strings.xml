@@ -63,7 +63,7 @@
     <string name="createinvoice_cancel">CANCEL</string>
     <string name="generateinvoice_address">Address</string>
     <string name="generateinvoice_choosecustomer">CHOOSE CUSTOMER</string>
-    <string name="generateinvoice_usegeneralcontractor">Use General Contractor Email?</string>
+    <string name="generateinvoice_usegeneralcontractor">Use General\nContractor Email?</string>
     <string name="generateinvoice_AddLine">Add Line</string>
     <string name="generateinvoice_cancel">CANCEL</string>
     <string name="fragmentaddline_price">Price</string>

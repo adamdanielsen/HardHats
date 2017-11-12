@@ -35,8 +35,8 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
 
 
     String type;
-    String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
-
+    private String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
+    private String populatecustomerspinner_url = "http://hardhatz.org/populatecustomerspinner.php";
     public BackgroundWorkerJSONArray()
     {
 
@@ -146,6 +146,19 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
     }
 
 
+    /**
+     * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
+     * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
+     * other coders.
+     *
+     * @param   dataContainer   Data to be passed to script.
+     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     */
+    protected JSONArray PopulateCustomerSpinner(DataContainer dataContainer) {
+        return ExecuteRequest(populatecustomerspinner_url, dataContainer);
+    }
+
+
 
     /**
      * After a few steps, this function returns the result of the echo from the script called.
@@ -168,7 +181,11 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
         {
             case "invoiceexport":
                 return InvoiceExportProcedure(params[0]);
+
+            case "populatecustomerspinner":
+                return PopulateCustomerSpinner(params[0]);
         }
+
 
         return null;
     }

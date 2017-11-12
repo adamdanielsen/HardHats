@@ -6,8 +6,11 @@
     android:gravity="center_horizontal|center"
     android:orientation="vertical"
     tools:context="project.senior.hardhats.GenerateInvoiceActivity">
-
-
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="0px"
+        android:layout_height="0px"/>
     <Spinner
         android:id="@+id/generateinvoice_chooseCustomerSpinner"
         android:layout_width="match_parent"
@@ -21,112 +24,101 @@
         android:layout_weight="1"
         android:text="@string/generateinvoice_choosecustomer" />
 
-    <ScrollView
+
+    <TextView
+        android:id="@+id/generateinvoice_firstNameLabel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".18">
+        android:layout_weight="1.05"
+        android:text="@string/first_name" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/generateinvoice_firstNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.05" />
+
+    <TextView
+        android:id="@+id/generateinvoice_lastLabel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.05"
+        android:text="@string/last_name" />
+
+    <TextView
+        android:id="@+id/generateinvoice_lastNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.05"
+
+        />
+
+    <TextView
+        android:id="@+id/generateinvoice_phoneLabel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.05"
+        android:text="@string/phone_number" />
+
+    <TextView
+        android:id="@+id/generateinvoice_phoneNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.05" />
+
+    <TextView
+        android:id="@+id/generateinvoice_emailLabel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.05"
+        android:text="@string/email" />
+
+    <TextView
+        android:id="@+id/generateinvoice_emailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.05" />
+
+    <TextView
+        android:id="@+id/generateinvoice_addressLabel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.05"
+        android:text="@string/generateinvoice_address" />
+
+    <TextView
+        android:id="@+id/generateinvoice_addressTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="none"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingBottom="25dp">
+
+        <CheckBox
+            android:id="@+id/generateinvoice_useGeneralContractorEmailCheckBox"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:paddingEnd="25dp"
+            android:text="@string/generateinvoice_usegeneralcontractor" />
 
-            <TextView
-                android:id="@+id/generateinvoice_firstNameLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/first_name" />
+        <TextView
+            android:id="@+id/generateinvoice_gcEmail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="13" />
 
-            <EditText
-                android:id="@+id/generateinvoice_firstNameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:focusable="false"
-                android:clickable="false"
-                android:inputType="none"
-                android:text="" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/generateinvoice_lastLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/last_name" />
 
-            <EditText
-                android:id="@+id/generateinvoice_lastNameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="none"
-                android:text="" />
 
-            <TextView
-                android:id="@+id/generateinvoice_phoneLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/phone_number" />
-
-            <EditText
-                android:id="@+id/generateinvoice_phoneNumberEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="none"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/generateinvoice_emailLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/email" />
-
-            <EditText
-                android:id="@+id/generateinvoice_emailEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="none"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/generateinvoice_addressLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/generateinvoice_address" />
-
-            <EditText
-                android:id="@+id/generateinvoice_addressEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="none"
-                android:text=""/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/generateinvoice_useGeneralContractorEmailCheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/generateinvoice_usegeneralcontractor" />
-
-                <EditText
-                    android:id="@+id/generateinvoice_gcEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
 
 </LinearLayout>
 
