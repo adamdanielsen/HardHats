@@ -36,6 +36,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     private String sendinvoiceemail_url="http://hardhatz.org/sendinvoiceemail.php";
     private String addcustomer_url = "http://hardhatz.org/addcustomer.php";
     private String generateinvoice_url = "http://hardhatz.org/generateinvoice.php";
+    private String getgcemail_url= "http://hardhatz.org/getgcemail.php";
     BackgroundWorker() {}
     /**
      * Returns a String object representing the created POST.
@@ -203,6 +204,11 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
     }
 
+    private String GetGCEmail(DataContainer dataContainer) {
+
+        return ExecuteRequest(getgcemail_url,dataContainer);
+    }
+
 
 
     /**
@@ -213,7 +219,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * Thread
      *
      * @param   params   Data to be passed to script. Just use index 0.
-     * @return  Returns the result of the relevant function, which is the script echo.
+     * @return  Returns the result of the relevant function, which iEs the script echo.
      */
 
     @Override
@@ -233,7 +239,8 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
                 return AddCustomerProcedure(params[0]);
             case "generateinvoice":
                 return GenerateInvoiceProcedure(params[0]);
-
+            case "getgcemail":
+                return GetGCEmail(params[0]);
         }
 
         return "Unknown or misspelled type?";

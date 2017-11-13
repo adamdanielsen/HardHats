@@ -8,8 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +30,12 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
     Button chooseCustomerButton;
     CheckBox useGCEmailCheckBox;
     EditText GCEmailEditText;
+
+    TextView firstNameTextBox;
+    TextView lastNameTextBox;
+    TextView phoneNumberTextBox;
+    TextView emailAddressTextBox;
+    TextView addressTextBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +43,16 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
         customerSpinner = (Spinner) findViewById(R.id.generateinvoice_chooseCustomerSpinner);
         chooseCustomerButton=(Button) findViewById(R.id.generateinvoice_chooseCustomerButton);
         useGCEmailCheckBox = (CheckBox) findViewById(R.id.generateinvoice_useGeneralContractorEmailCheckBox);
+        GCEmailEditText = (EditText) findViewById(R.id.generateinvoice_gcEmailEditText);
+        firstNameTextBox = (TextView) findViewById(R.id.generateinvoice_firstNameTextView);
+        lastNameTextBox = (TextView) findViewById(R.id.generateinvoice_lastNameTextView);
+        phoneNumberTextBox=(TextView) findViewById(R.id.generateinvoice_phoneNumberTextView);
+        emailAddressTextBox=(TextView) findViewById(R.id.generateinvoice_emailTextView);
+        addressTextBox=(TextView) findViewById(R.id.generateinvoice_addressTextView);
+
+
+
+
 
         List<Person> customersForSpinnerList = new ArrayList<>();
         DataContainer listData = new DataContainer();
@@ -49,7 +67,8 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
             noPerson.setLastName("");
             noPerson.setFirstName("");
             customersForSpinnerList.add(noPerson);
-            for (int i = 0; i<customerJSON.length(); i++)
+
+            for (int i = customerJSON.length()-1; i>0; i--)
             {
                 Person customerForSpinner = new Person();
                 customerForSpinner.setId(customerJSON.getJSONObject(i).getString("CustomerID"));
@@ -78,6 +97,25 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         customerSpinner.setAdapter(adapter);
         chooseCustomerButton.setEnabled(false);
+        GCEmailEditText.setVisibility(View.INVISIBLE);
+        useGCEmailCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (useGCEmailCheckBox.isChecked())
+                {
+
+                    GCEmailEditText.setVisibility(View.VISIBLE);
+                    GCEmailEditText.setText("");
+                }
+
+                else
+                {
+
+                    GCEmailEditText.setVisibility(View.INVISIBLE);
+                    GCEmailEditText.setText("");
+                }
+            }
+        });
         customerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -87,10 +125,20 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
                 {
                     chooseCustomerButton.setEnabled(false);
 
+                    firstNameTextBox.setText("");
+                    lastNameTextBox.setText("");
+                    phoneNumberTextBox.setText("");
+                    emailAddressTextBox.setText("");
+                    addressTextBox.setText("");
                 }
                 else {
                     chooseCustomerButton.setEnabled(true);
-                    //set them textviews
+
+                    firstNameTextBox.setText(selectedPerson.getFirstName());
+                    lastNameTextBox.setText(selectedPerson.getLastName());
+                    phoneNumberTextBox.setText(selectedPerson.getPhoneNumber());
+                    emailAddressTextBox.setText(selectedPerson.getEmailAddress());
+                    addressTextBox.setText(selectedPerson.BuildCustomerAddressForPreview());
                 }
             }
             @Override
@@ -112,7 +160,7 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
                 {
                     DataContainer dataContainer= new DataContainer();
                     dataContainer.type="getgcemail";
-                    dataContainer.phpVariableNames.add("ID");
+                    dataContainer.phpVariableNames.add("user_id");
                     dataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
                     try {
                         GCEmail= new BackgroundWorker().execute(dataContainer).get();

@@ -62,7 +62,7 @@ public class Person {
     }
 
 
-    public String BuildContractorAddress()
+    public String BuildContractorAddressForInvoice()
     {
         StringBuilder address = new StringBuilder();
 
@@ -89,7 +89,7 @@ public class Person {
     }
 
 
-    public String BuildCustomerAddress()
+    public String BuildCustomerAddressForInvoice()
     {
         StringBuilder address = new StringBuilder();
 
@@ -97,6 +97,25 @@ public class Person {
         address.append("\n");
         address.append(phoneNumber);
         address.append("\n");
+        address.append(firstName);
+        address.append(" ");
+        address.append(lastName);
+        address.append("\n");
+        address.append(street);
+        address.append("\n");
+        address.append(city);
+        address.append(",");
+        address.append(state);
+        address.append(" ");
+        address.append(zipCode);
+        return address.toString();
+    }
+
+
+    public String BuildCustomerAddressForPreview()
+    {
+        StringBuilder address = new StringBuilder();
+
         address.append(firstName);
         address.append(" ");
         address.append(lastName);

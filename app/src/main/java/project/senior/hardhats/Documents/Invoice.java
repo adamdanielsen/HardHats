@@ -57,9 +57,9 @@ public class Invoice {
     {
         StringBuilder invoiceString = new StringBuilder();
 
-        invoiceString.append(contractorAddress.BuildContractorAddress());
+        invoiceString.append(contractorAddress.BuildContractorAddressForInvoice());
         invoiceString.append("\n\n");
-        invoiceString.append(customerAddress.BuildCustomerAddress());
+        invoiceString.append(customerAddress.BuildCustomerAddressForInvoice());
         invoiceString.append("\n___________________________________________________________________________\n");
         double finalTotal = 0;
         for (InvoiceLine invoice : invoiceLines)
