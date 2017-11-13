@@ -8,9 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,7 +27,9 @@ import project.senior.hardhats.Documents.InvoiceLine;
 public class InvoicePreviewFragment extends Fragment {
 
     ListView previewListView;
-
+    InvoiceAdapter invoiceAdapter;
+    ArrayList<InvoiceLine> array;
+    boolean warning;
     public InvoicePreviewFragment() {
         // Required empty public constructor
     }
@@ -35,7 +39,9 @@ public class InvoicePreviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        warning=true;
         return inflater.inflate(R.layout.fragment_invoice_preview, container, false);
+
     }
 
 
@@ -43,16 +49,38 @@ public class InvoicePreviewFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //TODO Get invoice data from InvoiceCreateActivity to populate list.
-        ArrayList<InvoiceLine> invoiceLines = getInvoiceLines();
         previewListView = (ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
 
+        previewListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                // TODO Auto-generated method stub
 
 
-        ArrayList<InvoiceLine> array = ((InvoiceCreateActivity)getActivity()).GetInvoiceLines();
 
-        InvoiceAdapter invoiceAdapter = new InvoiceAdapter(getContext(),array);
+                if (warning)
+                {
+                    Toast.makeText(getContext(), "Hold again to delete line!", Toast.LENGTH_SHORT).show();
+                    warning=false;
+                    return true;
+                }
+                else {
+                    ((InvoiceCreateActivity) getActivity()).RemoveInvoiceLine(pos);
+                    array = ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
+                    invoiceAdapter = new InvoiceAdapter(getContext(), array);
+                    previewListView.setAdapter(invoiceAdapter);
+                    Refresh();
+                    return true;
+                }
+            }
+        });
+
+        array = ((InvoiceCreateActivity)getActivity()).GetInvoiceLines();
+
+        invoiceAdapter = new InvoiceAdapter(getContext(),array);
         previewListView.setAdapter(invoiceAdapter);
-        invoiceAdapter.notifyDataSetChanged();
+        Refresh();
 
     }
 
@@ -64,6 +92,10 @@ public class InvoicePreviewFragment extends Fragment {
 
         return ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
 
+    }
+
+    public void Refresh() {
+        invoiceAdapter.notifyDataSetChanged();
     }
 
     private class InvoiceAdapter extends BaseAdapter
@@ -93,17 +125,16 @@ public class InvoicePreviewFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View v =null;
+
             if (convertView==null) {
-                v = View.inflate(context, R.layout.invoicelistitem, null);
-                //need to declare textviews and set them equal to variables in the invoiceline
-                TextView line1 = (TextView) v.findViewById(R.id.invoicelistitem_line1TextView);
-                TextView line2 = (TextView) v.findViewById(R.id.invoicelistitem_line2TextView);
+                convertView = View.inflate(context, R.layout.invoicelistitem, null);
+                TextView line1 = (TextView) convertView.findViewById(R.id.invoicelistitem_line1TextView);
+                TextView line2 = (TextView) convertView.findViewById(R.id.invoicelistitem_line2TextView);
                 line1.setText(invoiceLines.get(position).getType());
                 line2.setText("$ "+ invoiceLines.get(position).getPrice()+"0 @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
 
             }
-            return v;
+            return convertView;
         }
     }
 }

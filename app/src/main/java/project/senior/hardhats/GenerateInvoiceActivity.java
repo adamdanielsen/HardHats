@@ -68,7 +68,7 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
             noPerson.setFirstName("");
             customersForSpinnerList.add(noPerson);
 
-            for (int i = customerJSON.length()-1; i>0; i--)
+            for (int i = customerJSON.length()-1; i>=0; i--)
             {
                 Person customerForSpinner = new Person();
                 customerForSpinner.setId(customerJSON.getJSONObject(i).getString("CustomerID"));
