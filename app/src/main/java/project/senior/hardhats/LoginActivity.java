@@ -126,9 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         try {
             returnedUsername = new JSONObject();
             returnedUsername = backgroundWorker.execute(dataContainer).get(2, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
             Toast.makeText(this, "Error connecting, check Connection", Toast.LENGTH_SHORT).show();

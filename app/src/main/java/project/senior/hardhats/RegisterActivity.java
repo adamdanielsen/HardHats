@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 public class RegisterActivity extends AppCompatActivity {
         EditText usernameEditText;
@@ -24,8 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
             getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-            //ArrayList<String> stateList = new ArrayList<>(Arrays.asList("AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"));
-            usernameEditText =(EditText) findViewById(R.id.register_UserNameEditText);
+             usernameEditText =(EditText) findViewById(R.id.register_UserNameEditText);
             passwordEditText = (EditText)findViewById(R.id.register_PasswordEditText);
             confirmpasswordEditText =(EditText) findViewById(R.id.register_ConfirmPasswordEditText);
             registerButton =(Button) findViewById(R.id.register_RegisterButton);
