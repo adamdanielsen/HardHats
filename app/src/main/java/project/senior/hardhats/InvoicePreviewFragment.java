@@ -29,7 +29,7 @@ public class InvoicePreviewFragment extends Fragment {
     ListView previewListView;
     InvoiceAdapter invoiceAdapter;
     ArrayList<InvoiceLine> array;
-    boolean warning;
+    int previousPosition;
     public InvoicePreviewFragment() {
         // Required empty public constructor
     }
@@ -39,7 +39,7 @@ public class InvoicePreviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        warning=true;
+        previousPosition=-1;
         return inflater.inflate(R.layout.fragment_invoice_preview, container, false);
 
     }
@@ -56,13 +56,10 @@ public class InvoicePreviewFragment extends Fragment {
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
                                            int pos, long id) {
                 // TODO Auto-generated method stub
-
-
-
-                if (warning)
+                if (previousPosition!=pos)
                 {
                     Toast.makeText(getContext(), "Hold again to delete line!", Toast.LENGTH_SHORT).show();
-                    warning=false;
+                    previousPosition =pos;
                     return true;
                 }
                 else {
@@ -70,6 +67,7 @@ public class InvoicePreviewFragment extends Fragment {
                     array = ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
                     invoiceAdapter = new InvoiceAdapter(getContext(), array);
                     previewListView.setAdapter(invoiceAdapter);
+                    previousPosition =-1;
                     Refresh();
                     return true;
                 }

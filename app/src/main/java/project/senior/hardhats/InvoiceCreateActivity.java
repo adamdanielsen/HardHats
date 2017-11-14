@@ -4,16 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import org.json.JSONException;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import project.senior.hardhats.Documents.InvoiceLine;
 
@@ -96,21 +94,18 @@ public class InvoiceCreateActivity extends AppCompatActivity {
             }
             invoiceLinesJSON.setLength(invoiceLinesJSON.length() - 1);
             invoiceLinesJSON.append("]");
-
             DataContainer dataContainer = new DataContainer();
             dataContainer.type="generateinvoice";
             dataContainer.phpVariableNames.add("UserID");
             dataContainer.phpVariableNames.add("CustomerID");
-            dataContainer.phpVariableNames.add("InvoiceDate");
             dataContainer.phpVariableNames.add("GCEmail");
             dataContainer.phpVariableNames.add("InvoiceArray");
             dataContainer.dataPassedIn.add(UserID);
             dataContainer.dataPassedIn.add(CustomerID);
-            dataContainer.dataPassedIn.add(DateFormat.getDateTimeInstance().format(new Date()));
             dataContainer.dataPassedIn.add(GCEmail);
             dataContainer.dataPassedIn.add(invoiceLinesJSON.toString());
             dataInsert.execute(dataContainer);
-            Log.d("LINES",invoiceLinesJSON.toString());
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             Intent menuIntent = new Intent(InvoiceCreateActivity.this, MenuActivity.class);
             menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(menuIntent);

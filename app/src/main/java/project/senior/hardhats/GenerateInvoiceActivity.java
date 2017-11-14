@@ -24,7 +24,7 @@ import project.senior.hardhats.Documents.Person;
 
 public class GenerateInvoiceActivity extends AppCompatActivity {
 
-
+    // TODO Clean this garbage up, change for loop to standard, change php script to do ORDER BY
 
     Spinner customerSpinner;
     Button chooseCustomerButton;
