@@ -9,7 +9,11 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -18,7 +22,7 @@ import android.widget.Button;
 public class CustomerFragment extends Fragment {
 
     Button add_customer;
-
+    ListView listView;
     public CustomerFragment() {
         // Required empty public constructor
     }
@@ -35,6 +39,21 @@ public class CustomerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         add_customer = (Button) getView().findViewById(R.id.add_customer_button);
+
+        listView = (ListView) getView().findViewById(R.id.fragmentCustomer_ListView);
+        ArrayList<String> list = new ArrayList<>();
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),R.layout.simplelistitem,list);
+
+        list.add("Harry                                        9/15/15");
+
+        list.add("Tom                                          6/05/16");
+
+        list.add("Bill                                            4/25/17");
+
+
+        listView.setAdapter(adapter);
         add_customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

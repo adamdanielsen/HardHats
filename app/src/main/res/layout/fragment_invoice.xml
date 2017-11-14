@@ -14,7 +14,7 @@
         android:text="@string/fragment_generateinvoice_GenerateInvoice" />
 
     <ListView
-        android:id="@+id/fragmentInvoice_Listview"
+        android:id="@+id/fragmentInvoice_ListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

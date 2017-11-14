@@ -38,13 +38,13 @@ public class InvoiceFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         generateInvoiceButton=(Button) getView().findViewById(R.id.fragmentInvoice_GenerateInvoiceButton);
-        listView = (ListView) getView().findViewById(R.id.fragmentInvoice_Listview);
+        listView = (ListView) getView().findViewById(R.id.fragmentInvoice_ListView);
         ArrayList<String> list = new ArrayList<>();
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.simplelistitem,list);
 
-        list.add("Harry                                        9/15/15");
+        list.add("");
 
         list.add("Tom                                          6/05/16");
 
