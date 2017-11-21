@@ -20,7 +20,7 @@ public class MenuActivity extends AppCompatActivity{
 
     class InvoiceForPreview
     {
-        int id;
+        String id;
         String name;
         String date;
 
@@ -45,11 +45,11 @@ public class MenuActivity extends AppCompatActivity{
             this.date = date;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 
@@ -97,7 +97,7 @@ public class MenuActivity extends AppCompatActivity{
        {
            InvoiceForPreview listItem = new InvoiceForPreview();
 
-           listItem.setId(invoiceJSONArray.getJSONObject(i).getInt("InvoiceID"));
+           listItem.setId(invoiceJSONArray.getJSONObject(i).getString("InvoiceID"));
 
            listItem.setDate(invoiceJSONArray.getJSONObject(i).getString("InvoiceDate"));
 

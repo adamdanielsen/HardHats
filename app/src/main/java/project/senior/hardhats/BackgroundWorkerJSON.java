@@ -1,6 +1,7 @@
 package project.senior.hardhats;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -124,9 +125,11 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
         }
         catch (IOException e) {
 
+            Log.d("IOEXCEPTION", "ExecuteRequest: threw ioexception ");
             e.printStackTrace();
-
         } catch (JSONException e) {
+
+            Log.d("JSONEXCEPTION", "ExecuteRequest: threw jsonexception ");
             e.printStackTrace();
         }
 

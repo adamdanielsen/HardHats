@@ -18,6 +18,8 @@ import android.widget.ListView;
  */
 public class InvoiceFragment extends Fragment {
     Button generateInvoiceButton;
+    Button backToPreviewButton;
+    String selectedID;
     ListView listView;
 
     public InvoiceFragment() {
@@ -34,8 +36,24 @@ public class InvoiceFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         getChildFragmentManager().beginTransaction().add(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(),"INVOICEPREVIEWLIST").commit();
+
         generateInvoiceButton=(Button) getView().findViewById(R.id.fragmentInvoice_GenerateInvoiceButton);
+        backToPreviewButton = (Button) getView().findViewById(R.id.fragmentInvoice_backToPreviewButton);
+        backToPreviewButton.setVisibility(View.INVISIBLE);
+        backToPreviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(),"INVOICEPREVIEWLIST").commit();
+                backToPreviewButton.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+
+
         generateInvoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +63,28 @@ public class InvoiceFragment extends Fragment {
 
             }
         });
+
+    }
+
+    public String getSelectedID() {
+
+        return selectedID;
+
+    }
+
+
+    public void setSelectedID(String id) {
+
+
+        selectedID=id;
+
+    }
+
+    public void switchToDetailView() {
+
+        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
+        backToPreviewButton.setVisibility(View.VISIBLE);
+
 
     }
 }

@@ -148,7 +148,7 @@ public class AddCustomer extends AppCompatActivity {
 
 
         BackgroundWorker database = new BackgroundWorker();
-       //database.execute(dataContainer);
+        database.execute(dataContainer);
         Toast.makeText(AddCustomer.this,"Congrats! Your customer has been added", Toast.LENGTH_LONG).show();
         finish();
     }

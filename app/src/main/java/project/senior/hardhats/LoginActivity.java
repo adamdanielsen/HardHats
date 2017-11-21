@@ -125,11 +125,11 @@ public class LoginActivity extends AppCompatActivity {
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
         try {
             returnedUsername = new JSONObject();
-            returnedUsername = backgroundWorker.execute(dataContainer).get(2, TimeUnit.SECONDS);
+            returnedUsername = backgroundWorker.execute(dataContainer).get(3, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
-            Toast.makeText(this, "Error connecting, check Connection", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "TimeOut, check Connection", Toast.LENGTH_SHORT).show();
             return;
         }
         String setUsername;

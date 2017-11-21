@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -41,12 +42,20 @@ public class InvoicePreviewListFragment extends Fragment {
 
 
 
-        ArrayList<MenuActivity.InvoiceForPreview> invoicelist = ((MenuActivity)getActivity()).getInvoicesList();
+        final ArrayList<MenuActivity.InvoiceForPreview> invoicelist = ((MenuActivity)getActivity()).getInvoicesList();
 
         InvoiceForMenuAdapter adapter = new InvoiceForMenuAdapter(getContext(),invoicelist);
         invoicesListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+        invoicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ((InvoiceFragment)getParentFragment()).setSelectedID(((MenuActivity.InvoiceForPreview)parent.getItemAtPosition(position)).getId());
+
+                ((InvoiceFragment)getParentFragment()).switchToDetailView();
+            }
+        });
 
     }
 
