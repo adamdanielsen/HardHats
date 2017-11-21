@@ -50,8 +50,12 @@ public class Invoice {
 
     }
 
+    public Invoice() {
 
-  //  put linetotal in the invoiceline so we can make totals for each line easily.
+    }
+
+
+    //  put linetotal in the invoiceline so we can make totals for each line easily.
     //todo: Tidy up and do checking.
     public String createTxtString()
     {

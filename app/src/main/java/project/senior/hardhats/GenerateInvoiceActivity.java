@@ -30,7 +30,6 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
     Button chooseCustomerButton;
     CheckBox useGCEmailCheckBox;
     EditText GCEmailEditText;
-
     TextView firstNameTextBox;
     TextView lastNameTextBox;
     TextView phoneNumberTextBox;
@@ -85,11 +84,7 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
                 customersForSpinnerList.add(customerForSpinner);
             }
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }
 
@@ -164,9 +159,7 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
                     dataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
                     try {
                         GCEmail= new BackgroundWorker().execute(dataContainer).get();
-                    } catch (InterruptedException e) {
-                        return;
-                    } catch (ExecutionException e) {
+                    } catch (InterruptedException | ExecutionException e) {
                         return;
                     }
 

@@ -1,6 +1,5 @@
 package project.senior.hardhats;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,22 +7,94 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import project.senior.hardhats.Documents.Invoice;
+import project.senior.hardhats.Documents.InvoiceLine;
 
 
 public class MenuActivity extends AppCompatActivity{
 
+    class InvoiceForPreview
+    {
+        String name;
+        String date;
+
+
+        public InvoiceForPreview() {
+
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        @Override
+        public String toString() {
+            return super.toString();
+        }
+    }
+
+
+
     private ViewPager viewPager;
     MenuItem prevMenuItem;
     BottomNavigationView bottomNavigationView;
-
+    List invoicesList;
+    List customersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
         swipeBottomNavigation();
+
+        try {
+            Setup();
+        } catch (ExecutionException | InterruptedException | JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+   protected void Setup() throws ExecutionException, InterruptedException, JSONException {
+       DataContainer invoiceDataContainer = new DataContainer();
+       invoiceDataContainer.type="getinvoicelist";
+       invoiceDataContainer.phpVariableNames.add("ID");
+       invoiceDataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
+       BackgroundWorkerJSONArray getInvoices = new BackgroundWorkerJSONArray();
+       JSONArray invoiceJSONArray = getInvoices.execute(invoiceDataContainer).get();
+
+       invoicesList = new ArrayList<InvoiceLine>();
+
+       for ( Object eachInvoiceJSON : invoicesList ) {
+           Invoice eachInvoice = new Invoice();
+
+       }
+
+
+
+
+
    }
 
     protected void onResume() {
