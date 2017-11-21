@@ -15,14 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import project.senior.hardhats.Documents.Invoice;
-import project.senior.hardhats.Documents.InvoiceLine;
-
 
 public class MenuActivity extends AppCompatActivity{
 
     class InvoiceForPreview
     {
+        int id;
         String name;
         String date;
 
@@ -47,6 +45,14 @@ public class MenuActivity extends AppCompatActivity{
             this.date = date;
         }
 
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
         @Override
         public String toString() {
             return super.toString();
@@ -58,7 +64,7 @@ public class MenuActivity extends AppCompatActivity{
     private ViewPager viewPager;
     MenuItem prevMenuItem;
     BottomNavigationView bottomNavigationView;
-    List invoicesList;
+    ArrayList<InvoiceForPreview> invoicesList;
     List customersList;
 
     @Override
@@ -71,6 +77,7 @@ public class MenuActivity extends AppCompatActivity{
             Setup();
         } catch (ExecutionException | InterruptedException | JSONException e) {
             e.printStackTrace();
+
         }
 
 
@@ -78,18 +85,27 @@ public class MenuActivity extends AppCompatActivity{
 
    protected void Setup() throws ExecutionException, InterruptedException, JSONException {
        DataContainer invoiceDataContainer = new DataContainer();
-       invoiceDataContainer.type="getinvoicelist";
-       invoiceDataContainer.phpVariableNames.add("ID");
+       invoiceDataContainer.type="invoicelistformenupreview";
+       invoiceDataContainer.phpVariableNames.add("user_id");
        invoiceDataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
        BackgroundWorkerJSONArray getInvoices = new BackgroundWorkerJSONArray();
        JSONArray invoiceJSONArray = getInvoices.execute(invoiceDataContainer).get();
 
-       invoicesList = new ArrayList<InvoiceLine>();
+       invoicesList = new ArrayList<InvoiceForPreview>();
 
-       for ( Object eachInvoiceJSON : invoicesList ) {
-           Invoice eachInvoice = new Invoice();
+       for (int i = 0 ; i<invoiceJSONArray.length(); i++)
+       {
+           InvoiceForPreview listItem = new InvoiceForPreview();
 
+           listItem.setId(invoiceJSONArray.getJSONObject(i).getInt("InvoiceID"));
+
+           listItem.setDate(invoiceJSONArray.getJSONObject(i).getString("InvoiceDate"));
+
+           listItem.setName(invoiceJSONArray.getJSONObject(i).getString("FirstName")+" "+invoiceJSONArray.getJSONObject(i).getString("LastName"));
+
+           invoicesList.add(listItem);
        }
+       int i=0;
 
 
 
@@ -97,10 +113,11 @@ public class MenuActivity extends AppCompatActivity{
 
    }
 
-    protected void onResume() {
-        super.onResume();
-    }
+    public  ArrayList<InvoiceForPreview> getInvoicesList()
+    {
+        return invoicesList;
 
+    }
     public void Logout()
     {
         Intent logoutIntent = new Intent(MenuActivity.this, LoginActivity.class);

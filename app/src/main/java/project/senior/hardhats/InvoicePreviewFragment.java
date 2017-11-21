@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import project.senior.hardhats.Documents.InvoiceLine;
@@ -27,9 +28,14 @@ import project.senior.hardhats.Documents.InvoiceLine;
 public class InvoicePreviewFragment extends Fragment {
 
     ListView previewListView;
+    TextView totalTextView;
     InvoiceAdapter invoiceAdapter;
     ArrayList<InvoiceLine> array;
     int previousPosition;
+    private static final DecimalFormat df = new DecimalFormat("$0.00");
+    double total;
+
+
     public InvoicePreviewFragment() {
         // Required empty public constructor
     }
@@ -40,6 +46,7 @@ public class InvoicePreviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         previousPosition=-1;
+        total=0;
         return inflater.inflate(R.layout.fragment_invoice_preview, container, false);
 
     }
@@ -50,7 +57,7 @@ public class InvoicePreviewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //TODO Get invoice data from InvoiceCreateActivity to populate list.
         previewListView = (ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
-
+        totalTextView = (TextView) getView().findViewById(R.id.fragmentInvoicePreview_totalTextView);
         previewListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
@@ -74,7 +81,7 @@ public class InvoicePreviewFragment extends Fragment {
             }
         });
 
-        array = ((InvoiceCreateActivity)getActivity()).GetInvoiceLines();
+        array = ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
 
         invoiceAdapter = new InvoiceAdapter(getContext(),array);
         previewListView.setAdapter(invoiceAdapter);
@@ -86,14 +93,20 @@ public class InvoicePreviewFragment extends Fragment {
 
 
 
-    private ArrayList<InvoiceLine> getInvoiceLines() {
 
-        return ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
-
-    }
-
-    public void Refresh() {
+    public void Refresh()
+    {
         invoiceAdapter.notifyDataSetChanged();
+        total=0;
+        for (InvoiceLine line : array)
+
+        {
+
+            total+=line.getLineTotal();
+
+        }
+
+        totalTextView.setText("WORKING TOTAL: "+df.format(total));
     }
 
     private class InvoiceAdapter extends BaseAdapter

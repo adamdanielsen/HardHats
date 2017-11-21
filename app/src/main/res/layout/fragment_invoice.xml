@@ -13,12 +13,18 @@
         android:layout_height="wrap_content"
         android:text="@string/fragment_generateinvoice_GenerateInvoice" />
 
-    <ListView
-        android:id="@+id/fragmentInvoice_ListView"
+    <Button
+        android:id="@+id/fragmentInvoice_backToPreviewButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fragmentinvoice_backtopreview" />
+
+    <FrameLayout
+        android:id="@+id/invoice_FrameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+    </FrameLayout>
 
 
     <!--

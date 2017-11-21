@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dp">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/menuinvoicelistitem_leftTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:text="TextView" />
+        android:layout_alignParentLeft="true" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/menuinvoicelistitem_rightTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight=".4"
-        android:gravity="end"
-        android:paddingRight="10dp"
-        android:text="TextView" />
-</LinearLayout>
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

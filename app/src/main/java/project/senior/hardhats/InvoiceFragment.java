@@ -7,11 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
-import java.util.ArrayList;
 
 //import android.app.Fragment;
 
@@ -37,24 +34,8 @@ public class InvoiceFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getChildFragmentManager().beginTransaction().add(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(),"INVOICEPREVIEWLIST").commit();
         generateInvoiceButton=(Button) getView().findViewById(R.id.fragmentInvoice_GenerateInvoiceButton);
-        listView = (ListView) getView().findViewById(R.id.fragmentInvoice_ListView);
-        ArrayList<String> list = new ArrayList<>();
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.simplelistitem,list);
-
-        list.add("");
-
-        list.add("Tom                                          6/05/16");
-
-        list.add("Bill                                            4/25/17");
-
-
-        listView.setAdapter(adapter);
-
-        adapter.notifyDataSetChanged();
-
         generateInvoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
