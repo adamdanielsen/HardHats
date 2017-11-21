@@ -53,6 +53,7 @@ public class AddCustomer extends AppCompatActivity {
         save = (Button) findViewById(R.id.save_customer_button);
         cancel = (Button) findViewById(R.id.cancel_customer_button);
 
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,16 +62,9 @@ public class AddCustomer extends AppCompatActivity {
                     Toast.makeText(AddCustomer.this, "On this planet we refer to people by their first name. We need your customers first name.", Toast.LENGTH_LONG ).show();
                 }else if(lastName.getText().toString().length() == 0){
                     Toast.makeText(AddCustomer.this, "Unless your customer is a pet gold fish, we're going to need their last name.", Toast.LENGTH_LONG ).show();
-                }else if(emailAddress.getText().toString().length() == 0){
-                    Toast.makeText(AddCustomer.this, "In this day in age, your customer needs an email so we can send invoices to them. ", Toast.LENGTH_LONG ).show();
-                }else if(!emailAddress.getText().toString().contains("@")){
-                    Toast.makeText(AddCustomer.this, "Wooh, your email address is missing an @ symbol!", Toast.LENGTH_LONG ).show();
-                }else if(!emailAddress.getText().toString().endsWith(".com") && !emailAddress.getText().toString().endsWith(" ")){
-                    Toast.makeText(AddCustomer.this, "That does not look like an email address. Shouldn't there be a \".com\" at the end?", Toast.LENGTH_LONG ).show();
-                }else if(emailAddress.getText().toString().contains("@.com") ){
-                    Toast.makeText(AddCustomer.this, "Very funny, but you need a domain name to squeeze in between the @ and .com. Try again.", Toast.LENGTH_LONG ).show();
-                }else if(emailAddress.getText().toString().contains(" ") && !emailAddress.getText().toString().endsWith(" ")){
-                    Toast.makeText(AddCustomer.this, "I detect a space somewhere in your email, please remove it!", Toast.LENGTH_LONG ).show();
+                }
+                else if(!emailAddress.getText().toString().matches("\\S+@\\S+\\.\\S+")){
+                    Toast.makeText(AddCustomer.this,"ye- no, that is definitely not what an email looks like. Try again.!",Toast.LENGTH_LONG).show();
                 }
                 else {
                     addCustomerFunction();
@@ -154,7 +148,7 @@ public class AddCustomer extends AppCompatActivity {
 
 
         BackgroundWorker database = new BackgroundWorker();
-        database.execute(dataContainer);
+       //database.execute(dataContainer);
         Toast.makeText(AddCustomer.this,"Congrats! Your customer has been added", Toast.LENGTH_LONG).show();
         finish();
     }
