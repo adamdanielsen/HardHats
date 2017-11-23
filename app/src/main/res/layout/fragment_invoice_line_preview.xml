@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="project.senior.hardhats.InvoicePreviewFragment">
+    tools:context="project.senior.hardhats.InvoiceLinePreviewFragment">
 
 
     <LinearLayout
@@ -12,18 +12,18 @@
 
 
         <ListView
-            android:id="@+id/fragmentInvoicePreview_previewListView"
+            android:id="@+id/fragmentInvoiceLinePreview_previewListView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="100" />
 
         <TextView
-            android:id="@+id/fragmentInvoicePreview_totalTextView"
+            android:id="@+id/fragmentInvoiceLinePreview_totalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="1"
-            android:text="qqqq" />
+            android:text="" />
 
     </LinearLayout>
 

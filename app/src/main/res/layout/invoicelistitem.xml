@@ -15,23 +15,31 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="0dp"
-            android:text="TextView"
+            android:text=""
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/invoicelistitem_line2TextView"
+            android:id="@+id/invoicelistitem_line2LeftTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView"
+            android:text=""
+            android:layout_alignParentLeft="true"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/invoicelistitem_line2RightTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_alignParentRight="true"
+            android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+    </RelativeLayout>
 </LinearLayout>

@@ -25,7 +25,7 @@ import project.senior.hardhats.Documents.InvoiceLine;
  */
 
 
-public class InvoicePreviewFragment extends Fragment {
+public class InvoiceLinePreviewFragment extends Fragment {
 
     ListView previewListView;
     TextView totalTextView;
@@ -36,7 +36,7 @@ public class InvoicePreviewFragment extends Fragment {
     double total;
 
 
-    public InvoicePreviewFragment() {
+    public InvoiceLinePreviewFragment() {
         // Required empty public constructor
     }
 
@@ -47,7 +47,7 @@ public class InvoicePreviewFragment extends Fragment {
         // Inflate the layout for this fragment
         previousPosition=-1;
         total=0;
-        return inflater.inflate(R.layout.fragment_invoice_preview, container, false);
+        return inflater.inflate(R.layout.fragment_invoice_line_preview, container, false);
 
     }
 
@@ -56,8 +56,8 @@ public class InvoicePreviewFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //TODO Get invoice data from InvoiceCreateActivity to populate list.
-        previewListView = (ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
-        totalTextView = (TextView) getView().findViewById(R.id.fragmentInvoicePreview_totalTextView);
+        previewListView = (ListView) getView().findViewById(R.id.fragmentInvoiceLinePreview_previewListView);
+        totalTextView = (TextView) getView().findViewById(R.id.fragmentInvoiceLinePreview_totalTextView);
         previewListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
@@ -140,10 +140,11 @@ public class InvoicePreviewFragment extends Fragment {
             if (convertView==null) {
                 convertView = View.inflate(context, R.layout.invoicelistitem, null);
                 TextView line1 = (TextView) convertView.findViewById(R.id.invoicelistitem_line1TextView);
-                TextView line2 = (TextView) convertView.findViewById(R.id.invoicelistitem_line2TextView);
+                TextView line2Left = (TextView) convertView.findViewById(R.id.invoicelistitem_line2LeftTextView);
+                TextView line2Right = (TextView) convertView.findViewById(R.id.invoicelistitem_line2RightTextView);
                 line1.setText(invoiceLines.get(position).getType());
-                line2.setText("$ "+ invoiceLines.get(position).getPrice()+"0 @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
-
+                line2Left.setText(df.format(invoiceLines.get(position).getPrice())+" @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
+                line2Right.setText(df.format(invoiceLines.get(position).getLineTotal()));
             }
             return convertView;
         }

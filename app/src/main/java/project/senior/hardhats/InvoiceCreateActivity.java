@@ -59,7 +59,7 @@ public class InvoiceCreateActivity extends AppCompatActivity {
             }
         });
 
-        getSupportFragmentManager().beginTransaction().add(R.id.generateinvoice_FrameLayout, new InvoicePreviewFragment(),"INVOICEPREVIEW").commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.generateinvoice_FrameLayout, new InvoiceLinePreviewFragment(),"INVOICEPREVIEW").commit();
 
     }
 
@@ -151,7 +151,7 @@ public class InvoiceCreateActivity extends AppCompatActivity {
         addLineButton.setText(R.string.invoicecreate_addline);
         doneOrFinishLineButton.setText(R.string.invoicecreate_done);
         cancelOrCancelLineButton.setText(R.string.invoicecreate_cancel);
-        getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new InvoicePreviewFragment(),"INVOICEPREVIEW").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new InvoiceLinePreviewFragment(),"INVOICEPREVIEW").commit();
     }
 
     protected void startAddLine()

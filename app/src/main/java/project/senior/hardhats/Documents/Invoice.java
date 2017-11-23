@@ -21,6 +21,7 @@ public class Invoice {
     private Person customerAddress;
     private Person contractorAddress;
     ArrayList<InvoiceLine> invoiceLines;
+    private double total;
     final DecimalFormat df = new DecimalFormat("$0.00");
 
 
@@ -40,11 +41,11 @@ public class Invoice {
         JSONArray returnedInvoiceLines = returnedData.getJSONArray(3);
 
         invoiceLines = new ArrayList<>();
-
+        total=0;
         for ( int i=0; i<returnedInvoiceLines.length();i++)
         {
             invoiceLines.add(new InvoiceLine(returnedInvoiceLines.getJSONObject(i)));
-
+            total+=invoiceLines.get(i).getLineTotal();
         }
 
 
@@ -102,5 +103,13 @@ public class Invoice {
 
     public void setInvoiceLines(ArrayList<InvoiceLine> invoiceLines) {
         this.invoiceLines = invoiceLines;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }

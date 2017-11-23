@@ -26,7 +26,7 @@ import project.senior.hardhats.Documents.InvoiceLine;
  */
 
 
-public class InvoicePreviewDetailFragment extends Fragment {
+public class InvoiceViewDetailFragment extends Fragment {
 
     ListView previewListView;
     TextView totalTextView;
@@ -37,7 +37,7 @@ public class InvoicePreviewDetailFragment extends Fragment {
     double total;
 
 
-    public InvoicePreviewDetailFragment() {
+    public InvoiceViewDetailFragment() {
         // Required empty public constructor
     }
 
@@ -48,7 +48,8 @@ public class InvoicePreviewDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         previousPosition=-1;
         total=0;
-        return inflater.inflate(R.layout.fragment_invoice_preview, container, false);
+        // TODO: 11/22/2017 Make a new layout stop being lazy
+        return inflater.inflate(R.layout.fragment_invoice_view_detail, container, false);
 
     }
 
@@ -56,8 +57,8 @@ public class InvoicePreviewDetailFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        previewListView = (ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
-        totalTextView = (TextView) getView().findViewById(R.id.fragmentInvoicePreview_totalTextView);
+        //previewListView = (ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
+        //totalTextView = (TextView) getView().findViewById(R.id.fragmentInvoicePreview_totalTextView);
 
         /*
         previewListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -100,7 +101,7 @@ public class InvoicePreviewDetailFragment extends Fragment {
         String invoiceID= ((InvoiceFragment) getParentFragment()).getSelectedID();
 
         DataContainer dataContainer = new DataContainer();
-
+        //todo write that code and it should work?
         dataContainer.type="getinvoicelines";
 
         dataContainer.phpVariableNames.add("InvoiceID");
@@ -173,10 +174,10 @@ public class InvoicePreviewDetailFragment extends Fragment {
 
             if (convertView==null) {
                 convertView = View.inflate(context, R.layout.invoicelistitem, null);
-                TextView line1 = (TextView) convertView.findViewById(R.id.invoicelistitem_line1TextView);
-                TextView line2 = (TextView) convertView.findViewById(R.id.invoicelistitem_line2TextView);
-                line1.setText(invoiceLines.get(position).getType());
-                line2.setText("$ "+ invoiceLines.get(position).getPrice()+"0 @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
+                //TextView line1 = (TextView) convertView.findViewById(R.id.invoicelistitem_line1TextView);
+                //TextView line2 = (TextView) convertView.findViewById(R.id.invoicelistitem_line2TextView);
+                //line1.setText(invoiceLines.get(position).getType());
+                //line2.setText("$ "+ invoiceLines.get(position).getPrice()+"0 @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
             }
             return convertView;
         }

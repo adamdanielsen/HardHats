@@ -9,12 +9,22 @@
         android:id="@+id/menuinvoicelistitem_leftTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/menuinvoicelistitem_middleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="" />
 
     <TextView
         android:id="@+id/menuinvoicelistitem_rightTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:text="" />
 
 </RelativeLayout>

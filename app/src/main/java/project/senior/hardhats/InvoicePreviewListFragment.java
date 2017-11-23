@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -20,6 +21,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class InvoicePreviewListFragment extends Fragment {
+    private static final DecimalFormat df = new DecimalFormat("$0.00");
 
     ListView invoicesListView;
     public InvoicePreviewListFragment() {
@@ -90,8 +92,10 @@ public class InvoicePreviewListFragment extends Fragment {
             if (convertView==null) {
                 convertView = View.inflate(context, R.layout.menuinvoicelistitem, null);
                 TextView left = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_leftTextView);
+                TextView middle= (TextView) convertView.findViewById(R.id.menuinvoicelistitem_middleTextView);
                 TextView right = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_rightTextView);
                 left.setText(invoiceLines.get(position).getName());
+                middle.setText(df.format(Double.valueOf(invoiceLines.get(position).getTotal())));
                 right.setText(invoiceLines.get(position).getDate());
             }
             return convertView;

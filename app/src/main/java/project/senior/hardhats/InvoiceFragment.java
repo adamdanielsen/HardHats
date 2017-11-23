@@ -82,7 +82,7 @@ public class InvoiceFragment extends Fragment {
 
     public void switchToDetailView() {
 
-        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoiceViewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
         backToPreviewButton.setVisibility(View.VISIBLE);
 
 

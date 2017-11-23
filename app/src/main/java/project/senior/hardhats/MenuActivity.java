@@ -23,7 +23,7 @@ public class MenuActivity extends AppCompatActivity{
         String id;
         String name;
         String date;
-
+        String total;
 
         public InvoiceForPreview() {
 
@@ -51,6 +51,14 @@ public class MenuActivity extends AppCompatActivity{
 
         public void setId(String id) {
             this.id = id;
+        }
+
+        public String getTotal() {
+            return total;
+        }
+
+        public void setTotal(String total) {
+            this.total = total;
         }
 
         @Override
@@ -103,9 +111,11 @@ public class MenuActivity extends AppCompatActivity{
 
            listItem.setName(invoiceJSONArray.getJSONObject(i).getString("FirstName")+" "+invoiceJSONArray.getJSONObject(i).getString("LastName"));
 
+           listItem.setTotal(invoiceJSONArray.getJSONObject(i).getString("Total"));
+
+
            invoicesList.add(listItem);
        }
-       int i=0;
 
 
 
