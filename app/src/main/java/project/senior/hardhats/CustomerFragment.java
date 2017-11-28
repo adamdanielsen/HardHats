@@ -41,7 +41,8 @@ public class CustomerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         add_customer = (Button) getView().findViewById(R.id.add_customer_button);
-
+      //  getChildFragmentManager().beginTransaction().add(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(),"INVOICEPREVIEWLIST").commit();
+/*
         listView = (ListView) getView().findViewById(R.id.fragmentCustomer_ListView);
         ArrayList<String> list = new ArrayList<>();
 
@@ -56,6 +57,7 @@ public class CustomerFragment extends Fragment {
 
 
         listView.setAdapter(adapter);
+*/
         add_customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

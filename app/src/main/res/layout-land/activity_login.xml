@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login_Username"
-
+        android:fontFamily="monospace"
         android:inputType="textPersonName"
         android:maxLength="@integer/MAXUSERNAMELENGTH" />
 

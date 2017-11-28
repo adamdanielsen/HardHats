@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="monospace"
                 android:inputType="textPersonName"
                 android:hint="@string/first_name"
                 android:text="" />
@@ -43,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="monospace"
                 android:inputType="textPersonName"
                 android:hint="@string/last_name"
                 android:text="" />
@@ -52,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="monospace"
                 android:inputType="textPersonName"
                 android:hint="@string/company"
                 android:text="" />
@@ -67,6 +70,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="monospace"
                     android:inputType="number"
                     android:hint="@string/phone_number"
                     android:text="" />
@@ -77,6 +81,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="monospace"
                     android:inputType="number"
                     android:hint="@string/fax_number"
                     android:text="" />
@@ -89,6 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="monospace"
                 android:inputType="textEmailAddress"
 
                 android:hint="@string/email"
@@ -99,6 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="monospace"
                 android:inputType="textPersonName"
                 android:imeOptions="actionDone"
                 android:hint="@string/street"
@@ -115,6 +122,7 @@
                     android:layout_width="154dp"
                     android:layout_height="match_parent"
                     android:ems="10"
+                    android:fontFamily="monospace"
                     android:hint="@string/city"
                     android:inputType="textPersonName"
                     android:imeOptions="actionDone"
@@ -129,6 +137,7 @@
                     android:layout_width="176dp"
                     android:layout_height="match_parent"
                     android:ems="10"
+                    android:fontFamily="monospace"
                     android:hint="@string/zip_code"
                     android:inputType="number"
                     android:imeOptions="actionDone"
