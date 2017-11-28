@@ -98,23 +98,23 @@ public class AddCustomer extends AppCompatActivity {
 
     private void addCustomerFunction(){
         String customer_userid = SessionData.getInstance().getUserID();
-        String customer_first = firstName.getText().toString();
-        String customer_last = lastName.getText().toString();
-        String customer_company = company.getText().toString();
-        String customer_email = emailAddress.getText().toString();
-        String customer_phoneNumber = phoneNumber.getText().toString();
-        String customer_faxNumber = faxNumber.getText().toString();
-        String customer_street = streetName.getText().toString();
-        String customer_Zip = zipCode.getText().toString();
-        String customer_city = city.getText().toString();
-        String customer_state = state.getSelectedItem().toString();
+        String customer_first = firstName.getText().toString().replaceAll("\'","");
+        String customer_last = lastName.getText().toString().replaceAll("\'","");
+        String customer_company = company.getText().toString().replaceAll("\'","");
+        String customer_email = emailAddress.getText().toString().replaceAll("\'","");
+        String customer_phoneNumber = phoneNumber.getText().toString().replaceAll("\'","");
+        String customer_faxNumber = faxNumber.getText().toString().replaceAll("\'","");
+        String customer_street = streetName.getText().toString().replaceAll("\'","");
+        String customer_Zip = zipCode.getText().toString().replaceAll("\'","");
+        String customer_city = city.getText().toString().replaceAll("\'","");
+        String customer_state = state.getSelectedItem().toString().replaceAll("\'","");
 
 
         if (customer_state.length() == 0 || customer_state.length() == NULL) {
             customer_state = "AL";
         }
         if(customer_email.endsWith(" ")){
-            customer_email.trim();
+           customer_email = customer_email.trim();
         }
 
         DataContainer dataContainer = new DataContainer();
