@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
@@ -14,49 +15,134 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/registration_Registration"
-            android:textAppearance="@android:style/TextAppearance.Material.Large" />
-
-        <TextView
-            android:id="@+id/Username_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/register_Username" />
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textColor="#006622"
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/register_UserNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/register_Username"
             android:imeOptions="flagNoExtractUi"
             android:inputType="textPersonName"
             android:maxLength="@integer/MAXUSERNAMELENGTH" />
-
-        <TextView
-            android:id="@+id/Password_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/register_Password" />
 
         <EditText
             android:id="@+id/register_PasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/register_Password"
             android:imeOptions="flagNoExtractUi"
             android:inputType="textPassword"
-
             android:maxLength="@integer/MAXPASSWORDLENGTH" />
 
-        <TextView
-            android:id="@+id/ConfirmPassword_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/register_ConfirmPassword" />
 
         <EditText
             android:id="@+id/register_ConfirmPasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:hint="@string/register_ConfirmPassword"
             android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/user_firstName_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/first_name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/user_lastName_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/last_name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/user_phoneNumber_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789+"
+            android:ems="10"
+            android:hint="@string/phone_number"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/user_faxNumber_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/fax_number"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/user_licenseNumber_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/licesneNumber"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/user_emailAddress_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/user_CompanyName_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/company"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/user_streetAddress_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/street"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/user_city_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/city"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/user_zipCode_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/zip_code"
+            android:inputType="textPersonName" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/user_state_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/state"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/user_state_spinner"
+                android:layout_width="96dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/register_RegisterButton"
@@ -71,4 +157,4 @@
             android:text="@string/register_Cancel" />
 
     </LinearLayout>
-    </ScrollView>
+</ScrollView>
