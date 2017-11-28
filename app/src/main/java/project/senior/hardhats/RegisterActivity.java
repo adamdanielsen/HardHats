@@ -1,5 +1,6 @@
 package project.senior.hardhats;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -204,8 +205,14 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(this, "Username created!", Toast.LENGTH_SHORT).show();
                 Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                 //how not to add something to the backstack below
-                registerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(registerIntent);
+                AlertDialog.Builder a = new AlertDialog.Builder(this);
+                a.setTitle("Returned info");
+                a.setMessage(registrationResult);
+                a.show();
+
+
+                //registerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //startActivity(registerIntent);
             }
             else
             {

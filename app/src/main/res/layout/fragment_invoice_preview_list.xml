@@ -1,13 +1,45 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="project.senior.hardhats.InvoicePreviewListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/fragmentinvoicepreviewlist_leftTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="20dp"
+            android:text="NAME" />
+
+        <TextView
+            android:id="@+id/fragmentinvoicepreviewlist_middleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="TOTAL" />
+
+        <TextView
+            android:id="@+id/fragmentinvoicepreviewlist_rightTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingRight="20dp"
+            android:text="DATE" />
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/fragmentinvoicepreviewlist_invoicesListView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</FrameLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".03" />
+</LinearLayout>

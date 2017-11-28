@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:textSize="12sp"
+        android:typeface="monospace"
         android:text="" />
 
     <TextView
@@ -18,12 +20,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textSize="12sp"
+        android:typeface="monospace"
         android:text="" />
 
     <TextView
         android:id="@+id/menuinvoicelistitem_rightTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:typeface="monospace"
+        android:textSize="12sp"
         android:layout_alignParentRight="true"
         android:text="" />
 

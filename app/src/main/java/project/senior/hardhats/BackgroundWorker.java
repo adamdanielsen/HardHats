@@ -159,7 +159,6 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
                 return "BAD";
             }
 
-
             return "GOOD";
     }
 

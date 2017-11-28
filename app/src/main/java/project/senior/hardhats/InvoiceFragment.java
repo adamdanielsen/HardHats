@@ -67,9 +67,7 @@ public class InvoiceFragment extends Fragment {
     }
 
     public String getSelectedID() {
-
         return selectedID;
-
     }
 
 
@@ -81,10 +79,8 @@ public class InvoiceFragment extends Fragment {
     }
 
     public void switchToDetailView() {
-
-        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoiceViewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
         backToPreviewButton.setVisibility(View.VISIBLE);
-
+        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoiceViewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
 
     }
 }

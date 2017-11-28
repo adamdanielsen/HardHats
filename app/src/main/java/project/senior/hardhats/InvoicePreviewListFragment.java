@@ -44,7 +44,11 @@ public class InvoicePreviewListFragment extends Fragment {
 
 
 
+
+
         final ArrayList<MenuActivity.InvoiceForPreview> invoicelist = ((MenuActivity)getActivity()).getInvoicesList();
+
+
 
         InvoiceForMenuAdapter adapter = new InvoiceForMenuAdapter(getContext(),invoicelist);
         invoicesListView.setAdapter(adapter);
@@ -64,6 +68,7 @@ public class InvoicePreviewListFragment extends Fragment {
     private class InvoiceForMenuAdapter extends BaseAdapter
     {
         Context context;
+
         ArrayList<MenuActivity.InvoiceForPreview> invoiceLines;
 
         InvoiceForMenuAdapter(Context context, ArrayList<MenuActivity.InvoiceForPreview> invoiceLines) {
@@ -94,6 +99,9 @@ public class InvoicePreviewListFragment extends Fragment {
                 TextView left = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_leftTextView);
                 TextView middle= (TextView) convertView.findViewById(R.id.menuinvoicelistitem_middleTextView);
                 TextView right = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_rightTextView);
+
+
+
                 left.setText(invoiceLines.get(position).getName());
                 middle.setText(df.format(Double.valueOf(invoiceLines.get(position).getTotal())));
                 right.setText(invoiceLines.get(position).getDate());
@@ -101,6 +109,5 @@ public class InvoicePreviewListFragment extends Fragment {
             return convertView;
         }
     }
-
 
 }

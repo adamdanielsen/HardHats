@@ -64,7 +64,5 @@ public class CustomerFragment extends Fragment {
 
             }
         });
-    //change stuff here to give logic to layout
-
     }
 }

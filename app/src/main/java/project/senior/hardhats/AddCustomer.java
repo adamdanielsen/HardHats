@@ -114,7 +114,7 @@ public class AddCustomer extends AppCompatActivity {
             customer_state = "AL";
         }
         if(customer_email.endsWith(" ")){
-            customer_email.trim();
+            customer_email=customer_email.trim();
         }
 
         DataContainer dataContainer = new DataContainer();
