@@ -165,8 +165,31 @@ public class RegisterActivity extends AppCompatActivity {
         dataContainer.type="register";
         dataContainer.phpVariableNames.add("user_name");
         dataContainer.phpVariableNames.add("user_pass");
+        dataContainer.phpVariableNames.add("firstname");
+        dataContainer.phpVariableNames.add("lastname");
+        dataContainer.phpVariableNames.add("phonenumber");
+        dataContainer.phpVariableNames.add("faxnumber");
+        dataContainer.phpVariableNames.add("emailaddress");
+        dataContainer.phpVariableNames.add("licensenumber");
+        dataContainer.phpVariableNames.add("companyname");
+        dataContainer.phpVariableNames.add("street");
+        dataContainer.phpVariableNames.add("city");
+        dataContainer.phpVariableNames.add("zipcode");
+        dataContainer.phpVariableNames.add("state");
+
         dataContainer.dataPassedIn.add(username);
         dataContainer.dataPassedIn.add(password);
+        dataContainer.dataPassedIn.add(firstName);
+        dataContainer.dataPassedIn.add(lastName);
+        dataContainer.dataPassedIn.add(phoneNumber);
+        dataContainer.dataPassedIn.add(faxNumber);
+        dataContainer.dataPassedIn.add(emailAddress);
+        dataContainer.dataPassedIn.add(licenseNumber);
+        dataContainer.dataPassedIn.add(companyName);
+        dataContainer.dataPassedIn.add(streetAddress);
+        dataContainer.dataPassedIn.add(city);
+        dataContainer.dataPassedIn.add(zipCode);
+        dataContainer.dataPassedIn.add(selectedState);
 
         BackgroundWorker backgroundWorker = new BackgroundWorker();
         try {
