@@ -2,7 +2,6 @@ package project.senior.hardhats.Documents;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -20,6 +19,7 @@ public class Invoice {
 
     private Person customerAddress;
     private Person contractorAddress;
+    String date;
     ArrayList<InvoiceLine> invoiceLines;
     private double total;
     final DecimalFormat df = new DecimalFormat("$0.00");
@@ -34,9 +34,11 @@ public class Invoice {
         invoiceIdData.dataPassedIn.add(InvoiceId);
         JSONArray returnedData = getInvoiceData.execute(invoiceIdData).get();
 
-        customerAddress=new Person((JSONObject) returnedData.get(1), "Customer");
+        date=returnedData.getJSONObject(0).getString("InvoiceDate");
 
-        contractorAddress=new Person((JSONObject) returnedData.get(2), "Contractor");
+        customerAddress=new Person(returnedData.getJSONObject(1), "Customer");
+
+        contractorAddress=new Person( returnedData.getJSONObject(2), "Contractor");
 
         JSONArray returnedInvoiceLines = returnedData.getJSONArray(3);
 

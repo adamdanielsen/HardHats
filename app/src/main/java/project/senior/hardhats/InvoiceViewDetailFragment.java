@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,9 @@ import org.json.JSONException;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
+import project.senior.hardhats.Documents.Invoice;
 import project.senior.hardhats.Documents.InvoiceLine;
 
 
@@ -35,8 +38,8 @@ public class InvoiceViewDetailFragment extends Fragment {
     int previousPosition;
     private static final DecimalFormat df = new DecimalFormat("$0.00");
     double total;
-
-
+    Invoice currentInvoice;
+    TextView displayTextView;
     public InvoiceViewDetailFragment() {
         // Required empty public constructor
     }
@@ -46,53 +49,34 @@ public class InvoiceViewDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        previousPosition=-1;
         total=0;
-        // TODO: 11/22/2017 Make a new layout stop being lazy
+        try {
+            String selectedInvoiceId = ((InvoiceFragment)getParentFragment()).getSelectedID();
+            currentInvoice = new Invoice(selectedInvoiceId);
+        } catch (InterruptedException e) {
+            Log.d("InterruptedException", "onCreateView: Invoice failed to be retrieved");
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            Log.d("ExecutionException", "onCreateView: Invoice failed to be retrieved");
+            e.printStackTrace();
+        } catch (JSONException e) {
+            Log.d("JSONException", "onCreateView: Invoice failed to be retrieved");
+            e.printStackTrace();
+        }
         return inflater.inflate(R.layout.fragment_invoice_view_detail, container, false);
-
     }
 
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //previewListView = (ListView) getView().findViewById(R.id.fragmentInvoicePreview_previewListView);
-        //totalTextView = (TextView) getView().findViewById(R.id.fragmentInvoicePreview_totalTextView);
+        displayTextView = (TextView) view.findViewById(R.id.fragmentinvoiceviewdetail_displayTextView);
+        displayTextView.setText(currentInvoice.createTxtString());
 
-        /*
-        previewListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-                                           int pos, long id) {
-                if (previousPosition!=pos)
-                {
-                    Toast.makeText(getContext(), "Hold again to delete line!", Toast.LENGTH_SHORT).show();
-                    previousPosition =pos;
-                    return true;
-                }
-                else {
-                    ((InvoiceCreateActivity) getActivity()).RemoveInvoiceLine(pos);
-                    array = ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
-                    invoiceAdapter = new InvoiceAdapter(getContext(), array);
-                    previewListView.setAdapter(invoiceAdapter);
-                    previousPosition =-1;
-                    Refresh();
-                    return true;
-                }
 
-            }
-        });
-        */
-
-        try {
-            Setup();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        invoiceAdapter = new InvoiceAdapter(getContext(),array);
-        previewListView.setAdapter(invoiceAdapter);
-        Refresh();
+        //invoiceAdapter = new InvoiceAdapter(getContext(),array);
+        //previewListView.setAdapter(invoiceAdapter);
+        //Refresh();
 
     }
 
