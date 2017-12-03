@@ -68,7 +68,7 @@
             android:digits="0123456789+"
             android:ems="10"
             android:hint="@string/phone_number"
-            android:inputType="phone" />
+            android:inputType="phone"/>
 
         <EditText
             android:id="@+id/user_faxNumber_editText"
@@ -76,13 +76,15 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/fax_number"
-            android:inputType="number" />
+            android:inputType="number"
+            android:digits="0123456789+"/>
 
         <EditText
             android:id="@+id/user_licenseNumber_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:digits="0123456789+"
             android:hint="@string/licesneNumber"
             android:inputType="number" />
 
@@ -124,7 +126,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/zip_code"
-            android:inputType="textPersonName" />
+            android:inputType="number"
+            android:digits="0123456789+"/>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -63,8 +63,8 @@ public class AddCustomer extends AppCompatActivity {
                 }else if(lastName.getText().toString().length() == 0){
                     Toast.makeText(AddCustomer.this, "Unless your customer is a pet gold fish, we're going to need their last name.", Toast.LENGTH_LONG ).show();
                 }
-                else if(!emailAddress.getText().toString().matches("\\S+@\\S+\\.\\S+")){
-                    Toast.makeText(AddCustomer.this,"ye- no, that is definitely not what an email looks like. Try again.!",Toast.LENGTH_LONG).show();
+                else if(!emailAddress.getText().toString().matches("\\S+@\\S+\\.\\S+")) {
+                    Toast.makeText(AddCustomer.this, "ye- no, that is definitely not what an email looks like. Try again.!", Toast.LENGTH_LONG).show();
                 }
                 else {
                     addCustomerFunction();

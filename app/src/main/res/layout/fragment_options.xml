@@ -11,10 +11,159 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/fragmentOptions_LogoutButton"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_options_Logout" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/fragmentOptions_LogoutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_options_Logout" />
+                <TextView
+                    android:id="@+id/profile_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accountInfo"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textColor="#006622"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/option_UserNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/register_Username"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="textPersonName"
+                    android:maxLength="@integer/MAXUSERNAMELENGTH" />
+
+                <EditText
+                    android:id="@+id/option_PasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/register_Password"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="textPassword"
+                    android:maxLength="@integer/MAXPASSWORDLENGTH" />
+
+
+                <EditText
+                    android:id="@+id/option_ConfirmPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/register_ConfirmPassword"
+                    android:inputType="textPassword" />
+
+                <EditText
+                    android:id="@+id/option_firstName_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/first_name"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/option_lastName_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/last_name"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/option_phoneNumber_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789+"
+                    android:ems="10"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone" />
+
+                <EditText
+                    android:id="@+id/option_faxNumber_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/fax_number"
+                    android:inputType="number"
+                    android:digits="0123456789+"/>
+
+                <EditText
+                    android:id="@+id/option_licenseNumber_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/licesneNumber"
+                    android:inputType="number"
+                    android:digits="0123456789+"/>
+
+                <EditText
+                    android:id="@+id/option_emailAddress_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress" />
+
+                <EditText
+                    android:id="@+id/option_CompanyName_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/company"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/option_streetAddress_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/street"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/option_city_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/city"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/option_zipCode_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/zip_code"
+                    android:inputType="number"
+                    android:digits="0123456789+"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/option_state_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/state"
+                        android:textSize="20sp" />
+
+                    <Spinner
+                        android:id="@+id/option_state_spinner"
+                        android:layout_width="96dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 </FrameLayout>
