@@ -62,8 +62,12 @@ public class SessionData {
 
     public void getUserData (String userId){
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
-
-        backgroundWorker
+        String dataType = "getUser";
+        ArrayList<String> fields = new ArrayList<>();
+        fields.add("user_id");
+        ArrayList<String> values = new ArrayList<>();
+        values.add(userId);
+        DataContainer dataContainer = new DataContainer(fields, values, dataType);
     }
 
     public String getUserID() {

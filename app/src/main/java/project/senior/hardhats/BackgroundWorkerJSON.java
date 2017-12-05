@@ -208,6 +208,9 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
             case "invoiceexport":
                 return InvoiceExportProcedure(params[0]);
 
+            case "getUser":
+                return getUserData(params[0]);
+
 
         }
 
