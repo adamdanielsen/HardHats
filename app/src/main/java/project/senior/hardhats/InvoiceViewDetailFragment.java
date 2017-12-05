@@ -110,7 +110,7 @@ public class InvoiceViewDetailFragment extends Fragment {
 
                 AlertDialog.Builder box = new AlertDialog.Builder(getContext());
                 box.setMessage("s");
-                box.show();
+                //box.show();
 
             }
         });
