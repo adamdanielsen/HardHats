@@ -69,7 +69,7 @@ public class SessionData {
         values.add(userId);
         DataContainer dataContainer = new DataContainer(fields, values);
         dataContainer.type = "getUser";
-        backgroundWorker.doInBackground(dataContainer)
+        backgroundWorker.doInBackground(dataContainer);
     }
 
     public String getUserID() {
