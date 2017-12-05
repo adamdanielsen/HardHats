@@ -13,17 +13,9 @@
         android:layout_height="wrap_content"
         android:text="@string/add_customer" />
 
-    <ListView
-        android:id="@+id/fragmentCustomer_ListView"
+    <FrameLayout
+        android:id="@+id/customer_FrameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-    </ListView>
-<!--
-    <Button
-        android:id="@+id/fragmentcustomer_ViewCustomersButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/fragmentcustomer_viewcustomers" />
-        -->
+    </FrameLayout>
 </LinearLayout>

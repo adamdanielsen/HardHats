@@ -196,7 +196,7 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
             case "invoicelistformenupreview":
                 return InvoiceListForMenuPreviewProcedure(params[0]);
 
-            case "customerListForMenuPreview":
+            case "customerlisformenupreview":
                 return customerListForMenuPreviewProcedure(params[0]);
         }
 

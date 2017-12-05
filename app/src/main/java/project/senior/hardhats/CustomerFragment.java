@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class CustomerFragment extends Fragment {
 
     Button add_customer;
+    String selectedID;
     ListView listView;
     public CustomerFragment() {
         // Required empty public constructor
@@ -40,24 +41,11 @@ public class CustomerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        getChildFragmentManager().beginTransaction().add(R.id.customer_FrameLayout, new CustomerPreviewListFragment(),"CUSTOMERPREVIEWLIST").commit();
+
         add_customer = (Button) getView().findViewById(R.id.add_customer_button);
-      //  getChildFragmentManager().beginTransaction().add(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(),"INVOICEPREVIEWLIST").commit();
-/*
-        listView = (ListView) getView().findViewById(R.id.fragmentCustomer_ListView);
-        ArrayList<String> list = new ArrayList<>();
 
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),R.layout.simplelistitem,list);
-
-        list.add("Harry                                        9/15/15");
-
-        list.add("Tom                                          6/05/16");
-
-        list.add("Bill                                            4/25/17");
-
-
-        listView.setAdapter(adapter);
-*/
         add_customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,5 +54,18 @@ public class CustomerFragment extends Fragment {
 
             }
         });
+    }
+    public String getSelectedID() {
+        return selectedID;
+    }
+
+    public void setSelectedID(String id) {
+        selectedID=id;
+    }
+
+    public void switchToDetailView() {
+     //   backToPreviewButton.setVisibility(View.VISIBLE);
+      //  getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoiceViewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
+
     }
 }

@@ -67,7 +67,7 @@ public class MenuActivity extends AppCompatActivity{
         }
     }
 
-    class customerForPreview{
+    class CustomerForPreview{
         String first;
         String last;
         String customerID;
@@ -95,6 +95,9 @@ public class MenuActivity extends AppCompatActivity{
         public void setCustomerID(String customerID) {
             this.customerID = customerID;
         }
+
+        @Override
+        public String toString(){return super.toString();}
     }
 
 
@@ -103,8 +106,8 @@ public class MenuActivity extends AppCompatActivity{
     MenuItem prevMenuItem;
     BottomNavigationView bottomNavigationView;
     ArrayList<InvoiceForPreview> invoicesList;
-    ArrayList<customerForPreview> customerList;
-    List customersList;
+    ArrayList<CustomerForPreview> customerList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +129,6 @@ public class MenuActivity extends AppCompatActivity{
 
     }
 
-
     protected void Setup() throws ExecutionException, InterruptedException, JSONException {
        DataContainer invoiceDataContainer = new DataContainer();
        invoiceDataContainer.type="invoicelistformenupreview";
@@ -134,17 +136,18 @@ public class MenuActivity extends AppCompatActivity{
        invoiceDataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
        BackgroundWorkerJSONArray getInvoices = new BackgroundWorkerJSONArray();
        JSONArray invoiceJSONArray = getInvoices.execute(invoiceDataContainer).get();
-    /*
+
         DataContainer customerDataContainer = new DataContainer();
-        customerDataContainer.type="customerListForMenuPreview";
-        invoiceDataContainer.phpVariableNames.add("user_id");
-        invoiceDataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
+        customerDataContainer.type="customerlistformenupreview";
+        customerDataContainer.phpVariableNames.add("user_id");
+        customerDataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
         BackgroundWorkerJSONArray getCustomers = new BackgroundWorkerJSONArray();
         JSONArray customerJSONArray = getCustomers.execute(customerDataContainer).get();
-        */
+
        invoicesList = new ArrayList<InvoiceForPreview>();
 
-       customerList = new ArrayList<>();
+       customerList = new ArrayList<CustomerForPreview>();
+
 
        for (int i = 0 ; i<invoiceJSONArray.length(); i++)
        {
@@ -168,11 +171,19 @@ public class MenuActivity extends AppCompatActivity{
 
 
            invoicesList.add(listItem);
+
        }
 
-
-
-
+/*
+       for(int i = 0; i<customerJSONArray.length(); i++)
+       {
+          CustomerForPreview listItem = new CustomerForPreview();
+          listItem.setCustomerID(customerJSONArray.getJSONObject(i).getString("CustomerID"));
+          listItem.setFirst(customerJSONArray.getJSONObject(i).getString("FirstName"));
+          listItem.setLast(customerJSONArray.getJSONObject(i).getString("LastName"));
+          customerList.add(listItem);
+       }
+*/
 
    }
 
@@ -181,7 +192,7 @@ public class MenuActivity extends AppCompatActivity{
         return invoicesList;
 
     }
-    public  ArrayList<customerForPreview> getcustomersList()
+    public  ArrayList<CustomerForPreview> getCustomerList()
     {
         return customerList;
 
