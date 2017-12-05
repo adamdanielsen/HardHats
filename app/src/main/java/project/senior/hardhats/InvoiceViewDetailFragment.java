@@ -1,5 +1,6 @@
 package project.senior.hardhats;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,9 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.text.DecimalFormat;
@@ -37,6 +39,7 @@ public class InvoiceViewDetailFragment extends Fragment {
     double total;
     Invoice currentInvoice;
     TextView displayTextView;
+    Button sendEmailButton;
     public InvoiceViewDetailFragment() {
         // Required empty public constructor
     }
@@ -84,7 +87,33 @@ public class InvoiceViewDetailFragment extends Fragment {
 
         displayTextView = (TextView) view.findViewById(R.id.fragmentinvoiceviewdetail_displayTextView);
         displayTextView.setText(currentInvoice.createTxtString());
+        sendEmailButton = (Button) view.findViewById(R.id.fragmentinvoiceviewdetail_sendEmail);
+        sendEmailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BackgroundWorker sendEmailWorker = new BackgroundWorker();
+                DataContainer dataContainer = new DataContainer();
+                dataContainer.type="SendEmail";
+                dataContainer.phpVariableNames.add("toAddress");
+                dataContainer.phpVariableNames.add("invoicestring");
+                dataContainer.dataPassedIn.add(currentInvoice.getCustomerAddress().getEmailAddress());
+                dataContainer.dataPassedIn.add(currentInvoice.createTxtString());
+                String s="";
+                try {
+                    sendEmailWorker.execute(dataContainer).get();
+                    Toast.makeText(getContext(), "Allow a few minutes for the invoice to arrive", Toast.LENGTH_SHORT).show();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
 
+                AlertDialog.Builder box = new AlertDialog.Builder(getContext());
+                box.setMessage("s");
+                box.show();
+
+            }
+        });
 
         //invoiceAdapter = new InvoiceAdapter(getContext(),array);
         //previewListView.setAdapter(invoiceAdapter);
@@ -92,32 +121,6 @@ public class InvoiceViewDetailFragment extends Fragment {
 
     }
 
-    private void Setup() throws JSONException {
-
-        String invoiceID= ((InvoiceFragment) getParentFragment()).getSelectedID();
-
-        DataContainer dataContainer = new DataContainer();
-        //todo write that code and it should work?
-        dataContainer.type="getinvoicelines";
-
-        dataContainer.phpVariableNames.add("InvoiceID");
-
-        dataContainer.phpVariableNames.add(invoiceID);
-
-        BackgroundWorkerJSONArray getInvoiceLines = new BackgroundWorkerJSONArray();
-
-        JSONArray jsonarray = getInvoiceLines.doInBackground(dataContainer);
-        for (int i = 0 ; i<jsonarray.length(); i++)
-        {
-            InvoiceLine listItem = new InvoiceLine();
-            listItem.setInvoiceFK(Integer.parseInt(invoiceID));
-            listItem.setUnits(jsonarray.getJSONObject(i).getString("Units"));
-            listItem.setType(jsonarray.getJSONObject(i).getString("Type"));
-            listItem.setQuantity(jsonarray.getJSONObject(i).getInt("Quantity"));
-            listItem.setUnits(jsonarray.getJSONObject(i).getString("Units"));
-            array.add(listItem);
-        }
-    }
 
     public void Refresh()
     {

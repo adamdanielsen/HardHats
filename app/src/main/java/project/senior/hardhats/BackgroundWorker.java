@@ -37,6 +37,7 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     private String addcustomer_url = "http://hardhatz.org/addcustomer.php";
     private String generateinvoice_url = "http://hardhatz.org/generateinvoice.php";
     private String getgcemail_url= "http://hardhatz.org/getgcemail.php";
+    private String SendEmail_url="http://hardhatz.org/phpmailtext.php";
     BackgroundWorker() {}
     /**
      * Returns a String object representing the created POST.
@@ -208,6 +209,10 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
         return ExecuteRequest(getgcemail_url,dataContainer);
     }
 
+    private String SendEmailProcedure(DataContainer param) {
+
+        return ExecuteRequest(SendEmail_url,param);
+    }
 
 
     /**
@@ -240,6 +245,9 @@ public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
                 return GenerateInvoiceProcedure(params[0]);
             case "getgcemail":
                 return GetGCEmail(params[0]);
+            case "SendEmail":
+                return SendEmailProcedure(params[0]);
+
         }
 
         return "Unknown or misspelled type?";
