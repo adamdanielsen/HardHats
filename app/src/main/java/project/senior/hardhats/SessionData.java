@@ -1,6 +1,10 @@
 package project.senior.hardhats;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by theev on 9/22/2017.
@@ -62,14 +66,22 @@ public class SessionData {
 
     public void getUserData (String userId){
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
-        String dataType = "getUser";
         ArrayList<String> fields = new ArrayList<>();
         fields.add("user_id");
         ArrayList<String> values = new ArrayList<>();
         values.add(userId);
         DataContainer dataContainer = new DataContainer(fields, values);
         dataContainer.type = "getUser";
-        backgroundWorker.doInBackground(dataContainer);
+        try {
+            JSONObject rowData = backgroundWorker.execute(dataContainer).get();
+            firstName = rowData.getString("FirstName");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getUserID() {
