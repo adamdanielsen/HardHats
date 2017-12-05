@@ -11,6 +11,19 @@ public class SessionData {
     private String username;
     private String UserID;
     private String lastStringResult;
+    private String compnanyName;
+    private String password;
+    private String faxNumber;
+    private String phoneNumber;
+    private String lastName;
+    private String firstName;
+    private String licenseNumber;
+    private String emailAddress;
+    private String zipCode;
+    private String street;
+    private String city;
+    private String State;
+
     private ArrayList<String>  lastStringArrayResult;
     private SessionData(){
         username = "";
@@ -45,6 +58,10 @@ public class SessionData {
 
     public void setUserID(String userID) {
         UserID = userID;
+    }
+
+    public void getUserData (String userId){
+        BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
     }
 
     public String getUserID() {
