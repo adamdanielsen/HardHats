@@ -112,12 +112,12 @@ public class SessionData {
         return State;
     }
 
-    public void getUserData (String userId){
+    public void getUserData (){
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("user_id");
         ArrayList<String> values = new ArrayList<>();
-        values.add(userId);
+        values.add(UserID);
         DataContainer dataContainer = new DataContainer(fields, values);
         dataContainer.type = "getUser";
         try {
@@ -125,7 +125,6 @@ public class SessionData {
             firstName = rowData.getString("FirstName");
         } catch (InterruptedException e) {
             e.printStackTrace();
-
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (JSONException e) {
