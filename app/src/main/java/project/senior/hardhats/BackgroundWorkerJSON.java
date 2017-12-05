@@ -37,6 +37,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
     String login_url= "http://hardhatz.org/loginJSON.php";
     String createuser_url="http://hardhatz.org/createuser.php";
     String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
+    String getUser_url="http://hardhatz.org/getUserInfo.php";
 
 
     public BackgroundWorkerJSON()
