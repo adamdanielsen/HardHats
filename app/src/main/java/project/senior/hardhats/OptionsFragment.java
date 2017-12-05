@@ -1,6 +1,7 @@
 package project.senior.hardhats;
 
 
+import android.media.tv.TvInputService;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -77,8 +78,33 @@ public class OptionsFragment extends Fragment {
                 ((MenuActivity)getActivity()).Logout();
             }
         });
-
+        usernameEditText.setText(SessionData.getInstance().getUsername());
         firstNameEditText.setText(SessionData.getInstance().getFirstName());
+        lastNameEditText.setText(SessionData.getInstance().getLastName());
+        passwordEditText.setText(SessionData.getInstance().getPassword());
+        phoneNumberEditText.setText(SessionData.getInstance().getPhoneNumber());
+        companyNameEditText.setText(SessionData.getInstance().getCompanyName());
+        faxNumberEditText.setText(SessionData.getInstance().getFaxNumber());
+        licenseNumberEditText.setText(SessionData.getInstance().getFaxNumber());
+        emailAddressEditText.setText(SessionData.getInstance().getEmailAddress());
+        streetAddressEditText.setText(SessionData.getInstance().getStreet());
+        cityEditText.setText(SessionData.getInstance().getCity());
+        zipCodeEditText.setText(SessionData.getInstance().getZipCode());
+        confirmpasswordEditText.setText(SessionData.getInstance().getPassword());
+
+        usernameEditText.setEnabled(false);
+        passwordEditText.setEnabled(false);
+        confirmpasswordEditText.setEnabled(false);
+        companyNameEditText.setEnabled(false);
+        firstNameEditText.setEnabled(false);
+        lastNameEditText.setEnabled(false);
+        phoneNumberEditText.setEnabled(false);
+        faxNumberEditText.setEnabled(false);
+        licenseNumberEditText.setEnabled(false);
+        emailAddressEditText.setEnabled(false);
+        streetAddressEditText.setEnabled(false);
+        cityEditText.setEnabled(false);
+        zipCodeEditText.setEnabled(false);
 
     }
 

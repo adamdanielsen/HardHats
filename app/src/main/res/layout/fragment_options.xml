@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/register_Username"
                     android:imeOptions="flagNoExtractUi"
-                    android:inputType="textPersonName"
+                    android:inputType="none"
                     android:maxLength="@integer/MAXUSERNAMELENGTH" />
 
                 <EditText
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/register_Password"
                     android:imeOptions="flagNoExtractUi"
-                    android:inputType="textPassword"
+                    android:inputType="none"
                     android:maxLength="@integer/MAXPASSWORDLENGTH" />
 
 
@@ -58,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/register_ConfirmPassword"
-                    android:inputType="textPassword" />
+                    android:inputType="none" />
 
                 <EditText
                     android:id="@+id/option_firstName_editText"
@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/first_name"
-                    android:inputType="textPersonName" />
+                    android:inputType="none" />
 
                 <EditText
                     android:id="@+id/option_lastName_editText"
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/last_name"
-                    android:inputType="textPersonName" />
+                    android:inputType="none" />
 
                 <EditText
                     android:id="@+id/option_phoneNumber_editText"
@@ -83,7 +83,7 @@
                     android:digits="0123456789+"
                     android:ems="10"
                     android:hint="@string/phone_number"
-                    android:inputType="phone" />
+                    android:inputType="none" />
 
                 <EditText
                     android:id="@+id/option_faxNumber_editText"
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/fax_number"
-                    android:inputType="number"
+                    android:inputType="none"
                     android:digits="0123456789+"/>
 
                 <EditText
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/licesneNumber"
-                    android:inputType="number"
+                    android:inputType="none"
                     android:digits="0123456789+"/>
 
                 <EditText
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="none" />
 
                 <EditText
                     android:id="@+id/option_CompanyName_editText"
@@ -117,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/company"
-                    android:inputType="textPersonName" />
+                    android:inputType="none" />
 
                 <EditText
                     android:id="@+id/option_streetAddress_editText"
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/street"
-                    android:inputType="textPersonName" />
+                    android:inputType="none" />
 
                 <EditText
                     android:id="@+id/option_city_editText"
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/city"
-                    android:inputType="textPersonName" />
+                    android:inputType="none" />
 
                 <EditText
                     android:id="@+id/option_zipCode_editText"
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/zip_code"
-                    android:inputType="number"
+                    android:inputType="none"
                     android:digits="0123456789+"/>
 
                 <LinearLayout
