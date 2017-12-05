@@ -3,8 +3,10 @@ package project.senior.hardhats;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView aboutTextView;
     EditText usernameEditText;
     EditText passwordEditText;
+    TextInputLayout usernameTextInputLayout;
+    TextInputLayout passwordTextInputLayout;
     Button buttonLogin;
     Button buttonRegister;
     Button buttonDebug;
@@ -34,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         SessionData.getInstance().eraseUsername();
         getWindow().getDecorView().setBackgroundColor(Color.WHITE);
         aboutTextView=(TextView) findViewById(R.id.login_AboutTextView);
+        usernameTextInputLayout=(TextInputLayout) findViewById(R.id.login_usernameTextInputLayout);
+        passwordTextInputLayout=(TextInputLayout)findViewById(R.id.login_passwordTextInputLayout);
         usernameEditText= (EditText) findViewById(R.id.login_UserNameEditText);
         passwordEditText= (EditText) findViewById(R.id.login_PasswordEditText);
         buttonLogin = (Button) findViewById(R.id.login_LoginButton);
@@ -112,6 +118,17 @@ public class LoginActivity extends AppCompatActivity {
 
     public void OnLogin(View view)
     {
+
+        if (!ValidateUsername())
+        {
+            return;
+        }
+
+        if (!ValidatePassword())
+        {
+            return;
+        }
+
         String username =usernameEditText.getText().toString();
         String password =passwordEditText.getText().toString();
         String type = "login";
@@ -164,6 +181,42 @@ public class LoginActivity extends AppCompatActivity {
         menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(menuIntent);
 
+    }
+
+
+
+    private boolean ValidateUsername() {
+        if (usernameEditText.getText().toString().trim().isEmpty()) {
+            usernameTextInputLayout.setError("Please fill out your username");
+            requestFocus(usernameEditText);
+            return false;
+        }
+        else {
+            usernameTextInputLayout.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+
+    private boolean ValidatePassword() {
+        if (passwordEditText.getText().toString().trim().isEmpty()) {
+            passwordTextInputLayout.setError("Please fill out your password");
+            requestFocus(passwordEditText);
+            return false;
+        }
+        else {
+            passwordTextInputLayout.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+
+
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
 

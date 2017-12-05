@@ -37,8 +37,7 @@ public class InvoiceFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getChildFragmentManager().beginTransaction().add(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(),"INVOICEPREVIEWLIST").commit();
-
+        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(),"INVOICEPREVIEWLIST").commit();
         generateInvoiceButton=(Button) getView().findViewById(R.id.fragmentInvoice_GenerateInvoiceButton);
         backToPreviewButton = (Button) getView().findViewById(R.id.fragmentInvoice_backToPreviewButton);
         backToPreviewButton.setVisibility(View.INVISIBLE);
@@ -69,7 +68,6 @@ public class InvoiceFragment extends Fragment {
     public String getSelectedID() {
         return selectedID;
     }
-
 
     public void setSelectedID(String id) {
 

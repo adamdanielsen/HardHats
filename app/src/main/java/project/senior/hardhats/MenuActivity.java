@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
 import org.json.JSONArray;
@@ -96,37 +95,6 @@ public class MenuActivity extends AppCompatActivity{
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("Rotate", "onResume: ");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("Rotate", "onPause: ");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("Rotate", "onRestart: ");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("Rotate", "onStart: ");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("Rotate", "onStop: ");
-    }
-
-
 
     protected void Setup() throws ExecutionException, InterruptedException, JSONException {
        DataContainer invoiceDataContainer = new DataContainer();
@@ -185,7 +153,7 @@ public class MenuActivity extends AppCompatActivity{
         ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new InvoiceFragment());
         pagerAdapter.addFragment(new CustomerFragment());
-        pagerAdapter.addFragment(new ReportsFragment());
+//        pagerAdapter.addFragment(new ReportsFragment());
         pagerAdapter.addFragment(new OptionsFragment());
         viewPager.setAdapter(pagerAdapter);
     }
@@ -217,11 +185,8 @@ public class MenuActivity extends AppCompatActivity{
                                 case R.id.navigation_Customers:
                                     viewPager.setCurrentItem(1);
                                     break;
-                                case R.id.navigation_Reports:
+                               case R.id.navigation_Options:
                                     viewPager.setCurrentItem(2);
-                                    break;
-                                case R.id.navigation_Options:
-                                    viewPager.setCurrentItem(3);
                                     break;
                             }
                             return false;
