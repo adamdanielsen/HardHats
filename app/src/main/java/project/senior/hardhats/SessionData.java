@@ -67,7 +67,7 @@ public class SessionData {
         fields.add("user_id");
         ArrayList<String> values = new ArrayList<>();
         values.add(userId);
-        DataContainer dataContainer = new DataContainer(fields, values, dataType);
+        DataContainer dataContainer = new DataContainer(fields, values);
     }
 
     public String getUserID() {
