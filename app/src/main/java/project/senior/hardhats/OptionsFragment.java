@@ -38,6 +38,7 @@ public class OptionsFragment extends Fragment {
     EditText zipCodeEditText;
     Spinner state;
     String user_state;
+    EditText State;
     public OptionsFragment() {
         // Required empty public constructor
     }
@@ -54,8 +55,8 @@ public class OptionsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //change stuff here to give logic to layout
         usernameEditText =(EditText) getView().findViewById(R.id.option_UserNameEditText);
-        passwordEditText = (EditText) getView().findViewById(R.id.option_PasswordEditText);
-        confirmpasswordEditText =(EditText) getView().findViewById(R.id.option_ConfirmPasswordEditText);
+        //passwordEditText = (EditText) getView().findViewById(R.id.option_PasswordEditText);
+        //confirmpasswordEditText =(EditText) getView().findViewById(R.id.option_ConfirmPasswordEditText);
         firstNameEditText = (EditText) getView().findViewById(R.id.option_firstName_editText);
         lastNameEditText = (EditText) getView().findViewById(R.id.option_lastName_editText);
         phoneNumberEditText = (EditText) getView().findViewById(R.id.option_phoneNumber_editText);
@@ -66,11 +67,12 @@ public class OptionsFragment extends Fragment {
         streetAddressEditText = (EditText) getView().findViewById(R.id.option_streetAddress_editText);
         cityEditText = (EditText) getView().findViewById(R.id.option_city_editText);
         zipCodeEditText = (EditText) getView().findViewById(R.id.option_zipCode_editText);
-        state = (Spinner) getView().findViewById(R.id.option_state_spinner);
+        State = (EditText) getView().findViewById(R.id.option_state_editText);
+        /*state = (Spinner) getView().findViewById(R.id.option_state_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.states, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         state.setAdapter(adapter);
-        state.setOnItemSelectedListener(state_listener);
+        state.setOnItemSelectedListener(state_listener);*/
         logoutButton = (Button) getView().findViewById(R.id.fragmentOptions_LogoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +83,7 @@ public class OptionsFragment extends Fragment {
         usernameEditText.setText(SessionData.getInstance().getUsername());
         firstNameEditText.setText(SessionData.getInstance().getFirstName());
         lastNameEditText.setText(SessionData.getInstance().getLastName());
-        passwordEditText.setText(SessionData.getInstance().getPassword());
+        //passwordEditText.setText(SessionData.getInstance().getPassword());
         phoneNumberEditText.setText(SessionData.getInstance().getPhoneNumber());
         companyNameEditText.setText(SessionData.getInstance().getCompanyName());
         faxNumberEditText.setText(SessionData.getInstance().getFaxNumber());
@@ -90,11 +92,13 @@ public class OptionsFragment extends Fragment {
         streetAddressEditText.setText(SessionData.getInstance().getStreet());
         cityEditText.setText(SessionData.getInstance().getCity());
         zipCodeEditText.setText(SessionData.getInstance().getZipCode());
-        confirmpasswordEditText.setText(SessionData.getInstance().getPassword());
+        State.setText(SessionData.getInstance().getState());
+        //confirmpasswordEditText.setText(SessionData.getInstance().getPassword());
 
         usernameEditText.setEnabled(false);
-        passwordEditText.setEnabled(false);
-        confirmpasswordEditText.setEnabled(false);
+        //passwordEditText.setEnabled(false);
+        //confirmpasswordEditText.setEnabled(false);
+        State.setEnabled(false);
         companyNameEditText.setEnabled(false);
         firstNameEditText.setEnabled(false);
         lastNameEditText.setEnabled(false);
