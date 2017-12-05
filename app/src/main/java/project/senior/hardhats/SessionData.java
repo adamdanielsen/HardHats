@@ -64,6 +64,54 @@ public class SessionData {
         UserID = userID;
     }
 
+    public String getCompnanyName() {
+        return compnanyName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getFaxNumber() {
+        return faxNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return State;
+    }
+
     public void getUserData (String userId){
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
         ArrayList<String> fields = new ArrayList<>();
@@ -77,6 +125,7 @@ public class SessionData {
             firstName = rowData.getString("FirstName");
         } catch (InterruptedException e) {
             e.printStackTrace();
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (JSONException e) {

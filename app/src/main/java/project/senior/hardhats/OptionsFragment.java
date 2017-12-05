@@ -78,6 +78,7 @@ public class OptionsFragment extends Fragment {
             }
         });
 
+        firstNameEditText.setText(SessionData.getInstance().getFirstName());
 
     }
 
