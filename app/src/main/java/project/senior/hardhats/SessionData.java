@@ -15,7 +15,7 @@ public class SessionData {
     private String username;
     private String UserID;
     private String lastStringResult;
-    private String compnanyName;
+    private String companyName;
     private String password;
     private String faxNumber;
     private String phoneNumber;
@@ -26,7 +26,7 @@ public class SessionData {
     private String zipCode;
     private String street;
     private String city;
-    private String State;
+    private String state;
 
     private ArrayList<String>  lastStringArrayResult;
     private SessionData(){
@@ -64,8 +64,8 @@ public class SessionData {
         UserID = userID;
     }
 
-    public String getCompnanyName() {
-        return compnanyName;
+    public String getCompanyName() {
+        return companyName;
     }
 
     public String getPassword() {
@@ -109,7 +109,7 @@ public class SessionData {
     }
 
     public String getState() {
-        return State;
+        return state;
     }
 
     public void getUserData (){
@@ -123,6 +123,16 @@ public class SessionData {
         try {
             JSONObject rowData = backgroundWorker.execute(dataContainer).get();
             firstName = rowData.getString("FirstName");
+            lastName = rowData.getString("LastName");
+            companyName = rowData.getString("CompanyName");
+            city = rowData.getString("City");
+            street = rowData.getString("Street");
+            phoneNumber = rowData.getString("PhoneNumber");
+            faxNumber = rowData.getString("FaxNumber");
+            licenseNumber = rowData.getString("LicenseNumber");
+            emailAddress = rowData.getString("EmailAddress");
+            state = rowData.getString("State");
+            zipCode = rowData.getString("ZipCode");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
