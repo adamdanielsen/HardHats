@@ -66,7 +66,7 @@ public class OptionsFragment extends Fragment {
         cityEditText = (EditText) getView().findViewById(R.id.option_city_editText);
         zipCodeEditText = (EditText) getView().findViewById(R.id.option_zipCode_editText);
         state = (Spinner) getView().findViewById(R.id.option_state_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.states, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.states, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         state.setAdapter(adapter);
         state.setOnItemSelectedListener(state_listener);

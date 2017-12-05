@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -65,39 +64,6 @@ public class InvoiceCreateActivity extends AppCompatActivity {
     }
 
 
-    String TAG ="InvoiceCreateActivity";
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume: ");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause: ");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "onRestart: ");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart: ");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop: ");
-    }
-
-
-
     private void HandleAddLineButton() {
         startAddLine();
     }
@@ -140,6 +106,11 @@ public class InvoiceCreateActivity extends AppCompatActivity {
         else
         {
             AddLineFragment addLineFragment =(AddLineFragment) getSupportFragmentManager().findFragmentByTag("ADDLINE");
+
+         if (addLineFragment.sendLineBack()==null)
+         {
+             return;
+         }
             InvoiceLine invoiceLine = addLineFragment.sendLineBack();
 
             if (invoiceLine.Verify()) {
