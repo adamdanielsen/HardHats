@@ -29,7 +29,7 @@
         android:hint="@string/login_Username"
         android:inputType="textPersonName"
         android:maxLength="@integer/MAXUSERNAMELENGTH"
-        android:text="softhat"/>
+        android:text=""/>
     </android.support.design.widget.TextInputLayout>
 
 
@@ -46,7 +46,7 @@
         android:hint="@string/login_Password"
         android:inputType="textPassword"
         android:maxLength="@integer/MAXPASSWORDLENGTH"
-        android:text="drips"/>
+        android:text=""/>
     </android.support.design.widget.TextInputLayout>
     <Button
         android:id="@+id/login_LoginButton"
