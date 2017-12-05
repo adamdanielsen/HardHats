@@ -62,6 +62,8 @@ public class SessionData {
 
     public void getUserData (String userId){
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
+
+        backgroundWorker
     }
 
     public String getUserID() {

@@ -174,6 +174,10 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
         return ExecuteRequest(invoiceexport_url, dataContainer);
     }
 
+    protected JSONObject getUserData(DataContainer dataContainer){
+
+    }
+
 
 
     /**
