@@ -68,6 +68,8 @@ public class SessionData {
         ArrayList<String> values = new ArrayList<>();
         values.add(userId);
         DataContainer dataContainer = new DataContainer(fields, values);
+        dataContainer.type = "getUser";
+        backgroundWorker.doInBackground(dataContainer)
     }
 
     public String getUserID() {
