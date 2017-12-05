@@ -73,6 +73,7 @@ public class MenuActivity extends AppCompatActivity{
     MenuItem prevMenuItem;
     BottomNavigationView bottomNavigationView;
     ArrayList<InvoiceForPreview> invoicesList;
+    ArrayList<String> customerList;
     List customersList;
 
     @Override
@@ -103,8 +104,17 @@ public class MenuActivity extends AppCompatActivity{
        invoiceDataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
        BackgroundWorkerJSONArray getInvoices = new BackgroundWorkerJSONArray();
        JSONArray invoiceJSONArray = getInvoices.execute(invoiceDataContainer).get();
-
+    /*
+        DataContainer customerDataContainer = new DataContainer();
+        customerDataContainer.type="customerListForMenuPreview";
+        invoiceDataContainer.phpVariableNames.add("user_id");
+        invoiceDataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
+        BackgroundWorkerJSONArray getCustomers = new BackgroundWorkerJSONArray();
+        JSONArray customerJSONArray = getCustomers.execute(customerDataContainer).get();
+        */
        invoicesList = new ArrayList<InvoiceForPreview>();
+
+       customerList = new ArrayList<>();
 
        for (int i = 0 ; i<invoiceJSONArray.length(); i++)
        {

@@ -38,6 +38,7 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
     private String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
     private String populatecustomerspinner_url = "http://hardhatz.org/populatecustomerspinner.php";
     private String invoicelistformenupreview_url= "http://hardhatz.org/invoicelistformenupreview.php";
+    private String customerListForMenuPreview_url="http://hardhatz.org/customerlistformenupreview.php";
     public BackgroundWorkerJSONArray()
     {
 
@@ -163,6 +164,10 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
         return ExecuteRequest(invoicelistformenupreview_url, dataContainer);
     }
 
+    private JSONArray customerListForMenuPreviewProcedure(DataContainer dataContainer){
+        return ExecuteRequest(customerListForMenuPreview_url, dataContainer);
+    }
+
     /**
      * After a few steps, this function returns the result of the echo from the script called.
      * This function uses the type located in the DataContainer to figure out which script to use.
@@ -190,6 +195,9 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
 
             case "invoicelistformenupreview":
                 return InvoiceListForMenuPreviewProcedure(params[0]);
+
+            case "customerListForMenuPreview":
+                return customerListForMenuPreviewProcedure(params[0]);
         }
 
 

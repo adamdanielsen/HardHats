@@ -41,14 +41,7 @@ public class InvoicePreviewListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         invoicesListView = (ListView) getView().findViewById(R.id.fragmentinvoicepreviewlist_invoicesListView);
 
-
-
-
-
-
         final ArrayList<MenuActivity.InvoiceForPreview> invoicelist = ((MenuActivity)getActivity()).getInvoicesList();
-
-
 
         InvoiceForMenuAdapter adapter = new InvoiceForMenuAdapter(getContext(),invoicelist);
         invoicesListView.setAdapter(adapter);
