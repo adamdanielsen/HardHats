@@ -1,8 +1,10 @@
 package project.senior.hardhats;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,16 +16,30 @@ import static java.sql.Types.NULL;
 
 public class AddCustomer extends AppCompatActivity {
 
+    EditText firstNameEditText;
+    EditText lastNameEditText;
+    EditText companyEditText;
+    EditText emailAddressEditText;
+    EditText phoneNumberEditText;
+    EditText faxNumberEditText;
+    EditText streetNameEditText;
+    EditText zipCodeEditText;
+    EditText cityEditText;
 
-    EditText firstName;
-    EditText lastName;
-    EditText company;
-    EditText emailAddress;
-    EditText phoneNumber;
-    EditText faxNumber;
-    EditText streetName;
-    EditText zipCode;
-    EditText city;
+    TextInputLayout firstNameTextInputLayout;
+    TextInputLayout lastNameTextInputLayout;
+    TextInputLayout companyTextInputLayout;
+    TextInputLayout emailAddressTextInputLayout;
+    TextInputLayout phoneNumberTextInputLayout;
+    TextInputLayout faxNumberTextInputLayout;
+    TextInputLayout streetNameTextInputLayout;
+    TextInputLayout zipCodeTextInputLayout;
+    TextInputLayout cityTextInputLayout;
+
+
+
+
+
     Spinner state;
 
     String customer_state;
@@ -35,15 +51,27 @@ public class AddCustomer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_customer);
 
-        firstName = (EditText) findViewById(R.id.customer_first_editText);
-        lastName = (EditText) findViewById(R.id.customer_last_editText);
-        company = (EditText) findViewById(R.id.customer_company_editText);
-        emailAddress = (EditText) findViewById(R.id.customer_email_address_editText);
-        phoneNumber = (EditText) findViewById(R.id.customer_phone_editText);
-        faxNumber = (EditText) findViewById(R.id.customer_fax_editText);
-        streetName = (EditText) findViewById(R.id.customer_street_address_editText);
-        zipCode = (EditText) findViewById(R.id.customer_zip_code_editText);
-        city = (EditText) findViewById(R.id.customer_city_editText);
+        firstNameEditText = (EditText) findViewById(R.id.customer_first_editText);
+        lastNameEditText = (EditText) findViewById(R.id.customer_last_editText);
+        companyEditText = (EditText) findViewById(R.id.customer_company_editText);
+        emailAddressEditText = (EditText) findViewById(R.id.customer_email_address_editText);
+        phoneNumberEditText = (EditText) findViewById(R.id.customer_phone_editText);
+        faxNumberEditText = (EditText) findViewById(R.id.customer_fax_editText);
+        streetNameEditText = (EditText) findViewById(R.id.customer_street_address_editText);
+        zipCodeEditText = (EditText) findViewById(R.id.customer_zip_code_editText);
+        cityEditText = (EditText) findViewById(R.id.customer_city_editText);
+        firstNameTextInputLayout = (TextInputLayout) findViewById(R.id.customer_first_textInputLayout);
+        lastNameTextInputLayout = (TextInputLayout) findViewById(R.id.customer_last_textInputLayout);
+        companyTextInputLayout = (TextInputLayout) findViewById(R.id.customer_company_textInputLayout);
+        emailAddressTextInputLayout = (TextInputLayout) findViewById(R.id.customer_email_textInputLayout);
+        phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.customer_phone_textInputLayout);
+        faxNumberTextInputLayout = (TextInputLayout) findViewById(R.id.customer_fax_textInputLayout);
+        streetNameTextInputLayout = (TextInputLayout) findViewById(R.id.customer_street_address_textInputLayout);
+        zipCodeTextInputLayout = (TextInputLayout) findViewById(R.id.customer_zip_code_textInputLayout);
+        cityTextInputLayout = (TextInputLayout) findViewById(R.id.customer_city_textInputLayout);
+
+
+
         state = (Spinner) findViewById(R.id.customer_state_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.states, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -54,21 +82,20 @@ public class AddCustomer extends AppCompatActivity {
         cancel = (Button) findViewById(R.id.cancel_customer_button);
 
 
+
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstName.getText().toString().length() == 0)
+                if (!Validate())
                 {
-                    Toast.makeText(AddCustomer.this, "On this planet we refer to people by their first name. We need your customers first name.", Toast.LENGTH_LONG ).show();
-                }else if(lastName.getText().toString().length() == 0){
-                    Toast.makeText(AddCustomer.this, "Unless your customer is a pet gold fish, we're going to need their last name.", Toast.LENGTH_LONG ).show();
+
+                    return;
+
+
                 }
-                else if(!emailAddress.getText().toString().matches("\\S+@\\S+\\.\\S+")) {
-                    Toast.makeText(AddCustomer.this, "ye- no, that is definitely not what an email looks like. Try again.!", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    addCustomerFunction();
-                }
+                addCustomerFunction();
+
             }
         });
 
@@ -81,6 +108,7 @@ public class AddCustomer extends AppCompatActivity {
 
 
     }
+
 
     private AdapterView.OnItemSelectedListener state_listener = new AdapterView.OnItemSelectedListener() {
         @Override
@@ -98,15 +126,15 @@ public class AddCustomer extends AppCompatActivity {
 
     private void addCustomerFunction(){
         String customer_userid = SessionData.getInstance().getUserID();
-        String customer_first = firstName.getText().toString().replaceAll("\'","");
-        String customer_last = lastName.getText().toString().replaceAll("\'","");
-        String customer_company = company.getText().toString().replaceAll("\'","");
-        String customer_email = emailAddress.getText().toString().replaceAll("\'","");
-        String customer_phoneNumber = phoneNumber.getText().toString().replaceAll("\'","");
-        String customer_faxNumber = faxNumber.getText().toString().replaceAll("\'","");
-        String customer_street = streetName.getText().toString().replaceAll("\'","");
-        String customer_Zip = zipCode.getText().toString().replaceAll("\'","");
-        String customer_city = city.getText().toString().replaceAll("\'","");
+        String customer_first = firstNameEditText.getText().toString().replaceAll("\'","");
+        String customer_last = lastNameEditText.getText().toString().replaceAll("\'","");
+        String customer_company = companyEditText.getText().toString().replaceAll("\'","");
+        String customer_email = emailAddressEditText.getText().toString().replaceAll("\'","");
+        String customer_phoneNumber = phoneNumberEditText.getText().toString().replaceAll("\'","");
+        String customer_faxNumber = faxNumberEditText.getText().toString().replaceAll("\'","");
+        String customer_street = streetNameEditText.getText().toString().replaceAll("\'","");
+        String customer_Zip = zipCodeEditText.getText().toString().replaceAll("\'","");
+        String customer_city = cityEditText.getText().toString().replaceAll("\'","");
         String customer_state = state.getSelectedItem().toString().replaceAll("\'","");
 
 
@@ -132,8 +160,6 @@ public class AddCustomer extends AppCompatActivity {
         dataContainer.phpVariableNames.add("city");
         dataContainer.phpVariableNames.add("zipcode");
         dataContainer.phpVariableNames.add("state");
-
-
         dataContainer.dataPassedIn.add(customer_userid);
         dataContainer.dataPassedIn.add(customer_first);
         dataContainer.dataPassedIn.add(customer_last);
@@ -145,11 +171,156 @@ public class AddCustomer extends AppCompatActivity {
         dataContainer.dataPassedIn.add(customer_city);
         dataContainer.dataPassedIn.add(customer_Zip);
         dataContainer.dataPassedIn.add(customer_state);
-
-
         BackgroundWorker database = new BackgroundWorker();
         database.execute(dataContainer);
-        Toast.makeText(AddCustomer.this,"Congrats! Your customer has been added", Toast.LENGTH_LONG).show();
+        Toast.makeText(AddCustomer.this,"Your customer has been added", Toast.LENGTH_LONG).show();
         finish();
     }
+
+    private boolean Validate() {
+
+
+        /*
+        EditText firstNameEditText;
+        EditText lastNameEditText;
+        EditText companyEditText;
+        EditText emailAddressEditText;
+        EditText phoneNumberEditText;
+        EditText faxNumberEditText;
+        EditText streetNameEditText;
+        EditText zipCodeEditText;
+        EditText cityEditText;
+
+        TextInputLayout firstNameTextInputLayout;
+        TextInputLayout lastNameTextInputLayout;
+        TextInputLayout companyTextInputLayout;
+        TextInputLayout emailAddressTextInputLayout;
+        TextInputLayout phoneNumberTextInputLayout;
+        TextInputLayout faxNumberTextInputLayout;
+        TextInputLayout streetNameTextInputLayout;
+        TextInputLayout zipCodeTextInputLayout;
+        TextInputLayout cityTextInputLayout;
+        */
+        if (firstNameEditText.getText().toString().trim().isEmpty()) {
+            firstNameTextInputLayout.setError("Please fill out the First Name");
+            requestFocus(firstNameEditText);
+            //firstNameTextInputLayout.setErrorEnabled(false);
+            lastNameTextInputLayout.setErrorEnabled(false);
+            companyTextInputLayout.setErrorEnabled(false);
+            emailAddressTextInputLayout.setErrorEnabled(false);
+            phoneNumberTextInputLayout.setErrorEnabled(false);
+            faxNumberTextInputLayout.setErrorEnabled(false);
+            streetNameTextInputLayout.setErrorEnabled(false);
+            zipCodeTextInputLayout.setErrorEnabled(false);
+            cityTextInputLayout.setErrorEnabled(false);
+            return false;
+        }
+        else {
+            firstNameTextInputLayout.setErrorEnabled(false);
+        }
+
+
+        if (lastNameEditText.getText().toString().trim().isEmpty()) {
+            lastNameTextInputLayout.setError("Please fill out the Last Name");
+            requestFocus(lastNameEditText);
+            firstNameTextInputLayout.setErrorEnabled(false);
+            //lastNameTextInputLayout.setErrorEnabled(false);
+            companyTextInputLayout.setErrorEnabled(false);
+            emailAddressTextInputLayout.setErrorEnabled(false);
+            phoneNumberTextInputLayout.setErrorEnabled(false);
+            faxNumberTextInputLayout.setErrorEnabled(false);
+            streetNameTextInputLayout.setErrorEnabled(false);
+            zipCodeTextInputLayout.setErrorEnabled(false);
+            cityTextInputLayout.setErrorEnabled(false);
+            return false;
+        }
+        else {
+            lastNameTextInputLayout.setErrorEnabled(false);
+        }
+        if (emailAddressEditText.getText().toString().trim().isEmpty()) {
+            emailAddressTextInputLayout.setError("Please fill out an Email Address");
+            requestFocus(emailAddressEditText);
+            firstNameTextInputLayout.setErrorEnabled(false);
+            lastNameTextInputLayout.setErrorEnabled(false);
+            companyTextInputLayout.setErrorEnabled(false);
+            //emailAddressTextInputLayout.setErrorEnabled(false);
+            phoneNumberTextInputLayout.setErrorEnabled(false);
+            faxNumberTextInputLayout.setErrorEnabled(false);
+            streetNameTextInputLayout.setErrorEnabled(false);
+            zipCodeTextInputLayout.setErrorEnabled(false);
+            cityTextInputLayout.setErrorEnabled(false);
+            return false;
+        }
+        else {
+            emailAddressTextInputLayout.setErrorEnabled(false);
+        }
+        if (phoneNumberEditText.getText().toString().trim().isEmpty()) {
+            phoneNumberTextInputLayout.setError("Please fill out the Phone Number");
+            requestFocus(phoneNumberEditText);
+            firstNameTextInputLayout.setErrorEnabled(false);
+            lastNameTextInputLayout.setErrorEnabled(false);
+            companyTextInputLayout.setErrorEnabled(false);
+            emailAddressTextInputLayout.setErrorEnabled(false);
+            //phoneNumberTextInputLayout.setErrorEnabled(false);
+            faxNumberTextInputLayout.setErrorEnabled(false);
+            streetNameTextInputLayout.setErrorEnabled(false);
+            zipCodeTextInputLayout.setErrorEnabled(false);
+            cityTextInputLayout.setErrorEnabled(false);
+            return false;
+        }
+        else {
+            phoneNumberTextInputLayout.setErrorEnabled(false);
+        }
+        if (streetNameEditText.getText().toString().trim().isEmpty()) {
+            streetNameTextInputLayout.setError("Please fill out the Street Name");
+            requestFocus(streetNameEditText);
+            firstNameTextInputLayout.setErrorEnabled(false);
+            lastNameTextInputLayout.setErrorEnabled(false);
+            companyTextInputLayout.setErrorEnabled(false);
+            emailAddressTextInputLayout.setErrorEnabled(false);
+            phoneNumberTextInputLayout.setErrorEnabled(false);
+            faxNumberTextInputLayout.setErrorEnabled(false);
+            //streetNameTextInputLayout.setErrorEnabled(false);
+            zipCodeTextInputLayout.setErrorEnabled(false);
+            cityTextInputLayout.setErrorEnabled(false);
+            return false;
+        }
+        else {
+            streetNameTextInputLayout.setErrorEnabled(false);
+        }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddressEditText.getText().toString().trim()).matches()) {
+            emailAddressTextInputLayout.setError("Please fill out a valid email");
+            requestFocus(emailAddressEditText);
+            firstNameTextInputLayout.setErrorEnabled(false);
+            lastNameTextInputLayout.setErrorEnabled(false);
+            companyTextInputLayout.setErrorEnabled(false);
+            //emailAddressTextInputLayout.setErrorEnabled(false);
+            phoneNumberTextInputLayout.setErrorEnabled(false);
+            faxNumberTextInputLayout.setErrorEnabled(false);
+            streetNameTextInputLayout.setErrorEnabled(false);
+            zipCodeTextInputLayout.setErrorEnabled(false);
+            cityTextInputLayout.setErrorEnabled(false);
+            return false;
+        }
+        else {
+            emailAddressTextInputLayout.setErrorEnabled(false);
+        }
+
+
+
+
+
+
+
+
+
+
+        return true;
+    }
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
+
 }

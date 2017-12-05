@@ -1,16 +1,16 @@
 package project.senior.hardhats;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -23,15 +23,12 @@ import java.util.concurrent.ExecutionException;
 import project.senior.hardhats.Documents.Invoice;
 import project.senior.hardhats.Documents.InvoiceLine;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
 
-
 public class InvoiceViewDetailFragment extends Fragment {
 
-    ListView previewListView;
     TextView totalTextView;
     InvoiceAdapter invoiceAdapter;
     ArrayList<InvoiceLine> array;
@@ -43,7 +40,6 @@ public class InvoiceViewDetailFragment extends Fragment {
     public InvoiceViewDetailFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,10 +62,26 @@ public class InvoiceViewDetailFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_invoice_view_detail, container, false);
     }
 
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int screenHeight = displaymetrics.heightPixels;
+        int actionBarHeight = 0;
+        TypedValue tv = new TypedValue();
+        if (getActivity().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data,getResources().getDisplayMetrics());
+        }
+
+        view.setMinimumHeight(screenHeight - actionBarHeight + 5);
+
+
+
+
+
+
         displayTextView = (TextView) view.findViewById(R.id.fragmentinvoiceviewdetail_displayTextView);
         displayTextView.setText(currentInvoice.createTxtString());
 
@@ -95,8 +107,6 @@ public class InvoiceViewDetailFragment extends Fragment {
         BackgroundWorkerJSONArray getInvoiceLines = new BackgroundWorkerJSONArray();
 
         JSONArray jsonarray = getInvoiceLines.doInBackground(dataContainer);
-
-
         for (int i = 0 ; i<jsonarray.length(); i++)
         {
             InvoiceLine listItem = new InvoiceLine();
@@ -107,11 +117,7 @@ public class InvoiceViewDetailFragment extends Fragment {
             listItem.setUnits(jsonarray.getJSONObject(i).getString("Units"));
             array.add(listItem);
         }
-
-
-
     }
-
 
     public void Refresh()
     {
@@ -155,7 +161,6 @@ public class InvoiceViewDetailFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
             if (convertView==null) {
                 convertView = View.inflate(context, R.layout.invoicelistitem, null);
                 //TextView line1 = (TextView) convertView.findViewById(R.id.invoicelistitem_line1TextView);

@@ -77,7 +77,7 @@ public class OptionsFragment extends Fragment {
                 ((MenuActivity)getActivity()).Logout();
             }
         });
-
+        String s =SessionData.getInstance().getFirstName();
         firstNameEditText.setText(SessionData.getInstance().getFirstName());
 
     }
