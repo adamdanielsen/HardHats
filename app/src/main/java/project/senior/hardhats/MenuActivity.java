@@ -12,7 +12,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
@@ -138,7 +137,7 @@ public class MenuActivity extends AppCompatActivity{
        JSONArray invoiceJSONArray = getInvoices.execute(invoiceDataContainer).get();
 
         DataContainer customerDataContainer = new DataContainer();
-        customerDataContainer.type="customerlistformenupreview";
+        customerDataContainer.type="customerlisformenupreview";
         customerDataContainer.phpVariableNames.add("user_id");
         customerDataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
         BackgroundWorkerJSONArray getCustomers = new BackgroundWorkerJSONArray();
@@ -174,7 +173,7 @@ public class MenuActivity extends AppCompatActivity{
 
        }
 
-/*
+
        for(int i = 0; i<customerJSONArray.length(); i++)
        {
           CustomerForPreview listItem = new CustomerForPreview();
@@ -183,7 +182,7 @@ public class MenuActivity extends AppCompatActivity{
           listItem.setLast(customerJSONArray.getJSONObject(i).getString("LastName"));
           customerList.add(listItem);
        }
-*/
+
 
    }
 
