@@ -67,13 +67,43 @@ public class MenuActivity extends AppCompatActivity{
         }
     }
 
+    class customerForPreview{
+        String first;
+        String last;
+        String customerID;
+
+        public String getFirst() {
+            return first;
+        }
+
+        public void setFirst(String first) {
+            this.first = first;
+        }
+
+        public String getLast() {
+            return last;
+        }
+
+        public void setLast(String last) {
+            this.last = last;
+        }
+
+        public String getCustomerID() {
+            return customerID;
+        }
+
+        public void setCustomerID(String customerID) {
+            this.customerID = customerID;
+        }
+    }
+
 
 
     private ViewPager viewPager;
     MenuItem prevMenuItem;
     BottomNavigationView bottomNavigationView;
     ArrayList<InvoiceForPreview> invoicesList;
-    ArrayList<String> customerList;
+    ArrayList<customerForPreview> customerList;
     List customersList;
 
     @Override
@@ -149,6 +179,11 @@ public class MenuActivity extends AppCompatActivity{
     public  ArrayList<InvoiceForPreview> getInvoicesList()
     {
         return invoicesList;
+
+    }
+    public  ArrayList<customerForPreview> getcustomersList()
+    {
+        return customerList;
 
     }
     public void Logout()
