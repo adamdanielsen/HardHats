@@ -136,4 +136,7 @@
         <item>WY</item>
     </string-array>
     <string name="title_activity_register_place_picker">RegisterPlacePickerActivity</string>
+    <string name="backupaddress_street">Street</string>
+    <string name="backup_city">City</string>
+    <string name="backup_zipcode">Zip Code</string>
 </resources>

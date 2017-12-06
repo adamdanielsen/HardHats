@@ -1,5 +1,6 @@
 package project.senior.hardhats;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -42,10 +43,22 @@ public class RegisterActivity extends AppCompatActivity {
         TextInputLayout emailAddressTextInputLayout;
         TextInputLayout companyNameTextInputLayout;
 
-        Place address;
+        String username;
+        String password;
+        String firstName;
+        String lastName;
+        String phoneNumber;
+        String faxNumber;
+        String licenseNumber;
+        String emailAddress;
+        String companyName;
+        String addressToUse;
 
 
 
+    Place address;
+        String backupAddress;
+        boolean googleError;
 
         Button continueButton;
         Button cancelButton;
@@ -89,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Cancel();
                 }
             });
-
+            googleError=false;
 
         }
 
@@ -102,16 +115,16 @@ public class RegisterActivity extends AppCompatActivity {
 
                 return;
             }
-
-        String username= usernameEditText.getText().toString();
-        String password= passwordEditText.getText().toString();
-        String firstName = firstNameEditText.getText().toString();
-        String lastName = lastNameEditText.getText().toString();
-        String phoneNumber = phoneNumberEditText.getText().toString();
-        String faxNumber = faxNumberEditText.getText().toString();
-        String licenseNumber = licenseNumberEditText.getText().toString();
-        String emailAddress = emailAddressEditText.getText().toString();
-        String companyName = companyNameEditText.getText().toString();
+        backupAddress=null;
+         username= usernameEditText.getText().toString();
+         password= passwordEditText.getText().toString();
+         firstName = firstNameEditText.getText().toString();
+         lastName = lastNameEditText.getText().toString();
+         phoneNumber = phoneNumberEditText.getText().toString();
+         faxNumber = faxNumberEditText.getText().toString();
+         licenseNumber = licenseNumberEditText.getText().toString();
+         emailAddress = emailAddressEditText.getText().toString();
+         companyName = companyNameEditText.getText().toString();
 
         int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 
@@ -125,10 +138,11 @@ public class RegisterActivity extends AppCompatActivity {
                             .setFilter(typeFilter)
                             .build(this);
             startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-        } catch (GooglePlayServicesRepairableException e) {
-            // TODO: Handle the error.
-        } catch (GooglePlayServicesNotAvailableException e) {
-            // TODO: Handle the error.
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            googleError=true;
+            Toast.makeText(this, "Error starting Google Places, launcing backup", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, BackupAddressHandlerActivity.class);
+            startActivityForResult(i, 1);
         }
 
 
@@ -136,32 +150,79 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (resultCode == RESULT_OK) {
-                address = PlaceAutocomplete.getPlace(this, data);
-            }
-            if (resultCode == RESULT_CANCELED) {
-                address=null;
-            }
 
 
-        if (address==null)
+
+            if (!googleError)
         {
-            Toast.makeText(this, "Try again", Toast.LENGTH_SHORT).show();
+            if (resultCode == RESULT_OK) {
+            address = PlaceAutocomplete.getPlace(this, data);
+            backupAddress=null;
+            }
 
+            if (resultCode == RESULT_CANCELED) {
+                address = null;
+            }
+
+        if (address == null) {
+
+            Toast.makeText(this, "No Address Selected", Toast.LENGTH_SHORT).show();
+            return;
+            }
+
+            addressToUse = address.getAddress().toString();
+            hitDatabase();
+            return;
         }
 
-        Toast.makeText(this, address.getAddress(), Toast.LENGTH_SHORT).show();
+                if(resultCode == Activity.RESULT_OK){
 
+                    backupAddress=data.getStringExtra("address");
+                    address=null;
+                }
 
+                if (resultCode == Activity.RESULT_CANCELED) {
+                    Toast.makeText(this, "Please enter an Address", Toast.LENGTH_SHORT).show();
+                    return;
 
-
-
+                }
+                addressToUse=backupAddress;
         }
 
+    private void hitDatabase() {
+
+        BackgroundWorker createUser = new BackgroundWorker();
+        DataContainer dataContainer = new DataContainer();
+        dataContainer.type="register";
+        dataContainer.dataPassedIn.add(username);
+        dataContainer.dataPassedIn.add(password);
+        dataContainer.dataPassedIn.add(firstName);
+        dataContainer.dataPassedIn.add(lastName);
+        dataContainer.dataPassedIn.add(phoneNumber);
+        dataContainer.dataPassedIn.add(faxNumber);
+        dataContainer.dataPassedIn.add(licenseNumber);
+        dataContainer.dataPassedIn.add(emailAddress);
+        dataContainer.dataPassedIn.add(companyName);
+        dataContainer.dataPassedIn.add(addressToUse);
+        dataContainer.phpVariableNames.add("user_name");
+        dataContainer.phpVariableNames.add("user_pass");
+        dataContainer.phpVariableNames.add("firstname");
+        dataContainer.phpVariableNames.add("lastname");
+        dataContainer.phpVariableNames.add("phonenumber");
+        dataContainer.phpVariableNames.add("faxnumber");
+        dataContainer.phpVariableNames.add("licensenumber");
+        dataContainer.phpVariableNames.add("emailaddress");
+        dataContainer.phpVariableNames.add("companyname");
+        dataContainer.phpVariableNames.add("address");
+        createUser.execute(dataContainer);
+        finish();
 
 
 
 
+
+
+    }
 
 
     private void Cancel()
@@ -219,7 +280,16 @@ public class RegisterActivity extends AppCompatActivity {
 
         try {
             String registrationResult = backgroundWorker.execute(dataContainer).get();
+
+            if (registrationResult==null)
+            {
+                Toast.makeText(this, "Connection Error", Toast.LENGTH_SHORT).show();
+                return false;
+
+            }
+
             switch (registrationResult) {
+
                 case "BAD":
                     usernameTextInputLayout.setError("Username Taken");
                     requestFocus(usernameEditText);
