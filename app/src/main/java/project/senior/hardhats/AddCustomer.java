@@ -70,8 +70,6 @@ public class AddCustomer extends AppCompatActivity {
         zipCodeTextInputLayout = (TextInputLayout) findViewById(R.id.customer_zip_code_textInputLayout);
         cityTextInputLayout = (TextInputLayout) findViewById(R.id.customer_city_textInputLayout);
 
-
-
         state = (Spinner) findViewById(R.id.customer_state_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.states, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

@@ -45,12 +45,13 @@
         <activity
             android:name=".InvoiceCreateActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name= ".BackupAddressHandlerActivity"
+            android:screenOrientation="portrait"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDOMAlPMh6jhWMKTkQSUSqpbxHdrLXUVV8" />
 
-        <activity android:name=".BackupAddressHandlerActivity"></activity>
     </application>
 
 </manifest>

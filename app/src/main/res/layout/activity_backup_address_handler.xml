@@ -6,14 +6,21 @@
     android:orientation="vertical"
     tools:context="project.senior.hardhats.BackupAddressHandlerActivity">
 
-    <EditText
-        android:id="@+id/backup_streetEditText"
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/backup_streetTextInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/backupaddress_street"/>
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/backup_streetEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/backupaddress_street"
+            android:inputType="textPersonName" />
+    </android.support.design.widget.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,28 +28,54 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/backup_cityEditText"
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/backup_cityTextInputLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/backup_city"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/backup_cityEditText"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/backup_city"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
 
         <Spinner
             android:id="@+id/backup_stateSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="5" />
+            android:layout_width="80dp"
+            android:layout_height="match_parent" />
 
-        <EditText
-            android:id="@+id/backup_zipCodeEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/backup_zipcode"
-            android:inputType="textPersonName" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/backup_zipCodeTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/backup_zipCodeEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/backup_zipcode"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/backup_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/backup_continue" />
+
+    <Button
+        android:id="@+id/backup_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/backup_cancel" />
 </LinearLayout>

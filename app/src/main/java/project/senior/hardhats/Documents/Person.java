@@ -22,15 +22,17 @@ public class Person {
     private String city;
     private String zipCode;
     private String state;
+    private String address;
+    private String personType;
+
 
    public Person()
    {}
 
    Person(JSONObject personJSONObject, String type) throws JSONException
-
     {
-
-        if (type.equals("Contractor"))
+        personType=type;
+        if (personType.equals("Contractor"))
         {
             firstName = personJSONObject.getString("FirstName");
             lastName = personJSONObject.getString("LastName");
@@ -39,20 +41,16 @@ public class Person {
             emailAddress = personJSONObject.getString("EmailAddress");
             licenseNumber= personJSONObject.getString("LicenseNumber");
             companyName = personJSONObject.getString("CompanyName");
-            street = personJSONObject.getString("Street");
-            city = personJSONObject.getString("City");
-            zipCode = personJSONObject.getString("ZipCode");
-            state = personJSONObject.getString("State");
-        }
+            address=personJSONObject.getString("Address");
+            }
 
-        if (type.equals("Customer"))
+        if (personType.equals("Customer"))
         {
             firstName = personJSONObject.getString("FirstName");
             lastName = personJSONObject.getString("LastName");
             phoneNumber = personJSONObject.getString("PhoneNumber");
             faxNumber = personJSONObject.getString("FaxNumber");
             emailAddress = personJSONObject.getString("EmailAddress");
-            //licenseNumber= personJSONObject.getString("LicenseNumber");
             companyName = personJSONObject.getString("CompanyName");
             street = personJSONObject.getString("Street");
             city = personJSONObject.getString("City");

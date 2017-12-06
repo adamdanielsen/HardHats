@@ -139,4 +139,6 @@
     <string name="backupaddress_street">Street</string>
     <string name="backup_city">City</string>
     <string name="backup_zipcode">Zip Code</string>
+    <string name="backup_continue">CONTINUE</string>
+    <string name="backup_cancel">CANCEL</string>
 </resources>

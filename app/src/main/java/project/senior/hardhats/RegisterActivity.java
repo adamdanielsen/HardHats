@@ -215,12 +215,8 @@ public class RegisterActivity extends AppCompatActivity {
         dataContainer.phpVariableNames.add("companyname");
         dataContainer.phpVariableNames.add("address");
         createUser.execute(dataContainer);
+        Toast.makeText(this, "User Created!", Toast.LENGTH_SHORT).show();
         finish();
-
-
-
-
-
 
     }
 
@@ -540,14 +536,10 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-
-
-
     private void requestFocus(View view) {
         if (view.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
-
 
 }
