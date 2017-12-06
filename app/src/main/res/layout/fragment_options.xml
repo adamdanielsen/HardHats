@@ -26,7 +26,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_options_Logout" />
                 <TextView
-                    android:id="@+id/profile_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/accountInfo"
@@ -83,7 +82,7 @@
                     android:digits="0123456789+"
                     android:ems="10"
                     android:hint="@string/phone_number"
-                    android:inputType="none" />
+                    android:inputType="phone" />
 
                 <EditText
                     android:id="@+id/option_faxNumber_editText"
@@ -91,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/fax_number"
-                    android:inputType="none"
+                    android:inputType="phone"
                     android:digits="0123456789+"/>
 
                 <EditText
@@ -100,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/licesneNumber"
-                    android:inputType="none"
+                    android:inputType="number"
                     android:digits="0123456789+"/>
 
                 <EditText
@@ -109,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/email"
-                    android:inputType="none" />
+                    android:inputType="textEmailAddress" />
 
                 <EditText
                     android:id="@+id/option_CompanyName_editText"

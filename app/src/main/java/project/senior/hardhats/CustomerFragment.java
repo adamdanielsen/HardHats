@@ -9,11 +9,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
-import java.util.ArrayList;
 
 //import android.app.Fragment;
 
@@ -23,8 +20,8 @@ import java.util.ArrayList;
  */
 public class CustomerFragment extends Fragment {
 
-    Button add_customer;
-    String selectedID;
+    private Button add_customer;
+    private String selectedID;
     ListView listView;
     public CustomerFragment() {
         // Required empty public constructor

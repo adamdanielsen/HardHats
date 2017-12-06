@@ -16,15 +16,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <LinearLayout android:id="@+id/footer" android:layout_width="fill_parent"
-                android:layout_height="wrap_content" android:orientation="horizontal"
-                android:layout_alignParentBottom="true" >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal">
 
-                <Button android:id="@+id/save_customer_button" android:layout_width="wrap_content"
+                <Button android:id="@+id/save_customer_button"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:layout_weight="1"
                     android:text="@string/save" />
 
-                <Button android:id="@+id/cancel_customer_button" android:layout_width="wrap_content"
+                <Button android:id="@+id/cancel_customer_button"
+                    android:layout_width="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
                     android:layout_height="wrap_content" android:layout_weight="1"
                     android:text="@string/cancel" />
             </LinearLayout>
@@ -96,7 +100,7 @@
                         android:ems="10"
                         android:fontFamily="monospace"
                         android:hint="@string/phone_number"
-                        android:inputType="number"
+                        android:inputType="phone"
                         android:text="" />
                 </android.support.design.widget.TextInputLayout>
 

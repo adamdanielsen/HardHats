@@ -27,7 +27,6 @@
 
 
     <TextView
-        android:id="@+id/generateinvoice_firstNameLabel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.1"
@@ -41,7 +40,6 @@
         android:layout_weight="1.1" />
 
     <TextView
-        android:id="@+id/generateinvoice_lastLabel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.1"
@@ -56,7 +54,6 @@
         android:layout_weight="1.1" />
 
     <TextView
-        android:id="@+id/generateinvoice_phoneLabel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.1"
@@ -70,7 +67,6 @@
         android:layout_weight="1.1" />
 
     <TextView
-        android:id="@+id/generateinvoice_emailLabel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.1"
@@ -84,7 +80,6 @@
         android:layout_weight="1.1" />
 
     <TextView
-        android:id="@+id/generateinvoice_addressLabel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.1"
@@ -117,7 +112,8 @@
             android:id="@+id/generateinvoice_gcEmailEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:ems="13" />
+            android:ems="13"
+            android:inputType="textEmailAddress" />
 
     </LinearLayout>
 

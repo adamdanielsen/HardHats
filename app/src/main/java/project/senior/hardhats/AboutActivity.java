@@ -13,7 +13,7 @@ import java.util.Collections;
  */
 
 public class AboutActivity extends AppCompatActivity {
-    ListView authorListView;
+    private ListView authorListView;
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);

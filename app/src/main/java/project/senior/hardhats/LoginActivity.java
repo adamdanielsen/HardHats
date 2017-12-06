@@ -20,17 +20,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView aboutTextView;
-    EditText usernameEditText;
-    EditText passwordEditText;
-    TextInputLayout usernameTextInputLayout;
-    TextInputLayout passwordTextInputLayout;
-    Button buttonLogin;
-    Button buttonRegister;
-    Button buttonDebug;
+    private TextView aboutTextView;
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private TextInputLayout usernameTextInputLayout;
+    private TextInputLayout passwordTextInputLayout;
+    private Button buttonLogin;
+    private Button buttonRegister;
+    private Button buttonDebug;
 
 
-    JSONObject returnedUsername;
+    private JSONObject returnedUsername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(registerIntent);
     }
 
-    public void OnLogin(View view)
+    private void OnLogin(View view)
     {
 
         if (!ValidateUsername())

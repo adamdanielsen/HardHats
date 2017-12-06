@@ -12,21 +12,18 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/fragmentcustomerpreviewlist_leftTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:paddingLeft="20dp" />
 
         <TextView
-            android:id="@+id/fragmentcustomerpreviewlist_middleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"/>
 
         <TextView
-            android:id="@+id/fragmentcustomerpreviewlist_rightTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

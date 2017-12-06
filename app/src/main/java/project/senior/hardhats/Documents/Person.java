@@ -62,70 +62,65 @@ public class Person {
 
     public String BuildContractorAddressForInvoice()
     {
-        StringBuilder address = new StringBuilder();
+        String address = companyName +
+                "\n" +
+                phoneNumber +
+                "\n" +
+                firstName +
+                " " +
+                lastName +
+                "\n" +
+                street +
+                "\n" +
+                city +
+                "," +
+                state +
+                " " +
+                zipCode +
+                "\n" +
+                "License #: " +
+                licenseNumber;
 
 
-        address.append(companyName);
-        address.append("\n");
-        address.append(phoneNumber);
-        address.append("\n");
-        address.append(firstName);
-        address.append(" ");
-        address.append(lastName);
-        address.append("\n");
-        address.append(street);
-        address.append("\n");
-        address.append(city);
-        address.append(",");
-        address.append(state);
-        address.append(" ");
-        address.append(zipCode);
-        address.append("\n");
-        address.append("License #: ");
-        address.append(licenseNumber);
-        return address.toString();
+        return address;
     }
 
 
     public String BuildCustomerAddressForInvoice()
     {
-        StringBuilder address = new StringBuilder();
 
-        address.append(companyName);
-        address.append("\n");
-        address.append(phoneNumber);
-        address.append("\n");
-        address.append(firstName);
-        address.append(" ");
-        address.append(lastName);
-        address.append("\n");
-        address.append(street);
-        address.append("\n");
-        address.append(city);
-        address.append(",");
-        address.append(state);
-        address.append(" ");
-        address.append(zipCode);
-        return address.toString();
+        return companyName +
+                "\n" +
+                phoneNumber +
+                "\n" +
+                firstName +
+                " " +
+                lastName +
+                "\n" +
+                street +
+                "\n" +
+                city +
+                "," +
+                state +
+                " " +
+                zipCode;
     }
 
 
     public String BuildCustomerAddressForPreview()
     {
-        StringBuilder address = new StringBuilder();
 
-        address.append(firstName);
-        address.append(" ");
-        address.append(lastName);
-        address.append("\n");
-        address.append(street);
-        address.append("\n");
-        address.append(city);
-        address.append(",");
-        address.append(state);
-        address.append(" ");
-        address.append(zipCode);
-        return address.toString();
+        return firstName +
+                " " +
+                lastName +
+                "\n" +
+                street +
+                "\n" +
+                city +
+                "," +
+                state +
+                " " +
+                zipCode;
     }
 
     public String getId() {

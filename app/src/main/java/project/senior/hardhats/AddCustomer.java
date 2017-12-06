@@ -16,35 +16,36 @@ import static java.sql.Types.NULL;
 
 public class AddCustomer extends AppCompatActivity {
 
-    EditText firstNameEditText;
-    EditText lastNameEditText;
-    EditText companyEditText;
-    EditText emailAddressEditText;
-    EditText phoneNumberEditText;
-    EditText faxNumberEditText;
-    EditText streetNameEditText;
-    EditText zipCodeEditText;
-    EditText cityEditText;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
+    private EditText companyEditText;
+    private EditText emailAddressEditText;
+    private EditText phoneNumberEditText;
+    private EditText faxNumberEditText;
+    private EditText streetNameEditText;
+    private EditText zipCodeEditText;
+    private EditText cityEditText;
 
-    TextInputLayout firstNameTextInputLayout;
-    TextInputLayout lastNameTextInputLayout;
-    TextInputLayout companyTextInputLayout;
-    TextInputLayout emailAddressTextInputLayout;
-    TextInputLayout phoneNumberTextInputLayout;
-    TextInputLayout faxNumberTextInputLayout;
-    TextInputLayout streetNameTextInputLayout;
-    TextInputLayout zipCodeTextInputLayout;
-    TextInputLayout cityTextInputLayout;
-
-
+    private TextInputLayout firstNameTextInputLayout;
+    private TextInputLayout lastNameTextInputLayout;
+    private TextInputLayout companyTextInputLayout;
+    private TextInputLayout emailAddressTextInputLayout;
+    private TextInputLayout phoneNumberTextInputLayout;
+    private TextInputLayout faxNumberTextInputLayout;
+    private TextInputLayout streetNameTextInputLayout;
+    private TextInputLayout zipCodeTextInputLayout;
+    private TextInputLayout cityTextInputLayout;
 
 
 
-    Spinner state;
 
-    String customer_state;
 
-    Button save, cancel ;
+    private Spinner state;
+
+    private String customer_state;
+
+    private Button save;
+    private Button cancel ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,27 +179,7 @@ public class AddCustomer extends AppCompatActivity {
     private boolean Validate() {
 
 
-        /*
-        EditText firstNameEditText;
-        EditText lastNameEditText;
-        EditText companyEditText;
-        EditText emailAddressEditText;
-        EditText phoneNumberEditText;
-        EditText faxNumberEditText;
-        EditText streetNameEditText;
-        EditText zipCodeEditText;
-        EditText cityEditText;
 
-        TextInputLayout firstNameTextInputLayout;
-        TextInputLayout lastNameTextInputLayout;
-        TextInputLayout companyTextInputLayout;
-        TextInputLayout emailAddressTextInputLayout;
-        TextInputLayout phoneNumberTextInputLayout;
-        TextInputLayout faxNumberTextInputLayout;
-        TextInputLayout streetNameTextInputLayout;
-        TextInputLayout zipCodeTextInputLayout;
-        TextInputLayout cityTextInputLayout;
-        */
         if (firstNameEditText.getText().toString().trim().isEmpty()) {
             firstNameTextInputLayout.setError("Please fill out the First Name");
             requestFocus(firstNameEditText);
@@ -303,15 +284,6 @@ public class AddCustomer extends AppCompatActivity {
         else {
             emailAddressTextInputLayout.setErrorEnabled(false);
         }
-
-
-
-
-
-
-
-
-
 
         return true;
     }

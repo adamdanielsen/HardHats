@@ -17,9 +17,9 @@ import android.widget.ListView;
  * A simple {@link Fragment} subclass.
  */
 public class InvoiceFragment extends Fragment {
-    Button generateInvoiceButton;
-    Button backToPreviewButton;
-    String selectedID;
+    private Button generateInvoiceButton;
+    private Button backToPreviewButton;
+    private String selectedID;
     ListView listView;
 
     public InvoiceFragment() {

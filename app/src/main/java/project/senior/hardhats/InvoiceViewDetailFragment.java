@@ -31,15 +31,15 @@ import project.senior.hardhats.Documents.InvoiceLine;
 
 public class InvoiceViewDetailFragment extends Fragment {
 
-    TextView totalTextView;
-    InvoiceAdapter invoiceAdapter;
-    ArrayList<InvoiceLine> array;
+    private TextView totalTextView;
+    private InvoiceAdapter invoiceAdapter;
+    private ArrayList<InvoiceLine> array;
     int previousPosition;
     private static final DecimalFormat df = new DecimalFormat("$0.00");
-    double total;
-    Invoice currentInvoice;
-    TextView displayTextView;
-    Button sendEmailButton;
+    private double total;
+    private Invoice currentInvoice;
+    private TextView displayTextView;
+    private Button sendEmailButton;
     public InvoiceViewDetailFragment() {
         // Required empty public constructor
     }
@@ -134,13 +134,13 @@ public class InvoiceViewDetailFragment extends Fragment {
 
         }
 
-        totalTextView.setText("WORKING TOTAL: "+df.format(total));
+        totalTextView.setText(getString(R.string.invoiceviewdetailfragment_total)+df.format(total));
     }
 
     private class InvoiceAdapter extends BaseAdapter
     {
-        Context context;
-        ArrayList<InvoiceLine> invoiceLines;
+        final Context context;
+        final ArrayList<InvoiceLine> invoiceLines;
 
         InvoiceAdapter(Context context, ArrayList<InvoiceLine> invoiceLines) {
             this.context = context;

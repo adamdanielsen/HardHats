@@ -1,7 +1,6 @@
 package project.senior.hardhats;
 
 
-import android.media.tv.TvInputService;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,23 +20,23 @@ import android.widget.Spinner;
  */
 public class OptionsFragment extends Fragment {
 
-    Button logoutButton;
-    EditText usernameEditText;
+    private Button logoutButton;
+    private EditText usernameEditText;
     EditText passwordEditText;
     EditText confirmpasswordEditText;
-    EditText firstNameEditText;
-    EditText lastNameEditText;
-    EditText phoneNumberEditText;
-    EditText faxNumberEditText;
-    EditText licenseNumberEditText;
-    EditText emailAddressEditText;
-    EditText companyNameEditText;
-    EditText streetAddressEditText;
-    EditText cityEditText;
-    EditText zipCodeEditText;
-    Spinner state;
-    String user_state;
-    EditText State;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
+    private EditText phoneNumberEditText;
+    private EditText faxNumberEditText;
+    private EditText licenseNumberEditText;
+    private EditText emailAddressEditText;
+    private EditText companyNameEditText;
+    private EditText streetAddressEditText;
+    private EditText cityEditText;
+    private EditText zipCodeEditText;
+    private Spinner state;
+    private String user_state;
+    private EditText State;
     public OptionsFragment() {
         // Required empty public constructor
     }

@@ -7,18 +7,13 @@
     <string name="register_Username">Username (5–20 Characters)</string>
     <string name="register_Password">Password (5–20 Characters)</string>
     <string name="register_ConfirmPassword">Confirm Password:</string>
-    <string name="register_Register">REGISTER</string>
     <string name="register_Cancel">CANCEL</string>
     <string name="about_About">About\n\nAuthors:</string>
     <string name="login_About">About</string>
     <string name="registration_Registration">Registration</string>
     <string name="title_activity_menu">MenuActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="navigation_Invoices">Invoices</string>
     <string name="navigation_Customers">Customers</string>
-    <string name="navigation_Reports">Reports</string>
     <string name="save">Save</string>
     <string name="add_customer">Add Customer</string>
 
@@ -27,53 +22,29 @@
     <string name="last_name">Last Name</string>
     <string name="phone_number">Phone Number</string>
     <string name="email">Email Address</string>
-    <string name="house_number">House/APT Number</string>
     <string name="street">Street</string>
-    <string name="town">Town</string>
-    <string name="state">State</string>
     <string name="zip_code">Zip Code</string>
     <string name="company">Company Name</string>
     <string name="fax_number">Fax Number</string>
     <string name="city">City</string>
     <string name="licesneNumber">License Number</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_Options">Options</string>
     <string name="accountInfo">Account Information</string>
     <string name="fragment_options_Logout">LOGOUT</string>
 
     <string name="reports_navigation_frag_text">Reports</string>
-    <string name="invoice_navigation_frag_text">Invoices</string>
-    <string name="customer_navigation_frag_text">Customer</string>
-    <string name="options_navigation_frag_text">Options</string>
     <string name="fragment_generateinvoice_GenerateInvoice">Generate Invoice</string>
-    <string name="title_activity_login2">Sign in</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
     <string name="title_activity_generate_invoice">GenerateInvoiceActivity</string>
-    <string name="createinvoice_cancel">CANCEL</string>
     <string name="generateinvoice_address">Address</string>
     <string name="generateinvoice_choosecustomer">CHOOSE CUSTOMER</string>
     <string name="generateinvoice_usegeneralcontractor">Use General\nContractor Email?</string>
-    <string name="generateinvoice_AddLine">Add Line</string>
-    <string name="generateinvoice_cancel">CANCEL</string>
     <string name="fragmentaddline_price">Price</string>
     <string name="fragmentaddline_units">Units</string>
     <string name="fragmentaddline_quantity">Quantity</string>
     <string name="fragmentaddline_description">Description</string>
-    <string name="fragmentinvoice_viewinvoices">View Invoices</string>
-    <string name="fragmentcustomer_viewcustomers">View Customers</string>
     <string name="invoicecreate_addline">Add Line</string>
     <string name="invoicecreate_done">Done</string>
     <string name="invoicecreate_cancel">Cancel</string>
@@ -135,10 +106,15 @@
         <item>WI</item>
         <item>WY</item>
     </string-array>
-    <string name="title_activity_register_place_picker">RegisterPlacePickerActivity</string>
     <string name="backupaddress_street">Street</string>
     <string name="backup_city">City</string>
     <string name="backup_zipcode">Zip Code</string>
     <string name="backup_continue">CONTINUE</string>
     <string name="backup_cancel">CANCEL</string>
+    <string name="login_debug">debug</string>
+    <string name="fragmentinvicepreviewlist_name">NAME</string>
+    <string name="fragmentinvicepreviewlist_total">TOTAL</string>
+    <string name="fragmentinvicepreviewlist_date">DATE</string>
+    <string name="fragmentinvoiceviewdetail_sendemail">Send Email</string>
+    <string name="invoiceviewdetailfragment_total">TOTAL:</string>
 </resources>

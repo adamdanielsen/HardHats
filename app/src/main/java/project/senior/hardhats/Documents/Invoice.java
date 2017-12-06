@@ -19,10 +19,10 @@ public class Invoice {
 
     private Person customerAddress;
     private Person contractorAddress;
-    String date;
-    ArrayList<InvoiceLine> invoiceLines;
+    private String date;
+    private ArrayList<InvoiceLine> invoiceLines;
     private double total;
-    final DecimalFormat df = new DecimalFormat("$0.00");
+    private final DecimalFormat df = new DecimalFormat("$0.00");
 
 
 

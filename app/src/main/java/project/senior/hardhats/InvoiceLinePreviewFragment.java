@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +27,13 @@ import project.senior.hardhats.Documents.InvoiceLine;
 
 public class InvoiceLinePreviewFragment extends Fragment {
 
-    ListView previewListView;
-    TextView totalTextView;
-    InvoiceAdapter invoiceAdapter;
-    ArrayList<InvoiceLine> array;
-    int previousPosition;
+    private ListView previewListView;
+    private TextView totalTextView;
+    private InvoiceAdapter invoiceAdapter;
+    private ArrayList<InvoiceLine> array;
+    private int previousPosition;
     private static final DecimalFormat df = new DecimalFormat("$0.00");
-    double total;
+    private double total;
 
 
     public InvoiceLinePreviewFragment() {
@@ -91,46 +90,9 @@ public class InvoiceLinePreviewFragment extends Fragment {
     }
 
 
-    public void Recover()
-    {
 
 
-    }
-
-
-
-    String TAG ="InvoiceLinePreviewFragment";
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        Log.d(TAG, "onResume: ");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause: ");
-    }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart: ");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop: ");
-    }
-
-
-
-
-
-    public void Refresh()
+    private void Refresh()
     {
         invoiceAdapter.notifyDataSetChanged();
         total=0;
@@ -147,8 +109,8 @@ public class InvoiceLinePreviewFragment extends Fragment {
 
     private class InvoiceAdapter extends BaseAdapter
     {
-        Context context;
-        ArrayList<InvoiceLine> invoiceLines;
+        final Context context;
+        final ArrayList<InvoiceLine> invoiceLines;
 
         InvoiceAdapter(Context context, ArrayList<InvoiceLine> invoiceLines) {
             this.context = context;

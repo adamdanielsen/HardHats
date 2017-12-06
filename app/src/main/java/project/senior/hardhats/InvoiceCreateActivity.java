@@ -16,13 +16,13 @@ import project.senior.hardhats.Documents.InvoiceLine;
 
 public class InvoiceCreateActivity extends AppCompatActivity {
 
-    ArrayList<InvoiceLine> invoiceLines = new ArrayList<>();
-    Button addLineButton;
-    Button doneOrFinishLineButton;
-    Button cancelOrCancelLineButton;
-    String CustomerID;
-    String UserID;
-    String GCEmail;
+    private final ArrayList<InvoiceLine> invoiceLines = new ArrayList<>();
+    private Button addLineButton;
+    private Button doneOrFinishLineButton;
+    private Button cancelOrCancelLineButton;
+    private String CustomerID;
+    private String UserID;
+    private String GCEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,19 +113,12 @@ public class InvoiceCreateActivity extends AppCompatActivity {
          }
             InvoiceLine invoiceLine = addLineFragment.sendLineBack();
 
-            if (invoiceLine.Verify()) {
                 Snackbar.make(v,"Line Added!",Snackbar.LENGTH_SHORT).show();
 
                 startInvoicePreview();
                 SetInvoiceLines(invoiceLine);
 
-            }
-            else
-            {
-                //todo verify stuff
-            }
         }
-
     }
 
     private void HandleCancelOrCancelLineButton() {
@@ -149,9 +142,8 @@ public class InvoiceCreateActivity extends AppCompatActivity {
 
 
 
-    protected void startInvoicePreview()
+    private void startInvoicePreview()
     {
-
         addLineButton.setVisibility(View.VISIBLE);
         addLineButton.setText(R.string.invoicecreate_addline);
         doneOrFinishLineButton.setText(R.string.invoicecreate_done);
@@ -159,7 +151,7 @@ public class InvoiceCreateActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new InvoiceLinePreviewFragment(),"INVOICEPREVIEW").commit();
     }
 
-    protected void startAddLine()
+    private void startAddLine()
     {
         addLineButton.setVisibility(View.INVISIBLE);
         doneOrFinishLineButton.setText(R.string.invoicecreate_finishline);
@@ -170,7 +162,7 @@ public class InvoiceCreateActivity extends AppCompatActivity {
     public ArrayList<InvoiceLine> GetInvoiceLines() {
         return invoiceLines;
     }
-    public void SetInvoiceLines(InvoiceLine invoiceLine)
+    private void SetInvoiceLines(InvoiceLine invoiceLine)
     {
         invoiceLines.add(invoiceLine);
 

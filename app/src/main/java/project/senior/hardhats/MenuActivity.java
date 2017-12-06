@@ -24,7 +24,7 @@ public class MenuActivity extends AppCompatActivity{
         String date;
         String total;
 
-        public InvoiceForPreview() {
+        InvoiceForPreview() {
 
         }
 
@@ -36,11 +36,11 @@ public class MenuActivity extends AppCompatActivity{
             this.name = name;
         }
 
-        public String getDate() {
+        String getDate() {
             return date;
         }
 
-        public void setDate(String date) {
+        void setDate(String date) {
             this.date = date;
         }
 
@@ -52,11 +52,11 @@ public class MenuActivity extends AppCompatActivity{
             this.id = id;
         }
 
-        public String getTotal() {
+        String getTotal() {
             return total;
         }
 
-        public void setTotal(String total) {
+        void setTotal(String total) {
             this.total = total;
         }
 
@@ -71,19 +71,19 @@ public class MenuActivity extends AppCompatActivity{
         String last;
         String customerID;
 
-        public String getFirst() {
+        String getFirst() {
             return first;
         }
 
-        public void setFirst(String first) {
+        void setFirst(String first) {
             this.first = first;
         }
 
-        public String getLast() {
+        String getLast() {
             return last;
         }
 
-        public void setLast(String last) {
+        void setLast(String last) {
             this.last = last;
         }
 
@@ -91,7 +91,7 @@ public class MenuActivity extends AppCompatActivity{
             return customerID;
         }
 
-        public void setCustomerID(String customerID) {
+        void setCustomerID(String customerID) {
             this.customerID = customerID;
         }
 
@@ -102,10 +102,10 @@ public class MenuActivity extends AppCompatActivity{
 
 
     private ViewPager viewPager;
-    MenuItem prevMenuItem;
-    BottomNavigationView bottomNavigationView;
-    ArrayList<InvoiceForPreview> invoicesList;
-    ArrayList<CustomerForPreview> customerList;
+    private MenuItem prevMenuItem;
+    private BottomNavigationView bottomNavigationView;
+    private ArrayList<InvoiceForPreview> invoicesList;
+    private ArrayList<CustomerForPreview> customerList;
 
 
     @Override
@@ -128,7 +128,7 @@ public class MenuActivity extends AppCompatActivity{
 
     }
 
-    protected void Setup() throws ExecutionException, InterruptedException, JSONException {
+    private void Setup() throws ExecutionException, InterruptedException, JSONException {
        DataContainer invoiceDataContainer = new DataContainer();
        invoiceDataContainer.type="invoicelistformenupreview";
        invoiceDataContainer.phpVariableNames.add("user_id");
@@ -143,9 +143,9 @@ public class MenuActivity extends AppCompatActivity{
         BackgroundWorkerJSONArray getCustomers = new BackgroundWorkerJSONArray();
         JSONArray customerJSONArray = getCustomers.execute(customerDataContainer).get();
 
-       invoicesList = new ArrayList<InvoiceForPreview>();
+       invoicesList = new ArrayList<>();
 
-       customerList = new ArrayList<CustomerForPreview>();
+       customerList = new ArrayList<>();
 
 
        for (int i = 0 ; i<invoiceJSONArray.length(); i++)
@@ -204,7 +204,7 @@ public class MenuActivity extends AppCompatActivity{
     }
 
     //For ViewPagerAdapter
-    public void setupViewPager(ViewPager viewPager){
+    private void setupViewPager(ViewPager viewPager){
         ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new InvoiceFragment());
         pagerAdapter.addFragment(new CustomerFragment());
@@ -221,7 +221,7 @@ public class MenuActivity extends AppCompatActivity{
 
     }
 
-    public void swipeBottomNavigation(){
+    private void swipeBottomNavigation(){
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 

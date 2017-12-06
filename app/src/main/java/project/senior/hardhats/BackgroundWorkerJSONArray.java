@@ -34,11 +34,11 @@ import java.net.URLEncoder;
 public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSONArray> {
 
 
-    String type;
-    private String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
-    private String populatecustomerspinner_url = "http://hardhatz.org/populatecustomerspinner.php";
-    private String invoicelistformenupreview_url= "http://hardhatz.org/invoicelistformenupreview.php";
-    private String customerListForMenuPreview_url="http://hardhatz.org/customerlistformenupreview.php";
+    private String type;
+    private final String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
+    private final String populatecustomerspinner_url = "http://hardhatz.org/populatecustomerspinner.php";
+    private final String invoicelistformenupreview_url= "http://hardhatz.org/invoicelistformenupreview.php";
+    private final String customerListForMenuPreview_url="http://hardhatz.org/customerlistformenupreview.php";
     public BackgroundWorkerJSONArray()
     {
 
@@ -57,7 +57,7 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
      */
 
 
-    protected String PostBuilder (DataContainer dataContainer)
+    private String PostBuilder(DataContainer dataContainer)
 
     {
         StringBuilder postdata= new StringBuilder();
@@ -93,7 +93,7 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
      * @return  The result of the script.
      */
 
-    protected JSONArray ExecuteRequest(String urlName, DataContainer dataContainer)
+    private JSONArray ExecuteRequest(String urlName, DataContainer dataContainer)
     {
 
         try {
@@ -143,7 +143,7 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
      * @param   dataContainer   Data to be passed to script.
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
-    protected JSONArray InvoiceExportProcedure(DataContainer dataContainer) {
+    private JSONArray InvoiceExportProcedure(DataContainer dataContainer) {
         return ExecuteRequest(invoiceexport_url, dataContainer);
     }
 
@@ -156,7 +156,7 @@ public class BackgroundWorkerJSONArray extends AsyncTask<DataContainer,Void,JSON
      * @param   dataContainer   Data to be passed to script.
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
-    protected JSONArray PopulateCustomerSpinnerProcedure(DataContainer dataContainer) {
+    private JSONArray PopulateCustomerSpinnerProcedure(DataContainer dataContainer) {
         return ExecuteRequest(populatecustomerspinner_url, dataContainer);
     }
 

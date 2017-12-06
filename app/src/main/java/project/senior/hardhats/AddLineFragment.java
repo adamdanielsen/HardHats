@@ -31,17 +31,17 @@ public class AddLineFragment extends Fragment {
     }
 
 
-    InvoiceLine invoiceLine;
-    EditText DescriptionEditText;
-    EditText QuantityEditText;
-    EditText UnitsEditText;
-    EditText PriceEditText;
-    TextInputLayout DescriptionTextInputLayout;
-    TextInputLayout QuantityTextInputLayout;
-    TextInputLayout UnitsTextInputLayout;
-    TextInputLayout PriceTextInputLayout;
+    private InvoiceLine invoiceLine;
+    private EditText DescriptionEditText;
+    private EditText QuantityEditText;
+    private EditText UnitsEditText;
+    private EditText PriceEditText;
+    private TextInputLayout DescriptionTextInputLayout;
+    private TextInputLayout QuantityTextInputLayout;
+    private TextInputLayout UnitsTextInputLayout;
+    private TextInputLayout PriceTextInputLayout;
 
-    Spinner UnitsSpinner;
+    private Spinner UnitsSpinner;
 
 
     @Override
@@ -102,30 +102,23 @@ public class AddLineFragment extends Fragment {
         UnitsEditText.setVisibility(View.INVISIBLE);
 
 
-        ArrayList<String> spinnerArray =  new ArrayList<String>();
+        ArrayList<String> spinnerArray = new ArrayList<>();
         spinnerArray.add("EA");
         spinnerArray.add("HR");
         spinnerArray.add("LB");
         spinnerArray.add("Custom...");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.simplelistitem, spinnerArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.simplelistitem, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         UnitsSpinner.setAdapter(adapter);
-        //String selected = sItems.getSelectedItem().toString();
-       // if (selected.equals("what ever the option was")) {
-        //}
+
     }
 
 
 
 
 
-    public boolean Validate()
+    private boolean Validate()
     {
-
-      //  TextInputLayout DescriptionTextInputLayout;
-    //    TextInputLayout QuantityTextInputLayout;
-  //      TextInputLayout UnitsTextInputLayout;
-//        TextInputLayout PriceTextInputLayout;
 
         if (DescriptionEditText.getText().toString().trim().isEmpty()) {
             DescriptionTextInputLayout.setError("Please enter a description");
@@ -224,7 +217,6 @@ public class AddLineFragment extends Fragment {
         }
         invoiceLine.setPrice(Double.valueOf(PriceEditText.getText().toString()));
         invoiceLine.setLineTotal();
-        invoiceLine.Verify();
         return invoiceLine;
     }
 

@@ -28,17 +28,17 @@ import java.net.URLEncoder;
  * This version of the class returns Strings, not JSONObject.
  */
 
-public class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
+class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
     private String type;
-    private String login_url= "http://hardhatz.org/login.php";
-    private String createuser_url="http://hardhatz.org/createuser.php";
-    private String sendinvoiceemail_url="http://hardhatz.org/sendinvoiceemail.php";
-    private String addcustomer_url = "http://hardhatz.org/addcustomer.php";
-    private String generateinvoice_url = "http://hardhatz.org/generateinvoice.php";
-    private String getgcemail_url= "http://hardhatz.org/getgcemail.php";
-    private String SendEmail_url="http://hardhatz.org/phpmailtext.php";
-    private String checkusername_url="http://hardhatz.org/checkusername.php";
+    private final String login_url= "http://hardhatz.org/login.php";
+    private final String createuser_url="http://hardhatz.org/createuser.php";
+    private final String sendinvoiceemail_url="http://hardhatz.org/sendinvoiceemail.php";
+    private final String addcustomer_url = "http://hardhatz.org/addcustomer.php";
+    private final String generateinvoice_url = "http://hardhatz.org/generateinvoice.php";
+    private final String getgcemail_url= "http://hardhatz.org/getgcemail.php";
+    private final String SendEmail_url="http://hardhatz.org/phpmailtext.php";
+    private final String checkusername_url="http://hardhatz.org/checkusername.php";
     BackgroundWorker() {}
     /**
      * Returns a String object representing the created POST.

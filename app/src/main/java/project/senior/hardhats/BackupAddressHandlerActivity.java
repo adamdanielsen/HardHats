@@ -14,18 +14,18 @@ import android.widget.Spinner;
 
 public class BackupAddressHandlerActivity extends AppCompatActivity {
 
-    EditText streetEditText;
-    EditText cityEditText;
-    EditText zipCodeEditText;
-    TextInputLayout streetTextInputLayout;
-    TextInputLayout cityTextInputLayout;
-    TextInputLayout zipCodeTextInputLayout;
+    private EditText streetEditText;
+    private EditText cityEditText;
+    private EditText zipCodeEditText;
+    private TextInputLayout streetTextInputLayout;
+    private TextInputLayout cityTextInputLayout;
+    private TextInputLayout zipCodeTextInputLayout;
 
-    String customer_state;
-    String addressToSendBack;
-    Spinner statespinner;
-    Button continueButton;
-    Button cancelButton;
+    private String customer_state;
+    private String addressToSendBack;
+    private Spinner statespinner;
+    private Button continueButton;
+    private Button cancelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +128,7 @@ public class BackupAddressHandlerActivity extends AppCompatActivity {
         finish();
     }
 
-    private AdapterView.OnItemSelectedListener state_listener = new AdapterView.OnItemSelectedListener() {
+    private final AdapterView.OnItemSelectedListener state_listener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             if (position > 0) {

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class InvoicePreviewListFragment extends Fragment {
     private static final DecimalFormat df = new DecimalFormat("$0.00");
 
-    ListView invoicesListView;
+    private ListView invoicesListView;
     public InvoicePreviewListFragment() {
         // Required empty public constructor
     }
@@ -60,9 +60,9 @@ public class InvoicePreviewListFragment extends Fragment {
 
     private class InvoiceForMenuAdapter extends BaseAdapter
     {
-        Context context;
+        final Context context;
 
-        ArrayList<MenuActivity.InvoiceForPreview> invoiceLines;
+        final ArrayList<MenuActivity.InvoiceForPreview> invoiceLines;
 
         InvoiceForMenuAdapter(Context context, ArrayList<MenuActivity.InvoiceForPreview> invoiceLines) {
             this.context = context;

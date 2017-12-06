@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 
 public class CustomerPreviewListFragment extends Fragment{
 
-    ListView customerListView;
+    private ListView customerListView;
     public CustomerPreviewListFragment() {
         // Required empty public constructor
     }
@@ -53,9 +52,9 @@ public class CustomerPreviewListFragment extends Fragment{
     }
     private class CustomerForMenuAdapter extends BaseAdapter
     {
-        Context context;
+        final Context context;
 
-        ArrayList<MenuActivity.CustomerForPreview> customerLines;
+        final ArrayList<MenuActivity.CustomerForPreview> customerLines;
 
         CustomerForMenuAdapter(Context context, ArrayList<MenuActivity.CustomerForPreview> customerLines) {
             this.context = context;

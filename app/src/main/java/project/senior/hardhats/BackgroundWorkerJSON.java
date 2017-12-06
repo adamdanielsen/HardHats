@@ -29,15 +29,14 @@ import java.net.URLEncoder;
  */
 
 
+class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
 
-public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
 
-
-    String type;
-    String login_url= "http://hardhatz.org/loginJSON.php";
-    String createuser_url="http://hardhatz.org/createuser.php";
-    String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
-    String getUser_url="http://hardhatz.org/getUserInfo.php";
+    private String type;
+    private final String login_url= "http://hardhatz.org/loginJSON.php";
+    private final String createuser_url="http://hardhatz.org/createuser.php";
+    private final String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
+    private final String getUser_url="http://hardhatz.org/getUserInfo.php";
 
     public BackgroundWorkerJSON()
     {
@@ -57,7 +56,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
      */
 
 
-    protected String PostBuilder (DataContainer dataContainer)
+    private String PostBuilder(DataContainer dataContainer)
 
     {
         StringBuilder postdata= new StringBuilder();
@@ -93,7 +92,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
      * @return  The result of the script.
      */
 
-    protected JSONObject ExecuteRequest(String urlName, DataContainer dataContainer)
+    private JSONObject ExecuteRequest(String urlName, DataContainer dataContainer)
     {
 
         try {
@@ -145,7 +144,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
      * @param   dataContainer   Data to be passed to script.
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
-    protected JSONObject LoginProcedure(DataContainer dataContainer)
+    private JSONObject LoginProcedure(DataContainer dataContainer)
     {
         return ExecuteRequest(login_url, dataContainer);
     }
@@ -157,7 +156,7 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
      * @param   dataContainer   Data to be passed to script.
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
-    protected JSONObject RegisterProcedure(DataContainer dataContainer)
+    private JSONObject RegisterProcedure(DataContainer dataContainer)
     {
         return ExecuteRequest(createuser_url, dataContainer);
     }
@@ -169,11 +168,11 @@ public class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObjec
      * @param   dataContainer   Data to be passed to script.
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
-    protected JSONObject InvoiceExportProcedure(DataContainer dataContainer) {
+    private JSONObject InvoiceExportProcedure(DataContainer dataContainer) {
         return ExecuteRequest(invoiceexport_url, dataContainer);
     }
 
-    protected JSONObject getUserData(DataContainer dataContainer){
+    private JSONObject getUserData(DataContainer dataContainer){
         return ExecuteRequest(getUser_url, dataContainer);
     }
 

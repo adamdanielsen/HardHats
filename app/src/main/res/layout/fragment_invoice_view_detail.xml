@@ -14,14 +14,14 @@
             android:id="@+id/fragmentinvoiceviewdetail_displayTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment" />
+            android:text="" />
 
         <Button
             android:id="@+id/fragmentinvoiceviewdetail_sendEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
-            android:text="Send Email" />
+            android:text="@string/fragmentinvoiceviewdetail_sendemail" />
 
 
     </LinearLayout>

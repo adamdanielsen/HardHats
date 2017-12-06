@@ -21,47 +21,47 @@ import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import java.util.concurrent.ExecutionException;
 public class RegisterActivity extends AppCompatActivity {
 
-        EditText usernameEditText;
-        EditText passwordEditText;
-        EditText confirmpasswordEditText;
-        EditText firstNameEditText;
-        EditText lastNameEditText;
-        EditText phoneNumberEditText;
-        EditText faxNumberEditText;
-        EditText licenseNumberEditText;
-        EditText emailAddressEditText;
-        EditText companyNameEditText;
+        private EditText usernameEditText;
+        private EditText passwordEditText;
+        private EditText confirmpasswordEditText;
+        private EditText firstNameEditText;
+        private EditText lastNameEditText;
+        private EditText phoneNumberEditText;
+        private EditText faxNumberEditText;
+        private EditText licenseNumberEditText;
+        private EditText emailAddressEditText;
+        private EditText companyNameEditText;
 
-        TextInputLayout usernameTextInputLayout;
-        TextInputLayout passwordTextInputLayout;
-        TextInputLayout confirmpasswordTextInputLayout;
-        TextInputLayout firstNameTextInputLayout;
-        TextInputLayout lastNameTextInputLayout;
-        TextInputLayout phoneNumberTextInputLayout;
-        TextInputLayout faxNumberTextInputLayout;
-        TextInputLayout licenseNumberTextInputLayout;
-        TextInputLayout emailAddressTextInputLayout;
-        TextInputLayout companyNameTextInputLayout;
+        private TextInputLayout usernameTextInputLayout;
+        private TextInputLayout passwordTextInputLayout;
+        private TextInputLayout confirmpasswordTextInputLayout;
+        private TextInputLayout firstNameTextInputLayout;
+        private TextInputLayout lastNameTextInputLayout;
+        private TextInputLayout phoneNumberTextInputLayout;
+        private TextInputLayout faxNumberTextInputLayout;
+        private TextInputLayout licenseNumberTextInputLayout;
+        private TextInputLayout emailAddressTextInputLayout;
+        private TextInputLayout companyNameTextInputLayout;
 
-        String username;
-        String password;
-        String firstName;
-        String lastName;
-        String phoneNumber;
-        String faxNumber;
-        String licenseNumber;
-        String emailAddress;
-        String companyName;
-        String addressToUse;
+        private String username;
+        private String password;
+        private String firstName;
+        private String lastName;
+        private String phoneNumber;
+        private String faxNumber;
+        private String licenseNumber;
+        private String emailAddress;
+        private String companyName;
+        private String addressToUse;
 
 
 
-    Place address;
-        String backupAddress;
-        boolean googleError;
+    private Place address;
+        private String backupAddress;
+        private boolean googleError;
 
-        Button continueButton;
-        Button cancelButton;
+        private Button continueButton;
+        private Button cancelButton;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
@@ -138,10 +138,12 @@ public class RegisterActivity extends AppCompatActivity {
                             .setFilter(typeFilter)
                             .build(this);
             startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+        }
+            catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
             googleError=true;
-            Toast.makeText(this, "Error starting Google Places, launcing backup", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error starting Google Places, launching backup", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(this, BackupAddressHandlerActivity.class);
+            Toast.makeText(this, "Please select your address", Toast.LENGTH_LONG).show();
             startActivityForResult(i, 1);
         }
 
@@ -150,9 +152,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-
-
             if (!googleError)
         {
             if (resultCode == RESULT_OK) {
@@ -164,7 +163,8 @@ public class RegisterActivity extends AppCompatActivity {
                 address = null;
             }
 
-        if (address == null) {
+
+            if (address == null) {
 
             Toast.makeText(this, "No Address Selected", Toast.LENGTH_SHORT).show();
             return;
@@ -229,7 +229,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private boolean Validate() {
 
-        boolean validationFlag = true;
+        boolean validationFlag;
         validationFlag=true;
         DataContainer dataContainer = new DataContainer();
         dataContainer.type="checkusername";
@@ -256,16 +256,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         try {
             String registrationResult = backgroundWorker.execute(dataContainer).get();
-
             if (registrationResult==null)
             {
                 Toast.makeText(this, "Connection Error", Toast.LENGTH_SHORT).show();
                 return false;
             }
-
             switch (registrationResult) {
-
-
                     case "BAD":
                     usernameTextInputLayout.setError("Username Taken");
                     requestFocus(usernameEditText);

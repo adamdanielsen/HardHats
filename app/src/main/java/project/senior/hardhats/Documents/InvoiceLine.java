@@ -106,12 +106,6 @@ public class InvoiceLine{
         this.lineTotal = price*quantity;
     }
 
-    public boolean Verify() {
-        //do some verify stuff
-
-        return true;
-    }
-
     public String getJsonString() throws JSONException {
 
     return "{\"invoiceFK\":"+invoiceFK+",\"lineTotal\":"+lineTotal+",\"materialsID\":"+materialsID+",\"price\":"+price+",\"quantity\":"+quantity+",\"type\":\""+type+"\",\"units\":\""+units+"\"}";

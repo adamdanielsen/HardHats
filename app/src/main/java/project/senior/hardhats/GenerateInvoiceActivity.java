@@ -3,7 +3,6 @@ package project.senior.hardhats;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,15 +26,15 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
 
     // TODO Clean this garbage up, change for loop to standard, change php script to do ORDER BY
 
-    Spinner customerSpinner;
-    Button chooseCustomerButton;
-    CheckBox useGCEmailCheckBox;
-    EditText GCEmailEditText;
-    TextView firstNameTextBox;
-    TextView lastNameTextBox;
-    TextView phoneNumberTextBox;
-    TextView emailAddressTextBox;
-    TextView addressTextBox;
+    private Spinner customerSpinner;
+    private Button chooseCustomerButton;
+    private CheckBox useGCEmailCheckBox;
+    private EditText GCEmailEditText;
+    private TextView firstNameTextBox;
+    private TextView lastNameTextBox;
+    private TextView phoneNumberTextBox;
+    private TextView emailAddressTextBox;
+    private TextView addressTextBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +88,7 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ArrayAdapter<Person> adapter = new ArrayAdapter<Person>(this , R.layout.simplelistitem, customersForSpinnerList);
+        ArrayAdapter<Person> adapter = new ArrayAdapter<>(this, R.layout.simplelistitem, customersForSpinnerList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         customerSpinner.setAdapter(adapter);
         chooseCustomerButton.setEnabled(false);
@@ -176,35 +175,5 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
             }
         });
     }
-    String TAG ="GenerateInvoiceActivity";
-    @Override
-    protected void onResume() {
 
-        super.onResume();
-        Log.d(TAG, "onResume: ");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause: ");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "onRestart: ");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart: ");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop: ");
-    }
 }

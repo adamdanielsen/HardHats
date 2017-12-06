@@ -16,7 +16,6 @@ public class SessionData {
     private String UserID;
     private String lastStringResult;
     private String companyName;
-    private String password;
     private String faxNumber;
     private String phoneNumber;
     private String lastName;
@@ -31,11 +30,11 @@ public class SessionData {
     private ArrayList<String>  lastStringArrayResult;
     private SessionData(){
         username = "";
-        lastStringArrayResult=new ArrayList<String>();
+        lastStringArrayResult= new ArrayList<>();
         lastStringResult="";
     }
 
-    public static SessionData getInstance(){
+    static SessionData getInstance(){
         if(mInstance == null)
         {
             mInstance = new SessionData();
@@ -44,47 +43,43 @@ public class SessionData {
     }
 
 
-    public void setUsername(String value){
+    void setUsername(String value){
 
         username = value;
     }
 
-    public String getUsername(){
+    String getUsername(){
 
         return this.username;
     }
 
-    public void eraseUsername(){
+    void eraseUsername(){
 
         username="";
     }
 
 
-    public void setUserID(String userID) {
+    void setUserID(String userID) {
         UserID = userID;
     }
 
-    public String getCompanyName() {
+    String getCompanyName() {
         return companyName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getFaxNumber() {
+    String getFaxNumber() {
         return faxNumber;
     }
 
-    public String getPhoneNumber() {
+    String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public String getLastName() {
+    String getLastName() {
         return lastName;
     }
 
-    public String getFirstName() {
+    String getFirstName() {
         return firstName;
     }
 
@@ -92,27 +87,27 @@ public class SessionData {
         return licenseNumber;
     }
 
-    public String getEmailAddress() {
+    String getEmailAddress() {
         return emailAddress;
     }
 
-    public String getZipCode() {
+    String getZipCode() {
         return zipCode;
     }
 
-    public String getStreet() {
+    String getStreet() {
         return street;
     }
 
-    public String getCity() {
+    String getCity() {
         return city;
     }
 
-    public String getState() {
+    String getState() {
         return state;
     }
 
-    public void getUserData (){
+    void getUserData(){
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("user_id");
@@ -142,13 +137,12 @@ public class SessionData {
         }
     }
 
-    public String getUserID() {
+    String getUserID() {
         return UserID;
     }
 
-    public void eraseUserID()
+    private void eraseUserID()
     {
-
         UserID= "";
     }
 
@@ -162,15 +156,15 @@ public class SessionData {
     }
 
     public ArrayList<String> getAndEraseLastStringArrayResult() {
-        ArrayList<String> temp = new ArrayList<String>();
+        ArrayList<String> temp = new ArrayList<>();
         temp=lastStringArrayResult;
-        lastStringArrayResult=new ArrayList<String>();
+        lastStringArrayResult= new ArrayList<>();
         return temp;
     }
 
 
     private void eraseLastStringArrayResult() {
-        lastStringArrayResult=new ArrayList<String>();
+        lastStringArrayResult= new ArrayList<>();
     }
 
     public void setLastStringResult(String value) {
@@ -193,7 +187,7 @@ public class SessionData {
     }
 
 
-    public static void Reset() {
+    static void Reset() {
         getInstance().eraseUsername();
         getInstance().eraseLastStringResult();
         getInstance().eraseLastStringArrayResult();
