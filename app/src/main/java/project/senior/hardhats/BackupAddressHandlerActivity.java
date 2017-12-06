@@ -2,6 +2,7 @@ package project.senior.hardhats;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,7 +16,11 @@ public class BackupAddressHandlerActivity extends AppCompatActivity {
 
     EditText streetEditText;
     EditText cityEditText;
-    EditText zipcodeEditText;
+    EditText zipCodeEditText;
+    TextInputLayout streetTextInputLayout;
+    TextInputLayout cityTextInputLayout;
+    TextInputLayout zipCodeTextInputLayout;
+
     String customer_state;
     String addressToSendBack;
     Spinner statespinner;
@@ -28,7 +33,12 @@ public class BackupAddressHandlerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_backup_address_handler);
         streetEditText=(EditText) findViewById(R.id.backup_streetEditText);
         cityEditText=(EditText) findViewById(R.id.backup_cityEditText);
-        zipcodeEditText=(EditText) findViewById(R.id.backup_zipCodeEditText);
+        zipCodeEditText =(EditText) findViewById(R.id.backup_zipCodeEditText);
+        streetTextInputLayout=(TextInputLayout) findViewById(R.id.backup_streetTextInputLayout);
+        cityTextInputLayout=(TextInputLayout) findViewById(R.id.backup_cityTextInputLayout);
+        zipCodeTextInputLayout=(TextInputLayout) findViewById(R.id.backup_zipCodeTextInputLayout);
+
+
         statespinner = (Spinner) findViewById(R.id.backup_stateSpinner);
         continueButton=(Button) findViewById(R.id.backup_continue);
         cancelButton=(Button) findViewById(R.id.backup_cancel);
@@ -52,26 +62,24 @@ public class BackupAddressHandlerActivity extends AppCompatActivity {
 
 
     private void onContinue() {
-        if (Verify())
+        if (Validate())
         {
          return;
         }
         String street= streetEditText.getText().toString();
         String city= cityEditText.getText().toString();
         String state=statespinner.getSelectedItem().toString();
-        String zipcode=zipcodeEditText.getText().toString();
+        String zipcode= zipCodeEditText.getText().toString();
         String country="USA";
-        StringBuilder addressBuild= new StringBuilder();
-        addressBuild.append(street);
-        addressBuild.append(", ");
-        addressBuild.append(city);
-        addressBuild.append(", ");
-        addressBuild.append(state);
-        addressBuild.append(" ");
-        addressBuild.append(zipcode);
-        addressBuild.append(", ");
-        addressBuild.append(country);
-        addressToSendBack=addressBuild.toString();
+        addressToSendBack= street +
+                ", " +
+                city +
+                ", " +
+                state +
+                " " +
+                zipcode +
+                ", " +
+                country;
 
         Intent data = new Intent();
         data.putExtra("address",addressToSendBack);
@@ -79,9 +87,37 @@ public class BackupAddressHandlerActivity extends AppCompatActivity {
         finish();
     }
 
-    private boolean Verify() {
-        //todo finish this
-        return true;
+    private boolean Validate() {
+
+        boolean validationFlag=true;
+        if (streetEditText.getText().toString().trim().isEmpty()) {
+            streetTextInputLayout.setError("Please fill out the street");
+            requestFocus(streetEditText);
+            validationFlag=false;
+        }
+        else {
+            streetTextInputLayout.setErrorEnabled(false);
+        }
+
+        if (cityEditText.getText().toString().trim().isEmpty()) {
+            cityTextInputLayout.setError("Please fill out the City");
+            requestFocus(cityEditText);
+            validationFlag=false;
+        }
+        else {
+            cityTextInputLayout.setErrorEnabled(false);
+        }
+
+        if (zipCodeEditText.getText().toString().trim().isEmpty()) {
+            zipCodeTextInputLayout.setError("Please fill out the Zip Code");
+            requestFocus(zipCodeEditText);
+            validationFlag=false;
+        }
+        else {
+            zipCodeTextInputLayout.setErrorEnabled(false);
+        }
+
+        return validationFlag;
     }
 
 

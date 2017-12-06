@@ -48,12 +48,20 @@
         android:maxLength="@integer/MAXPASSWORDLENGTH"
         android:text=""/>
     </android.support.design.widget.TextInputLayout>
-    <Button
-        android:background="?android:attr/selectableItemBackground"
-        android:id="@+id/login_LoginButton"
-        android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_Login" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/login_LoginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/login_Login" />
+    </LinearLayout>
 
     <Button
         android:background="?android:attr/selectableItemBackground"

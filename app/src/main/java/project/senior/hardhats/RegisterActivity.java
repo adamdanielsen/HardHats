@@ -229,6 +229,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private boolean Validate() {
 
+        boolean validationFlag = true;
+        validationFlag=true;
         DataContainer dataContainer = new DataContainer();
         dataContainer.type="checkusername";
         dataContainer.phpVariableNames.add("user_name");
@@ -238,17 +240,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (usernameEditText.getText().toString().trim().isEmpty()) {
             usernameTextInputLayout.setError("Please fill out your username");
             requestFocus(usernameEditText);
-         //   usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             usernameTextInputLayout.setErrorEnabled(false);
@@ -256,23 +248,11 @@ public class RegisterActivity extends AppCompatActivity {
         if ((usernameEditText.getText().toString().trim().length())<getResources().getInteger(R.integer.MINUSERNAMELENGTH)) {
             usernameTextInputLayout.setError("Your Username is too short");
             requestFocus(usernameEditText);
-            //   usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             usernameTextInputLayout.setErrorEnabled(false);
         }
-
-
 
         try {
             String registrationResult = backgroundWorker.execute(dataContainer).get();
@@ -281,42 +261,23 @@ public class RegisterActivity extends AppCompatActivity {
             {
                 Toast.makeText(this, "Connection Error", Toast.LENGTH_SHORT).show();
                 return false;
-
             }
 
             switch (registrationResult) {
 
-                case "BAD":
+
+                    case "BAD":
                     usernameTextInputLayout.setError("Username Taken");
                     requestFocus(usernameEditText);
-                    //   usernameTextInputLayout.setErrorEnabled(false);
-                    passwordTextInputLayout.setErrorEnabled(false);
-                    confirmpasswordTextInputLayout.setErrorEnabled(false);
-                    firstNameTextInputLayout.setErrorEnabled(false);
-                    lastNameTextInputLayout.setErrorEnabled(false);
-                    phoneNumberTextInputLayout.setErrorEnabled(false);
-                    faxNumberTextInputLayout.setErrorEnabled(false);
-                    licenseNumberTextInputLayout.setErrorEnabled(false);
-                    emailAddressTextInputLayout.setErrorEnabled(false);
-                    companyNameTextInputLayout.setErrorEnabled(false);
-                    return false;
-                case "GOOD":
+                    validationFlag=false;
+                    break;
+                    case "GOOD":
                     usernameTextInputLayout.setErrorEnabled(false);
                     break;
                 default:
                     usernameTextInputLayout.setError("Connection error");
                     requestFocus(usernameEditText);
-                    //   usernameTextInputLayout.setErrorEnabled(false);
-                    passwordTextInputLayout.setErrorEnabled(false);
-                    confirmpasswordTextInputLayout.setErrorEnabled(false);
-                    firstNameTextInputLayout.setErrorEnabled(false);
-                    lastNameTextInputLayout.setErrorEnabled(false);
-                    phoneNumberTextInputLayout.setErrorEnabled(false);
-                    faxNumberTextInputLayout.setErrorEnabled(false);
-                    licenseNumberTextInputLayout.setErrorEnabled(false);
-                    emailAddressTextInputLayout.setErrorEnabled(false);
-                    companyNameTextInputLayout.setErrorEnabled(false);
-                    return false;
+                    validationFlag=false;
             }
 
 
@@ -325,33 +286,13 @@ public class RegisterActivity extends AppCompatActivity {
             e.printStackTrace();
             usernameTextInputLayout.setError("Connection error");
             requestFocus(usernameEditText);
-            //   usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
 
         if (passwordEditText.getText().toString().trim().isEmpty()) {
             passwordTextInputLayout.setError("Please fill out your password");
             requestFocus(passwordEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-        //    passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             passwordTextInputLayout.setErrorEnabled(false);
@@ -361,17 +302,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (passwordEditText.getText().toString().trim().length()<getResources().getInteger(R.integer.MINPASSWORDLENGTH)) {
             passwordTextInputLayout.setError("Your Password is too short");
             requestFocus(usernameEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-            //passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             passwordTextInputLayout.setErrorEnabled(false);
@@ -383,33 +314,13 @@ public class RegisterActivity extends AppCompatActivity {
         if (confirmpasswordEditText.getText().toString().trim().isEmpty()) {
             confirmpasswordTextInputLayout.setError("Please confirm your password");
             requestFocus(confirmpasswordEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            //confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else if (confirmpasswordEditText.getText().toString().equals(passwordEditText.toString()))
         {
             confirmpasswordTextInputLayout.setError("Passwords don't match");
             requestFocus(passwordEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            //confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             passwordTextInputLayout.setErrorEnabled(false);
@@ -420,17 +331,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (firstNameEditText.getText().toString().trim().isEmpty()) {
             firstNameTextInputLayout.setError("Please fill out your First Name");
             requestFocus(firstNameEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            //firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             firstNameTextInputLayout.setErrorEnabled(false);
@@ -440,17 +341,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (lastNameEditText.getText().toString().trim().isEmpty()) {
             lastNameTextInputLayout.setError("Please fill out your Last Name");
             requestFocus(lastNameEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            //lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             lastNameTextInputLayout.setErrorEnabled(false);
@@ -460,17 +351,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (phoneNumberEditText.getText().toString().trim().isEmpty()) {
             phoneNumberTextInputLayout.setError("Please fill out your Phone Number");
             requestFocus(phoneNumberEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            //phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             phoneNumberTextInputLayout.setErrorEnabled(false);
@@ -479,17 +360,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (emailAddressEditText.getText().toString().trim().isEmpty()) {
             emailAddressTextInputLayout.setError("Please fill out your Email Address");
             requestFocus(emailAddressEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            //emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             emailAddressTextInputLayout.setErrorEnabled(false);
@@ -499,17 +370,7 @@ public class RegisterActivity extends AppCompatActivity {
         if ((!android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddressEditText.getText().toString().trim()).matches())) {
             emailAddressTextInputLayout.setError("Please enter a valid Email");
             requestFocus(emailAddressEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            //emailAddressTextInputLayout.setErrorEnabled(false);
-            companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             emailAddressTextInputLayout.setErrorEnabled(false);
@@ -518,22 +379,12 @@ public class RegisterActivity extends AppCompatActivity {
         if (companyNameEditText.getText().toString().trim().isEmpty()) {
             companyNameTextInputLayout.setError("Please fill out your Company Name");
             requestFocus(companyNameEditText);
-            usernameTextInputLayout.setErrorEnabled(false);
-            passwordTextInputLayout.setErrorEnabled(false);
-            confirmpasswordTextInputLayout.setErrorEnabled(false);
-            firstNameTextInputLayout.setErrorEnabled(false);
-            lastNameTextInputLayout.setErrorEnabled(false);
-            phoneNumberTextInputLayout.setErrorEnabled(false);
-            faxNumberTextInputLayout.setErrorEnabled(false);
-            licenseNumberTextInputLayout.setErrorEnabled(false);
-            emailAddressTextInputLayout.setErrorEnabled(false);
-            //companyNameTextInputLayout.setErrorEnabled(false);
-            return false;
+            validationFlag=false;
         }
         else {
             emailAddressTextInputLayout.setErrorEnabled(false);
         }
-        return true;
+        return validationFlag;
     }
 
     private void requestFocus(View view) {
