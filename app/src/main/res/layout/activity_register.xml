@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -19,6 +18,11 @@
             android:textColor="#006622"
             android:textSize="30sp" />
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_usernameTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/register_UserNameEditText"
             android:layout_width="match_parent"
@@ -27,6 +31,12 @@
             android:imeOptions="flagNoExtractUi"
             android:inputType="textPersonName"
             android:maxLength="@integer/MAXUSERNAMELENGTH" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_passwordTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/register_PasswordEditText"
@@ -36,14 +46,27 @@
             android:imeOptions="flagNoExtractUi"
             android:inputType="textPassword"
             android:maxLength="@integer/MAXPASSWORDLENGTH" />
+        </android.support.design.widget.TextInputLayout>
 
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_confirmPasswordTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/register_ConfirmPasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/register_ConfirmPassword"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:maxLength="@integer/MAXPASSWORDLENGTH"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_firstNameTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/user_firstName_editText"
@@ -52,6 +75,12 @@
             android:ems="10"
             android:hint="@string/first_name"
             android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_lastNameTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/user_lastName_editText"
@@ -60,6 +89,12 @@
             android:ems="10"
             android:hint="@string/last_name"
             android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_phoneNumberTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/user_phoneNumber_editText"
@@ -70,6 +105,14 @@
             android:hint="@string/phone_number"
             android:inputType="phone" />
 
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_faxNumberTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/user_faxNumber_editText"
             android:layout_width="match_parent"
@@ -78,6 +121,12 @@
             android:hint="@string/fax_number"
             android:inputType="number"
             android:digits="0123456789+"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_licenseNumberTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/user_licenseNumber_editText"
@@ -87,6 +136,12 @@
             android:hint="@string/licesneNumber"
             android:inputType="number"
             android:digits="0123456789+"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_emailAddressTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/user_emailAddress_editText"
@@ -95,6 +150,12 @@
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_companyNameTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/user_CompanyName_editText"
@@ -103,57 +164,17 @@
             android:ems="10"
             android:hint="@string/company"
             android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/user_streetAddress_editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/street"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/user_city_editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/city"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/user_zipCode_editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/zip_code"
-            android:inputType="number"
-            android:digits="0123456789+"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/user_state_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/state"
-                android:textSize="20sp" />
-
-            <Spinner
-                android:id="@+id/user_state_spinner"
-                android:layout_width="96dp"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+        </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/register_RegisterButton"
+            android:id="@+id/register_ContinueButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register_Register" />
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/register_Continue" />
 
         <Button
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/register_CancelButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

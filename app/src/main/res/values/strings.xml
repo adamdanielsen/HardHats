@@ -81,6 +81,7 @@
     <string name="invoicecreate_cancelline">Cancel Line</string>
     <string name="cancel">Cancel</string>
     <string name="fragmentinvoice_backtopreview">BACK TO PREVIEW</string>
+    <string name="register_Continue">CONTINUE</string>
 
     <string-array name="states">
         <item>AL</item>
@@ -134,4 +135,5 @@
         <item>WI</item>
         <item>WY</item>
     </string-array>
+    <string name="title_activity_register_place_picker">RegisterPlacePickerActivity</string>
 </resources>

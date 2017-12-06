@@ -49,12 +49,14 @@
         android:text=""/>
     </android.support.design.widget.TextInputLayout>
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/login_LoginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_Login" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/login_RegisterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,6 +72,7 @@
         tools:layout_editor_absoluteY="568dp" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/main_debug"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
