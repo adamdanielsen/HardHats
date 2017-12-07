@@ -153,15 +153,7 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    DataContainer dataContainer= new DataContainer();
-                    dataContainer.type="getgcemail";
-                    dataContainer.phpVariableNames.add("user_id");
-                    dataContainer.dataPassedIn.add(SessionData.getInstance().getUserID());
-                    try {
-                        GCEmail= new BackgroundWorker().execute(dataContainer).get();
-                    } catch (InterruptedException | ExecutionException e) {
-                        return;
-                    }
+                    GCEmail="";
 
                 }
 

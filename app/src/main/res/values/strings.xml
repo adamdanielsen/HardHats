@@ -117,4 +117,5 @@
     <string name="fragmentinvicepreviewlist_date">DATE</string>
     <string name="fragmentinvoiceviewdetail_sendemail">Send Email</string>
     <string name="invoiceviewdetailfragment_total">TOTAL:</string>
+    <string name="title_activity_send_email">SendEmailActivity</string>
 </resources>

@@ -1,6 +1,5 @@
 package project.senior.hardhats;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -75,14 +73,10 @@ public class InvoiceViewDetailFragment extends Fragment {
         int actionBarHeight = 0;
         TypedValue tv = new TypedValue();
         if (getActivity().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data,getResources().getDisplayMetrics());
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
         }
 
         view.setMinimumHeight(screenHeight - actionBarHeight + 5);
-
-
-
-
 
 
         displayTextView = (TextView) view.findViewById(R.id.fragmentinvoiceviewdetail_displayTextView);
@@ -91,36 +85,14 @@ public class InvoiceViewDetailFragment extends Fragment {
         sendEmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BackgroundWorker sendEmailWorker = new BackgroundWorker();
-                DataContainer dataContainer = new DataContainer();
-                dataContainer.type="SendEmail";
-                dataContainer.phpVariableNames.add("toAddress");
-                dataContainer.phpVariableNames.add("invoicestring");
-                dataContainer.dataPassedIn.add(currentInvoice.getCustomerAddress().getEmailAddress());
-                dataContainer.dataPassedIn.add(currentInvoice.createTxtString());
-                String s="";
-                try {
-                    sendEmailWorker.execute(dataContainer).get();
-                    Toast.makeText(getContext(), "Allow a few minutes for the invoice to arrive", Toast.LENGTH_SHORT).show();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-
-                AlertDialog.Builder box = new AlertDialog.Builder(getContext());
-                box.setMessage("s");
-                //box.show();
-
+                onInvoiceActionsClick();
             }
         });
 
-        //invoiceAdapter = new InvoiceAdapter(getContext(),array);
-        //previewListView.setAdapter(invoiceAdapter);
-        //Refresh();
-
     }
 
+    private void onInvoiceActionsClick() {
+    }
 
     public void Refresh()
     {

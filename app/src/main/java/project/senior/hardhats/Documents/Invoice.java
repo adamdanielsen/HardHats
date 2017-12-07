@@ -23,7 +23,7 @@ public class Invoice {
     private ArrayList<InvoiceLine> invoiceLines;
     private double total;
     private final DecimalFormat df = new DecimalFormat("$0.00");
-
+    boolean paid;
 
 
     public Invoice (String InvoiceId) throws InterruptedException, ExecutionException, JSONException {
@@ -35,7 +35,7 @@ public class Invoice {
         JSONArray returnedData = getInvoiceData.execute(invoiceIdData).get();
 
         date=returnedData.getJSONObject(0).getString("InvoiceDate");
-
+        paid=returnedData.getJSONObject(0).getBoolean("Paid");
         customerAddress=new Person(returnedData.getJSONObject(1), "Customer");
 
         contractorAddress=new Person( returnedData.getJSONObject(2), "Contractor");
@@ -63,9 +63,9 @@ public class Invoice {
     public String createTxtString()
     {
         StringBuilder invoiceString = new StringBuilder();
-
+        invoiceString.append("Contractor:\n");
         invoiceString.append(contractorAddress.BuildContractorAddressForInvoice());
-        invoiceString.append("\n\n");
+        invoiceString.append("\n\nBill To:\n");
         invoiceString.append(customerAddress.BuildCustomerAddressForInvoice());
         invoiceString.append("\n___________________________________________________________________________\n");
         double finalTotal = 0;
@@ -113,5 +113,21 @@ public class Invoice {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }

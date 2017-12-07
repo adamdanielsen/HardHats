@@ -62,7 +62,7 @@ public class Person {
 
     public String BuildContractorAddressForInvoice()
     {
-        String address = companyName +
+        String formattedaddress = companyName +
                 "\n" +
                 phoneNumber +
                 "\n" +
@@ -70,19 +70,13 @@ public class Person {
                 " " +
                 lastName +
                 "\n" +
-                street +
-                "\n" +
-                city +
-                "," +
-                state +
-                " " +
-                zipCode +
+                address +
                 "\n" +
                 "License #: " +
                 licenseNumber;
 
 
-        return address;
+        return formattedaddress;
     }
 
 

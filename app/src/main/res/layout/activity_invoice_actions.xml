@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="project.senior.hardhats.InvoiceActionsActivity">
+
+
+    <Button
+        android:id="@+id/sendemail_emailToSelfButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email To Self" />
+
+    <Button
+        android:id="@+id/sendemail_emailToGeneralContractorButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email to General Contractor" />
+
+    <Button
+        android:id="@+id/sendemail_emailToCustomerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email To Customer" />
+
+    <Button
+        android:id="@+id/invoiceoptions_paidButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/invoiceoptions_cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Account Email" />
+
+    <TextView
+        android:id="@+id/invoiceoptions_selfEmailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CustomerEmail" />
+
+    <TextView
+        android:id="@+id/invoiceoptions_customerEmailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="General Contractor Email" />
+
+    <TextView
+        android:id="@+id/invoiceoptions_gcEmailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Payment Status" />
+
+    <TextView
+        android:id="@+id/invoiceoptions_paidTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

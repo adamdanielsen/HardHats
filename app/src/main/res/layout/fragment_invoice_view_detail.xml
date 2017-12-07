@@ -10,18 +10,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/fragmentinvoiceviewdetail_sendEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Invoice Actions" />
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/fragmentinvoiceviewdetail_displayTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="" />
-
-        <Button
-            android:id="@+id/fragmentinvoiceviewdetail_sendEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:text="@string/fragmentinvoiceviewdetail_sendemail" />
 
 
     </LinearLayout>
