@@ -23,7 +23,7 @@ public class Invoice {
     private ArrayList<InvoiceLine> invoiceLines;
     private double total;
     private final DecimalFormat df = new DecimalFormat("$0.00");
-    boolean paid;
+    private boolean paid;
 
 
     public Invoice (String InvoiceId) throws InterruptedException, ExecutionException, JSONException {
@@ -35,7 +35,9 @@ public class Invoice {
         JSONArray returnedData = getInvoiceData.execute(invoiceIdData).get();
 
         date=returnedData.getJSONObject(0).getString("InvoiceDate");
-        paid=returnedData.getJSONObject(0).getBoolean("Paid");
+
+        paid = (returnedData.getJSONObject(0).getInt("Paid")) != 0;
+
         customerAddress=new Person(returnedData.getJSONObject(1), "Customer");
 
         contractorAddress=new Person( returnedData.getJSONObject(2), "Contractor");

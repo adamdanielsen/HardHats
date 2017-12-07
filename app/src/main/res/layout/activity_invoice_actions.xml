@@ -8,30 +8,30 @@
 
 
     <Button
-        android:id="@+id/sendemail_emailToSelfButton"
+        android:id="@+id/invoiceactions_emailToSelfButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email To Self" />
 
     <Button
-        android:id="@+id/sendemail_emailToGeneralContractorButton"
+        android:id="@+id/invoiceactions_emailToGeneralContractorButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email to General Contractor" />
 
     <Button
-        android:id="@+id/sendemail_emailToCustomerButton"
+        android:id="@+id/invoiceactions_emailToCustomerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email To Customer" />
 
     <Button
-        android:id="@+id/invoiceoptions_paidButton"
+        android:id="@+id/invoiceactions_paidButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/invoiceoptions_cancelButton"
+        android:id="@+id/invoiceactions_cancelButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Done" />
@@ -43,7 +43,7 @@
         android:text="Account Email" />
 
     <TextView
-        android:id="@+id/invoiceoptions_selfEmailTextView"
+        android:id="@+id/invoiceactions_selfEmailTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -54,7 +54,7 @@
         android:text="CustomerEmail" />
 
     <TextView
-        android:id="@+id/invoiceoptions_customerEmailTextView"
+        android:id="@+id/invoiceactions_customerEmailTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -65,7 +65,7 @@
         android:text="General Contractor Email" />
 
     <TextView
-        android:id="@+id/invoiceoptions_gcEmailTextView"
+        android:id="@+id/invoiceactions_gcEmailTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -76,7 +76,7 @@
         android:text="Payment Status" />
 
     <TextView
-        android:id="@+id/invoiceoptions_paidTextView"
+        android:id="@+id/invoiceactions_paidTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

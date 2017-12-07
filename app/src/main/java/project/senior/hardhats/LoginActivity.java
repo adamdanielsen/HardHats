@@ -133,10 +133,9 @@ public class LoginActivity extends AppCompatActivity {
 
         String username =usernameEditText.getText().toString();
         String password =passwordEditText.getText().toString();
-        String type = "login";
 
         DataContainer dataContainer= new DataContainer();
-        dataContainer.type=type;
+        dataContainer.type="login";
         dataContainer.phpVariableNames.add("user_name");
         dataContainer.phpVariableNames.add("user_pass");
         dataContainer.dataPassedIn.add(username);

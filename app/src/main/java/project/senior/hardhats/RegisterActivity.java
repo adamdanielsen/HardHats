@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-    private Place address;
+        private Place address;
         private String backupAddress;
         private boolean googleError;
 
@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
             {
                 return;
             }
-        backupAddress=null;
+         backupAddress=null;
          username= usernameEditText.getText().toString();
          password= passwordEditText.getText().toString();
          firstName = firstNameEditText.getText().toString();
@@ -143,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
                 googleError = true;
                 Toast.makeText(this, "Error starting Google Places, launching backup", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(this, BackupAddressHandlerActivity.class);
-                Toast.makeText(this, "Please select your address", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Please enter your address", Toast.LENGTH_LONG).show();
                 startActivityForResult(i, 1);
             }
 

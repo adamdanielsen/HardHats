@@ -51,7 +51,6 @@ public class InvoicePreviewListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ((InvoiceFragment)getParentFragment()).setSelectedID(((MenuActivity.InvoiceForPreview)parent.getItemAtPosition(position)).getId());
-
                 ((InvoiceFragment)getParentFragment()).switchToDetailView();
             }
         });

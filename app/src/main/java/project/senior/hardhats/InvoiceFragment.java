@@ -56,9 +56,7 @@ public class InvoiceFragment extends Fragment {
         generateInvoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 ((MenuActivity)getActivity()).SwitchToGenerateInvoiceActivity();
-
 
             }
         });

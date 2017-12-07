@@ -42,6 +42,7 @@ public class Person {
             licenseNumber= personJSONObject.getString("LicenseNumber");
             companyName = personJSONObject.getString("CompanyName");
             address=personJSONObject.getString("Address");
+            int i =1;
             }
 
         if (personType.equals("Customer"))
