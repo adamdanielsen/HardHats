@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = (Button) findViewById(R.id.login_LoginButton);
         buttonRegister= (Button) findViewById(R.id.login_RegisterButton);
 
-        buttonDebug=(Button) findViewById(R.id.main_debug);
-        buttonDebug.setVisibility(View.INVISIBLE);
+       // buttonDebug=(Button) findViewById(R.id.main_debug);
+       // buttonDebug.setVisibility(View.INVISIBLE);
 
         /*
         buttonDebug.setOnClickListener(new View.OnClickListener() {
