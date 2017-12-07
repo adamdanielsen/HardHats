@@ -1,8 +1,11 @@
 package project.senior.hardhats;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -112,7 +115,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             if(!Validate())
             {
-
                 return;
             }
         backupAddress=null;
@@ -126,26 +128,24 @@ public class RegisterActivity extends AppCompatActivity {
          emailAddress = emailAddressEditText.getText().toString();
          companyName = companyNameEditText.getText().toString();
 
-        int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
-
-        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
-                .build();
-
-        try {
-            Intent intent =
-                    new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-                            .setFilter(typeFilter)
-                            .build(this);
-            startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-        }
-            catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-            googleError=true;
-            Toast.makeText(this, "Error starting Google Places, launching backup", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, BackupAddressHandlerActivity.class);
-            Toast.makeText(this, "Please select your address", Toast.LENGTH_LONG).show();
-            startActivityForResult(i, 1);
-        }
+            int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+            AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
+                    .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
+                    .build();
+            try {
+                Intent intent =
+                        new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                                .setFilter(typeFilter)
+                                .build(this);
+                Toast.makeText(this, "Please select your address", Toast.LENGTH_LONG).show();
+                startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+            } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+                googleError = true;
+                Toast.makeText(this, "Error starting Google Places, launching backup", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, BackupAddressHandlerActivity.class);
+                Toast.makeText(this, "Please select your address", Toast.LENGTH_LONG).show();
+                startActivityForResult(i, 1);
+            }
 
 
     }
@@ -175,18 +175,20 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-                if(resultCode == Activity.RESULT_OK){
 
-                    backupAddress=data.getStringExtra("address");
-                    address=null;
-                }
 
-                if (resultCode == Activity.RESULT_CANCELED) {
-                    Toast.makeText(this, "Please enter an Address", Toast.LENGTH_SHORT).show();
-                    return;
+        if(resultCode == Activity.RESULT_OK){
+            backupAddress=data.getStringExtra("address");
+            address=null;
+        }
+        if (resultCode == Activity.RESULT_CANCELED) {
+            Toast.makeText(this, "Please enter an Address", Toast.LENGTH_SHORT).show();
+            return;
 
-                }
+        }
                 addressToUse=backupAddress;
+                hitDatabase();
+                return;
         }
 
     private void hitDatabase() {
@@ -230,78 +232,87 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean Validate() {
 
         boolean validationFlag;
+        boolean usernameFlag;
+        boolean passwordflag;
+        boolean confirmPasswordFlag;
         validationFlag=true;
+        usernameFlag=true;
+        passwordflag=true;
+        confirmPasswordFlag=true;
         DataContainer dataContainer = new DataContainer();
         dataContainer.type="checkusername";
         dataContainer.phpVariableNames.add("user_name");
         dataContainer.dataPassedIn.add(usernameEditText.getText().toString());
         BackgroundWorker backgroundWorker = new BackgroundWorker();
 
-        if (usernameEditText.getText().toString().trim().isEmpty()) {
-            usernameTextInputLayout.setError("Please fill out your username");
-            requestFocus(usernameEditText);
-            validationFlag=false;
-        }
-        else {
-            usernameTextInputLayout.setErrorEnabled(false);
-        }
+
+
         if ((usernameEditText.getText().toString().trim().length())<getResources().getInteger(R.integer.MINUSERNAMELENGTH)) {
             usernameTextInputLayout.setError("Your Username is too short");
             requestFocus(usernameEditText);
             validationFlag=false;
+            usernameFlag=false;
         }
         else {
             usernameTextInputLayout.setErrorEnabled(false);
         }
 
-        try {
-            String registrationResult = backgroundWorker.execute(dataContainer).get();
-            if (registrationResult==null)
-            {
-                Toast.makeText(this, "Connection Error", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-            switch (registrationResult) {
-                    case "BAD":
-                    usernameTextInputLayout.setError("Username Taken");
-                    requestFocus(usernameEditText);
-                    validationFlag=false;
-                    break;
-                    case "GOOD":
-                    usernameTextInputLayout.setErrorEnabled(false);
-                    break;
-                default:
-                    usernameTextInputLayout.setError("Connection error");
-                    requestFocus(usernameEditText);
-                    validationFlag=false;
-            }
-
-
-
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-            usernameTextInputLayout.setError("Connection error");
+        if (usernameEditText.getText().toString().trim().isEmpty()) {
+            usernameTextInputLayout.setError("Please fill out your username");
             requestFocus(usernameEditText);
             validationFlag=false;
+            usernameFlag=false;
+        }
+        else {
+            usernameTextInputLayout.setErrorEnabled(false);
+        }
+
+        if (usernameFlag) {
+            try {
+                String registrationResult = backgroundWorker.execute(dataContainer).get();
+                if (registrationResult == null) {
+                    Toast.makeText(this, "Connection Error", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+                switch (registrationResult) {
+                    case "BAD":
+                        usernameTextInputLayout.setError("Username Taken");
+                        requestFocus(usernameEditText);
+                        validationFlag = false;
+                        break;
+                    case "GOOD":
+                        usernameTextInputLayout.setErrorEnabled(false);
+                        break;
+                    default:
+                        usernameTextInputLayout.setError("Connection error");
+                        requestFocus(usernameEditText);
+                        validationFlag = false;
+                }
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                usernameTextInputLayout.setError("Connection error");
+                requestFocus(usernameEditText);
+                validationFlag = false;
+            }
         }
 
         if (passwordEditText.getText().toString().trim().isEmpty()) {
             passwordTextInputLayout.setError("Please fill out your password");
             requestFocus(passwordEditText);
             validationFlag=false;
+            passwordflag=false;
         }
         else {
             passwordTextInputLayout.setErrorEnabled(false);
         }
-
-
-        if (passwordEditText.getText().toString().trim().length()<getResources().getInteger(R.integer.MINPASSWORDLENGTH)) {
-            passwordTextInputLayout.setError("Your Password is too short");
-            requestFocus(usernameEditText);
-            validationFlag=false;
-        }
-        else {
-            passwordTextInputLayout.setErrorEnabled(false);
+        if (passwordflag) {
+            if (passwordEditText.getText().toString().trim().length() < getResources().getInteger(R.integer.MINPASSWORDLENGTH)) {
+                passwordTextInputLayout.setError("Your Password is too short");
+                requestFocus(usernameEditText);
+                validationFlag = false;
+            } else {
+                passwordTextInputLayout.setErrorEnabled(false);
+            }
         }
 
 
@@ -311,18 +322,21 @@ public class RegisterActivity extends AppCompatActivity {
             confirmpasswordTextInputLayout.setError("Please confirm your password");
             requestFocus(confirmpasswordEditText);
             validationFlag=false;
-        }
-        else if (confirmpasswordEditText.getText().toString().equals(passwordEditText.toString()))
-        {
-            confirmpasswordTextInputLayout.setError("Passwords don't match");
-            requestFocus(passwordEditText);
-            validationFlag=false;
+            passwordflag=false;
         }
         else {
-            passwordTextInputLayout.setErrorEnabled(false);
             confirmpasswordTextInputLayout.setErrorEnabled(false);
         }
 
+        if(passwordflag) {
+            if (confirmpasswordEditText.getText().toString().equals(passwordEditText.toString())) {
+                confirmpasswordTextInputLayout.setError("Passwords don't match");
+                requestFocus(passwordEditText);
+                validationFlag = false;
+            } else {
+                confirmpasswordTextInputLayout.setErrorEnabled(false);
+            }
+        }
 
         if (firstNameEditText.getText().toString().trim().isEmpty()) {
             firstNameTextInputLayout.setError("Please fill out your First Name");
@@ -362,7 +376,6 @@ public class RegisterActivity extends AppCompatActivity {
             emailAddressTextInputLayout.setErrorEnabled(false);
         }
 
-
         if ((!android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddressEditText.getText().toString().trim()).matches())) {
             emailAddressTextInputLayout.setError("Please enter a valid Email");
             requestFocus(emailAddressEditText);
@@ -378,7 +391,7 @@ public class RegisterActivity extends AppCompatActivity {
             validationFlag=false;
         }
         else {
-            emailAddressTextInputLayout.setErrorEnabled(false);
+            companyNameTextInputLayout.setErrorEnabled(false);
         }
         return validationFlag;
     }
@@ -387,6 +400,13 @@ public class RegisterActivity extends AppCompatActivity {
         if (view.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 }

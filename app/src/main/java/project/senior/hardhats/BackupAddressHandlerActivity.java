@@ -62,7 +62,7 @@ public class BackupAddressHandlerActivity extends AppCompatActivity {
 
 
     private void onContinue() {
-        if (Validate())
+        if (!Validate())
         {
          return;
         }
