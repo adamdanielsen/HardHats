@@ -81,6 +81,7 @@ public class CustomerPreviewListFragment extends Fragment{
 
             if (convertView==null) {
                 convertView = View.inflate(context, R.layout.menucustomerlistitem, null);
+            }
                 TextView left = (TextView) convertView.findViewById(R.id.menucustomerlistitem_leftTextView);
                 TextView middle= (TextView) convertView.findViewById(R.id.menucustomerlistitem_middleTextView);
                 //TextView right = (TextView) convertView.findViewById(R.id.menucustomerlistitem_rightTextView);
@@ -90,7 +91,7 @@ public class CustomerPreviewListFragment extends Fragment{
                 left.setText(customerLines.get(position).getFirst());
                 middle.setText(customerLines.get(position).getLast());
                 //right.setText(customerLines.get(position).getCustomerID());
-            }
+
             return convertView;
         }
     }

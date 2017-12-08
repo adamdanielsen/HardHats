@@ -137,13 +137,16 @@ public class InvoiceLinePreviewFragment extends Fragment {
 
             if (convertView==null) {
                 convertView = View.inflate(context, R.layout.invoicelistitem, null);
+            }
                 TextView line1 = (TextView) convertView.findViewById(R.id.invoicelistitem_line1TextView);
                 TextView line2Left = (TextView) convertView.findViewById(R.id.invoicelistitem_line2LeftTextView);
                 TextView line2Right = (TextView) convertView.findViewById(R.id.invoicelistitem_line2RightTextView);
-                line1.setText(invoiceLines.get(position).getType());
+
+                String description=invoiceLines.get(position).getType();
+                line1.setText(description);
                 line2Left.setText(df.format(invoiceLines.get(position).getPrice())+" @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
                 line2Right.setText(df.format(invoiceLines.get(position).getLineTotal()));
-            }
+
             return convertView;
         }
     }

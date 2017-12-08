@@ -40,7 +40,6 @@ public class AddLineFragment extends Fragment {
     private TextInputLayout QuantityTextInputLayout;
     private TextInputLayout UnitsTextInputLayout;
     private TextInputLayout PriceTextInputLayout;
-
     private Spinner UnitsSpinner;
 
 
@@ -59,7 +58,6 @@ public class AddLineFragment extends Fragment {
         // TODO Create edit texts, send data back to activity on click
             invoiceLine = new InvoiceLine();
 
-
         DescriptionEditText= (EditText) getView().findViewById(R.id.fragmentaddline_DescriptionEditText);
         QuantityEditText= (EditText) getView().findViewById(R.id.fragmentaddline_QuantityEditText);
         UnitsEditText= (EditText) getView().findViewById(R.id.fragmentaddline_UnitsEditText);
@@ -68,11 +66,10 @@ public class AddLineFragment extends Fragment {
         DescriptionTextInputLayout= (TextInputLayout) getView().findViewById(R.id.fragmentaddline_DescriptionTextInputLayout);
         QuantityTextInputLayout= (TextInputLayout) getView().findViewById(R.id.fragmentaddline_QuantityTextInputLayout);
         UnitsTextInputLayout= (TextInputLayout) getView().findViewById(R.id.fragmentaddline_UnitsTextInputLayout);
+        UnitsTextInputLayout.setHint("");
+
         //UnitsEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
         PriceTextInputLayout= (TextInputLayout) getView().findViewById(R.id.fragmentaddline_PriceTextInputLayout);
-
-
-
 
         UnitsSpinner=(Spinner) getView().findViewById(R.id.fragmentaddline_UnitsSpinner);
         UnitsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -82,14 +79,14 @@ public class AddLineFragment extends Fragment {
                     UnitsEditText.setVisibility(View.VISIBLE);
                     UnitsEditText.setText("");
                     UnitsTextInputLayout.setErrorEnabled(false);
-                    UnitsEditText.setHint("Units");
+                    UnitsTextInputLayout.setHint("Units");
                 }
                 else
                 {
                     UnitsEditText.setText("");
                     UnitsEditText.setVisibility(View.INVISIBLE);
                     UnitsTextInputLayout.setErrorEnabled(false);
-                    UnitsEditText.setHint("");
+                    UnitsTextInputLayout.setHint("");
                 }
 
             }

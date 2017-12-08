@@ -69,18 +69,7 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
 
             for (int i = customerJSON.length()-1; i>=0; i--)
             {
-                Person customerForSpinner = new Person();
-                customerForSpinner.setId(customerJSON.getJSONObject(i).getString("CustomerID"));
-                customerForSpinner.setCity(customerJSON.getJSONObject(i).getString("City"));
-                customerForSpinner.setCompanyName(customerJSON.getJSONObject(i).getString("CompanyName"));
-                customerForSpinner.setEmailAddress(customerJSON.getJSONObject(i).getString("EmailAddress"));
-                customerForSpinner.setFaxNumber(customerJSON.getJSONObject(i).getString("FaxNumber"));
-                customerForSpinner.setFirstName(customerJSON.getJSONObject(i).getString("FirstName"));
-                customerForSpinner.setLastName(customerJSON.getJSONObject(i).getString("LastName"));
-                customerForSpinner.setPhoneNumber(customerJSON.getJSONObject(i).getString("PhoneNumber"));
-                customerForSpinner.setState(customerJSON.getJSONObject(i).getString("State"));
-                customerForSpinner.setStreet(customerJSON.getJSONObject(i).getString("Street"));
-                customerForSpinner.setZipCode(customerJSON.getJSONObject(i).getString("ZipCode"));
+                Person customerForSpinner = new Person(customerJSON.getJSONObject(i),"Customer");
                 customersForSpinnerList.add(customerForSpinner);
             }
 

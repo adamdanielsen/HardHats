@@ -147,7 +147,11 @@ public class MenuActivity extends AppCompatActivity{
 
        customerList = new ArrayList<>();
 
-
+        InvoiceForPreview titleRow=new InvoiceForPreview();
+        titleRow.setName("NAME");
+        titleRow.setTotal("TOTAL");
+        titleRow.setDate("DATE");
+        invoicesList.add(titleRow);
        for (int i = 0 ; i<invoiceJSONArray.length(); i++)
        {
            InvoiceForPreview listItem = new InvoiceForPreview();
@@ -167,7 +171,6 @@ public class MenuActivity extends AppCompatActivity{
            listItem.setName(name);
 
            listItem.setTotal(invoiceJSONArray.getJSONObject(i).getString("Total"));
-
 
            invoicesList.add(listItem);
 

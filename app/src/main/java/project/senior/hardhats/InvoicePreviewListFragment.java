@@ -50,6 +50,8 @@ public class InvoicePreviewListFragment extends Fragment {
         invoicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position==0)
+                {return;}
                 ((InvoiceFragment)getParentFragment()).setSelectedID(((MenuActivity.InvoiceForPreview)parent.getItemAtPosition(position)).getId());
                 ((InvoiceFragment)getParentFragment()).switchToDetailView();
             }
@@ -88,16 +90,27 @@ public class InvoicePreviewListFragment extends Fragment {
 
             if (convertView==null) {
                 convertView = View.inflate(context, R.layout.menuinvoicelistitem, null);
+            }
                 TextView left = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_leftTextView);
-                TextView middle= (TextView) convertView.findViewById(R.id.menuinvoicelistitem_middleTextView);
+                TextView middle = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_middleTextView);
                 TextView right = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_rightTextView);
 
+                if (position == 0) {
+                    left.setText(invoiceLines.get(position).getName());
+                    middle.setText(invoiceLines.get(position).getTotal());
+                    right.setText(invoiceLines.get(position).getDate());
+                    int i = 0;
+                }
+
+                if (position != 0) {
+                    left.setText(invoiceLines.get(position).getName());
+                    middle.setText(df.format(Double.valueOf(invoiceLines.get(position).getTotal())));
+                    right.setText(invoiceLines.get(position).getDate());
+                    int i = 0;
+                }
 
 
-                left.setText(invoiceLines.get(position).getName());
-                middle.setText(df.format(Double.valueOf(invoiceLines.get(position).getTotal())));
-                right.setText(invoiceLines.get(position).getDate());
-            }
+
             return convertView;
         }
     }

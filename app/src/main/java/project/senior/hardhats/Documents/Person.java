@@ -29,7 +29,7 @@ public class Person {
    public Person()
    {}
 
-   Person(JSONObject personJSONObject, String type) throws JSONException
+   public Person(JSONObject personJSONObject, String type) throws JSONException
     {
         personType=type;
         if (personType.equals("Contractor"))
@@ -42,11 +42,12 @@ public class Person {
             licenseNumber= personJSONObject.getString("LicenseNumber");
             companyName = personJSONObject.getString("CompanyName");
             address=personJSONObject.getString("Address");
-            int i =1;
+
             }
 
         if (personType.equals("Customer"))
         {
+            id= personJSONObject.getString("CustomerID");
             firstName = personJSONObject.getString("FirstName");
             lastName = personJSONObject.getString("LastName");
             phoneNumber = personJSONObject.getString("PhoneNumber");
@@ -59,7 +60,15 @@ public class Person {
             state = personJSONObject.getString("State");
         }
     }
+//not sure if we need this so not gonna bother
+    private Person(String customerID)
+    {
 
+
+
+
+
+    }
 
     public String BuildContractorAddressForInvoice()
     {
