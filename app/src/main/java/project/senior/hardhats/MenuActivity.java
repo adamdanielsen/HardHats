@@ -227,7 +227,7 @@ public class MenuActivity extends AppCompatActivity{
     private void swipeBottomNavigation(){
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
-
+        viewPager.setOffscreenPageLimit(2);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
 
 
