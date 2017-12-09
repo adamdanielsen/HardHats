@@ -1,5 +1,8 @@
 package project.senior.hardhats.Documents;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -10,11 +13,7 @@ import java.util.concurrent.ExecutionException;
 import project.senior.hardhats.BackgroundWorkerJSONArray;
 import project.senior.hardhats.DataContainer;
 
-/**
- * Created by on 10/12/2017.
- */
-
-public class Invoice {
+public class Invoice implements Parcelable {
 
 
     private Person customerAddress;
@@ -22,7 +21,7 @@ public class Invoice {
     private String date;
     private ArrayList<InvoiceLine> invoiceLines;
     private double total;
-    private final DecimalFormat df = new DecimalFormat("$0.00");
+    private DecimalFormat df = new DecimalFormat("$0.00");
     private boolean paid;
 
 
@@ -62,8 +61,9 @@ public class Invoice {
 
     //  put linetotal in the invoiceline so we can make totals for each line easily.
     //todo: Tidy up and do checking.
-    public String createTxtString()
+    public String createEmailString()
     {
+
         StringBuilder invoiceString = new StringBuilder();
         invoiceString.append("Contractor:\n");
         invoiceString.append(contractorAddress.BuildContractorAddressForInvoice());
@@ -74,9 +74,9 @@ public class Invoice {
         for (InvoiceLine invoice : invoiceLines)
 
         {
-                finalTotal+=invoice.lineTotal;
-                invoiceString.append(invoice.getInvoiceExportString());
-                invoiceString.append("\n");
+            finalTotal+=invoice.lineTotal;
+            invoiceString.append(invoice.getInvoiceExportStringForEmail());
+            invoiceString.append("\n");
         }
         invoiceString.append("___________________________________________________________________________\n");
         invoiceString.append("TOTAL                                              ");
@@ -132,4 +132,53 @@ public class Invoice {
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
+
+    protected Invoice(Parcel in) {
+        customerAddress = (Person) in.readValue(Person.class.getClassLoader());
+        contractorAddress = (Person) in.readValue(Person.class.getClassLoader());
+        date = in.readString();
+        if (in.readByte() == 0x01) {
+            invoiceLines = new ArrayList<InvoiceLine>();
+            in.readList(invoiceLines, InvoiceLine.class.getClassLoader());
+        } else {
+            invoiceLines = null;
+        }
+        total = in.readDouble();
+        df = (DecimalFormat) in.readValue(DecimalFormat.class.getClassLoader());
+        paid = in.readByte() != 0x00;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(customerAddress);
+        dest.writeValue(contractorAddress);
+        dest.writeString(date);
+        if (invoiceLines == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(invoiceLines);
+        }
+        dest.writeDouble(total);
+        dest.writeValue(df);
+        dest.writeByte((byte) (paid ? 0x01 : 0x00));
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Invoice> CREATOR = new Parcelable.Creator<Invoice>() {
+        @Override
+        public Invoice createFromParcel(Parcel in) {
+            return new Invoice(in);
+        }
+
+        @Override
+        public Invoice[] newArray(int size) {
+            return new Invoice[size];
+        }
+    };
 }

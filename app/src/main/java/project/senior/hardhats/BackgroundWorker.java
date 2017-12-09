@@ -37,7 +37,7 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     private final String addcustomer_url = "http://hardhatz.org/addcustomer.php";
     private final String generateinvoice_url = "http://hardhatz.org/generateinvoice.php";
     private final String getgcemail_url= "http://hardhatz.org/getgcemail.php";
-    private final String SendEmail_url="http://hardhatz.org/phpmailtext.php";
+    private final String sendemail_url ="http://hardhatz.org/sendemail.php";
     private final String checkusername_url="http://hardhatz.org/checkusername.php";
     BackgroundWorker() {}
     /**
@@ -148,7 +148,6 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * @param   dataContainer   Data to be passed to script.
      * @return  Returns the result of ExecuteRequest, which is the script echo.
      */
-//todo This definitely needs to be changed.
     private String RegisterProcedure(DataContainer dataContainer)
     {
             String result = ExecuteRequest(createuser_url, dataContainer);
@@ -212,7 +211,7 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
     private String SendEmailProcedure(DataContainer param) {
 
-        return ExecuteRequest(SendEmail_url,param);
+        return ExecuteRequest(sendemail_url,param);
     }
 
     private String CheckUsernameProcedure(DataContainer param) {

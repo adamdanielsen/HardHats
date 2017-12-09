@@ -1,5 +1,8 @@
 package project.senior.hardhats.Documents;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -7,7 +10,7 @@ import org.json.JSONObject;
  * Created by on 10/12/2017.
  */
 
-public class Person {
+public class Person implements Parcelable {
 
     String table;
     private String id;
@@ -26,10 +29,10 @@ public class Person {
     private String personType;
 
 
-   public Person()
-   {}
+    public Person()
+    {}
 
-   public Person(JSONObject personJSONObject, String type) throws JSONException
+    public Person(JSONObject personJSONObject, String type) throws JSONException
     {
         personType=type;
         if (personType.equals("Contractor"))
@@ -43,7 +46,11 @@ public class Person {
             companyName = personJSONObject.getString("CompanyName");
             address=personJSONObject.getString("Address");
 
-            }
+            address = address.replace(", ","\n");
+
+
+
+        }
 
         if (personType.equals("Customer"))
         {
@@ -60,7 +67,7 @@ public class Person {
             state = personJSONObject.getString("State");
         }
     }
-//not sure if we need this so not gonna bother
+    //not sure if we need this so not gonna bother
     private Person(String customerID)
     {
 
@@ -227,4 +234,59 @@ public class Person {
     public String toString() {
         return id+"       "+firstName+" "+lastName;
     }
+
+    protected Person(Parcel in) {
+        table = in.readString();
+        id = in.readString();
+        firstName = in.readString();
+        lastName = in.readString();
+        phoneNumber = in.readString();
+        faxNumber = in.readString();
+        emailAddress = in.readString();
+        licenseNumber = in.readString();
+        companyName = in.readString();
+        street = in.readString();
+        city = in.readString();
+        zipCode = in.readString();
+        state = in.readString();
+        address = in.readString();
+        personType = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(table);
+        dest.writeString(id);
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeString(phoneNumber);
+        dest.writeString(faxNumber);
+        dest.writeString(emailAddress);
+        dest.writeString(licenseNumber);
+        dest.writeString(companyName);
+        dest.writeString(street);
+        dest.writeString(city);
+        dest.writeString(zipCode);
+        dest.writeString(state);
+        dest.writeString(address);
+        dest.writeString(personType);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
+        @Override
+        public Person createFromParcel(Parcel in) {
+            return new Person(in);
+        }
+
+        @Override
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
 }

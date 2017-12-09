@@ -1,6 +1,5 @@
 package project.senior.hardhats;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -17,10 +16,14 @@ public class InvoiceActionsActivity extends AppCompatActivity {
     String accountEmail;
     String customerEmail;
     String gcEmail;
-    String paid;
+    boolean paid;
     Button emailAccountButton;
     Button emailCustomerButton;
     Button emailGCButton;
+    Button editInvoiceButton;
+    Button deleteInvoiceButton;
+    Button paidButton;
+    Button doneButton;
     TextView accountEmailTextView;
     TextView customerEmailTextView;
     TextView gcEmailTextView;
@@ -30,14 +33,17 @@ public class InvoiceActionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice_actions);
-        currentInvoice =(Invoice) getIntent().getExtras().get("invoice");
+        currentInvoice =(Invoice) getIntent().getExtras().get("currentinvoice");
         accountEmail=SessionData.getInstance().getEmailAddress();
         customerEmail=currentInvoice.getCustomerAddress().getEmailAddress();
         gcEmail=currentInvoice.getContractorAddress().getEmailAddress();
-
+        paid=currentInvoice.isPaid();
         emailAccountButton=(Button) findViewById(R.id.invoiceactions_emailToSelfButton);
         emailCustomerButton=(Button) findViewById(R.id.invoiceactions_emailToCustomerButton);
-        emailGCButton=(Button) findViewById(R.id.invoiceactions_emailToGeneralContractorButton);
+        editInvoiceButton=(Button) findViewById(R.id.invoiceactions_editInvoiceButton);
+        deleteInvoiceButton=(Button) findViewById(R.id.invoiceaction_deleteInvoiceButton);
+        paidButton=(Button) findViewById(R.id.invoiceactions_paidButton);
+        doneButton=(Button) findViewById(R.id.invoiceactions_doneButton);
         accountEmailTextView=(TextView) findViewById(R.id.invoiceactions_selfEmailTextView);
         customerEmailTextView=(TextView) findViewById(R.id.invoiceactions_customerEmailTextView);
         gcEmailTextView=(TextView) findViewById(R.id.invoiceactions_gcEmailTextView);
@@ -46,22 +52,63 @@ public class InvoiceActionsActivity extends AppCompatActivity {
         gcEmailTextView.setText(gcEmail);
     }
 
+
     void changePaidStatus()
     {
 
 
+
     }
 
-    void sendEmail()
+    void sendEmail(String type)
     {
+
+
+        String body="";
+
+        switch(type)
+        {
+            case "GC":
+                body="Your subcontractor "
+                        +SessionData.getInstance().getFirstName()
+                        + " "
+                        +SessionData.getInstance().getLastName()
+                        +" has sent you this invoice for the customer "
+                        + currentInvoice.getCustomerAddress().getFirstName()
+                        +" "
+                        +currentInvoice.getCustomerAddress().getLastName()+
+                        ".";
+                break;
+            case "Customer":
+                body="Hello and greetings from HardHats invoices. Your contractor "
+                        +SessionData.getInstance().getFirstName()
+                        + " "
+                        +SessionData.getInstance().getLastName()
+                        +" from"
+                        +SessionData.getInstance().getCompanyName()
+                        +" has sent you this invoice for work on your project. It is attached to "
+                        + "this email.";
+                break;
+            case "Self":
+                body="Attached to this email is the requested copy of the invoice for the customer "
+                        + currentInvoice.getCustomerAddress().getFirstName()
+                        +" "
+                        +currentInvoice.getCustomerAddress().getLastName();
+                break;
+        }
+
+
+
         BackgroundWorker sendEmailWorker = new BackgroundWorker();
         DataContainer dataContainer = new DataContainer();
         dataContainer.type="SendEmail";
         dataContainer.phpVariableNames.add("toAddress");
         dataContainer.phpVariableNames.add("invoicestring");
+        dataContainer.phpVariableNames.add("body");
         dataContainer.dataPassedIn.add(currentInvoice.getCustomerAddress().getEmailAddress());
-        dataContainer.dataPassedIn.add(currentInvoice.createTxtString());
-        String s="";
+        dataContainer.dataPassedIn.add(currentInvoice.createEmailString());
+        dataContainer.dataPassedIn.add(body);
+
         try {
             sendEmailWorker.execute(dataContainer).get();
             Toast.makeText(this, "Allow a few minutes for the invoice to arrive", Toast.LENGTH_SHORT).show();
@@ -71,8 +118,8 @@ public class InvoiceActionsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        AlertDialog.Builder box = new AlertDialog.Builder(this);
-        box.setMessage("s");
+        //AlertDialog.Builder box = new AlertDialog.Builder(this);
+        //box.setMessage("s");
         //box.show();
 
     }

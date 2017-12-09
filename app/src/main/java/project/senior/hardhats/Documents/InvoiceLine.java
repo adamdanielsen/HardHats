@@ -1,5 +1,8 @@
 package project.senior.hardhats.Documents;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,7 +12,7 @@ import java.text.DecimalFormat;
  * Created by on 10/12/2017.
  */
 
-public class InvoiceLine{
+public class InvoiceLine implements Parcelable {
 
     private static final DecimalFormat df = new DecimalFormat("$0.00");
     private int materialsID;
@@ -33,7 +36,7 @@ public class InvoiceLine{
     public InvoiceLine()
     {}
 
-    String getInvoiceExportString() {
+    String getInvoiceExportStringForEmail() {
         int spaceRoom=51;
         int stringLength;
         String line1;
@@ -108,9 +111,46 @@ public class InvoiceLine{
 
     public String getJsonString() throws JSONException {
 
-    return "{\"invoiceFK\":"+invoiceFK+",\"lineTotal\":"+lineTotal+",\"materialsID\":"+materialsID+",\"price\":"+price+",\"quantity\":"+quantity+",\"type\":\""+type+"\",\"units\":\""+units+"\"}";
+        return "{\"invoiceFK\":"+invoiceFK+",\"lineTotal\":"+lineTotal+",\"materialsID\":"+materialsID+",\"price\":"+price+",\"quantity\":"+quantity+",\"type\":\""+type+"\",\"units\":\""+units+"\"}";
 
     }
+
+    protected InvoiceLine(Parcel in) {
+        materialsID = in.readInt();
+        invoiceFK = in.readInt();
+        type = in.readString();
+        quantity = in.readInt();
+        units = in.readString();
+        price = in.readDouble();
+        lineTotal = in.readDouble();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(materialsID);
+        dest.writeInt(invoiceFK);
+        dest.writeString(type);
+        dest.writeInt(quantity);
+        dest.writeString(units);
+        dest.writeDouble(price);
+        dest.writeDouble(lineTotal);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<InvoiceLine> CREATOR = new Parcelable.Creator<InvoiceLine>() {
+        @Override
+        public InvoiceLine createFromParcel(Parcel in) {
+            return new InvoiceLine(in);
+        }
+
+        @Override
+        public InvoiceLine[] newArray(int size) {
+            return new InvoiceLine[size];
+        }
+    };
 }
-
-

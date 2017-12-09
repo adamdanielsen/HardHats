@@ -1,6 +1,7 @@
 package project.senior.hardhats;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,7 +36,7 @@ public class InvoiceViewDetailFragment extends Fragment {
     private double total;
     private Invoice currentInvoice;
     private TextView displayTextView;
-    private Button sendEmailButton;
+    private Button invoiceActionsButton;
     public InvoiceViewDetailFragment() {
         // Required empty public constructor
     }
@@ -44,6 +45,41 @@ public class InvoiceViewDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        return inflater.inflate(R.layout.fragment_invoice_view_detail, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        super.onViewCreated(view, savedInstanceState);
+
+        displayTextView = (TextView) view.findViewById(R.id.fragmentinvoiceviewdetail_displayTextView);
+        invoiceActionsButton = (Button) view.findViewById(R.id.fragmentinvoiceviewdetail_invoiceActions);
+        invoiceActionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onInvoiceActionsClick();
+            }
+        });
+
+    }
+
+    public void onResume() {
+        super.onResume();
+
+        Setup();
+    }
+
+
+    private void onInvoiceActionsClick() {
+        Intent startActions= new Intent(getActivity(),InvoiceActionsActivity.class);
+        startActions.putExtra("currentinvoice",currentInvoice);
+        startActivity(startActions);
+    }
+
+    public void Setup()
+    {
         total=0;
         try {
             String selectedInvoiceId = ((InvoiceFragment)getParentFragment()).getSelectedID();
@@ -58,52 +94,19 @@ public class InvoiceViewDetailFragment extends Fragment {
             Log.d("JSONException", "onCreateView: Invoice failed to be retrieved");
             e.printStackTrace();
         }
-        return inflater.inflate(R.layout.fragment_invoice_view_detail, container, false);
-    }
+        displayTextView.setText(currentInvoice.createEmailString());
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        //invoiceAdapter.notifyDataSetChanged();
+        //total=0;
+        //for (InvoiceLine line : array)
 
-        super.onViewCreated(view, savedInstanceState);
-        //DisplayMetrics displaymetrics = new DisplayMetrics();
-        //getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        //int screenHeight = displaymetrics.heightPixels;
-        //int actionBarHeight = 0;
-        //TypedValue tv = new TypedValue();
-        //if (getActivity().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-        //    actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+        //{
+
+        //    total+=line.getLineTotal();
+
         //}
-        //view.setMinimumHeight(screenHeight - actionBarHeight + 5);
 
-
-        displayTextView = (TextView) view.findViewById(R.id.fragmentinvoiceviewdetail_displayTextView);
-        displayTextView.setText(currentInvoice.createTxtString());
-        sendEmailButton = (Button) view.findViewById(R.id.fragmentinvoiceviewdetail_sendEmail);
-        sendEmailButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onInvoiceActionsClick();
-            }
-        });
-
-    }
-
-    private void onInvoiceActionsClick() {
-    }
-
-    public void Refresh()
-    {
-        invoiceAdapter.notifyDataSetChanged();
-        total=0;
-        for (InvoiceLine line : array)
-
-        {
-
-            total+=line.getLineTotal();
-
-        }
-
-        totalTextView.setText(getString(R.string.invoiceviewdetailfragment_total)+df.format(total));
+        //totalTextView.setText(getString(R.string.invoiceviewdetailfragment_total)+df.format(total));
     }
 
     private class InvoiceAdapter extends BaseAdapter
@@ -115,6 +118,7 @@ public class InvoiceViewDetailFragment extends Fragment {
             this.context = context;
             this.invoiceLines = invoiceLines;
         }
+
 
         @Override
         public int getCount() {

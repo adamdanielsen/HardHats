@@ -26,12 +26,24 @@
         android:text="Email To Customer" />
 
     <Button
+        android:id="@+id/invoiceactions_editInvoiceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Invoice" />
+
+    <Button
+        android:id="@+id/invoiceaction_deleteInvoiceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Invoice" />
+
+    <Button
         android:id="@+id/invoiceactions_paidButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/invoiceactions_cancelButton"
+        android:id="@+id/invoiceactions_doneButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Done" />

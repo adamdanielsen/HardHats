@@ -16,7 +16,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/fragmentinvoiceviewdetail_sendEmail"
+                android:id="@+id/fragmentinvoiceviewdetail_invoiceActions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -26,7 +26,9 @@
 
         <TextView
             android:id="@+id/fragmentinvoiceviewdetail_displayTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="2000dp"
+            android:textSize="12sp"
+            android:typeface="monospace"
             android:layout_height="wrap_content"
             android:text="" />
 

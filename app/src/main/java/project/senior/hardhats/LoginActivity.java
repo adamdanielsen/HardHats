@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             Invoice test = new Invoice("1");
 
 
-            String invoicestring = test.createTxtString();
+            String invoicestring = test.createEmailString();
             BackgroundWorker sendInvoice = new BackgroundWorker();
             DataContainer dataContainer = new DataContainer();
             dataContainer.type="sendinvoice";
