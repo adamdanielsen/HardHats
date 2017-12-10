@@ -75,11 +75,22 @@ public class InvoiceViewDetailFragment extends Fragment {
     private void onInvoiceActionsClick() {
         Intent startActions= new Intent(getActivity(),InvoiceActionsActivity.class);
         startActions.putExtra("currentinvoice",currentInvoice);
-        startActivity(startActions);
+        startActivityForResult(startActions,1);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode==1) {
+            ((InvoiceFragment) getParentFragment()).onDeleteInvoice();
+        }
+
     }
 
     public void Setup()
     {
+
         total=0;
         try {
             String selectedInvoiceId = ((InvoiceFragment)getParentFragment()).getSelectedID();
@@ -94,7 +105,7 @@ public class InvoiceViewDetailFragment extends Fragment {
             Log.d("JSONException", "onCreateView: Invoice failed to be retrieved");
             e.printStackTrace();
         }
-        displayTextView.setText(currentInvoice.createEmailString());
+        displayTextView.setText(currentInvoice.createPreviewString());
 
         //invoiceAdapter.notifyDataSetChanged();
         //total=0;

@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import org.json.JSONException;
+
+import java.util.concurrent.ExecutionException;
+
 //import android.app.Fragment;
 
 
@@ -52,7 +56,6 @@ public class InvoiceFragment extends Fragment {
         });
 
 
-
         generateInvoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +64,22 @@ public class InvoiceFragment extends Fragment {
             }
         });
 
+    }
+
+    public void onDeleteInvoice() {
+
+
+        try {
+            ((MenuActivity)getActivity()).Setup();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(), "INVOICEPREVIEWLIST").commitAllowingStateLoss();
+        backToPreviewButton.setVisibility(View.INVISIBLE);
     }
 
     public String getSelectedID() {

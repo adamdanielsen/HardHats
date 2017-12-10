@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.StringTokenizer;
 
 /**
  * Created by on 10/12/2017.
@@ -53,6 +54,29 @@ public class InvoiceLine implements Parcelable {
         return line1+line2;
     }
 
+    String getInvoiceExportStringForPreview()
+    {
+        int spaceRoom=40;
+        int stringLength;
+        StringBuilder line1=new StringBuilder();
+        StringBuilder line2;
+
+
+        //for ( String s:(addLinebreaks(type, spaceRoom))) {
+        //    line1.append(s).append("\n");
+        //}
+        //line1.append("\n");
+        line1.append(addLinebreaks(type,spaceRoom)).append("\n");
+        line2 = new StringBuilder(quantity + " " + units + " @ " + df.format(price));
+        stringLength=line2.length();
+        spaceRoom-=stringLength;
+        for (int i=spaceRoom;i>0;i--)
+        {
+            line2.append(" ");
+        }
+        line2.append(df.format(lineTotal));
+        return (line1.append(line2.toString())).toString();
+    }
     public int getMaterialsID() {
         return materialsID;
     }
@@ -124,7 +148,33 @@ public class InvoiceLine implements Parcelable {
         price = in.readDouble();
         lineTotal = in.readDouble();
     }
+    // https://stackoverflow.com/questions/7528045/large-string-split-into-lines-with-maximum-length-in-java
+    //not really sure why this doesn't perform the expected way.
+    public String addLinebreaks(String input, int maxCharInLine){
 
+        StringTokenizer tok = new StringTokenizer(input, " ");
+        StringBuilder output = new StringBuilder(input.length());
+        int lineLen = 0;
+        while (tok.hasMoreTokens()) {
+            String word = tok.nextToken();
+
+            while(word.length() > maxCharInLine){
+                output.append(word.substring(0, maxCharInLine - lineLen)).append("\n");
+                word = word.substring(maxCharInLine-lineLen);
+                lineLen = 0;
+            }
+
+            if (lineLen + word.length() > maxCharInLine) {
+                output.append("\n");
+                lineLen = 0;
+            }
+            output.append(word).append(" ");
+
+            lineLen += word.length() + 1;
+        }
+
+        return output.toString();
+    }
     @Override
     public int describeContents() {
         return 0;

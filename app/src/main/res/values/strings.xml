@@ -118,4 +118,7 @@
     <string name="fragmentinvoiceviewdetail_sendemail">Send Email</string>
     <string name="invoiceviewdetailfragment_total">TOTAL:</string>
     <string name="title_activity_send_email">SendEmailActivity</string>
+    <string name="invoiceedit_done">Done</string>
+    <string name="invoiceedit_cancel">Cancel</string>
+    <string name="invoiceedit_addline">Add Line</string>
 </resources>
