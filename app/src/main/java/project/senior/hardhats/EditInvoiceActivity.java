@@ -31,9 +31,9 @@ public class EditInvoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_invoice);
         currentInvoice =(Invoice) getIntent().getExtras().get("currentinvoice");
-        addLineButton = (Button) findViewById(R.id.invoicecreate_addLineButton);
-        doneOrFinishLineButton = (Button) findViewById(R.id.invoicecreate_doneOrFinishLineButton);
-        cancelOrCancelLineButton = (Button) findViewById(R.id.invoicecreate_cancelOrCancelLineButton);
+        addLineButton = (Button) findViewById(R.id.editinvoice_addLineButton);
+        doneOrFinishLineButton = (Button) findViewById(R.id.editinvoice_doneOrFinishLineButton);
+        cancelOrCancelLineButton = (Button) findViewById(R.id.editinvoice_cancelOrCancelLineButton);
         addLineButton.setText(R.string.invoiceedit_addline);
         doneOrFinishLineButton.setText(R.string.invoiceedit_done);
         cancelOrCancelLineButton.setText(R.string.invoiceedit_cancel);
@@ -59,7 +59,7 @@ public class EditInvoiceActivity extends AppCompatActivity {
             }
         });
 
-        getSupportFragmentManager().beginTransaction().add(R.id.generateinvoice_FrameLayout, new InvoiceLinePreviewFragment(),"INVOICEPREVIEW").commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.editinvoice_FrameLayout, new InvoiceLinePreviewEditFragment(),"INVOICEPREVIEW").commit();
 
     }
 
@@ -96,7 +96,7 @@ public class EditInvoiceActivity extends AppCompatActivity {
             dataContainer.dataPassedIn.add(CustomerID);
             dataContainer.dataPassedIn.add(invoiceLinesJSON.toString());
             dataInsert.execute(dataContainer);
-            setResult(1334891438);
+            setResult(1);
             finish();
         }
 
@@ -124,7 +124,7 @@ public class EditInvoiceActivity extends AppCompatActivity {
 
         if (myFragment != null && myFragment.isVisible()) {
             //todo confirmation
-            Intent menuIntent = new Intent(InvoiceCreateActivity.this, MenuActivity.class);
+            Intent menuIntent = new Intent(EditInvoiceActivity.this, MenuActivity.class);
             menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(menuIntent);
 
@@ -145,7 +145,7 @@ public class EditInvoiceActivity extends AppCompatActivity {
         addLineButton.setText(R.string.invoicecreate_addline);
         doneOrFinishLineButton.setText(R.string.invoicecreate_done);
         cancelOrCancelLineButton.setText(R.string.invoicecreate_cancel);
-        getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new InvoiceLinePreviewFragment(),"INVOICEPREVIEW").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.editinvoice_FrameLayout, new InvoiceLinePreviewEditFragment(),"INVOICEPREVIEW").commit();
     }
 
     private void startAddLine()
@@ -153,7 +153,7 @@ public class EditInvoiceActivity extends AppCompatActivity {
         addLineButton.setVisibility(View.INVISIBLE);
         doneOrFinishLineButton.setText(R.string.invoicecreate_finishline);
         cancelOrCancelLineButton.setText(R.string.invoicecreate_cancelline);
-        getSupportFragmentManager().beginTransaction().replace(R.id.generateinvoice_FrameLayout, new AddLineFragment(),"ADDLINE").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.editinvoice_FrameLayout, new AddLineFragment(),"ADDLINE").commit();
     }
 
     public ArrayList<InvoiceLine> GetInvoiceLines() {
