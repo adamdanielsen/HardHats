@@ -124,9 +124,9 @@ public class EditInvoiceActivity extends AppCompatActivity {
 
         if (myFragment != null && myFragment.isVisible()) {
             //todo confirmation
-            Intent menuIntent = new Intent(InvoiceCreateActivity.this, MenuActivity.class);
-            menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(menuIntent);
+           // Intent menuIntent = new Intent(InvoiceCreateActivity.this, MenuActivity.class);
+          //  menuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            //startActivity(menuIntent);
 
         }
         else
