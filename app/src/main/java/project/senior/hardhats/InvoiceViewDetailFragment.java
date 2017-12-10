@@ -75,7 +75,17 @@ public class InvoiceViewDetailFragment extends Fragment {
     private void onInvoiceActionsClick() {
         Intent startActions= new Intent(getActivity(),InvoiceActionsActivity.class);
         startActions.putExtra("currentinvoice",currentInvoice);
-        startActivity(startActions);
+        startActivityForResult(startActions,1);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode==1) {
+            ((InvoiceFragment) getParentFragment()).onDeleteInvoice();
+        }
+
     }
 
     public void Setup()

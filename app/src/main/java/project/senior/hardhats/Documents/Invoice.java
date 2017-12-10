@@ -16,9 +16,11 @@ import project.senior.hardhats.DataContainer;
 public class Invoice implements Parcelable {
 
 
+    private String id;
     private Person customerAddress;
     private Person contractorAddress;
     private String date;
+    private String generalContractorEmail;
     private ArrayList<InvoiceLine> invoiceLines;
     private double total;
     private DecimalFormat df = new DecimalFormat("$0.00");
@@ -33,9 +35,22 @@ public class Invoice implements Parcelable {
         invoiceIdData.dataPassedIn.add(InvoiceId);
         JSONArray returnedData = getInvoiceData.execute(invoiceIdData).get();
 
+        id=InvoiceId;
         date=returnedData.getJSONObject(0).getString("InvoiceDate");
 
-        paid = (returnedData.getJSONObject(0).getInt("Paid")) != 0;
+        generalContractorEmail=returnedData.getJSONObject(0).getString("GCEmail");
+
+        if ((returnedData.getJSONObject(0).getInt("Paid")==0))
+        {
+
+            paid=false;
+
+        }
+
+        else
+        {
+            paid=true;
+        }
 
         customerAddress=new Person(returnedData.getJSONObject(1), "Customer");
 
@@ -166,10 +181,30 @@ public class Invoice implements Parcelable {
         this.paid = paid;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
+    public String getGeneralContractorEmail() {
+        return generalContractorEmail;
+    }
+
+    public void setGeneralContractorEmail(String generalContractorEmail) {
+        this.generalContractorEmail = generalContractorEmail;
+    }
+
+
     protected Invoice(Parcel in) {
+        id = in.readString();
         customerAddress = (Person) in.readValue(Person.class.getClassLoader());
         contractorAddress = (Person) in.readValue(Person.class.getClassLoader());
         date = in.readString();
+        generalContractorEmail = in.readString();
         if (in.readByte() == 0x01) {
             invoiceLines = new ArrayList<InvoiceLine>();
             in.readList(invoiceLines, InvoiceLine.class.getClassLoader());
@@ -188,9 +223,11 @@ public class Invoice implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeValue(customerAddress);
         dest.writeValue(contractorAddress);
         dest.writeString(date);
+        dest.writeString(generalContractorEmail);
         if (invoiceLines == null) {
             dest.writeByte((byte) (0x00));
         } else {

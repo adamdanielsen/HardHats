@@ -52,7 +52,6 @@ public class InvoiceFragment extends Fragment {
         });
 
 
-
         generateInvoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +60,11 @@ public class InvoiceFragment extends Fragment {
             }
         });
 
+    }
+
+    public void onDeleteInvoice() {
+        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(), "INVOICEPREVIEWLIST").commit();
+        backToPreviewButton.setVisibility(View.INVISIBLE);
     }
 
     public String getSelectedID() {

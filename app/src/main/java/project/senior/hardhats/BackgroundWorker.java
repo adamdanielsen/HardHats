@@ -37,8 +37,10 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     private final String addcustomer_url = "http://hardhatz.org/addcustomer.php";
     private final String generateinvoice_url = "http://hardhatz.org/generateinvoice.php";
     private final String getgcemail_url= "http://hardhatz.org/getgcemail.php";
-    private final String sendemail_url ="http://hardhatz.org/sendemail.php";
+    //                                      Yes I know this is misspelled below
+    private final String sendemail_url ="http://hardhatz.org/phpmailtext.php";
     private final String checkusername_url="http://hardhatz.org/checkusername.php";
+    private final String markpaid_url="http://hardhatz.org/markpaid.php";
     public static final int LOGIN = 0;
     public static final int CREATEUSER = 1;
     public static final int SENDINVOICEEMAIL = 2;
@@ -227,6 +229,11 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
         return ExecuteRequest(checkusername_url,param);
     }
 
+    private String MarkPaidProcedure(DataContainer param) {
+        return ExecuteRequest(markpaid_url,param);
+    }
+
+
     /**
      * After a few steps, this function returns the result of the echo from the script called.
      * This function uses the type located in the DataContainer to figure out which script to use.
@@ -261,12 +268,13 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
                 return SendEmailProcedure(params[0]);
             case "checkusername":
                 return CheckUsernameProcedure(params[0]);
+            case "markpaid":
+                return MarkPaidProcedure(params[0]);
 
         }
 
         return "Unknown or misspelled type?";
     }
-
 
 
     /**

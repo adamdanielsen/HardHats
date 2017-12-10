@@ -49,10 +49,6 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
         emailAddressTextBox=(TextView) findViewById(R.id.generateinvoice_emailTextView);
         addressTextBox=(TextView) findViewById(R.id.generateinvoice_addressTextView);
 
-
-
-
-
         List<Person> customersForSpinnerList = new ArrayList<>();
         DataContainer listData = new DataContainer();
         listData.type = "populatecustomerspinner";
