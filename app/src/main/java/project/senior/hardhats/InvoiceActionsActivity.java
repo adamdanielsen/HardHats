@@ -134,18 +134,18 @@ public class InvoiceActionsActivity extends AppCompatActivity {
     }
 
     private void onDone() {
-        finishActivity(2);
+        setResult(0);
+        finish();
     }
 
     private void onDeleteInvoice() {
         if(confirmFlag)
         {
-            //todo omg finish this already
             onConfirm();
         }
         else{
         Snackbar
-                .make(coordinatorLayoutView, "Email Sent!", Snackbar.LENGTH_LONG)
+                .make(coordinatorLayoutView, "Click again to delete!", Snackbar.LENGTH_LONG)
                 .show();
         confirmFlag=true;
         }
@@ -153,7 +153,21 @@ public class InvoiceActionsActivity extends AppCompatActivity {
 
     private void onConfirm()
     {
-        finishActivity(1);
+
+        BackgroundWorker backgroundWorker = new BackgroundWorker();
+        DataContainer dataContainer = new DataContainer();
+        dataContainer.type="deleteinvoice";
+        dataContainer.dataPassedIn.add(currentInvoice.getId());
+        dataContainer.phpVariableNames.add("id");
+        try {
+            backgroundWorker.execute(dataContainer).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        setResult(1);
+        finish();
     }
 
     void changePaidStatus()

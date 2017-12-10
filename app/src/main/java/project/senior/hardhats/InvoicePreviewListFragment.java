@@ -22,7 +22,7 @@ import java.util.ArrayList;
  */
 public class InvoicePreviewListFragment extends Fragment {
     private static final DecimalFormat df = new DecimalFormat("$0.00");
-
+    View currentView;
     private ListView invoicesListView;
     public InvoicePreviewListFragment() {
         // Required empty public constructor
@@ -39,13 +39,11 @@ public class InvoicePreviewListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         invoicesListView = (ListView) getView().findViewById(R.id.fragmentinvoicepreviewlist_invoicesListView);
-
         final ArrayList<MenuActivity.InvoiceForPreview> invoicelist = ((MenuActivity)getActivity()).getInvoicesList();
-
         InvoiceForMenuAdapter adapter = new InvoiceForMenuAdapter(getContext(),invoicelist);
         invoicesListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
+        currentView=view;
         invoicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -55,7 +53,12 @@ public class InvoicePreviewListFragment extends Fragment {
                 ((InvoiceFragment)getParentFragment()).switchToDetailView();
             }
         });
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.onViewCreated(currentView,null);
     }
 
     private class InvoiceForMenuAdapter extends BaseAdapter

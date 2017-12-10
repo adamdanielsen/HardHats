@@ -128,7 +128,7 @@ public class MenuActivity extends AppCompatActivity{
 
     }
 
-    private void Setup() throws ExecutionException, InterruptedException, JSONException {
+    protected void Setup() throws ExecutionException, InterruptedException, JSONException {
        DataContainer invoiceDataContainer = new DataContainer();
        invoiceDataContainer.type="invoicelistformenupreview";
        invoiceDataContainer.phpVariableNames.add("user_id");
