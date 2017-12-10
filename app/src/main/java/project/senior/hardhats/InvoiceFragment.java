@@ -67,9 +67,10 @@ public class InvoiceFragment extends Fragment {
     }
 
     public void onDeleteInvoice() {
+
+
         try {
-            //todo wtf
-            ((MenuActivity)getParentFragment().getActivity()).Setup();
+            ((MenuActivity)getActivity()).Setup();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

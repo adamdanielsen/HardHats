@@ -1,5 +1,6 @@
 package project.senior.hardhats;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -89,7 +90,7 @@ public class InvoiceActionsActivity extends AppCompatActivity {
         editInvoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                onEdit();
             }
         });
 
@@ -131,6 +132,12 @@ public class InvoiceActionsActivity extends AppCompatActivity {
         accountEmailTextView.setText(accountEmail);
         customerEmailTextView.setText(customerEmail);
         gcEmailTextView.setText(gcEmail);
+    }
+
+    private void onEdit() {
+        Intent openEdit= new Intent(this,EditInvoiceActivity.class);
+        openEdit.putExtra("currentinvoice",currentInvoice);
+        startActivityForResult(openEdit,1);
     }
 
     private void onDone() {
