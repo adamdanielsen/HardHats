@@ -13,18 +13,21 @@
     </FrameLayout>
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoicecreate_addLineButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoicecreate_doneOrFinishLineButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoicecreate_cancelOrCancelLineButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
