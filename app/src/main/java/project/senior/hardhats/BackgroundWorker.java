@@ -39,6 +39,15 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     private final String getgcemail_url= "http://hardhatz.org/getgcemail.php";
     private final String sendemail_url ="http://hardhatz.org/sendemail.php";
     private final String checkusername_url="http://hardhatz.org/checkusername.php";
+    public static final int LOGIN = 0;
+    public static final int CREATEUSER = 1;
+    public static final int SENDINVOICEEMAIL = 2;
+    public static final int ADDCUSTOMER = 3;
+    public static final int GENERATEINVOICE = 4;
+    public static final int GETGCEMAIL = 5;
+    public static final int SENDEMAIL = 6;
+    public static final int CHECKUSERNAME = 7;
+
     BackgroundWorker() {}
     /**
      * Returns a String object representing the created POST.

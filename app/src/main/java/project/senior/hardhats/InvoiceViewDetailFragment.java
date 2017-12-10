@@ -80,6 +80,7 @@ public class InvoiceViewDetailFragment extends Fragment {
 
     public void Setup()
     {
+
         total=0;
         try {
             String selectedInvoiceId = ((InvoiceFragment)getParentFragment()).getSelectedID();
@@ -94,7 +95,7 @@ public class InvoiceViewDetailFragment extends Fragment {
             Log.d("JSONException", "onCreateView: Invoice failed to be retrieved");
             e.printStackTrace();
         }
-        displayTextView.setText(currentInvoice.createEmailString());
+        displayTextView.setText(currentInvoice.createPreviewString());
 
         //invoiceAdapter.notifyDataSetChanged();
         //total=0;

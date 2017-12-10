@@ -59,6 +59,7 @@ public class Invoice implements Parcelable {
     }
 
 
+
     //  put linetotal in the invoiceline so we can make totals for each line easily.
     //todo: Tidy up and do checking.
     public String createEmailString()
@@ -84,6 +85,38 @@ public class Invoice implements Parcelable {
 
         return invoiceString.toString();
     }
+
+
+    public String createPreviewString()
+    {
+
+        StringBuilder invoiceString = new StringBuilder();
+        invoiceString.append("Contractor:\n");
+        invoiceString.append(contractorAddress.BuildContractorAddressForInvoice());
+        invoiceString.append("\n\nBill To:\n");
+        invoiceString.append(customerAddress.BuildCustomerAddressForInvoice());
+        invoiceString.append("\n___________________________________________________________________________\n");
+        double finalTotal = 0;
+        for (InvoiceLine invoice : invoiceLines)
+
+        {
+            finalTotal+=invoice.lineTotal;
+            invoiceString.append(invoice.getInvoiceExportStringForPreview());
+            invoiceString.append("\n");
+        }
+        invoiceString.append("___________________________________________________________________________\n");
+        invoiceString.append("TOTAL                                              ");
+        invoiceString.append(df.format(finalTotal));
+
+        return invoiceString.toString();
+    }
+
+
+
+
+
+
+
 
     public Person getCustomerAddress() {
         return customerAddress;
