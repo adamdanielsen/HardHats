@@ -42,24 +42,7 @@
                     android:imeOptions="flagNoExtractUi"
                     android:inputType="none"
                     android:maxLength="@integer/MAXUSERNAMELENGTH" />
-                <!--
-                <EditText
-                    android:id="@+id/option_PasswordEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/register_Password"
-                    android:imeOptions="flagNoExtractUi"
-                    android:inputType="none"
-                    android:maxLength="@integer/MAXPASSWORDLENGTH" />
 
-
-                <EditText
-                    android:id="@+id/option_ConfirmPasswordEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/register_ConfirmPassword"
-                    android:inputType="none" />
-                -->
                 <EditText
                     android:id="@+id/option_firstName_editText"
                     android:layout_width="match_parent"
@@ -118,59 +101,13 @@
                     android:ems="10"
                     android:hint="@string/company"
                     android:inputType="none" />
-
                 <EditText
-                    android:id="@+id/option_streetAddress_editText"
+                    android:id="@+id/option_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/street"
-                    android:inputType="none" />
+                    android:textStyle="normal"
+                    android:textSize="20sp"/>
 
-                <EditText
-                    android:id="@+id/option_city_editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/city"
-                    android:inputType="none" />
-
-                <EditText
-                    android:id="@+id/option_zipCode_editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/zip_code"
-                    android:inputType="none"
-                    android:digits="0123456789+"/>
-
-                <EditText
-                    android:id="@+id/option_state_editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/zip_code"
-                    android:inputType="none"
-                    android:digits="0123456789+"/>
-                <!--
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/option_state_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/state"
-                        android:textSize="20sp" />
-
-                    <Spinner
-                        android:id="@+id/option_state_spinner"
-                        android:layout_width="96dp"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-                -->
             </LinearLayout>
         </ScrollView>
 
