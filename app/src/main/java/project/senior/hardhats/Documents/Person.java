@@ -46,7 +46,6 @@ public class Person implements Parcelable {
             licenseNumber= personJSONObject.getString("LicenseNumber");
             companyName = personJSONObject.getString("CompanyName");
             address=personJSONObject.getString("Address");
-
             address = address.replace(", ","\n");
 
 
@@ -62,10 +61,8 @@ public class Person implements Parcelable {
             faxNumber = personJSONObject.getString("FaxNumber");
             emailAddress = personJSONObject.getString("EmailAddress");
             companyName = personJSONObject.getString("CompanyName");
-            street = personJSONObject.getString("Street");
-            city = personJSONObject.getString("City");
-            zipCode = personJSONObject.getString("ZipCode");
-            state = personJSONObject.getString("State");
+            address = personJSONObject.getString("Address");
+            address = address.replace(", ","\n");
         }
     }
     //not sure if we need this so not gonna bother
@@ -109,13 +106,7 @@ public class Person implements Parcelable {
                 " " +
                 lastName +
                 "\n" +
-                street +
-                "\n" +
-                city +
-                "," +
-                state +
-                " " +
-                zipCode;
+                address;
     }
 
 
@@ -126,13 +117,7 @@ public class Person implements Parcelable {
                 " " +
                 lastName +
                 "\n" +
-                street +
-                "\n" +
-                city +
-                "," +
-                state +
-                " " +
-                zipCode;
+                address;
     }
 
     public String getId() {
@@ -231,9 +216,17 @@ public class Person implements Parcelable {
         this.state = state;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
-        return id+"       "+firstName+" "+lastName;
+        return firstName+" "+lastName;
     }
 
     protected Person(Parcel in) {

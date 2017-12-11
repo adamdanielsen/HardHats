@@ -328,15 +328,16 @@ public class RegisterActivity extends AppCompatActivity {
             confirmpasswordTextInputLayout.setErrorEnabled(false);
         }
 
-        if(passwordflag) {
-            if (confirmpasswordEditText.getText().toString().equals(passwordEditText.toString())) {
-                confirmpasswordTextInputLayout.setError("Passwords don't match");
-                requestFocus(passwordEditText);
-                validationFlag = false;
-            } else {
-                confirmpasswordTextInputLayout.setErrorEnabled(false);
-            }
+
+
+        if (confirmpasswordEditText.getText().toString().equals(passwordEditText.toString())) {
+            confirmpasswordTextInputLayout.setError("Passwords don't match");
+            requestFocus(passwordEditText);
+            validationFlag = false;
+        } else {
+            confirmpasswordTextInputLayout.setErrorEnabled(false);
         }
+
 
         if (firstNameEditText.getText().toString().trim().isEmpty()) {
             firstNameTextInputLayout.setError("Please fill out your First Name");

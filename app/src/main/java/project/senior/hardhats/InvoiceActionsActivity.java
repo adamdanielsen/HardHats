@@ -30,6 +30,7 @@ public class InvoiceActionsActivity extends AppCompatActivity {
     TextView accountEmailTextView;
     TextView customerEmailTextView;
     TextView gcEmailTextView;
+    TextView paymentTextView;
     boolean confirmFlag;
     enum emailstatus {EMAIL_CONTRACTOR,EMAIL_CUSTOMER,EMAIL_GENERALCONTRACTOR};
     View coordinatorLayoutView;
@@ -87,6 +88,10 @@ public class InvoiceActionsActivity extends AppCompatActivity {
                         .show();}
         });
 
+        if (currentInvoice.getGeneralContractorEmail().isEmpty())
+        {
+            emailGCButton.setEnabled(false);
+        }
         emailGCButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,9 +144,22 @@ public class InvoiceActionsActivity extends AppCompatActivity {
         accountEmailTextView=(TextView) findViewById(R.id.invoiceactions_selfEmailTextView);
         customerEmailTextView=(TextView) findViewById(R.id.invoiceactions_customerEmailTextView);
         gcEmailTextView=(TextView) findViewById(R.id.invoiceactions_gcEmailTextView);
+        paymentTextView=(TextView) findViewById(R.id.invoiceactions_paidTextView);
         accountEmailTextView.setText(accountEmail);
         customerEmailTextView.setText(customerEmail);
         gcEmailTextView.setText(gcEmail);
+
+        if(currentInvoice.isPaid())
+        {
+            paymentTextView.setText("PAID");
+        }
+
+
+        if(!currentInvoice.isPaid())
+        {
+            paymentTextView.setText("UNPAID");
+        }
+
     }
 
         private void onEdit() {
@@ -215,12 +233,14 @@ public class InvoiceActionsActivity extends AppCompatActivity {
         if(currentInvoice.isPaid())
         {
             currentInvoice.setPaid(false);
+            paymentTextView.setText("UNPAID");
             paidButton.setText("Mark as paid");
             return;
         }
         else
         {
             currentInvoice.setPaid(true);
+            paymentTextView.setText("PAID");
             paidButton.setText("Mark as unpaid");
         }
     }
