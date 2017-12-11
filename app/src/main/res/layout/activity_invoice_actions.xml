@@ -49,6 +49,7 @@
         android:text="Delete Invoice" />
 
     <Button
+        android:textColor="#5DBCD2"
         android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoiceactions_paidButton"
         android:layout_width="match_parent"
