@@ -6,8 +6,8 @@
     tools:context="project.senior.hardhats.CustomerFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/add_customer_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

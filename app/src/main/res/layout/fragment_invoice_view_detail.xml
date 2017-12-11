@@ -16,6 +16,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:background="?android:attr/selectableItemBackground"
                 android:id="@+id/fragmentinvoiceviewdetail_invoiceActions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

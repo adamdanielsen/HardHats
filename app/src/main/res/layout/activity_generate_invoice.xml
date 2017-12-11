@@ -19,6 +19,7 @@
         android:layout_weight="1.05" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/generateinvoice_chooseCustomerButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
