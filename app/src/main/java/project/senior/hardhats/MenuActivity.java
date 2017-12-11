@@ -18,6 +18,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MenuActivity extends AppCompatActivity{
 
+
     class InvoiceForPreview
     {
         String id;
@@ -113,7 +114,6 @@ public class MenuActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.activity_menu);
         swipeBottomNavigation();
@@ -283,15 +283,15 @@ public class MenuActivity extends AppCompatActivity{
 
     }
 
-    int backButtonCount = 0;
+
     /**
      * Back button listener.
-     * Will close the application if the back button is pressed twice.
+     * Will not close the application if the back button is pressed.
      */
     @Override
     public void onBackPressed()
     {
-
+/*
         if(backButtonCount >= 1)
         {
             Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -305,5 +305,6 @@ public class MenuActivity extends AppCompatActivity{
             Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
             backButtonCount++;
         }
+        */
     }
 }
