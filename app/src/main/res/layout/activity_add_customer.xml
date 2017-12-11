@@ -156,12 +156,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:textStyle="bold"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:text="@string/customer_EnterAddress"
                 android:textSize="17dp"
-
                 android:textColor="#5DBCD2"
-                android:fontFamily="serif-monospace"/>
+                />
 
 
         </LinearLayout>
