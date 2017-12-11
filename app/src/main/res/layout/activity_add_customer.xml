@@ -147,7 +147,9 @@
             <EditText
                 android:id="@+id/customer_address_editText"
                 android:layout_width="match_parent"
-                android:layout_height="4dp" />
+                android:layout_height="match_parent"
+                android:hint="Click Below To Enter Your Address"
+                />
 
             <Button
                 android:id="@+id/customer_address_button"

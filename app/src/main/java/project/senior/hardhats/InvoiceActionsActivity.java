@@ -269,7 +269,7 @@ public class InvoiceActionsActivity extends AppCompatActivity {
                         +SessionData.getInstance().getFirstName()
                         + " "
                         +SessionData.getInstance().getLastName()
-                        +" from"
+                        +" from "
                         +SessionData.getInstance().getCompanyName()
                         +" has sent you this invoice for work on your project. It is attached to "
                         + "this email.";

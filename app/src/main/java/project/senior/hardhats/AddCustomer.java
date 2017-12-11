@@ -3,7 +3,6 @@ package project.senior.hardhats;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
@@ -190,10 +189,10 @@ public class AddCustomer extends AppCompatActivity {
         try {
             String s = database.execute(dataContainer).get();
 
-            AlertDialog.Builder box= new AlertDialog.Builder(this);
+            //AlertDialog.Builder box= new AlertDialog.Builder(this);
            // box.setTitle("wut");
-            box.setMessage(s);
-            box.show();
+            //box.setMessage(s);
+            //box.show();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
