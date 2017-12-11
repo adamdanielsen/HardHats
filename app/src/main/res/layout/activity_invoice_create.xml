@@ -15,6 +15,7 @@
     <Button
         android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoicecreate_addLineButton"
+        android:textColor="#5DBCD2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
@@ -22,6 +23,7 @@
     <Button
         android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoicecreate_doneOrFinishLineButton"
+        android:textColor="#5DBCD2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
@@ -29,6 +31,7 @@
     <Button
         android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoicecreate_cancelOrCancelLineButton"
+        android:textColor="#5DBCD2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />

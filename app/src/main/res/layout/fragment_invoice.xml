@@ -21,6 +21,7 @@
 
         <Button
             android:background="?android:attr/selectableItemBackground"
+            android:textColor="#5DBCD2"
             android:id="@+id/fragmentInvoice_GenerateInvoiceButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +34,7 @@
         android:id="@+id/fragmentInvoice_backToPreviewButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#5DBCD2"
         android:text="@string/fragmentinvoice_backtopreview" />
 
     <FrameLayout

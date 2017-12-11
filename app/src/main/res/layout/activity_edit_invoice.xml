@@ -4,19 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="48dp"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:src="@drawable/cornerlogo" />
-
-    </LinearLayout>
     <FrameLayout
         android:id="@+id/editinvoice_FrameLayout"
         android:layout_width="match_parent"
@@ -26,18 +13,24 @@
     </FrameLayout>
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
+        android:textColor="#5DBCD2"
         android:id="@+id/editinvoice_addLineButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
+        android:textColor="#5DBCD2"
         android:id="@+id/editinvoice_doneOrFinishLineButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
+        android:textColor="#5DBCD2"
         android:id="@+id/editinvoice_cancelOrCancelLineButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

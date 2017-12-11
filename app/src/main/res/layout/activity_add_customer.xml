@@ -22,12 +22,14 @@
 
                 <Button android:id="@+id/save_customer_button"
                     android:background="?android:attr/selectableItemBackground"
+                    android:textColor="#5DBCD2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:layout_weight="1"
                     android:text="@string/save" />
 
                 <Button android:id="@+id/cancel_customer_button"
                     android:layout_width="wrap_content"
+                    android:textColor="#5DBCD2"
                     android:background="?android:attr/selectableItemBackground"
                     android:layout_height="wrap_content" android:layout_weight="1"
                     android:text="@string/cancel" />
@@ -155,6 +157,8 @@
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:text="@string/customer_EnterAddress"
                 android:textSize="17dp"
+
+                android:textColor="#5DBCD2"
                 android:fontFamily="serif-monospace"/>
 
 

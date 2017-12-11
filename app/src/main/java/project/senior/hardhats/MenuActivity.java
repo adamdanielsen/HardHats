@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +24,7 @@ public class MenuActivity extends AppCompatActivity{
         String name;
         String date;
         String total;
+
 
         InvoiceForPreview() {
 
@@ -279,5 +281,29 @@ public class MenuActivity extends AppCompatActivity{
             });
             setupViewPager(viewPager);
 
+    }
+
+    int backButtonCount = 0;
+    /**
+     * Back button listener.
+     * Will close the application if the back button is pressed twice.
+     */
+    @Override
+    public void onBackPressed()
+    {
+
+        if(backButtonCount >= 1)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
+        else
+        {
+            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        }
     }
 }

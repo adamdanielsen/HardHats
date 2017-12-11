@@ -9,42 +9,55 @@
 
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoiceactions_emailToSelfButton"
+        android:textColor="#5DBCD2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email To Self" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoiceactions_emailToCustomerButton"
+        android:textColor="#5DBCD2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email To Customer" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoiceactions_emailToGeneralContractorButton"
+        android:textColor="#5DBCD2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email to General Contractor" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoiceactions_editInvoiceButton"
+        android:textColor="#5DBCD2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Edit Invoice" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoiceaction_deleteInvoiceButton"
+        android:textColor="#5DBCD2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Delete Invoice" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoiceactions_paidButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/invoiceactions_doneButton"
+        android:textColor="#5DBCD2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Done" />

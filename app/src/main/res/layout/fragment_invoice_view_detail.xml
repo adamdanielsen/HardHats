@@ -25,6 +25,7 @@
 
             <Button
                 android:background="?android:attr/selectableItemBackground"
+                android:textColor="#5DBCD2"
                 android:id="@+id/fragmentinvoiceviewdetail_invoiceActions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

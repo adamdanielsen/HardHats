@@ -21,6 +21,7 @@
 
         <Button
             android:id="@+id/add_customer_button"
+            android:textColor="#5DBCD2"
             android:layout_width="284dp"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"

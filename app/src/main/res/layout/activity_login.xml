@@ -67,6 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="?android:attr/selectableItemBackground"
+            android:textColor="#5DBCD2"
             android:text="@string/login_Login" />
     </android.support.design.widget.TextInputLayout>
 
@@ -75,6 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
+        android:textColor="#5DBCD2"
         android:text="@string/login_Register" />
 
 </LinearLayout>
