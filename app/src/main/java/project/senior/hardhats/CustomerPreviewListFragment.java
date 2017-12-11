@@ -1,15 +1,18 @@
 package project.senior.hardhats;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -37,6 +40,18 @@ public class CustomerPreviewListFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         customerListView = (ListView) getView().findViewById(R.id.fragmentcustomerpreviewlist_customerListView);
         Setup();
+
+        customerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MenuActivity.CustomerForPreview customer = (MenuActivity.CustomerForPreview) customerListView.getItemAtPosition(position);
+                String customerId = customer.getCustomerID();
+                Intent i = new Intent(getActivity(), CustomerDetailView.class);
+                i.putExtra("CUSTOMERID", customerId);
+                Toast.makeText(getContext(), customerId, Toast.LENGTH_SHORT);
+                startActivity(i);
+            }
+        });
 /*
         customerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
