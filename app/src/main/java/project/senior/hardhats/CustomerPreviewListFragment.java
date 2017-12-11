@@ -118,8 +118,8 @@ public class CustomerPreviewListFragment extends Fragment{
 
 
 
-                left.setText(customerLines.get(position).getFirst());
-                middle.setText(customerLines.get(position).getLast());
+                left.setText(customerLines.get(position).getFirst()+" "+customerLines.get(position).getLast());
+
                 //right.setText(customerLines.get(position).getCustomerID());
 
             return convertView;
