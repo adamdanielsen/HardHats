@@ -57,6 +57,16 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress" />
 
+    <TextView
+        android:id="@+id/customer_preview_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+
+    <!--
     <EditText
         android:id="@+id/customer_Preview_streetAddress_editText"
         android:layout_width="match_parent"
@@ -90,5 +100,5 @@
         android:ems="10"
         android:hint="State"
         android:inputType="none" />
-
+    -->
 </LinearLayout>
