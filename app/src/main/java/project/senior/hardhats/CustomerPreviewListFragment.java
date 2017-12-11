@@ -1,15 +1,18 @@
 package project.senior.hardhats;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -39,7 +42,20 @@ public class CustomerPreviewListFragment extends Fragment{
         CustomerPreviewListFragment.CustomerForMenuAdapter adapter = new CustomerPreviewListFragment.CustomerForMenuAdapter(getContext(),customerList);
         customerListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-/*
+
+        customerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MenuActivity.CustomerForPreview customer = customerList.get(position);
+                String CustomerId = customer.getCustomerID();
+                Intent i = new Intent(getActivity(), CustomerDetailView.class);
+                i.putExtra("CUSTOMERID", CustomerId);
+                Toast.makeText(getContext(),"customer: " + CustomerId, Toast.LENGTH_SHORT);
+                startActivity(i);
+            }
+        });
+
+    /*
         customerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -47,8 +63,7 @@ public class CustomerPreviewListFragment extends Fragment{
 
                 //((CustomerFragment)getParentFragment()).switchToDetailView();
             }
-        });
-*/
+        }); */
     }
     private class CustomerForMenuAdapter extends BaseAdapter
     {
@@ -95,5 +110,9 @@ public class CustomerPreviewListFragment extends Fragment{
             return convertView;
         }
     }
+    public void switchToDetailView() {
+        //backToPreviewButton.setVisibility(View.VISIBLE);
+        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoiceViewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
 
+    }
 }
