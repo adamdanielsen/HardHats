@@ -68,9 +68,9 @@ public class OptionsFragment extends Fragment {
         phoneNumberEditText.setText(SessionData.getInstance().getPhoneNumber());
         companyNameEditText.setText(SessionData.getInstance().getCompanyName());
         faxNumberEditText.setText(SessionData.getInstance().getFaxNumber());
-        licenseNumberEditText.setText(SessionData.getInstance().getFaxNumber());
+        licenseNumberEditText.setText(SessionData.getInstance().getLicenseNumber());
         emailAddressEditText.setText(SessionData.getInstance().getEmailAddress());
-        address.setText(SessionData.getInstance().getAddress());
+        //address.setText(SessionData.getInstance().getAddress());
 
         usernameEditText.setEnabled(false);
         companyNameEditText.setEnabled(false);
