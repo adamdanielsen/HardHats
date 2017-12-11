@@ -48,7 +48,6 @@ public class CustomerPreviewListFragment extends Fragment{
                 String customerId = customer.getCustomerID();
                 Intent i = new Intent(getActivity(), CustomerDetailView.class);
                 i.putExtra("CUSTOMERID", customerId);
-                Toast.makeText(getContext(), customerId, Toast.LENGTH_SHORT).show();
                 startActivity(i);
             }
         });
