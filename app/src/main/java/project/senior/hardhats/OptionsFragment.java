@@ -52,6 +52,7 @@ public class OptionsFragment extends Fragment {
         licenseNumberEditText = (EditText) getView().findViewById(R.id.option_licenseNumber_editText);
         emailAddressEditText = (EditText) getView().findViewById(R.id.option_emailAddress_editText);
         companyNameEditText = (EditText) getView().findViewById(R.id.option_CompanyName_editText);
+        address = (TextView) getView().findViewById(R.id.option_address);
         logoutButton = (Button) getView().findViewById(R.id.fragmentOptions_LogoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +68,7 @@ public class OptionsFragment extends Fragment {
         faxNumberEditText.setText(SessionData.getInstance().getFaxNumber());
         licenseNumberEditText.setText(SessionData.getInstance().getLicenseNumber());
         emailAddressEditText.setText(SessionData.getInstance().getEmailAddress());
-        //address.setText(SessionData.getInstance().getAddress());
+        address.setText(SessionData.getInstance().getAddress());
 
         usernameEditText.setEnabled(false);
         companyNameEditText.setEnabled(false);
