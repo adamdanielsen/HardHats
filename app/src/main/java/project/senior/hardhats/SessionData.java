@@ -22,10 +22,7 @@ public class SessionData {
     private String firstName;
     private String licenseNumber;
     private String emailAddress;
-    private String zipCode;
-    private String street;
-    private String city;
-    private String state;
+    private String address;
 
     private ArrayList<String>  lastStringArrayResult;
     private SessionData(){
@@ -91,21 +88,10 @@ public class SessionData {
         return emailAddress;
     }
 
-    String getZipCode() {
-        return zipCode;
+    String getAddress() {
+        return address;
     }
 
-    String getStreet() {
-        return street;
-    }
-
-    String getCity() {
-        return city;
-    }
-
-    String getState() {
-        return state;
-    }
 
     void getUserData(){
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
@@ -120,14 +106,11 @@ public class SessionData {
             firstName = rowData.getString("FirstName");
             lastName = rowData.getString("LastName");
             companyName = rowData.getString("CompanyName");
-            city = rowData.getString("City");
-            street = rowData.getString("Street");
             phoneNumber = rowData.getString("PhoneNumber");
             faxNumber = rowData.getString("FaxNumber");
             licenseNumber = rowData.getString("LicenseNumber");
             emailAddress = rowData.getString("EmailAddress");
-            state = rowData.getString("State");
-            zipCode = rowData.getString("ZipCode");
+            address = rowData.getString("Address");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

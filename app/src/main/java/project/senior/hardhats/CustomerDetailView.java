@@ -38,12 +38,6 @@ public class CustomerDetailView extends AppCompatActivity {
         emailAddress = (EditText) findViewById(R.id.customer_Preview_emailAddress_editText);
         address = (TextView) findViewById(R.id.customer_preview_address);
 
-
-        /*
-        city = (EditText) findViewById(R.id.customer_Preview_city_editText);
-        state = (EditText) findViewById(R.id.customer_Preview_state_editText);
-        zipCode = (EditText) findViewById(R.id.customer_Preview_zipCode_editText);
-        */
         String customerid = getIntent().getStringExtra("CUSTOMERID");
 
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
