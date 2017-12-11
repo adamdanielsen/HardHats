@@ -20,18 +20,32 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-                <Button
-                    android:background="?android:attr/selectableItemBackground"
-                    android:id="@+id/fragmentOptions_LogoutButton"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fragment_options_Logout" />
+                    android:layout_height="48dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="48dp"
+                        android:divider="@null"
+                        android:dividerHeight="0dp"
+                        android:src="@drawable/cornerlogo" />
+
+                    <Button
+                        android:id="@+id/fragmentOptions_LogoutButton"
+                        android:layout_width="284dp"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:text="@string/fragment_options_Logout" />
+
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/accountInfo"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
-                    android:textColor="#006622"
                     android:textSize="30sp" />
 
                 <EditText
@@ -42,40 +56,51 @@
                     android:imeOptions="flagNoExtractUi"
                     android:inputType="none"
                     android:maxLength="@integer/MAXUSERNAMELENGTH" />
-
-                <EditText
-                    android:id="@+id/option_firstName_editText"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/first_name"
-                    android:inputType="none" />
+                    android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/option_lastName_editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/last_name"
-                    android:inputType="none" />
+                    <EditText
+                        android:id="@+id/option_firstName_editText"
+                        android:layout_width="186dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/first_name"
+                        android:inputType="none" />
 
-                <EditText
-                    android:id="@+id/option_phoneNumber_editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:digits="0123456789+"
-                    android:ems="10"
-                    android:hint="@string/phone_number"
-                    android:inputType="phone" />
+                    <EditText
+                        android:id="@+id/option_lastName_editText"
+                        android:layout_width="194dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/last_name"
+                        android:inputType="none" />
 
-                <EditText
-                    android:id="@+id/option_faxNumber_editText"
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/fax_number"
-                    android:inputType="phone"
-                    android:digits="0123456789+"/>
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/option_phoneNumber_editText"
+                        android:layout_width="186dp"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789+"
+                        android:ems="10"
+                        android:hint="@string/phone_number"
+                        android:inputType="phone" />
+
+                    <EditText
+                        android:id="@+id/option_faxNumber_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/fax_number"
+                        android:inputType="phone"
+                        android:digits="0123456789+"/>
+
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/option_licenseNumber_editText"

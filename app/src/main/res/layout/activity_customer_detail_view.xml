@@ -7,47 +7,72 @@
     android:orientation="vertical"
     tools:context="project.senior.hardhats.CustomerDetailView">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Customer Information"
-        android:textAppearance="@android:style/TextAppearance.Material.Large"
-        android:textColor="#006622"
-        android:textSize="30sp" />
+        android:layout_height="48dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/customer_Preview_firstName_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/first_name"
-        android:inputType="none" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:src="@drawable/cornerlogo" />
 
-    <EditText
-        android:id="@+id/customer_Preview_lastName_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/last_name"
-        android:inputType="none" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Customer Information"
+            android:textAppearance="@android:style/TextAppearance.Material.Large" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/customer_Preview_phoneNumber_editText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:digits="0123456789+"
-        android:ems="10"
-        android:hint="@string/phone_number"
-        android:inputType="phone" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/customer_Preview_faxNumber_editText"
+        <EditText
+            android:id="@+id/customer_Preview_firstName_editText"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/first_name"
+            android:inputType="none" />
+
+        <EditText
+            android:id="@+id/customer_Preview_lastName_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/last_name"
+            android:inputType="none" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:digits="0123456789+"
-        android:ems="10"
-        android:hint="@string/fax_number"
-        android:inputType="phone" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/customer_Preview_phoneNumber_editText"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:digits="0123456789+"
+            android:ems="10"
+            android:hint="@string/phone_number"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/customer_Preview_faxNumber_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789+"
+            android:ems="10"
+            android:hint="@string/fax_number"
+            android:inputType="phone" />
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/customer_Preview_emailAddress_editText"

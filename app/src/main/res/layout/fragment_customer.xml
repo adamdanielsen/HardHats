@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,12 +7,27 @@
     tools:context="project.senior.hardhats.CustomerFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:background="?android:attr/selectableItemBackground"
-        android:id="@+id/add_customer_button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_customer" />
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:src="@drawable/cornerlogo" />
+
+        <Button
+            android:id="@+id/add_customer_button"
+            android:layout_width="284dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/add_customer" />
+
+    </LinearLayout>
+
 
     <FrameLayout
         android:id="@+id/customer_FrameLayout"

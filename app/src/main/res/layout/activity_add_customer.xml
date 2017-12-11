@@ -136,6 +136,7 @@
                 android:fontFamily="monospace"
                 android:inputType="textEmailAddress"
                 android:hint="@string/email"
+                android:imeOptions="actionDone"
                 android:text="" />
 
             </android.support.design.widget.TextInputLayout>
@@ -144,19 +145,18 @@
             <EditText
                 android:id="@+id/customer_address_editText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none"
-                android:fontFamily="monospace"
-                android:hint="@string/customer_clickbelowtochangeaddress"
-                android:ems="10"
-                />
+                android:layout_height="4dp" />
+
             <Button
                 android:id="@+id/customer_address_button"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="@string/customer_EnterAddress" />
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:text="@string/customer_EnterAddress"
+                android:textSize="17dp"
+                android:fontFamily="serif-monospace"/>
+
 
         </LinearLayout>
 

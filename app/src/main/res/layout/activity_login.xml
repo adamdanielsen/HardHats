@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:paddingRight="20dp"
         android:paddingBottom="40dp"
+        android:paddingRight="20dp"
         android:text="@string/login_About"
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
@@ -24,7 +24,7 @@
         android:layout_marginBottom="120dp"
         android:layout_marginTop="60dp"
         android:contentDescription="Hardhats Logo"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo1" />
 
 
     <android.support.design.widget.TextInputLayout

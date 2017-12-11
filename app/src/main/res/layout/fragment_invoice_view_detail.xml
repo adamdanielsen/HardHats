@@ -15,6 +15,14 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="48dp"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:src="@drawable/cornerlogo" />
+
             <Button
                 android:background="?android:attr/selectableItemBackground"
                 android:id="@+id/fragmentinvoiceviewdetail_invoiceActions"

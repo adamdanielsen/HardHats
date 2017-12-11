@@ -28,7 +28,7 @@ public class OptionsFragment extends Fragment {
     private EditText licenseNumberEditText;
     private EditText emailAddressEditText;
     private EditText companyNameEditText;
-    private TextView address;
+    private EditText address;
     public OptionsFragment() {
         // Required empty public constructor
     }
@@ -52,7 +52,7 @@ public class OptionsFragment extends Fragment {
         licenseNumberEditText = (EditText) getView().findViewById(R.id.option_licenseNumber_editText);
         emailAddressEditText = (EditText) getView().findViewById(R.id.option_emailAddress_editText);
         companyNameEditText = (EditText) getView().findViewById(R.id.option_CompanyName_editText);
-        address = (TextView) getView().findViewById(R.id.option_address);
+        address = (EditText) getView().findViewById(R.id.option_address);
         logoutButton = (Button) getView().findViewById(R.id.fragmentOptions_LogoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +78,7 @@ public class OptionsFragment extends Fragment {
         faxNumberEditText.setEnabled(false);
         licenseNumberEditText.setEnabled(false);
         emailAddressEditText.setEnabled(false);
-
+        address.setEnabled(false);
 
     }
 

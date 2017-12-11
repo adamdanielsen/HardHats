@@ -11,5 +11,7 @@
         android:id="@+id/fragmentinvoicepreviewlist_invoicesListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".03" />
+        android:layout_weight=".03"
+        android:divider="@null"
+        android:dividerHeight="9dp"/>
 </LinearLayout>

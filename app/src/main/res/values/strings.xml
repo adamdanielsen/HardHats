@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HardHats</string>
+    <string name="app_name">HardHatz</string>
     <string name="login_Login">LOG IN</string>
     <string name="login_Register">REGISTER</string>
     <string name="login_Username">Username</string>
@@ -8,7 +8,7 @@
     <string name="register_Password">Password (5–20 Characters)</string>
     <string name="register_ConfirmPassword">Confirm Password:</string>
     <string name="register_Cancel">CANCEL</string>
-    <string name="about_About">About\n\nAuthors:</string>
+    <string name="authors">Authors:</string>
     <string name="login_About">About</string>
     <string name="registration_Registration">Registration</string>
     <string name="title_activity_menu">MenuActivity</string>
@@ -121,7 +121,7 @@
     <string name="invoiceedit_done">Done</string>
     <string name="invoiceedit_cancel">Cancel</string>
     <string name="invoiceedit_addline">Add Line</string>
-    <string name="customer_EnterAddress">Enter Address</string>
+    <string name="customer_EnterAddress">Click here to enter address</string>
     <string name="customer_clickbelowtochange">Click Below To Change</string>
     <string name="customer_clickbelowtochangeaddress">Address (Click below to change)</string>
 </resources>

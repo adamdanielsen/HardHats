@@ -191,7 +191,7 @@ public class AddCustomer extends AppCompatActivity {
             String s = database.execute(dataContainer).get();
 
             AlertDialog.Builder box= new AlertDialog.Builder(this);
-            box.setTitle("wut");
+           // box.setTitle("wut");
             box.setMessage(s);
             box.show();
         } catch (InterruptedException e) {

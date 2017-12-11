@@ -4,16 +4,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/about_About"
-        android:textAppearance="@android:style/TextAppearance.Material.Large" />
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:src="@drawable/cornerlogo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/authors"
+            android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/about_authorListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="false" />
+        android:clickable="false"
+        android:divider="@null"
+        android:dividerHeight="9dp"/>
 </LinearLayout>
 

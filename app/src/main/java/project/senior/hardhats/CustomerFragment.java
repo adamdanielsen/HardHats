@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 //import android.app.Fragment;
@@ -22,7 +23,8 @@ public class CustomerFragment extends Fragment {
 
     private Button add_customer;
     private String selectedID;
-    ListView listView;
+    public EditText USERID;
+
     public CustomerFragment() {
         // Required empty public constructor
     }
@@ -42,7 +44,6 @@ public class CustomerFragment extends Fragment {
         getChildFragmentManager().beginTransaction().add(R.id.customer_FrameLayout, new CustomerPreviewListFragment(),"CUSTOMERPREVIEWLIST").commit();
 
         add_customer = (Button) getView().findViewById(R.id.add_customer_button);
-
         add_customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +51,7 @@ public class CustomerFragment extends Fragment {
                 startActivityForResult(intent,1);
             }
         });
+
     }
 
     @Override
