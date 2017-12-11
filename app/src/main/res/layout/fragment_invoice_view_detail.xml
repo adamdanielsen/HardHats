@@ -20,7 +20,7 @@
                     android:layout_width="50dp"
                     android:layout_height="48dp"
                     android:divider="@null"
-                    android:dividerHeight="0dp"" />
+                    android:dividerHeight="0dp" />
 
             <Button
                 android:background="?android:attr/selectableItemBackground"
