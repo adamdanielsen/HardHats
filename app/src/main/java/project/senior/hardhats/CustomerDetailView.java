@@ -5,7 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
+import project.senior.hardhats.Documents.Person;
 
 public class CustomerDetailView extends AppCompatActivity {
 
@@ -36,10 +41,23 @@ public class CustomerDetailView extends AppCompatActivity {
         String customerid = getIntent().getStringExtra("CUSTOMERID");
 
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
-        ArrayList<String> values = new ArrayList<>();
-        ArrayList<String> fields = new ArrayList<>();
+
+
         DataContainer dataContainer = new DataContainer();
-        dataContainer.type = " ";
+        dataContainer.type = "getCustomer";
+        dataContainer.phpVariableNames.add("UserID");
+        dataContainer.dataPassedIn.add(customerid);
+        Person customer=null;
+        try {
+            customer = new Person(backgroundWorker.execute(dataContainer).get(),"Customer");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        firstName.setText(customer.getFirstName());
 
 
 

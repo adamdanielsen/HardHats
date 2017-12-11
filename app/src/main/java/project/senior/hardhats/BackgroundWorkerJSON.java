@@ -37,6 +37,7 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
     private final String createuser_url="http://hardhatz.org/createuser.php";
     private final String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
     private final String getUser_url="http://hardhatz.org/getUserInfo.php";
+    private final String getCustomer_url="http://hardhatz.org/getCustomer.php";
 
     public BackgroundWorkerJSON()
     {
@@ -176,6 +177,10 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
         return ExecuteRequest(getUser_url, dataContainer);
     }
 
+    private JSONObject getCustomerProcedure(DataContainer dataContainer){
+        return ExecuteRequest(getCustomer_url, dataContainer);
+    }
+
 
 
     /**
@@ -208,6 +213,9 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
 
             case "getUser":
                 return getUserData(params[0]);
+
+            case "getCustomer":
+                return getCustomerProcedure(params[0]);
 
 
         }

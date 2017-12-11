@@ -1,6 +1,7 @@
 package project.senior.hardhats;
 
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -217,6 +218,7 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
     }
 
+
     private String GetGCEmail(DataContainer dataContainer) {
 
         return ExecuteRequest(getgcemail_url,dataContainer);
@@ -284,6 +286,7 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
                 return DeleteInvoiceProcedure(params[0]);
             case "editinvoice":
                 return EditInvoiceProcedure(params[0]);
+
 
         }
 
