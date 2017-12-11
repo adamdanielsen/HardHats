@@ -175,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        Toast.makeText(this, "Welcome "+setUsername+" "+setUserID, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Welcome "+setUsername, Toast.LENGTH_SHORT).show();
         SessionData.getInstance().setUsername(setUsername);
         SessionData.getInstance().setUserID(setUserID);
         SessionData.getInstance().getUserData();

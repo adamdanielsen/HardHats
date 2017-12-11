@@ -56,7 +56,7 @@ public class InvoiceLine implements Parcelable {
 
     String getInvoiceExportStringForPreview()
     {
-        int spaceRoom=40;
+        int spaceRoom=36;
         int stringLength;
         StringBuilder line1=new StringBuilder();
         StringBuilder line2;

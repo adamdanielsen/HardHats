@@ -29,13 +29,28 @@
     </LinearLayout>
 
 
-    <Button
-        android:background="?android:attr/selectableItemBackground"
-        android:id="@+id/fragmentInvoice_backToPreviewButton"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#5DBCD2"
-        android:text="@string/fragmentinvoice_backtopreview" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:src="@drawable/cornerlogo" />
+
+        <Button
+            android:id="@+id/fragmentInvoice_backToPreviewButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/fragmentinvoice_backtopreview"
+            android:textColor="#5DBCD2" />
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/invoice_FrameLayout"

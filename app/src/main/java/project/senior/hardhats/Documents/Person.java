@@ -77,8 +77,10 @@ public class Person implements Parcelable {
 
     public String BuildContractorAddressForInvoice()
     {
-        String formattedaddress = companyName +
+        String formattedaddress = "Company: "+
+                companyName +
                 "\n" +
+                "Phone #:"+
                 phoneNumber +
                 "\n" +
                 firstName +

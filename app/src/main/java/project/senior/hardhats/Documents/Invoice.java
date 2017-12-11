@@ -109,12 +109,12 @@ public class Invoice implements Parcelable {
 
         if (paid)
         {
-            invoiceString.append("_______________PAID_______________");
+            invoiceString.append("______________________PAID______________________\n");
 
         }
         else
         {
-            invoiceString.append("______________UNPAID______________");
+            invoiceString.append("_____________________UNPAID_____________________\n");
 
         }
 
@@ -122,17 +122,17 @@ public class Invoice implements Parcelable {
         invoiceString.append(contractorAddress.BuildContractorAddressForInvoice());
         invoiceString.append("\n\nBill To:\n");
         invoiceString.append(customerAddress.BuildCustomerAddressForInvoice());
-        invoiceString.append("\n___________________________________________________________________________\n");
+        invoiceString.append("\n_______________________________________________________________________\n\n");
         double finalTotal = 0;
         for (InvoiceLine invoice : invoiceLines)
 
         {
             finalTotal+=invoice.lineTotal;
             invoiceString.append(invoice.getInvoiceExportStringForPreview());
-            invoiceString.append("\n");
+            invoiceString.append("\n\n");
         }
-        invoiceString.append("___________________________________________________________________________\n");
-        invoiceString.append("\nTOTAL                                   ");
+        invoiceString.append("_______________________________________________________________________\n");
+        invoiceString.append("\nTOTAL                               ");
         invoiceString.append(df.format(finalTotal));
 
         return invoiceString.toString();
