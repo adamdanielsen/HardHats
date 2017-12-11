@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
@@ -20,18 +20,18 @@
             android:src="@drawable/cornerlogo" />
 
         <Button
-            android:background="?android:attr/selectableItemBackground"
-            android:textColor="#5DBCD2"
             android:id="@+id/fragmentInvoice_GenerateInvoiceButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_generateinvoice_GenerateInvoice" />
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/fragment_generateinvoice_GenerateInvoice"
+            android:textColor="#5DBCD2" />
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
@@ -59,14 +59,6 @@
 
     </FrameLayout>
 
-
-    <!--
-    <Button
-        android:id="@+id/fragmentinvoice_ViewInvoicesButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/fragmentinvoice_viewinvoices" />
--->
 
 
 </LinearLayout>
