@@ -120,7 +120,7 @@ public class Invoice implements Parcelable {
             invoiceString.append("\n");
         }
         invoiceString.append("___________________________________________________________________________\n");
-        invoiceString.append("TOTAL                                              ");
+        invoiceString.append("\nTOTAL                                   ");
         invoiceString.append(df.format(finalTotal));
 
         return invoiceString.toString();

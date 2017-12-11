@@ -128,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <EditText
+                <EditText
                 android:id="@+id/customer_email_address_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -137,73 +137,26 @@
                 android:inputType="textEmailAddress"
                 android:hint="@string/email"
                 android:text="" />
+
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/customer_street_address_textInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/customer_street_address_editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="monospace"
-                android:inputType="textPersonName"
-                android:imeOptions="actionDone"
-                android:hint="@string/street"
-                android:text="" />
-            </android.support.design.widget.TextInputLayout>
-
-
-            <LinearLayout
+                android:id="@+id/customer_address_editText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/customer_city_textInputLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/customer_city_editText"
-                        android:layout_width="154dp"
-                        android:layout_height="match_parent"
-                        android:ems="10"
-                        android:fontFamily="monospace"
-                        android:hint="@string/city"
-                        android:imeOptions="actionDone"
-                        android:inputType="textPersonName"
-                        android:text="" />
-                </android.support.design.widget.TextInputLayout>
-
-                <Spinner
-                    android:id="@+id/customer_state_spinner"
-                    android:layout_width="96dp"
-                    android:layout_height="match_parent" />
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/customer_zip_code_textInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/customer_zip_code_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:ems="10"
-                        android:fontFamily="monospace"
-                        android:hint="@string/zip_code"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:text="" />
-                </android.support.design.widget.TextInputLayout>
-
-            </LinearLayout>
-
-
-
+                android:inputType="none"
+                android:fontFamily="monospace"
+                android:hint="@string/customer_clickbelowtochangeaddress"
+                android:ems="10"
+                />
+            <Button
+                android:id="@+id/customer_address_button"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="@string/customer_EnterAddress" />
 
         </LinearLayout>
 

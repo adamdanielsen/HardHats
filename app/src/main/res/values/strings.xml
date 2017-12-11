@@ -121,4 +121,7 @@
     <string name="invoiceedit_done">Done</string>
     <string name="invoiceedit_cancel">Cancel</string>
     <string name="invoiceedit_addline">Add Line</string>
+    <string name="customer_EnterAddress">Enter Address</string>
+    <string name="customer_clickbelowtochange">Click Below To Change</string>
+    <string name="customer_clickbelowtochangeaddress">Address (Click below to change)</string>
 </resources>

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.util.concurrent.ExecutionException;
 
 import project.senior.hardhats.Documents.Invoice;
@@ -37,7 +39,15 @@ public class InvoiceActionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice_actions);
         confirmFlag=false;
-        currentInvoice =(Invoice) getIntent().getExtras().get("currentinvoice");
+        try {
+            currentInvoice =new Invoice(getIntent().getExtras().getString("currentinvoice"));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         accountEmail=SessionData.getInstance().getEmailAddress();
         customerEmail=currentInvoice.getCustomerAddress().getEmailAddress();
         gcEmail=currentInvoice.getGeneralContractorEmail();
@@ -134,7 +144,7 @@ public class InvoiceActionsActivity extends AppCompatActivity {
         gcEmailTextView.setText(gcEmail);
     }
 
-    private void onEdit() {
+        private void onEdit() {
         Intent openEdit= new Intent(this,EditInvoiceActivity.class);
         openEdit.putExtra("currentinvoice",currentInvoice);
         startActivityForResult(openEdit,1);
@@ -217,8 +227,6 @@ public class InvoiceActionsActivity extends AppCompatActivity {
 
     void sendEmail(emailstatus s)
     {
-
-
         String body="";
         String emailAddress="";
         switch(s)

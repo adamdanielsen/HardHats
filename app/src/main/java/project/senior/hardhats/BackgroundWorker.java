@@ -42,6 +42,7 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     private final String checkusername_url="http://hardhatz.org/checkusername.php";
     private final String markpaid_url="http://hardhatz.org/markpaid.php";
     private final String deleteinvoice_url="http://hardhatz.org/deleteinvoice.php";
+    private final String editinvoice_url="http://hardhatz.org/editinvoice.php";
     public static final int LOGIN = 0;
     public static final int CREATEUSER = 1;
     public static final int SENDINVOICEEMAIL = 2;
@@ -238,6 +239,11 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
         return ExecuteRequest(deleteinvoice_url,param);
     }
 
+
+    private String EditInvoiceProcedure(DataContainer param) {
+        return ExecuteRequest(editinvoice_url,param);
+    }
+
     /**
      * After a few steps, this function returns the result of the echo from the script called.
      * This function uses the type located in the DataContainer to figure out which script to use.
@@ -276,6 +282,8 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
                 return MarkPaidProcedure(params[0]);
             case "deleteinvoice":
                 return DeleteInvoiceProcedure(params[0]);
+            case "editinvoice":
+                return EditInvoiceProcedure(params[0]);
 
         }
 

@@ -47,11 +47,17 @@ public class CustomerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddCustomer.class);
-                startActivity(intent);
-
+                startActivityForResult(intent,1);
             }
         });
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Fragment fragment = getChildFragmentManager().findFragmentByTag("CUSTOMERPREVIEWLIST");
+        ((CustomerPreviewListFragment) fragment).Setup();
+    }
+
     public String getSelectedID() {
         return selectedID;
     }

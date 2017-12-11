@@ -37,6 +37,7 @@ public class Person implements Parcelable {
         personType=type;
         if (personType.equals("Contractor"))
         {
+            id= personJSONObject.getString("UserID");
             firstName = personJSONObject.getString("FirstName");
             lastName = personJSONObject.getString("LastName");
             phoneNumber = personJSONObject.getString("PhoneNumber");

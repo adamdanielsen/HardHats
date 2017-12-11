@@ -31,6 +31,11 @@ public class EditInvoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_invoice);
         currentInvoice =(Invoice) getIntent().getExtras().get("currentinvoice");
+        CustomerID=currentInvoice.getCustomerAddress().getId();
+        UserID=currentInvoice.getContractorAddress().getId();
+        GCEmail=currentInvoice.getGeneralContractorEmail();
+
+
         addLineButton = (Button) findViewById(R.id.editinvoice_addLineButton);
         doneOrFinishLineButton = (Button) findViewById(R.id.editinvoice_doneOrFinishLineButton);
         cancelOrCancelLineButton = (Button) findViewById(R.id.editinvoice_cancelOrCancelLineButton);
@@ -90,11 +95,16 @@ public class EditInvoiceActivity extends AppCompatActivity {
             DataContainer dataContainer = new DataContainer();
             dataContainer.type="editinvoice";
             dataContainer.phpVariableNames.add("UserID");
+            dataContainer.phpVariableNames.add("InvoiceID");
             dataContainer.phpVariableNames.add("CustomerID");
             dataContainer.phpVariableNames.add("InvoiceArray");
+            dataContainer.phpVariableNames.add("GCEmail");
+
             dataContainer.dataPassedIn.add(UserID);
+            dataContainer.dataPassedIn.add(currentInvoice.getId());
             dataContainer.dataPassedIn.add(CustomerID);
             dataContainer.dataPassedIn.add(invoiceLinesJSON.toString());
+            dataContainer.dataPassedIn.add(GCEmail);
             dataInsert.execute(dataContainer);
             setResult(1);
             finish();

@@ -11,7 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Jonathan.Cucuzza on 12/5/2017.
@@ -33,12 +36,7 @@ public class CustomerPreviewListFragment extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         customerListView = (ListView) getView().findViewById(R.id.fragmentcustomerpreviewlist_customerListView);
-
-        final ArrayList<MenuActivity.CustomerForPreview> customerList = ((MenuActivity)getActivity()).getCustomerList();
-
-        CustomerPreviewListFragment.CustomerForMenuAdapter adapter = new CustomerPreviewListFragment.CustomerForMenuAdapter(getContext(),customerList);
-        customerListView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        Setup();
 /*
         customerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -49,6 +47,23 @@ public class CustomerPreviewListFragment extends Fragment{
             }
         });
 */
+    }
+
+    public void Setup()
+    {
+        try {
+            ((MenuActivity)getParentFragment().getActivity()).Setup();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        final ArrayList<MenuActivity.CustomerForPreview> customerList = ((MenuActivity)getActivity()).getCustomerList();
+        CustomerPreviewListFragment.CustomerForMenuAdapter adapter = new CustomerPreviewListFragment.CustomerForMenuAdapter(getContext(),customerList);
+        customerListView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
     private class CustomerForMenuAdapter extends BaseAdapter
     {
