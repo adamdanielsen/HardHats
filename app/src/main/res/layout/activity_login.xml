@@ -60,7 +60,7 @@
             android:inputType="textPassword"
             android:maxLength="@integer/MAXPASSWORDLENGTH"
             android:text="" />
-
+    </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/login_LoginButton"
             android:layout_width="match_parent"
@@ -69,7 +69,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:textColor="#5DBCD2"
             android:text="@string/login_Login" />
-    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/login_RegisterButton"
