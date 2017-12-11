@@ -106,6 +106,18 @@ public class Invoice implements Parcelable {
     {
 
         StringBuilder invoiceString = new StringBuilder();
+
+        if (paid)
+        {
+            invoiceString.append("_______________PAID_______________");
+
+        }
+        else
+        {
+            invoiceString.append("______________UNPAID______________");
+
+        }
+
         invoiceString.append("Contractor:\n");
         invoiceString.append(contractorAddress.BuildContractorAddressForInvoice());
         invoiceString.append("\n\nBill To:\n");

@@ -111,6 +111,7 @@ public class SessionData {
             licenseNumber = rowData.getString("LicenseNumber");
             emailAddress = rowData.getString("EmailAddress");
             address = rowData.getString("Address");
+            int i=1;
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

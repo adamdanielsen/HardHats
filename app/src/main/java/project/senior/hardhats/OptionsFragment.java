@@ -7,10 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 //import android.app.Fragment;
@@ -54,7 +52,6 @@ public class OptionsFragment extends Fragment {
         licenseNumberEditText = (EditText) getView().findViewById(R.id.option_licenseNumber_editText);
         emailAddressEditText = (EditText) getView().findViewById(R.id.option_emailAddress_editText);
         companyNameEditText = (EditText) getView().findViewById(R.id.option_CompanyName_editText);
-
         logoutButton = (Button) getView().findViewById(R.id.fragmentOptions_LogoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
