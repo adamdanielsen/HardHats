@@ -57,6 +57,14 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress" />
 
+    <EditText
+        android:id="@+id/customer_Preview_CompanyName_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/street"
+        android:inputType="none" />
+
     <TextView
         android:id="@+id/customer_preview_address"
         android:layout_width="match_parent"
@@ -65,40 +73,31 @@
         android:textSize="20sp"
         android:textStyle="normal" />
 
-
     <!--
-    <EditText
-        android:id="@+id/customer_Preview_streetAddress_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/street"
-        android:inputType="none" />
+        <EditText
+            android:id="@+id/customer_Preview_city_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/city"
+            android:inputType="none" />
 
-    <EditText
-        android:id="@+id/customer_Preview_city_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/city"
-        android:inputType="none" />
+        <EditText
+            android:id="@+id/customer_Preview_zipCode_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789+"
+            android:ems="10"
+            android:hint="@string/zip_code"
+            android:inputType="none" />
 
-    <EditText
-        android:id="@+id/customer_Preview_zipCode_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:digits="0123456789+"
-        android:ems="10"
-        android:hint="@string/zip_code"
-        android:inputType="none" />
-
-    <EditText
-        android:id="@+id/customer_Preview_state_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:digits="0123456789+"
-        android:ems="10"
-        android:hint="State"
-        android:inputType="none" />
-    -->
+        <EditText
+            android:id="@+id/customer_Preview_state_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789+"
+            android:ems="10"
+            android:hint="State"
+            android:inputType="none" />
+        -->
 </LinearLayout>

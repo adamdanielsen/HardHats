@@ -17,14 +17,12 @@ public class CustomerDetailView extends AppCompatActivity {
 
     EditText firstName;
     EditText lastName;
-    EditText streetAddress;
+    EditText CompanyName;
     EditText phoneNumber;
     EditText faxNumber;
     EditText emailAddress;
     TextView address;
-    EditText city;
-    EditText state;
-    EditText zipCode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,7 @@ public class CustomerDetailView extends AppCompatActivity {
         setContentView(R.layout.activity_customer_detail_view);
         firstName = (EditText) findViewById(R.id.customer_Preview_firstName_editText);
         lastName = (EditText) findViewById(R.id.customer_Preview_lastName_editText);
-        //streetAddress = (EditText) findViewById(R.id.customer_Preview_streetAddress_editText);
+        CompanyName = (EditText) findViewById(R.id.customer_Preview_CompanyName_editText);
         phoneNumber = (EditText) findViewById(R.id.customer_Preview_phoneNumber_editText);
         faxNumber = (EditText) findViewById(R.id.customer_Preview_faxNumber_editText);
         emailAddress = (EditText) findViewById(R.id.customer_Preview_emailAddress_editText);
@@ -62,7 +60,15 @@ public class CustomerDetailView extends AppCompatActivity {
         phoneNumber.setText(customer.getPhoneNumber());
         faxNumber.setText(customer.getFaxNumber());
         emailAddress.setText(customer.getEmailAddress());
+        CompanyName.setText(customer.getCompanyName());
         address.setText(customer.getAddress());
+
+        firstName.setEnabled(false);
+        lastName.setEnabled(false);
+        phoneNumber.setEnabled(false);
+        faxNumber.setEnabled(false);
+        emailAddress.setEnabled(false);
+        CompanyName.setEnabled(false);
 
 
 
