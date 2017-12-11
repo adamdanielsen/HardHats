@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class CustomerDetailView extends AppCompatActivity {
 
     EditText firstName;
@@ -30,6 +32,16 @@ public class CustomerDetailView extends AppCompatActivity {
         city = (EditText) findViewById(R.id.customer_Preview_city_editText);
         state = (EditText) findViewById(R.id.customer_Preview_state_editText);
         zipCode = (EditText) findViewById(R.id.customer_Preview_zipCode_editText);
+
+        String customerid = getIntent().getStringExtra("CUSTOMERID");
+
+        BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
+        ArrayList<String> values = new ArrayList<>();
+        ArrayList<String> fields = new ArrayList<>();
+        DataContainer dataContainer = new DataContainer();
+        dataContainer.type = " ";
+
+
 
     }
 }
