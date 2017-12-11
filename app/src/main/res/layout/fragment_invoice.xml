@@ -39,7 +39,7 @@
             android:layout_height="48dp"
             android:divider="@null"
             android:dividerHeight="0dp"
-            android:src="@drawable/cornerlogo" />
+             />
 
         <Button
             android:id="@+id/fragmentInvoice_backToPreviewButton"
