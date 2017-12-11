@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="project.senior.hardhats.CustomerDetailView">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Customer Information"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textColor="#006622"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/customer_Preview_firstName_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/first_name"
+        android:inputType="none" />
+
+    <EditText
+        android:id="@+id/customer_Preview_lastName_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/last_name"
+        android:inputType="none" />
+
+    <EditText
+        android:id="@+id/customer_Preview_phoneNumber_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789+"
+        android:ems="10"
+        android:hint="@string/phone_number"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/customer_Preview_faxNumber_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789+"
+        android:ems="10"
+        android:hint="@string/fax_number"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/customer_Preview_emailAddress_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/customer_Preview_streetAddress_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/street"
+        android:inputType="none" />
+
+    <EditText
+        android:id="@+id/customer_Preview_city_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/city"
+        android:inputType="none" />
+
+    <EditText
+        android:id="@+id/customer_Preview_zipCode_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789+"
+        android:ems="10"
+        android:hint="@string/zip_code"
+        android:inputType="none" />
+
+    <EditText
+        android:id="@+id/customer_Preview_state_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789+"
+        android:ems="10"
+        android:hint="State"
+        android:inputType="none" />
+
+</LinearLayout>

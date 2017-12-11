@@ -55,7 +55,9 @@
             android:name=".InvoiceActionsActivity"
             android:label="@string/title_activity_send_email"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EditInvoiceActivity"></activity>
+        <activity android:name=".EditInvoiceActivity" />
+        <activity android:name=".Documents.CustomerPreview" />
+        <activity android:name=".CustomerDetailView"></activity>
     </application>
 
 </manifest>
