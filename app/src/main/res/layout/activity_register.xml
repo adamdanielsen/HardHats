@@ -113,6 +113,7 @@
             android:digits="0123456789+"
             android:ems="10"
             android:hint="@string/phone_number"
+            android:imeOptions="actionGo"
             android:inputType="phone" />
 
         </android.support.design.widget.TextInputLayout>
@@ -130,6 +131,7 @@
             android:ems="10"
             android:hint="@string/fax_number"
             android:inputType="number"
+            android:imeOptions="actionGo"
             android:digits="0123456789+"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -144,6 +146,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/licesneNumber"
+            android:imeOptions="actionGo"
             android:inputType="number"
             android:digits="0123456789+"/>
         </android.support.design.widget.TextInputLayout>
@@ -173,6 +176,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/company"
+            android:imeOptions="actionDone"
             android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
