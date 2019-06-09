@@ -22,141 +22,139 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 
 import java.util.concurrent.ExecutionException;
+
 public class RegisterActivity extends AppCompatActivity {
 
-        private EditText usernameEditText;
-        private EditText passwordEditText;
-        private EditText confirmpasswordEditText;
-        private EditText firstNameEditText;
-        private EditText lastNameEditText;
-        private EditText phoneNumberEditText;
-        private EditText faxNumberEditText;
-        private EditText licenseNumberEditText;
-        private EditText emailAddressEditText;
-        private EditText companyNameEditText;
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private EditText confirmpasswordEditText;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
+    private EditText phoneNumberEditText;
+    private EditText faxNumberEditText;
+    private EditText licenseNumberEditText;
+    private EditText emailAddressEditText;
+    private EditText companyNameEditText;
 
-        private TextInputLayout usernameTextInputLayout;
-        private TextInputLayout passwordTextInputLayout;
-        private TextInputLayout confirmpasswordTextInputLayout;
-        private TextInputLayout firstNameTextInputLayout;
-        private TextInputLayout lastNameTextInputLayout;
-        private TextInputLayout phoneNumberTextInputLayout;
-        private TextInputLayout faxNumberTextInputLayout;
-        private TextInputLayout licenseNumberTextInputLayout;
-        private TextInputLayout emailAddressTextInputLayout;
-        private TextInputLayout companyNameTextInputLayout;
+    private TextInputLayout usernameTextInputLayout;
+    private TextInputLayout passwordTextInputLayout;
+    private TextInputLayout confirmpasswordTextInputLayout;
+    private TextInputLayout firstNameTextInputLayout;
+    private TextInputLayout lastNameTextInputLayout;
+    private TextInputLayout phoneNumberTextInputLayout;
+    private TextInputLayout faxNumberTextInputLayout;
+    private TextInputLayout licenseNumberTextInputLayout;
+    private TextInputLayout emailAddressTextInputLayout;
+    private TextInputLayout companyNameTextInputLayout;
 
-        private String username;
-        private String password;
-        private String firstName;
-        private String lastName;
-        private String phoneNumber;
-        private String faxNumber;
-        private String licenseNumber;
-        private String emailAddress;
-        private String companyName;
-        private String addressToUse;
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String faxNumber;
+    private String licenseNumber;
+    private String emailAddress;
+    private String companyName;
+    private String addressToUse;
 
 
+    private Place address;
+    private String backupAddress;
+    private boolean googleError;
 
-        private Place address;
-        private String backupAddress;
-        private boolean googleError;
+    private Button continueButton;
+    private Button cancelButton;
 
-        private Button continueButton;
-        private Button cancelButton;
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_register);
-            getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-            usernameEditText =(EditText) findViewById(R.id.register_UserNameEditText);
-            passwordEditText = (EditText)findViewById(R.id.register_PasswordEditText);
-            confirmpasswordEditText =(EditText) findViewById(R.id.register_ConfirmPasswordEditText);
-            firstNameEditText = (EditText) findViewById(R.id.user_firstName_editText);
-            lastNameEditText = (EditText) findViewById(R.id.user_lastName_editText);
-            phoneNumberEditText = (EditText) findViewById(R.id.user_phoneNumber_editText);
-            faxNumberEditText = (EditText) findViewById(R.id.user_faxNumber_editText);
-            licenseNumberEditText = (EditText) findViewById(R.id.user_licenseNumber_editText);
-            emailAddressEditText = (EditText) findViewById(R.id.user_emailAddress_editText);
-            companyNameEditText = (EditText) findViewById(R.id.user_CompanyName_editText);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+        usernameEditText = findViewById(R.id.register_UserNameEditText);
+        passwordEditText = findViewById(R.id.register_PasswordEditText);
+        confirmpasswordEditText = findViewById(R.id.register_ConfirmPasswordEditText);
+        firstNameEditText = findViewById(R.id.user_firstName_editText);
+        lastNameEditText = findViewById(R.id.user_lastName_editText);
+        phoneNumberEditText = findViewById(R.id.user_phoneNumber_editText);
+        faxNumberEditText = findViewById(R.id.user_faxNumber_editText);
+        licenseNumberEditText = findViewById(R.id.user_licenseNumber_editText);
+        emailAddressEditText = findViewById(R.id.user_emailAddress_editText);
+        companyNameEditText = findViewById(R.id.user_CompanyName_editText);
 
-            usernameTextInputLayout =(TextInputLayout) findViewById(R.id.register_usernameTextInputLayout);
-            passwordTextInputLayout = (TextInputLayout)findViewById(R.id.register_passwordTextInputLayout);
-            confirmpasswordTextInputLayout =(TextInputLayout) findViewById(R.id.register_confirmPasswordTextInputLayout);
-            firstNameTextInputLayout = (TextInputLayout) findViewById(R.id.register_firstNameTextInputLayout);
-            lastNameTextInputLayout = (TextInputLayout) findViewById(R.id.register_lastNameTextInputLayout);
-            phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.register_phoneNumberTextInputLayout);
-            faxNumberTextInputLayout = (TextInputLayout) findViewById(R.id.register_faxNumberTextInputLayout);
-            licenseNumberTextInputLayout = (TextInputLayout) findViewById(R.id.register_licenseNumberTextInputLayout);
-            emailAddressTextInputLayout = (TextInputLayout) findViewById(R.id.register_emailAddressTextInputLayout);
-            companyNameTextInputLayout = (TextInputLayout) findViewById(R.id.register_companyNameTextInputLayout);
+        usernameTextInputLayout = findViewById(R.id.register_usernameTextInputLayout);
+        passwordTextInputLayout = findViewById(R.id.register_passwordTextInputLayout);
+        confirmpasswordTextInputLayout = findViewById(R.id.register_confirmPasswordTextInputLayout);
+        firstNameTextInputLayout = findViewById(R.id.register_firstNameTextInputLayout);
+        lastNameTextInputLayout = findViewById(R.id.register_lastNameTextInputLayout);
+        phoneNumberTextInputLayout = findViewById(R.id.register_phoneNumberTextInputLayout);
+        faxNumberTextInputLayout = findViewById(R.id.register_faxNumberTextInputLayout);
+        licenseNumberTextInputLayout = findViewById(R.id.register_licenseNumberTextInputLayout);
+        emailAddressTextInputLayout = findViewById(R.id.register_emailAddressTextInputLayout);
+        companyNameTextInputLayout = findViewById(R.id.register_companyNameTextInputLayout);
 
-            continueButton =(Button) findViewById(R.id.register_ContinueButton);
-            cancelButton=(Button) findViewById(R.id.register_CancelButton);
-            continueButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Continue();
-                }
-            });
-            cancelButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Cancel();
-                }
-            });
-            googleError=false;
+        continueButton = findViewById(R.id.register_ContinueButton);
+        cancelButton = findViewById(R.id.register_CancelButton);
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Continue();
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cancel();
+            }
+        });
+        googleError = false;
 
-        }
-
+    }
 
 
     private void Continue() {
 
-            if(!Validate())
-            {
-                return;
-            }
-         backupAddress=null;
-         username= usernameEditText.getText().toString();
-         password= passwordEditText.getText().toString();
-         firstName = firstNameEditText.getText().toString();
-         lastName = lastNameEditText.getText().toString();
-         phoneNumber = phoneNumberEditText.getText().toString();
-         faxNumber = faxNumberEditText.getText().toString();
-         licenseNumber = licenseNumberEditText.getText().toString();
-         emailAddress = emailAddressEditText.getText().toString();
-         companyName = companyNameEditText.getText().toString();
+        if (!Validate()) {
+            return;
+        }
+        backupAddress = null;
+        username = usernameEditText.getText().toString();
+        password = passwordEditText.getText().toString();
+        firstName = firstNameEditText.getText().toString();
+        lastName = lastNameEditText.getText().toString();
+        phoneNumber = phoneNumberEditText.getText().toString();
+        faxNumber = faxNumberEditText.getText().toString();
+        licenseNumber = licenseNumberEditText.getText().toString();
+        emailAddress = emailAddressEditText.getText().toString();
+        companyName = companyNameEditText.getText().toString();
 
-            int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
-            AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-                    .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
-                    .build();
-            try {
-                Intent intent =
-                        new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-                                .setFilter(typeFilter)
-                                .build(this);
-                Toast.makeText(this, "Please select your address", Toast.LENGTH_LONG).show();
-                startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-            } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-                googleError = true;
-                Toast.makeText(this, "Error starting Google Places, launching backup", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(this, BackupAddressHandlerActivity.class);
-                Toast.makeText(this, "Please enter your address", Toast.LENGTH_LONG).show();
-                startActivityForResult(i, 1);
-            }
+        int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
+                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
+                .build();
+        try {
+            Intent intent =
+                    new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                            .setFilter(typeFilter)
+                            .build(this);
+            Toast.makeText(this, "Please select your address", Toast.LENGTH_LONG).show();
+            startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            googleError = true;
+            Toast.makeText(this, "Error starting Google Places, launching backup", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, BackupAddressHandlerActivity.class);
+            Toast.makeText(this, "Please enter your address", Toast.LENGTH_LONG).show();
+            startActivityForResult(i, 1);
+        }
 
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (!googleError)
-        {
+        if (!googleError) {
             if (resultCode == RESULT_OK) {
-            address = PlaceAutocomplete.getPlace(this, data);
-            backupAddress=null;
+                address = PlaceAutocomplete.getPlace(this, data);
+                backupAddress = null;
             }
 
             if (resultCode == RESULT_CANCELED) {
@@ -166,36 +164,35 @@ public class RegisterActivity extends AppCompatActivity {
 
             if (address == null) {
 
-            Toast.makeText(this, "No Address Selected", Toast.LENGTH_SHORT).show();
-            return;
+                Toast.makeText(this, "No Address Selected", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             addressToUse = address.getAddress().toString();
-            hitDatabase();
+            HitDatabase();
             return;
         }
 
 
-
-        if(resultCode == Activity.RESULT_OK){
-            backupAddress=data.getStringExtra("address");
-            address=null;
+        if (resultCode == Activity.RESULT_OK) {
+            backupAddress = data.getStringExtra("address");
+            address = null;
         }
         if (resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(this, "Please enter an Address", Toast.LENGTH_SHORT).show();
             return;
 
         }
-                addressToUse=backupAddress;
-                hitDatabase();
-                return;
-        }
+        addressToUse = backupAddress;
+        HitDatabase();
 
-    private void hitDatabase() {
+    }
+
+    private void HitDatabase() {
 
         BackgroundWorker createUser = new BackgroundWorker();
         DataContainer dataContainer = new DataContainer();
-        dataContainer.type="register";
+        dataContainer.type = "register";
         dataContainer.dataPassedIn.add(username);
         dataContainer.dataPassedIn.add(password);
         dataContainer.dataPassedIn.add(firstName);
@@ -223,47 +220,42 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private void Cancel()
-    {
+    private void Cancel() {
         Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
         registerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(registerIntent);
     }
+
     private boolean Validate() {
 
         boolean validationFlag;
         boolean usernameFlag;
         boolean passwordflag;
-        boolean confirmPasswordFlag;
-        validationFlag=true;
-        usernameFlag=true;
-        passwordflag=true;
-        confirmPasswordFlag=true;
+        validationFlag = true;
+        usernameFlag = true;
+        passwordflag = true;
         DataContainer dataContainer = new DataContainer();
-        dataContainer.type="checkusername";
+        dataContainer.type = "checkusername";
         dataContainer.phpVariableNames.add("user_name");
         dataContainer.dataPassedIn.add(usernameEditText.getText().toString());
         BackgroundWorker backgroundWorker = new BackgroundWorker();
 
 
-
-        if ((usernameEditText.getText().toString().trim().length())<getResources().getInteger(R.integer.MINUSERNAMELENGTH)) {
+        if ((usernameEditText.getText().toString().trim().length()) < getResources().getInteger(R.integer.MINUSERNAMELENGTH)) {
             usernameTextInputLayout.setError("Your Username is too short");
             requestFocus(usernameEditText);
-            validationFlag=false;
-            usernameFlag=false;
-        }
-        else {
+            validationFlag = false;
+            usernameFlag = false;
+        } else {
             usernameTextInputLayout.setErrorEnabled(false);
         }
 
         if (usernameEditText.getText().toString().trim().isEmpty()) {
             usernameTextInputLayout.setError("Please fill out your username");
             requestFocus(usernameEditText);
-            validationFlag=false;
-            usernameFlag=false;
-        }
-        else {
+            validationFlag = false;
+            usernameFlag = false;
+        } else {
             usernameTextInputLayout.setErrorEnabled(false);
         }
 
@@ -299,10 +291,9 @@ public class RegisterActivity extends AppCompatActivity {
         if (passwordEditText.getText().toString().trim().isEmpty()) {
             passwordTextInputLayout.setError("Please fill out your password");
             requestFocus(passwordEditText);
-            validationFlag=false;
-            passwordflag=false;
-        }
-        else {
+            validationFlag = false;
+            passwordflag = false;
+        } else {
             passwordTextInputLayout.setErrorEnabled(false);
         }
         if (passwordflag) {
@@ -316,18 +307,14 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
 
-
-
         if (confirmpasswordEditText.getText().toString().trim().isEmpty()) {
             confirmpasswordTextInputLayout.setError("Please confirm your password");
             requestFocus(confirmpasswordEditText);
-            validationFlag=false;
-            passwordflag=false;
-        }
-        else {
+            validationFlag = false;
+            passwordflag = false;
+        } else {
             confirmpasswordTextInputLayout.setErrorEnabled(false);
         }
-
 
 
         if (confirmpasswordEditText.getText().toString().equals(passwordEditText.toString())) {
@@ -342,9 +329,8 @@ public class RegisterActivity extends AppCompatActivity {
         if (firstNameEditText.getText().toString().trim().isEmpty()) {
             firstNameTextInputLayout.setError("Please fill out your First Name");
             requestFocus(firstNameEditText);
-            validationFlag=false;
-        }
-        else {
+            validationFlag = false;
+        } else {
             firstNameTextInputLayout.setErrorEnabled(false);
         }
 
@@ -352,9 +338,8 @@ public class RegisterActivity extends AppCompatActivity {
         if (lastNameEditText.getText().toString().trim().isEmpty()) {
             lastNameTextInputLayout.setError("Please fill out your Last Name");
             requestFocus(lastNameEditText);
-            validationFlag=false;
-        }
-        else {
+            validationFlag = false;
+        } else {
             lastNameTextInputLayout.setErrorEnabled(false);
         }
 
@@ -362,36 +347,32 @@ public class RegisterActivity extends AppCompatActivity {
         if (phoneNumberEditText.getText().toString().trim().isEmpty()) {
             phoneNumberTextInputLayout.setError("Please fill out your Phone Number");
             requestFocus(phoneNumberEditText);
-            validationFlag=false;
-        }
-        else {
+            validationFlag = false;
+        } else {
             phoneNumberTextInputLayout.setErrorEnabled(false);
         }
 
         if (emailAddressEditText.getText().toString().trim().isEmpty()) {
             emailAddressTextInputLayout.setError("Please fill out your Email Address");
             requestFocus(emailAddressEditText);
-            validationFlag=false;
-        }
-        else {
+            validationFlag = false;
+        } else {
             emailAddressTextInputLayout.setErrorEnabled(false);
         }
 
         if ((!android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddressEditText.getText().toString().trim()).matches())) {
             emailAddressTextInputLayout.setError("Please enter a valid Email");
             requestFocus(emailAddressEditText);
-            validationFlag=false;
-        }
-        else {
+            validationFlag = false;
+        } else {
             emailAddressTextInputLayout.setErrorEnabled(false);
         }
 
         if (companyNameEditText.getText().toString().trim().isEmpty()) {
             companyNameTextInputLayout.setError("Please fill out your Company Name");
             requestFocus(companyNameEditText);
-            validationFlag=false;
-        }
-        else {
+            validationFlag = false;
+        } else {
             companyNameTextInputLayout.setErrorEnabled(false);
         }
         return validationFlag;
@@ -406,7 +387,10 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo activeNetworkInfo = null;
+        if (connectivityManager != null) {
+            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        }
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 

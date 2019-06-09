@@ -20,8 +20,7 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int position)
-    {
+    public Fragment getItem(int position) {
         return fragmentList.get(position);
     }
 
@@ -30,10 +29,9 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
         return fragmentList.size();
     }
 
-    void addFragment(Fragment fragment){
+    void addFragment(Fragment fragment) {
         fragmentList.add(fragment);
     }
-
 
 
 }

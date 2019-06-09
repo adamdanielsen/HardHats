@@ -24,6 +24,7 @@ public class InvoicePreviewListFragment extends Fragment {
     private static final DecimalFormat df = new DecimalFormat("$0.00");
     View currentView;
     private ListView invoicesListView;
+
     public InvoicePreviewListFragment() {
         // Required empty public constructor
     }
@@ -38,19 +39,20 @@ public class InvoicePreviewListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        invoicesListView = (ListView) getView().findViewById(R.id.fragmentinvoicepreviewlist_invoicesListView);
-        final ArrayList<MenuActivity.InvoiceForPreview> invoicelist = ((MenuActivity)getActivity()).getInvoicesList();
-        InvoiceForMenuAdapter adapter = new InvoiceForMenuAdapter(getContext(),invoicelist);
+        invoicesListView = getView().findViewById(R.id.fragmentinvoicepreviewlist_invoicesListView);
+        final ArrayList<MenuActivity.InvoiceForPreview> invoicelist = ((MenuActivity) getActivity()).getInvoicesList();
+        InvoiceForMenuAdapter adapter = new InvoiceForMenuAdapter(getContext(), invoicelist);
         invoicesListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        currentView=view;
+        currentView = view;
         invoicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position==0)
-                {return;}
-                ((InvoiceFragment)getParentFragment()).setSelectedID(((MenuActivity.InvoiceForPreview)parent.getItemAtPosition(position)).getId());
-                ((InvoiceFragment)getParentFragment()).switchToDetailView();
+                if (position == 0) {
+                    return;
+                }
+                ((InvoiceFragment) getParentFragment()).setSelectedID(((MenuActivity.InvoiceForPreview) parent.getItemAtPosition(position)).getId());
+                ((InvoiceFragment) getParentFragment()).switchToDetailView();
             }
         });
     }
@@ -58,11 +60,10 @@ public class InvoicePreviewListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        this.onViewCreated(currentView,null);
+        this.onViewCreated(currentView, null);
     }
 
-    private class InvoiceForMenuAdapter extends BaseAdapter
-    {
+    private class InvoiceForMenuAdapter extends BaseAdapter {
         final Context context;
 
         final ArrayList<MenuActivity.InvoiceForPreview> invoiceLines;
@@ -90,27 +91,26 @@ public class InvoicePreviewListFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            if (convertView==null) {
+            if (convertView == null) {
                 convertView = View.inflate(context, R.layout.menuinvoicelistitem, null);
             }
-                TextView left = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_leftTextView);
-                TextView middle = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_middleTextView);
-                TextView right = (TextView) convertView.findViewById(R.id.menuinvoicelistitem_rightTextView);
+            TextView left = convertView.findViewById(R.id.menuinvoicelistitem_leftTextView);
+            TextView middle = convertView.findViewById(R.id.menuinvoicelistitem_middleTextView);
+            TextView right = convertView.findViewById(R.id.menuinvoicelistitem_rightTextView);
 
-                if (position == 0) {
-                    left.setText(invoiceLines.get(position).getName());
-                    middle.setText(invoiceLines.get(position).getTotal());
-                    right.setText(invoiceLines.get(position).getDate());
-                    int i = 0;
-                }
+            if (position == 0) {
+                left.setText(invoiceLines.get(position).getName());
+                middle.setText(invoiceLines.get(position).getTotal());
+                right.setText(invoiceLines.get(position).getDate());
+                int i = 0;
+            }
 
-                if (position != 0) {
-                    left.setText(invoiceLines.get(position).getName());
-                    middle.setText(df.format(Double.valueOf(invoiceLines.get(position).getTotal())));
-                    right.setText(invoiceLines.get(position).getDate());
-                    int i = 0;
-                }
-
+            if (position != 0) {
+                left.setText(invoiceLines.get(position).getName());
+                middle.setText(df.format(Double.valueOf(invoiceLines.get(position).getTotal())));
+                right.setText(invoiceLines.get(position).getDate());
+                int i = 0;
+            }
 
 
             return convertView;

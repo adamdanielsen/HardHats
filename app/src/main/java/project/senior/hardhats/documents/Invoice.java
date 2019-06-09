@@ -1,4 +1,4 @@
-package project.senior.hardhats.Documents;
+package project.senior.hardhats.documents;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -16,6 +16,18 @@ import project.senior.hardhats.DataContainer;
 public class Invoice implements Parcelable {
 
 
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Invoice> CREATOR = new Parcelable.Creator<Invoice>() {
+        @Override
+        public Invoice createFromParcel(Parcel in) {
+            return new Invoice(in);
+        }
+
+        @Override
+        public Invoice[] newArray(int size) {
+            return new Invoice[size];
+        }
+    };
     private String id;
     private Person customerAddress;
     private Person contractorAddress;
@@ -26,59 +38,63 @@ public class Invoice implements Parcelable {
     private DecimalFormat df = new DecimalFormat("$0.00");
     private boolean paid;
 
-
-    public Invoice (String InvoiceId) throws InterruptedException, ExecutionException, JSONException {
-        BackgroundWorkerJSONArray getInvoiceData= new BackgroundWorkerJSONArray();
+    public Invoice(String InvoiceId) throws InterruptedException, ExecutionException, JSONException {
+        BackgroundWorkerJSONArray getInvoiceData = new BackgroundWorkerJSONArray();
         DataContainer invoiceIdData = new DataContainer();
         invoiceIdData.type = "invoiceexport";
         invoiceIdData.phpVariableNames.add("invoice_id");
         invoiceIdData.dataPassedIn.add(InvoiceId);
         JSONArray returnedData = getInvoiceData.execute(invoiceIdData).get();
 
-        id=InvoiceId;
-        date=returnedData.getJSONObject(0).getString("InvoiceDate");
+        id = InvoiceId;
+        date = returnedData.getJSONObject(0).getString("InvoiceDate");
 
-        generalContractorEmail=returnedData.getJSONObject(0).getString("GCEmail");
+        generalContractorEmail = returnedData.getJSONObject(0).getString("GCEmail");
 
-        if ((returnedData.getJSONObject(0).getInt("Paid")==0))
-        {
+        paid = (returnedData.getJSONObject(0).getInt("Paid") != 0);
 
-            paid=false;
+        customerAddress = new Person(returnedData.getJSONObject(1), "Customer");
 
-        }
-
-        else
-        {
-            paid=true;
-        }
-
-        customerAddress=new Person(returnedData.getJSONObject(1), "Customer");
-
-        contractorAddress=new Person( returnedData.getJSONObject(2), "Contractor");
+        contractorAddress = new Person(returnedData.getJSONObject(2), "Contractor");
 
         JSONArray returnedInvoiceLines = returnedData.getJSONArray(3);
 
         invoiceLines = new ArrayList<>();
-        total=0;
-        for ( int i=0; i<returnedInvoiceLines.length();i++)
-        {
+        total = 0;
+        for (int i = 0; i < returnedInvoiceLines.length(); i++) {
             invoiceLines.add(new InvoiceLine(returnedInvoiceLines.getJSONObject(i)));
-            total+=invoiceLines.get(i).getLineTotal();
+            total += invoiceLines.get(i).getLineTotal();
         }
 
 
     }
+
 
     public Invoice() {
 
     }
 
 
+    protected Invoice(Parcel in) {
+        id = in.readString();
+        customerAddress = (Person) in.readValue(Person.class.getClassLoader());
+        contractorAddress = (Person) in.readValue(Person.class.getClassLoader());
+        date = in.readString();
+        generalContractorEmail = in.readString();
+        if (in.readByte() == 0x01) {
+            invoiceLines = new ArrayList<>();
+            in.readList(invoiceLines, InvoiceLine.class.getClassLoader());
+        } else {
+            invoiceLines = null;
+        }
+        total = in.readDouble();
+        df = (DecimalFormat) in.readValue(DecimalFormat.class.getClassLoader());
+        paid = in.readByte() != 0x00;
+    }
 
     //  put linetotal in the invoiceline so we can make totals for each line easily.
     //todo: Tidy up and do checking.
-    public String createEmailString()
-    {
+    public String createEmailString() {
 
         StringBuilder invoiceString = new StringBuilder();
         invoiceString.append("Contractor:\n");
@@ -87,10 +103,8 @@ public class Invoice implements Parcelable {
         invoiceString.append(customerAddress.BuildCustomerAddressForInvoice());
         invoiceString.append("\n___________________________________________________________________________\n");
         double finalTotal = 0;
-        for (InvoiceLine invoice : invoiceLines)
-
-        {
-            finalTotal+=invoice.lineTotal;
+        for (InvoiceLine invoice : invoiceLines) {
+            finalTotal += invoice.lineTotal;
             invoiceString.append(invoice.getInvoiceExportStringForEmail());
             invoiceString.append("\n");
         }
@@ -101,19 +115,14 @@ public class Invoice implements Parcelable {
         return invoiceString.toString();
     }
 
-
-    public String createPreviewString()
-    {
+    public String createPreviewString() {
 
         StringBuilder invoiceString = new StringBuilder();
 
-        if (paid)
-        {
+        if (paid) {
             invoiceString.append("______________________PAID______________________\n");
 
-        }
-        else
-        {
+        } else {
             invoiceString.append("_____________________UNPAID_____________________\n");
 
         }
@@ -124,10 +133,8 @@ public class Invoice implements Parcelable {
         invoiceString.append(customerAddress.BuildCustomerAddressForInvoice());
         invoiceString.append("\n_______________________________________________________________________\n\n");
         double finalTotal = 0;
-        for (InvoiceLine invoice : invoiceLines)
-
-        {
-            finalTotal+=invoice.lineTotal;
+        for (InvoiceLine invoice : invoiceLines) {
+            finalTotal += invoice.lineTotal;
             invoiceString.append(invoice.getInvoiceExportStringForPreview());
             invoiceString.append("\n\n");
         }
@@ -137,13 +144,6 @@ public class Invoice implements Parcelable {
 
         return invoiceString.toString();
     }
-
-
-
-
-
-
-
 
     public Person getCustomerAddress() {
         return customerAddress;
@@ -201,31 +201,12 @@ public class Invoice implements Parcelable {
         this.id = id;
     }
 
-
     public String getGeneralContractorEmail() {
         return generalContractorEmail;
     }
 
     public void setGeneralContractorEmail(String generalContractorEmail) {
         this.generalContractorEmail = generalContractorEmail;
-    }
-
-
-    protected Invoice(Parcel in) {
-        id = in.readString();
-        customerAddress = (Person) in.readValue(Person.class.getClassLoader());
-        contractorAddress = (Person) in.readValue(Person.class.getClassLoader());
-        date = in.readString();
-        generalContractorEmail = in.readString();
-        if (in.readByte() == 0x01) {
-            invoiceLines = new ArrayList<InvoiceLine>();
-            in.readList(invoiceLines, InvoiceLine.class.getClassLoader());
-        } else {
-            invoiceLines = null;
-        }
-        total = in.readDouble();
-        df = (DecimalFormat) in.readValue(DecimalFormat.class.getClassLoader());
-        paid = in.readByte() != 0x00;
     }
 
     @Override
@@ -250,17 +231,4 @@ public class Invoice implements Parcelable {
         dest.writeValue(df);
         dest.writeByte((byte) (paid ? 0x01 : 0x00));
     }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Invoice> CREATOR = new Parcelable.Creator<Invoice>() {
-        @Override
-        public Invoice createFromParcel(Parcel in) {
-            return new Invoice(in);
-        }
-
-        @Override
-        public Invoice[] newArray(int size) {
-            return new Invoice[size];
-        }
-    };
 }

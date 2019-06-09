@@ -1,7 +1,6 @@
 package project.senior.hardhats;
 
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,10 +12,10 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 /*
  * Created on 9/14/2017.
  */
-
 
 
 /**
@@ -29,21 +28,8 @@ import java.net.URLEncoder;
  * This version of the class returns Strings, not JSONObject.
  */
 
-class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
+class BackgroundWorker extends AsyncTask<DataContainer, Void, String> {
 
-    private String type;
-    private final String login_url= "http://hardhatz.org/login.php";
-    private final String createuser_url="http://hardhatz.org/createuser.php";
-    private final String sendinvoiceemail_url="http://hardhatz.org/sendinvoiceemail.php";
-    private final String addcustomer_url = "http://hardhatz.org/addcustomer.php";
-    private final String generateinvoice_url = "http://hardhatz.org/generateinvoice.php";
-    private final String getgcemail_url= "http://hardhatz.org/getgcemail.php";
-    //                                      Yes I know this is misspelled below
-    private final String sendemail_url ="http://hardhatz.org/phpmailtext.php";
-    private final String checkusername_url="http://hardhatz.org/checkusername.php";
-    private final String markpaid_url="http://hardhatz.org/markpaid.php";
-    private final String deleteinvoice_url="http://hardhatz.org/deleteinvoice.php";
-    private final String editinvoice_url="http://hardhatz.org/editinvoice.php";
     public static final int LOGIN = 0;
     public static final int CREATEUSER = 1;
     public static final int SENDINVOICEEMAIL = 2;
@@ -52,36 +38,45 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
     public static final int GETGCEMAIL = 5;
     public static final int SENDEMAIL = 6;
     public static final int CHECKUSERNAME = 7;
+    private final String login_url = "http://hardhatz.org/login.php";
+    private final String createuser_url = "http://hardhatz.org/createuser.php";
+    private final String sendinvoiceemail_url = "http://hardhatz.org/sendinvoiceemail.php";
+    private final String addcustomer_url = "http://hardhatz.org/addcustomer.php";
+    private final String generateinvoice_url = "http://hardhatz.org/generateinvoice.php";
+    private final String getgcemail_url = "http://hardhatz.org/getgcemail.php";
+    //                                      Yes I know this is misspelled below
+    private final String sendemail_url = "http://hardhatz.org/phpmailtext.php";
+    private final String checkusername_url = "http://hardhatz.org/checkusername.php";
+    private final String markpaid_url = "http://hardhatz.org/markpaid.php";
+    private final String deleteinvoice_url = "http://hardhatz.org/deleteinvoice.php";
+    private final String editinvoice_url = "http://hardhatz.org/editinvoice.php";
+    private String type;
 
-    BackgroundWorker() {}
+    BackgroundWorker() {
+    }
+
     /**
      * Returns a String object representing the created POST.
      * The DataContainer is read and the parallel arrays are used to create the post.
      * If this function fails because the arrays are not parallel it returns an empty string.
      * At the end the return function snips off the last character because it is always "&"
      *
-     * @param   dataContainer The variables and data being passed in
-     * @return  The relevant POST created from the data.
+     * @param dataContainer The variables and data being passed in
+     * @return The relevant POST created from the data.
      */
-    private String PostBuilder(DataContainer dataContainer)
+    private String PostBuilder(DataContainer dataContainer) {
+        StringBuilder postdata = new StringBuilder();
 
-    {
-        StringBuilder postdata= new StringBuilder();
-
-        if (dataContainer.phpVariableNames.size()!=dataContainer.dataPassedIn.size())
-        {
+        if (dataContainer.phpVariableNames.size() != dataContainer.dataPassedIn.size()) {
             return postdata.toString();
         }
 
         int loopLength = dataContainer.phpVariableNames.size();
 
-        for (int i=0;i<loopLength;i++)
-        {
+        for (int i = 0; i < loopLength; i++) {
             try {
                 postdata.append(URLEncoder.encode(dataContainer.phpVariableNames.get(i), "UTF-8")).append("=").append(URLEncoder.encode(dataContainer.dataPassedIn.get(i), "UTF-8")).append("&");
-            }
-
-            catch (IOException e) {
+            } catch (IOException e) {
                 return "";
             }
 
@@ -94,12 +89,12 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * from the urlName passed in. Then the correct protocols are used to setup a connection.
      * PostBuilder creates the post data and then the URL is used with the Post attached.
      * Then the echo is read back in to a string.
-     * @param   urlName   The URL of the script to be used.
-     * @param   dataContainer The data being passed to the PostBuilder
-     * @return  The result of the script.
+     *
+     * @param urlName       The URL of the script to be used.
+     * @param dataContainer The data being passed to the PostBuilder
+     * @return The result of the script.
      */
-    private String ExecuteRequest(String urlName, DataContainer dataContainer)
-    {
+    private String ExecuteRequest(String urlName, DataContainer dataContainer) {
 
         try {
             URL url = new URL(urlName);
@@ -108,26 +103,24 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
             httpURLConnection.setDoInput(true);
             httpURLConnection.setDoOutput(true);
             OutputStream outputStream = httpURLConnection.getOutputStream();
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
             String post_data = PostBuilder(dataContainer);
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
             bufferedWriter.close();
             outputStream.close();
             InputStream inputStream = httpURLConnection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1));
             StringBuilder result = new StringBuilder();
             String line;
-            while ((line=bufferedReader.readLine())!=null)
-            {
+            while ((line = bufferedReader.readLine()) != null) {
                 result.append(line);
             }
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
             return result.toString();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
 
             e.printStackTrace();
 
@@ -141,14 +134,13 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
      * other coders.
      *
-     * @param   dataContainer   Data to be passed to script.
-     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     * @param dataContainer Data to be passed to script.
+     * @return Returns the result of ExecuteRequest, which is the script echo.
      */
 
-    private String LoginProcedure(DataContainer dataContainer)
-    {
+    private String LoginProcedure(DataContainer dataContainer) {
 
-            return ExecuteRequest(login_url, dataContainer);
+        return ExecuteRequest(login_url, dataContainer);
 
 
     }
@@ -159,22 +151,20 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
      * others.
      *
-     * @param   dataContainer   Data to be passed to script.
-     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     * @param dataContainer Data to be passed to script.
+     * @return Returns the result of ExecuteRequest, which is the script echo.
      */
-    private String RegisterProcedure(DataContainer dataContainer)
-    {
-            String result = ExecuteRequest(createuser_url, dataContainer);
+    private String RegisterProcedure(DataContainer dataContainer) {
+        String result = ExecuteRequest(createuser_url, dataContainer);
 
-            if (result == null)
-            {
-                return "CONNECTION";
-            }
-            if (result.equals("BAD")) {
-                return "BAD";
-            }
+        if (result == null) {
+            return "CONNECTION";
+        }
+        if (result.equals("BAD")) {
+            return "BAD";
+        }
 
-            return "GOOD";
+        return "GOOD";
     }
 
     /**
@@ -182,12 +172,11 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
      * other coders.
      *
-     * @param   dataContainer   Data to be passed to script.
-     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     * @param dataContainer Data to be passed to script.
+     * @return Returns the result of ExecuteRequest, which is the script echo.
      */
 
-    private String SendInvoiceEmail(DataContainer dataContainer)
-    {
+    private String SendInvoiceEmail(DataContainer dataContainer) {
 
         return ExecuteRequest(sendinvoiceemail_url, dataContainer);
 
@@ -200,50 +189,49 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
      * other coders.
      *
-     * @param   dataContainer   Data to be passed to script.
-     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     * @param dataContainer Data to be passed to script.
+     * @return Returns the result of ExecuteRequest, which is the script echo.
      */
 
-    private String AddCustomerProcedure(DataContainer dataContainer)
-    {
+    private String AddCustomerProcedure(DataContainer dataContainer) {
 
-        return ExecuteRequest(addcustomer_url,dataContainer);
+        return ExecuteRequest(addcustomer_url, dataContainer);
 
     }
 
 
     private String GenerateInvoiceProcedure(DataContainer dataContainer) {
 
-        return ExecuteRequest(generateinvoice_url,dataContainer);
+        return ExecuteRequest(generateinvoice_url, dataContainer);
 
     }
 
 
     private String GetGCEmail(DataContainer dataContainer) {
 
-        return ExecuteRequest(getgcemail_url,dataContainer);
+        return ExecuteRequest(getgcemail_url, dataContainer);
     }
 
     private String SendEmailProcedure(DataContainer param) {
 
-        return ExecuteRequest(sendemail_url,param);
+        return ExecuteRequest(sendemail_url, param);
     }
 
     private String CheckUsernameProcedure(DataContainer param) {
-        return ExecuteRequest(checkusername_url,param);
+        return ExecuteRequest(checkusername_url, param);
     }
 
     private String MarkPaidProcedure(DataContainer param) {
-        return ExecuteRequest(markpaid_url,param);
+        return ExecuteRequest(markpaid_url, param);
     }
 
     private String DeleteInvoiceProcedure(DataContainer param) {
-        return ExecuteRequest(deleteinvoice_url,param);
+        return ExecuteRequest(deleteinvoice_url, param);
     }
 
 
     private String EditInvoiceProcedure(DataContainer param) {
-        return ExecuteRequest(editinvoice_url,param);
+        return ExecuteRequest(editinvoice_url, param);
     }
 
     /**
@@ -253,8 +241,8 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
      * ASyncTask. Without this function this class is just a regular class that runs on the UI
      * Thread
      *
-     * @param   params   Data to be passed to script. Just use index 0.
-     * @return  Returns the result of the relevant function, which iEs the script echo.
+     * @param params Data to be passed to script. Just use index 0.
+     * @return Returns the result of the relevant function, which iEs the script echo.
      */
 
     @Override
@@ -262,8 +250,7 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
         type = params[0].type;
 
-        switch (type)
-        {
+        switch (type) {
             case "login":
                 return LoginProcedure(params[0]);
             case "register":
@@ -292,7 +279,6 @@ class BackgroundWorker extends AsyncTask<DataContainer,Void,String> {
 
         return "Unknown or misspelled type?";
     }
-
 
 
     /**

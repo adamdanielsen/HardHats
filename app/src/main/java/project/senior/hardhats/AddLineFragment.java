@@ -17,18 +17,13 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-import project.senior.hardhats.Documents.InvoiceLine;
+import project.senior.hardhats.documents.InvoiceLine;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class AddLineFragment extends Fragment {
-
-
-    public AddLineFragment() {
-        // Required empty public constructor
-    }
 
 
     private InvoiceLine invoiceLine;
@@ -41,7 +36,9 @@ public class AddLineFragment extends Fragment {
     private TextInputLayout UnitsTextInputLayout;
     private TextInputLayout PriceTextInputLayout;
     private Spinner UnitsSpinner;
-
+    public AddLineFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,33 +53,31 @@ public class AddLineFragment extends Fragment {
 
 
         // TODO Create edit texts, send data back to activity on click
-            invoiceLine = new InvoiceLine();
+        invoiceLine = new InvoiceLine();
 
-        DescriptionEditText= (EditText) getView().findViewById(R.id.fragmentaddline_DescriptionEditText);
-        QuantityEditText= (EditText) getView().findViewById(R.id.fragmentaddline_QuantityEditText);
-        UnitsEditText= (EditText) getView().findViewById(R.id.fragmentaddline_UnitsEditText);
+        DescriptionEditText = getView().findViewById(R.id.fragmentaddline_DescriptionEditText);
+        QuantityEditText = getView().findViewById(R.id.fragmentaddline_QuantityEditText);
+        UnitsEditText = getView().findViewById(R.id.fragmentaddline_UnitsEditText);
         UnitsEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
-        PriceEditText= (EditText) getView().findViewById(R.id.fragmentaddline_PriceEditText);
-        DescriptionTextInputLayout= (TextInputLayout) getView().findViewById(R.id.fragmentaddline_DescriptionTextInputLayout);
-        QuantityTextInputLayout= (TextInputLayout) getView().findViewById(R.id.fragmentaddline_QuantityTextInputLayout);
-        UnitsTextInputLayout= (TextInputLayout) getView().findViewById(R.id.fragmentaddline_UnitsTextInputLayout);
+        PriceEditText = getView().findViewById(R.id.fragmentaddline_PriceEditText);
+        DescriptionTextInputLayout = getView().findViewById(R.id.fragmentaddline_DescriptionTextInputLayout);
+        QuantityTextInputLayout = getView().findViewById(R.id.fragmentaddline_QuantityTextInputLayout);
+        UnitsTextInputLayout = getView().findViewById(R.id.fragmentaddline_UnitsTextInputLayout);
         UnitsTextInputLayout.setHint("");
 
         //UnitsEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
-        PriceTextInputLayout= (TextInputLayout) getView().findViewById(R.id.fragmentaddline_PriceTextInputLayout);
+        PriceTextInputLayout = getView().findViewById(R.id.fragmentaddline_PriceTextInputLayout);
 
-        UnitsSpinner=(Spinner) getView().findViewById(R.id.fragmentaddline_UnitsSpinner);
+        UnitsSpinner = getView().findViewById(R.id.fragmentaddline_UnitsSpinner);
         UnitsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position==3) {
+                if (position == 3) {
                     UnitsEditText.setVisibility(View.VISIBLE);
                     UnitsEditText.setText("");
                     UnitsTextInputLayout.setErrorEnabled(false);
                     UnitsTextInputLayout.setHint("Units");
-                }
-                else
-                {
+                } else {
                     UnitsEditText.setText("");
                     UnitsEditText.setVisibility(View.INVISIBLE);
                     UnitsTextInputLayout.setErrorEnabled(false);
@@ -111,11 +106,7 @@ public class AddLineFragment extends Fragment {
     }
 
 
-
-
-
-    private boolean Validate()
-    {
+    private boolean Validate() {
 
         if (DescriptionEditText.getText().toString().trim().isEmpty()) {
             DescriptionTextInputLayout.setError("Please enter a description");
@@ -124,8 +115,7 @@ public class AddLineFragment extends Fragment {
             PriceTextInputLayout.setErrorEnabled(false);
             UnitsTextInputLayout.setErrorEnabled(false);
             return false;
-        }
-        else {
+        } else {
             DescriptionTextInputLayout.setErrorEnabled(false);
             QuantityTextInputLayout.setErrorEnabled(false);
             PriceTextInputLayout.setErrorEnabled(false);
@@ -140,8 +130,7 @@ public class AddLineFragment extends Fragment {
             PriceTextInputLayout.setErrorEnabled(false);
             UnitsTextInputLayout.setErrorEnabled(false);
             return false;
-        }
-        else {
+        } else {
             DescriptionTextInputLayout.setErrorEnabled(false);
             QuantityTextInputLayout.setErrorEnabled(false);
             PriceTextInputLayout.setErrorEnabled(false);
@@ -180,8 +169,7 @@ public class AddLineFragment extends Fragment {
             QuantityTextInputLayout.setErrorEnabled(false);
             UnitsTextInputLayout.setErrorEnabled(false);
             return false;
-        }
-        else {
+        } else {
             DescriptionTextInputLayout.setErrorEnabled(false);
             QuantityTextInputLayout.setErrorEnabled(false);
             PriceTextInputLayout.setErrorEnabled(false);
@@ -192,24 +180,20 @@ public class AddLineFragment extends Fragment {
     }
 
 
-    public InvoiceLine sendLineBack()
-    {
+    public InvoiceLine sendLineBack() {
 
-        if (!Validate())
-        {
+        if (!Validate()) {
             return null;
         }
 
 
         invoiceLine.setType(DescriptionEditText.getText().toString());
         invoiceLine.setQuantity(Integer.valueOf(QuantityEditText.getText().toString()));
-        if (UnitsSpinner.getSelectedItem().toString().equals("Custom..."))
-        {
+        if (UnitsSpinner.getSelectedItem().toString().equals("Custom...")) {
             invoiceLine.setUnits(UnitsEditText.getText().toString());
 
 
-        }
-            else {
+        } else {
             invoiceLine.setUnits(UnitsSpinner.getSelectedItem().toString());
         }
         invoiceLine.setPrice(Double.valueOf(PriceEditText.getText().toString()));

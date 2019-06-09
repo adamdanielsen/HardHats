@@ -1,4 +1,4 @@
-package project.senior.hardhats.Documents;
+package project.senior.hardhats.documents;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -12,6 +12,18 @@ import org.json.JSONObject;
 
 public class Person implements Parcelable {
 
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
+        @Override
+        public Person createFromParcel(Parcel in) {
+            return new Person(in);
+        }
+
+        @Override
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
     String table;
     private String id;
     private String firstName;
@@ -28,33 +40,28 @@ public class Person implements Parcelable {
     private String address;
     private String personType;
 
+    public Person() {
+    }
 
-    public Person()
-    {}
-
-    public Person(JSONObject personJSONObject, String type) throws JSONException
-    {
-        personType=type;
-        if (personType.equals("Contractor"))
-        {
-            id= personJSONObject.getString("UserID");
+    public Person(JSONObject personJSONObject, String type) throws JSONException {
+        personType = type;
+        if (personType.equals("Contractor")) {
+            id = personJSONObject.getString("UserID");
             firstName = personJSONObject.getString("FirstName");
             lastName = personJSONObject.getString("LastName");
             phoneNumber = personJSONObject.getString("PhoneNumber");
             faxNumber = personJSONObject.getString("FaxNumber");
             emailAddress = personJSONObject.getString("EmailAddress");
-            licenseNumber= personJSONObject.getString("LicenseNumber");
+            licenseNumber = personJSONObject.getString("LicenseNumber");
             companyName = personJSONObject.getString("CompanyName");
-            address=personJSONObject.getString("Address");
-            address = address.replace(", ","\n");
-
+            address = personJSONObject.getString("Address");
+            address = address.replace(", ", "\n");
 
 
         }
 
-        if (personType.equals("Customer"))
-        {
-            id= personJSONObject.getString("CustomerID");
+        if (personType.equals("Customer")) {
+            id = personJSONObject.getString("CustomerID");
             firstName = personJSONObject.getString("FirstName");
             lastName = personJSONObject.getString("LastName");
             phoneNumber = personJSONObject.getString("PhoneNumber");
@@ -62,174 +69,11 @@ public class Person implements Parcelable {
             emailAddress = personJSONObject.getString("EmailAddress");
             companyName = personJSONObject.getString("CompanyName");
             address = personJSONObject.getString("Address");
-            address = address.replace(", ","\n");
+            address = address.replace(", ", "\n");
         }
     }
-    //not sure if we need this so not gonna bother
-    private Person(String customerID)
-    {
 
 
-
-
-
-    }
-
-    public String BuildContractorAddressForInvoice()
-    {
-        String formattedaddress = "Company: "+
-                companyName +
-                "\n" +
-                "Phone #:"+
-                phoneNumber +
-                "\n" +
-                firstName +
-                " " +
-                lastName +
-                "\n" +
-                address +
-                "\n" +
-                "License #: " +
-                licenseNumber;
-
-
-        return formattedaddress;
-    }
-
-
-    public String BuildCustomerAddressForInvoice()
-    {
-
-        return companyName +
-                "\n" +
-                phoneNumber +
-                "\n" +
-                firstName +
-                " " +
-                lastName +
-                "\n" +
-                address;
-    }
-
-
-    public String BuildCustomerAddressForPreview()
-    {
-
-        return firstName +
-                " " +
-                lastName +
-                "\n" +
-                address;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getFaxNumber() {
-        return faxNumber;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public String getLicenseNumber() {
-        return licenseNumber;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setFaxNumber(String faxNumber) {
-        this.faxNumber = faxNumber;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return firstName+" "+lastName;
-    }
 
     protected Person(Parcel in) {
         table = in.readString();
@@ -247,6 +91,156 @@ public class Person implements Parcelable {
         state = in.readString();
         address = in.readString();
         personType = in.readString();
+    }
+
+    public String BuildContractorAddressForInvoice() {
+
+
+        return "Company: " +
+                companyName +
+                "\n" +
+                "Phone #:" +
+                phoneNumber +
+                "\n" +
+                firstName +
+                " " +
+                lastName +
+                "\n" +
+                address +
+                "\n" +
+                "License #: " +
+                licenseNumber;
+    }
+
+    public String BuildCustomerAddressForInvoice() {
+
+        return companyName +
+                "\n" +
+                phoneNumber +
+                "\n" +
+                firstName +
+                " " +
+                lastName +
+                "\n" +
+                address;
+    }
+
+    public String BuildCustomerAddressForPreview() {
+
+        return firstName +
+                " " +
+                lastName +
+                "\n" +
+                address;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFaxNumber() {
+        return faxNumber;
+    }
+
+    public void setFaxNumber(String faxNumber) {
+        this.faxNumber = faxNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
     }
 
     @Override
@@ -272,17 +266,4 @@ public class Person implements Parcelable {
         dest.writeString(address);
         dest.writeString(personType);
     }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
-        @Override
-        public Person createFromParcel(Parcel in) {
-            return new Person(in);
-        }
-
-        @Override
-        public Person[] newArray(int size) {
-            return new Person[size];
-        }
-    };
 }

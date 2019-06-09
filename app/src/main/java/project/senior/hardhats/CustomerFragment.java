@@ -1,4 +1,3 @@
-
 package project.senior.hardhats;
 
 
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 //import android.app.Fragment;
 
@@ -21,9 +19,9 @@ import android.widget.ListView;
  */
 public class CustomerFragment extends Fragment {
 
+    public EditText USERID;
     private Button add_customer;
     private String selectedID;
-    public EditText USERID;
 
     public CustomerFragment() {
         // Required empty public constructor
@@ -41,14 +39,14 @@ public class CustomerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getChildFragmentManager().beginTransaction().add(R.id.customer_FrameLayout, new CustomerPreviewListFragment(),"CUSTOMERPREVIEWLIST").commit();
+        getChildFragmentManager().beginTransaction().add(R.id.customer_FrameLayout, new CustomerPreviewListFragment(), "CUSTOMERPREVIEWLIST").commit();
 
-        add_customer = (Button) getView().findViewById(R.id.add_customer_button);
+        add_customer = getView().findViewById(R.id.add_customer_button);
         add_customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddCustomer.class);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -65,12 +63,12 @@ public class CustomerFragment extends Fragment {
     }
 
     public void setSelectedID(String id) {
-        selectedID=id;
+        selectedID = id;
     }
 
     public void switchToDetailView() {
-     //   backToPreviewButton.setVisibility(View.VISIBLE);
-      //  getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoiceViewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
+        //   backToPreviewButton.setVisibility(View.VISIBLE);
+        //  getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoiceViewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
 
     }
 }

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import project.senior.hardhats.Documents.Person;
+import project.senior.hardhats.documents.Person;
 
 public class GenerateInvoiceActivity extends AppCompatActivity {
 
@@ -35,19 +35,20 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
     private TextView phoneNumberTextBox;
     private TextView emailAddressTextBox;
     private TextView addressTextBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_invoice);
-        customerSpinner = (Spinner) findViewById(R.id.generateinvoice_chooseCustomerSpinner);
-        chooseCustomerButton=(Button) findViewById(R.id.generateinvoice_chooseCustomerButton);
-        useGCEmailCheckBox = (CheckBox) findViewById(R.id.generateinvoice_useGeneralContractorEmailCheckBox);
-        GCEmailEditText = (EditText) findViewById(R.id.generateinvoice_gcEmailEditText);
-        firstNameTextBox = (TextView) findViewById(R.id.generateinvoice_firstNameTextView);
-        lastNameTextBox = (TextView) findViewById(R.id.generateinvoice_lastNameTextView);
-        phoneNumberTextBox=(TextView) findViewById(R.id.generateinvoice_phoneNumberTextView);
-        emailAddressTextBox=(TextView) findViewById(R.id.generateinvoice_emailTextView);
-        addressTextBox=(TextView) findViewById(R.id.generateinvoice_addressTextView);
+        customerSpinner = findViewById(R.id.generateinvoice_chooseCustomerSpinner);
+        chooseCustomerButton = findViewById(R.id.generateinvoice_chooseCustomerButton);
+        useGCEmailCheckBox = findViewById(R.id.generateinvoice_useGeneralContractorEmailCheckBox);
+        GCEmailEditText = findViewById(R.id.generateinvoice_gcEmailEditText);
+        firstNameTextBox = findViewById(R.id.generateinvoice_firstNameTextView);
+        lastNameTextBox = findViewById(R.id.generateinvoice_lastNameTextView);
+        phoneNumberTextBox = findViewById(R.id.generateinvoice_phoneNumberTextView);
+        emailAddressTextBox = findViewById(R.id.generateinvoice_emailTextView);
+        addressTextBox = findViewById(R.id.generateinvoice_addressTextView);
 
         List<Person> customersForSpinnerList = new ArrayList<>();
         DataContainer listData = new DataContainer();
@@ -63,9 +64,8 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
             noPerson.setFirstName("");
             customersForSpinnerList.add(noPerson);
 
-            for (int i = customerJSON.length()-1; i>=0; i--)
-            {
-                Person customerForSpinner = new Person(customerJSON.getJSONObject(i),"Customer");
+            for (int i = customerJSON.length() - 1; i >= 0; i--) {
+                Person customerForSpinner = new Person(customerJSON.getJSONObject(i), "Customer");
                 customersForSpinnerList.add(customerForSpinner);
             }
 
@@ -81,15 +81,11 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
         useGCEmailCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (useGCEmailCheckBox.isChecked())
-                {
+                if (useGCEmailCheckBox.isChecked()) {
 
                     GCEmailEditText.setVisibility(View.VISIBLE);
                     GCEmailEditText.setText("");
-                }
-
-                else
-                {
+                } else {
 
                     GCEmailEditText.setVisibility(View.INVISIBLE);
                     GCEmailEditText.setText("");
@@ -101,8 +97,7 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 Person selectedPerson = (Person) customerSpinner.getSelectedItem();
-                if (selectedPerson.getId().equals("No Customer Selected"))
-                {
+                if (selectedPerson.getId().equals("No Customer Selected")) {
                     chooseCustomerButton.setEnabled(false);
 
                     firstNameTextBox.setText("");
@@ -110,8 +105,7 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
                     phoneNumberTextBox.setText("");
                     emailAddressTextBox.setText("");
                     addressTextBox.setText("");
-                }
-                else {
+                } else {
                     chooseCustomerButton.setEnabled(true);
 
                     firstNameTextBox.setText(selectedPerson.getFirstName());
@@ -121,9 +115,10 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
                     addressTextBox.setText(selectedPerson.BuildCustomerAddressForPreview());
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-            chooseCustomerButton.setEnabled(false);
+                chooseCustomerButton.setEnabled(false);
             }
         });
         chooseCustomerButton.setOnClickListener(new View.OnClickListener() {
@@ -132,20 +127,17 @@ public class GenerateInvoiceActivity extends AppCompatActivity {
                 Person selectedPerson = (Person) customerSpinner.getSelectedItem();
                 String customerID = selectedPerson.getId();
                 String GCEmail;
-                if (useGCEmailCheckBox.isChecked())
-                {
-                    GCEmail=GCEmailEditText.getText().toString();
-                }
-                else
-                {
-                    GCEmail="";
+                if (useGCEmailCheckBox.isChecked()) {
+                    GCEmail = GCEmailEditText.getText().toString();
+                } else {
+                    GCEmail = "";
 
                 }
 
 
                 Intent invoiceCreateIntent = new Intent(GenerateInvoiceActivity.this, InvoiceCreateActivity.class);
-                invoiceCreateIntent.putExtra("CustomerID",customerID);
-                invoiceCreateIntent.putExtra("GCEmail" , GCEmail);
+                invoiceCreateIntent.putExtra("CustomerID", customerID);
+                invoiceCreateIntent.putExtra("GCEmail", GCEmail);
                 invoiceCreateIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(invoiceCreateIntent);
 

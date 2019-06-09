@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * A class that is used to run database operations. Parameters are passed in and then
@@ -25,25 +26,22 @@ import java.net.URLEncoder;
  * The way this class works is that when the execute function is called, three relevant functions
  * are run. First PreExecute, then doInBackground, then PostExecute.
  * This version of the class returns JSONObjects, not Strings.
- *
  */
 
 
-class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
+class BackgroundWorkerJSON extends AsyncTask<DataContainer, Void, JSONObject> {
 
 
+    private final String login_url = "http://hardhatz.org/loginJSON.php";
+    private final String createuser_url = "http://hardhatz.org/createuser.php";
+    private final String invoiceexport_url = "http://hardhatz.org/invoiceexport.php";
+    private final String getUser_url = "http://hardhatz.org/getUserInfo.php";
+    private final String getCustomer_url = "http://hardhatz.org/getCustomer.php";
     private String type;
-    private final String login_url= "http://hardhatz.org/loginJSON.php";
-    private final String createuser_url="http://hardhatz.org/createuser.php";
-    private final String invoiceexport_url="http://hardhatz.org/invoiceexport.php";
-    private final String getUser_url="http://hardhatz.org/getUserInfo.php";
-    private final String getCustomer_url="http://hardhatz.org/getCustomer.php";
 
-    public BackgroundWorkerJSON()
-    {
+    public BackgroundWorkerJSON() {
 
     }
-
 
 
     /**
@@ -52,30 +50,24 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
      * If this function fails because the arrays are not parallel it returns an empty string.
      * At the end the return function snips off the last character because it is always "&"
      *
-     * @param   dataContainer The variables and data being passed in
-     * @return  The relevant POST created from the data.
+     * @param dataContainer The variables and data being passed in
+     * @return The relevant POST created from the data.
      */
 
 
-    private String PostBuilder(DataContainer dataContainer)
+    private String PostBuilder(DataContainer dataContainer) {
+        StringBuilder postdata = new StringBuilder();
 
-    {
-        StringBuilder postdata= new StringBuilder();
-
-        if (dataContainer.phpVariableNames.size()!=dataContainer.dataPassedIn.size())
-        {
+        if (dataContainer.phpVariableNames.size() != dataContainer.dataPassedIn.size()) {
             return postdata.toString();
         }
 
         int loopLength = dataContainer.phpVariableNames.size();
 
-        for (int i=0;i<loopLength;i++)
-        {
+        for (int i = 0; i < loopLength; i++) {
             try {
                 postdata.append(URLEncoder.encode(dataContainer.phpVariableNames.get(i), "UTF-8")).append("=").append(URLEncoder.encode(dataContainer.dataPassedIn.get(i), "UTF-8")).append("&");
-            }
-
-            catch (IOException e) {
+            } catch (IOException e) {
                 return "";
             }
 
@@ -88,13 +80,13 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
      * from the urlName passed in. Then the correct protocols are used to setup a connection.
      * PostBuilder creates the post data and then the URL is used with the Post attached.
      * Then the echo is read back in to a string.
-     * @param   urlName   The URL of the script to be used.
-     * @param   dataContainer The data being passed to the PostBuilder
-     * @return  The result of the script.
+     *
+     * @param urlName       The URL of the script to be used.
+     * @param dataContainer The data being passed to the PostBuilder
+     * @return The result of the script.
      */
 
-    private JSONObject ExecuteRequest(String urlName, DataContainer dataContainer)
-    {
+    private JSONObject ExecuteRequest(String urlName, DataContainer dataContainer) {
 
         try {
             URL url = new URL(urlName);
@@ -103,18 +95,17 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
             httpURLConnection.setDoInput(true);
             httpURLConnection.setDoOutput(true);
             OutputStream outputStream = httpURLConnection.getOutputStream();
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
             String post_data = PostBuilder(dataContainer);
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
             bufferedWriter.close();
             outputStream.close();
             InputStream inputStream = httpURLConnection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1));
             StringBuilder result = new StringBuilder();
             String line;
-            while ((line=bufferedReader.readLine())!=null)
-            {
+            while ((line = bufferedReader.readLine()) != null) {
                 result.append(line);
             }
             bufferedReader.close();
@@ -122,8 +113,7 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
             httpURLConnection.disconnect();
             //this is all you need to do to get the JsonObject back other then changing types, we might have to do JsonArray eventually
             return new JSONObject(result.toString());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
 
             Log.d("IOEXCEPTION", "ExecuteRequest: threw ioexception ");
             e.printStackTrace();
@@ -142,45 +132,44 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
      * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
      * other coders.
      *
-     * @param   dataContainer   Data to be passed to script.
-     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     * @param dataContainer Data to be passed to script.
+     * @return Returns the result of ExecuteRequest, which is the script echo.
      */
-    private JSONObject LoginProcedure(DataContainer dataContainer)
-    {
+    private JSONObject LoginProcedure(DataContainer dataContainer) {
         return ExecuteRequest(login_url, dataContainer);
     }
+
     /**
      * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
      * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
      * other coders.
      *
-     * @param   dataContainer   Data to be passed to script.
-     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     * @param dataContainer Data to be passed to script.
+     * @return Returns the result of ExecuteRequest, which is the script echo.
      */
-    private JSONObject RegisterProcedure(DataContainer dataContainer)
-    {
+    private JSONObject RegisterProcedure(DataContainer dataContainer) {
         return ExecuteRequest(createuser_url, dataContainer);
     }
+
     /**
      * Returns ExecuteRequest, which is the resulting data, with the correct URL. This can be
      * simplified with a switch statement in ExecuteRequest, but it is left to not confuse
      * other coders.
      *
-     * @param   dataContainer   Data to be passed to script.
-     * @return  Returns the result of ExecuteRequest, which is the script echo.
+     * @param dataContainer Data to be passed to script.
+     * @return Returns the result of ExecuteRequest, which is the script echo.
      */
     private JSONObject InvoiceExportProcedure(DataContainer dataContainer) {
         return ExecuteRequest(invoiceexport_url, dataContainer);
     }
 
-    private JSONObject getUserData(DataContainer dataContainer){
+    private JSONObject getUserData(DataContainer dataContainer) {
         return ExecuteRequest(getUser_url, dataContainer);
     }
 
-    private JSONObject getCustomerProcedure(DataContainer dataContainer){
+    private JSONObject getCustomerProcedure(DataContainer dataContainer) {
         return ExecuteRequest(getCustomer_url, dataContainer);
     }
-
 
 
     /**
@@ -190,8 +179,8 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
      * ASyncTask. Without this function this class is just a regular class that runs on the UI
      * Thread
      *
-     * @param   params   Data to be passed to script. Just use index 0.
-     * @return  Returns the result of the relevant function, which is the script echo.
+     * @param params Data to be passed to script. Just use index 0.
+     * @return Returns the result of the relevant function, which is the script echo.
      */
 
     @Override
@@ -200,8 +189,7 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
         type = params[0].type;
 
 
-        switch (type)
-        {
+        switch (type) {
             case "login":
                 return LoginProcedure(params[0]);
 
@@ -224,8 +212,6 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
     }
 
 
-
-
     /**
      * This is called before doInBackground.
      */
@@ -237,12 +223,10 @@ class BackgroundWorkerJSON extends AsyncTask<DataContainer,Void,JSONObject> {
 
     /**
      * This is called after doInBackground.
-     *
      */
     @Override
     protected void onPostExecute(JSONObject result) {
     }
-
 
 
 }

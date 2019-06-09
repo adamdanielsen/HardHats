@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import project.senior.hardhats.Documents.InvoiceLine;
+import project.senior.hardhats.documents.InvoiceLine;
 
 
 /**
@@ -27,12 +27,12 @@ import project.senior.hardhats.Documents.InvoiceLine;
 
 public class InvoiceLinePreviewFragment extends Fragment {
 
+    private static final DecimalFormat df = new DecimalFormat("$0.00");
     private ListView previewListView;
     private TextView totalTextView;
     private InvoiceAdapter invoiceAdapter;
     private ArrayList<InvoiceLine> array;
     private int previousPosition;
-    private static final DecimalFormat df = new DecimalFormat("$0.00");
     private double total;
 
 
@@ -41,13 +41,12 @@ public class InvoiceLinePreviewFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        previousPosition=-1;
-        total=0;
+        previousPosition = -1;
+        total = 0;
         return inflater.inflate(R.layout.fragment_invoice_line_preview, container, false);
 
     }
@@ -57,25 +56,23 @@ public class InvoiceLinePreviewFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //TODO Get invoice data from InvoiceCreateActivity to populate list.
-        previewListView = (ListView) getView().findViewById(R.id.fragmentInvoiceLinePreview_previewListView);
-        totalTextView = (TextView) getView().findViewById(R.id.fragmentInvoiceLinePreview_totalTextView);
+        previewListView = getView().findViewById(R.id.fragmentInvoiceLinePreview_previewListView);
+        totalTextView = getView().findViewById(R.id.fragmentInvoiceLinePreview_totalTextView);
         previewListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
                                            int pos, long id) {
                 // TODO Auto-generated method stub
-                if (previousPosition!=pos)
-                {
+                if (previousPosition != pos) {
                     Toast.makeText(getContext(), "Hold again to delete line!", Toast.LENGTH_SHORT).show();
-                    previousPosition =pos;
+                    previousPosition = pos;
                     return true;
-                }
-                else {
+                } else {
                     ((InvoiceCreateActivity) getActivity()).RemoveInvoiceLine(pos);
                     array = ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
                     invoiceAdapter = new InvoiceAdapter(getContext(), array);
                     previewListView.setAdapter(invoiceAdapter);
-                    previousPosition =-1;
+                    previousPosition = -1;
                     Refresh();
                     return true;
                 }
@@ -84,32 +81,26 @@ public class InvoiceLinePreviewFragment extends Fragment {
 
         array = ((InvoiceCreateActivity) getActivity()).GetInvoiceLines();
 
-        invoiceAdapter = new InvoiceAdapter(getContext(),array);
+        invoiceAdapter = new InvoiceAdapter(getContext(), array);
         previewListView.setAdapter(invoiceAdapter);
         Refresh();
 
     }
 
 
-
-
-    private void Refresh()
-    {
+    private void Refresh() {
         invoiceAdapter.notifyDataSetChanged();
-        total=0;
-        for (InvoiceLine line : array)
+        total = 0;
+        for (InvoiceLine line : array) {
 
-        {
-
-            total+=line.getLineTotal();
+            total += line.getLineTotal();
 
         }
 
-        totalTextView.setText("WORKING TOTAL: "+df.format(total));
+        totalTextView.setText("WORKING TOTAL: " + df.format(total));
     }
 
-    private class InvoiceAdapter extends BaseAdapter
-    {
+    private class InvoiceAdapter extends BaseAdapter {
         final Context context;
         final ArrayList<InvoiceLine> invoiceLines;
 
@@ -136,17 +127,17 @@ public class InvoiceLinePreviewFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            if (convertView==null) {
+            if (convertView == null) {
                 convertView = View.inflate(context, R.layout.invoicelistitem, null);
             }
-                TextView line1 = (TextView) convertView.findViewById(R.id.invoicelistitem_line1TextView);
-                TextView line2Left = (TextView) convertView.findViewById(R.id.invoicelistitem_line2LeftTextView);
-                TextView line2Right = (TextView) convertView.findViewById(R.id.invoicelistitem_line2RightTextView);
+            TextView line1 = convertView.findViewById(R.id.invoicelistitem_line1TextView);
+            TextView line2Left = convertView.findViewById(R.id.invoicelistitem_line2LeftTextView);
+            TextView line2Right = convertView.findViewById(R.id.invoicelistitem_line2RightTextView);
 
-                String description=invoiceLines.get(position).getType();
-                line1.setText(description);
-                line2Left.setText(df.format(invoiceLines.get(position).getPrice())+" @ "+invoiceLines.get(position).getQuantity()+" "+invoiceLines.get(position).getUnits());
-                line2Right.setText(df.format(invoiceLines.get(position).getLineTotal()));
+            String description = invoiceLines.get(position).getType();
+            line1.setText(description);
+            line2Left.setText(df.format(invoiceLines.get(position).getPrice()) + " @ " + invoiceLines.get(position).getQuantity() + " " + invoiceLines.get(position).getUnits());
+            line2Right.setText(df.format(invoiceLines.get(position).getLineTotal()));
 
             return convertView;
         }

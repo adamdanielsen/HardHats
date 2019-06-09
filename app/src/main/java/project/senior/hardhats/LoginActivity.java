@@ -31,22 +31,23 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private JSONObject returnedUsername;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         SessionData.getInstance().eraseUsername();
         getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-        aboutTextView=(TextView) findViewById(R.id.login_AboutTextView);
-        usernameTextInputLayout=(TextInputLayout) findViewById(R.id.login_usernameTextInputLayout);
-        passwordTextInputLayout=(TextInputLayout)findViewById(R.id.login_passwordTextInputLayout);
-        usernameEditText= (EditText) findViewById(R.id.login_UserNameEditText);
-        passwordEditText= (EditText) findViewById(R.id.login_PasswordEditText);
-        buttonLogin = (Button) findViewById(R.id.login_LoginButton);
-        buttonRegister= (Button) findViewById(R.id.login_RegisterButton);
+        aboutTextView = findViewById(R.id.login_AboutTextView);
+        usernameTextInputLayout = findViewById(R.id.login_usernameTextInputLayout);
+        passwordTextInputLayout = findViewById(R.id.login_passwordTextInputLayout);
+        usernameEditText = findViewById(R.id.login_UserNameEditText);
+        passwordEditText = findViewById(R.id.login_PasswordEditText);
+        buttonLogin = findViewById(R.id.login_LoginButton);
+        buttonRegister = findViewById(R.id.login_RegisterButton);
 
-       // buttonDebug=(Button) findViewById(R.id.main_debug);
-       // buttonDebug.setVisibility(View.INVISIBLE);
+        // buttonDebug=(Button) findViewById(R.id.main_debug);
+        // buttonDebug.setVisibility(View.INVISIBLE);
 
         /*
         buttonDebug.setOnClickListener(new View.OnClickListener() {
@@ -118,24 +119,21 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(registerIntent);
     }
 
-    private void OnLogin(View view)
-    {
+    private void OnLogin(View view) {
 
-        if (!ValidateUsername())
-        {
+        if (!ValidateUsername()) {
             return;
         }
 
-        if (!ValidatePassword())
-        {
+        if (!ValidatePassword()) {
             return;
         }
 
-        String username =usernameEditText.getText().toString();
-        String password =passwordEditText.getText().toString();
+        String username = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
 
-        DataContainer dataContainer= new DataContainer();
-        dataContainer.type="login";
+        DataContainer dataContainer = new DataContainer();
+        dataContainer.type = "login";
         dataContainer.phpVariableNames.add("user_name");
         dataContainer.phpVariableNames.add("user_pass");
         dataContainer.dataPassedIn.add(username);
@@ -153,14 +151,12 @@ public class LoginActivity extends AppCompatActivity {
         String setUsername;
         String setUserID;
         try {
-            if (returnedUsername==null)
-            {
+            if (returnedUsername == null) {
                 Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (returnedUsername.getString("Username").equals(""))
-            {
+            if (returnedUsername.getString("Username").equals("")) {
                 Toast.makeText(this, "Username/Password not found", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -174,8 +170,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-
-        Toast.makeText(this, "Welcome "+setUsername, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Welcome " + setUsername, Toast.LENGTH_SHORT).show();
         SessionData.getInstance().setUsername(setUsername);
         SessionData.getInstance().setUserID(setUserID);
         SessionData.getInstance().getUserData();
@@ -186,14 +181,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     private boolean ValidateUsername() {
         if (usernameEditText.getText().toString().trim().isEmpty()) {
             usernameTextInputLayout.setError("Please fill out your username");
             requestFocus(usernameEditText);
             return false;
-        }
-        else {
+        } else {
             usernameTextInputLayout.setErrorEnabled(false);
         }
         return true;
@@ -205,14 +198,11 @@ public class LoginActivity extends AppCompatActivity {
             passwordTextInputLayout.setError("Please fill out your password");
             requestFocus(passwordEditText);
             return false;
-        }
-        else {
+        } else {
             passwordTextInputLayout.setErrorEnabled(false);
         }
         return true;
     }
-
-
 
 
     private void requestFocus(View view) {

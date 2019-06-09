@@ -24,40 +24,41 @@ public class SessionData {
     private String emailAddress;
     private String address;
 
-    private ArrayList<String>  lastStringArrayResult;
-    private SessionData(){
+    private ArrayList<String> lastStringArrayResult;
+
+    private SessionData() {
         username = "";
-        lastStringArrayResult= new ArrayList<>();
-        lastStringResult="";
+        lastStringArrayResult = new ArrayList<>();
+        lastStringResult = "";
     }
 
-    static SessionData getInstance(){
-        if(mInstance == null)
-        {
+    static SessionData getInstance() {
+        if (mInstance == null) {
             mInstance = new SessionData();
         }
         return mInstance;
     }
 
-
-    void setUsername(String value){
-
-        username = value;
+    static void Reset() {
+        getInstance().eraseUsername();
+        getInstance().eraseLastStringResult();
+        getInstance().eraseLastStringArrayResult();
+        getInstance().eraseUserID();
     }
 
-    String getUsername(){
+    String getUsername() {
 
         return this.username;
     }
 
-    void eraseUsername(){
+    void setUsername(String value) {
 
-        username="";
+        username = value;
     }
 
+    void eraseUsername() {
 
-    void setUserID(String userID) {
-        UserID = userID;
+        username = "";
     }
 
     String getCompanyName() {
@@ -93,7 +94,7 @@ public class SessionData {
     }
 
 
-    void getUserData(){
+    void getUserData() {
         BackgroundWorkerJSON backgroundWorker = new BackgroundWorkerJSON();
         ArrayList<String> fields = new ArrayList<>();
         fields.add("user_id");
@@ -111,7 +112,7 @@ public class SessionData {
             licenseNumber = rowData.getString("LicenseNumber");
             emailAddress = rowData.getString("EmailAddress");
             address = rowData.getString("Address");
-            int i=1;
+            int i = 1;
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -125,60 +126,21 @@ public class SessionData {
         return UserID;
     }
 
-    private void eraseUserID()
-    {
-        UserID= "";
+    void setUserID(String userID) {
+        UserID = userID;
     }
 
-    public void setLastStringArrayResult(ArrayList<String> value) {
-        lastStringArrayResult=value;
-
+    private void eraseUserID() {
+        UserID = "";
     }
-
-    public ArrayList<String> getLastStringArrayResult() {
-        return lastStringArrayResult;
-    }
-
-    public ArrayList<String> getAndEraseLastStringArrayResult() {
-        ArrayList<String> temp = new ArrayList<>();
-        temp=lastStringArrayResult;
-        lastStringArrayResult= new ArrayList<>();
-        return temp;
-    }
-
 
     private void eraseLastStringArrayResult() {
-        lastStringArrayResult= new ArrayList<>();
+        lastStringArrayResult = new ArrayList<>();
     }
 
-    public void setLastStringResult(String value) {
-        lastStringResult=value;
+    private void eraseLastStringResult() {
+        lastStringResult = "";
     }
-
-    public String getLastStringResult() {
-        return lastStringResult;
-    }
-
-    public String getAndEraseLastStringResult() {
-        String temp=lastStringResult;
-        lastStringResult="";
-        return temp;
-    }
-
-    private void eraseLastStringResult()
-    {
-        lastStringResult="";
-    }
-
-
-    static void Reset() {
-        getInstance().eraseUsername();
-        getInstance().eraseLastStringResult();
-        getInstance().eraseLastStringArrayResult();
-        getInstance().eraseUserID();
-    }
-
-
 
 
 }

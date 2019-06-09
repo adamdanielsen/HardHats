@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 //import android.app.Fragment;
 
@@ -29,6 +28,7 @@ public class OptionsFragment extends Fragment {
     private EditText emailAddressEditText;
     private EditText companyNameEditText;
     private EditText address;
+
     public OptionsFragment() {
         // Required empty public constructor
     }
@@ -40,24 +40,25 @@ public class OptionsFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_options, container, false);
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //change stuff here to give logic to layout
-        usernameEditText =(EditText) getView().findViewById(R.id.option_UserNameEditText);
-        firstNameEditText = (EditText) getView().findViewById(R.id.option_firstName_editText);
-        lastNameEditText = (EditText) getView().findViewById(R.id.option_lastName_editText);
-        phoneNumberEditText = (EditText) getView().findViewById(R.id.option_phoneNumber_editText);
-        faxNumberEditText = (EditText) getView().findViewById(R.id.option_faxNumber_editText);
-        licenseNumberEditText = (EditText) getView().findViewById(R.id.option_licenseNumber_editText);
-        emailAddressEditText = (EditText) getView().findViewById(R.id.option_emailAddress_editText);
-        companyNameEditText = (EditText) getView().findViewById(R.id.option_CompanyName_editText);
-        address = (EditText) getView().findViewById(R.id.option_address);
-        logoutButton = (Button) getView().findViewById(R.id.fragmentOptions_LogoutButton);
+        usernameEditText = getView().findViewById(R.id.option_UserNameEditText);
+        firstNameEditText = getView().findViewById(R.id.option_firstName_editText);
+        lastNameEditText = getView().findViewById(R.id.option_lastName_editText);
+        phoneNumberEditText = getView().findViewById(R.id.option_phoneNumber_editText);
+        faxNumberEditText = getView().findViewById(R.id.option_faxNumber_editText);
+        licenseNumberEditText = getView().findViewById(R.id.option_licenseNumber_editText);
+        emailAddressEditText = getView().findViewById(R.id.option_emailAddress_editText);
+        companyNameEditText = getView().findViewById(R.id.option_CompanyName_editText);
+        address = getView().findViewById(R.id.option_address);
+        logoutButton = getView().findViewById(R.id.fragmentOptions_LogoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MenuActivity)getActivity()).Logout();
+                ((MenuActivity) getActivity()).Logout();
             }
         });
         usernameEditText.setText(SessionData.getInstance().getUsername());

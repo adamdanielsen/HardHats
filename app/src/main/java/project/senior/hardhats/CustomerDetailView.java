@@ -1,17 +1,15 @@
 package project.senior.hardhats;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import project.senior.hardhats.Documents.Person;
+import project.senior.hardhats.documents.Person;
 
 public class CustomerDetailView extends AppCompatActivity {
 
@@ -28,13 +26,13 @@ public class CustomerDetailView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_detail_view);
-        firstName = (EditText) findViewById(R.id.customer_Preview_firstName_editText);
-        lastName = (EditText) findViewById(R.id.customer_Preview_lastName_editText);
-        CompanyName = (EditText) findViewById(R.id.customer_Preview_CompanyName_editText);
-        phoneNumber = (EditText) findViewById(R.id.customer_Preview_phoneNumber_editText);
-        faxNumber = (EditText) findViewById(R.id.customer_Preview_faxNumber_editText);
-        emailAddress = (EditText) findViewById(R.id.customer_Preview_emailAddress_editText);
-        address = (TextView) findViewById(R.id.customer_preview_address);
+        firstName = findViewById(R.id.customer_Preview_firstName_editText);
+        lastName = findViewById(R.id.customer_Preview_lastName_editText);
+        CompanyName = findViewById(R.id.customer_Preview_CompanyName_editText);
+        phoneNumber = findViewById(R.id.customer_Preview_phoneNumber_editText);
+        faxNumber = findViewById(R.id.customer_Preview_faxNumber_editText);
+        emailAddress = findViewById(R.id.customer_Preview_emailAddress_editText);
+        address = findViewById(R.id.customer_preview_address);
 
         String customerid = getIntent().getStringExtra("CUSTOMERID");
 
@@ -45,9 +43,9 @@ public class CustomerDetailView extends AppCompatActivity {
         dataContainer.type = "getCustomer";
         dataContainer.phpVariableNames.add("UserID");
         dataContainer.dataPassedIn.add(customerid);
-        Person customer=null;
+        Person customer = null;
         try {
-            customer = new Person(backgroundWorker.execute(dataContainer).get(),"Customer");
+            customer = new Person(backgroundWorker.execute(dataContainer).get(), "Customer");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -69,7 +67,6 @@ public class CustomerDetailView extends AppCompatActivity {
         faxNumber.setEnabled(false);
         emailAddress.setEnabled(false);
         CompanyName.setEnabled(false);
-
 
 
     }

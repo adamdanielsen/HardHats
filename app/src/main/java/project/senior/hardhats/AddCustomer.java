@@ -20,6 +20,10 @@ import java.util.concurrent.ExecutionException;
 
 public class AddCustomer extends AppCompatActivity {
 
+    boolean googleError;
+    Place address;
+    String backupAddress;
+    String addressToUse;
     private EditText firstNameEditText;
     private EditText lastNameEditText;
     private EditText companyEditText;
@@ -27,20 +31,12 @@ public class AddCustomer extends AppCompatActivity {
     private EditText phoneNumberEditText;
     private EditText faxNumberEditText;
     private EditText addressEditText;
-
     private TextInputLayout firstNameTextInputLayout;
     private TextInputLayout lastNameTextInputLayout;
     private TextInputLayout companyTextInputLayout;
     private TextInputLayout emailAddressTextInputLayout;
     private TextInputLayout phoneNumberTextInputLayout;
     private TextInputLayout faxNumberTextInputLayout;
-
-    boolean googleError;
-
-    Place address;
-    String backupAddress;
-    String addressToUse;
-
     private Button saveButton;
     private Button cancelButton;
     private Button addressButton;
@@ -49,30 +45,29 @@ public class AddCustomer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_customer);
-        googleError=false;
-        firstNameEditText = (EditText) findViewById(R.id.customer_first_editText);
-        lastNameEditText = (EditText) findViewById(R.id.customer_last_editText);
-        companyEditText = (EditText) findViewById(R.id.customer_company_editText);
-        emailAddressEditText = (EditText) findViewById(R.id.customer_email_address_editText);
-        phoneNumberEditText = (EditText) findViewById(R.id.customer_phone_editText);
-        faxNumberEditText = (EditText) findViewById(R.id.customer_fax_editText);
-        addressEditText=(EditText) findViewById(R.id.customer_address_editText);
-        firstNameTextInputLayout = (TextInputLayout) findViewById(R.id.customer_first_textInputLayout);
-        lastNameTextInputLayout = (TextInputLayout) findViewById(R.id.customer_last_textInputLayout);
-        companyTextInputLayout = (TextInputLayout) findViewById(R.id.customer_company_textInputLayout);
-        emailAddressTextInputLayout = (TextInputLayout) findViewById(R.id.customer_email_textInputLayout);
-        phoneNumberTextInputLayout = (TextInputLayout) findViewById(R.id.customer_phone_textInputLayout);
-        faxNumberTextInputLayout = (TextInputLayout) findViewById(R.id.customer_fax_textInputLayout);
+        googleError = false;
+        firstNameEditText = findViewById(R.id.customer_first_editText);
+        lastNameEditText = findViewById(R.id.customer_last_editText);
+        companyEditText = findViewById(R.id.customer_company_editText);
+        emailAddressEditText = findViewById(R.id.customer_email_address_editText);
+        phoneNumberEditText = findViewById(R.id.customer_phone_editText);
+        faxNumberEditText = findViewById(R.id.customer_fax_editText);
+        addressEditText = findViewById(R.id.customer_address_editText);
+        firstNameTextInputLayout = findViewById(R.id.customer_first_textInputLayout);
+        lastNameTextInputLayout = findViewById(R.id.customer_last_textInputLayout);
+        companyTextInputLayout = findViewById(R.id.customer_company_textInputLayout);
+        emailAddressTextInputLayout = findViewById(R.id.customer_email_textInputLayout);
+        phoneNumberTextInputLayout = findViewById(R.id.customer_phone_textInputLayout);
+        faxNumberTextInputLayout = findViewById(R.id.customer_fax_textInputLayout);
 
-        saveButton = (Button) findViewById(R.id.save_customer_button);
-        cancelButton = (Button) findViewById(R.id.cancel_customer_button);
-        addressButton=(Button) findViewById(R.id.customer_address_button);
+        saveButton = findViewById(R.id.save_customer_button);
+        cancelButton = findViewById(R.id.cancel_customer_button);
+        addressButton = findViewById(R.id.customer_address_button);
         addressEditText.setEnabled(false);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (addressEditText.getText().toString().isEmpty())
-                {
+                if (addressEditText.getText().toString().isEmpty()) {
                     Toast.makeText(AddCustomer.this, "Select an address before proceeding", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -145,13 +140,8 @@ public class AddCustomer extends AppCompatActivity {
     }
 
 
-
-
-
-
-    private void addCustomerFunction(){
-        if (!Validate())
-        {
+    private void addCustomerFunction() {
+        if (!Validate()) {
             return;
         }
         String customer_userid = SessionData.getInstance().getUserID();
@@ -161,7 +151,7 @@ public class AddCustomer extends AppCompatActivity {
         String customer_email = emailAddressEditText.getText().toString();
         String customer_phoneNumber = phoneNumberEditText.getText().toString();
         String customer_faxNumber = faxNumberEditText.getText().toString();
-        String customer_address=addressEditText.getText().toString();
+        String customer_address = addressEditText.getText().toString();
 
 
         DataContainer dataContainer = new DataContainer();
@@ -190,7 +180,7 @@ public class AddCustomer extends AppCompatActivity {
             String s = database.execute(dataContainer).get();
 
             //AlertDialog.Builder box= new AlertDialog.Builder(this);
-           // box.setTitle("wut");
+            // box.setTitle("wut");
             //box.setMessage(s);
             //box.show();
         } catch (InterruptedException e) {
@@ -198,7 +188,7 @@ public class AddCustomer extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        Toast.makeText(AddCustomer.this,"Your customer has been added", Toast.LENGTH_LONG).show();
+        Toast.makeText(AddCustomer.this, "Your customer has been added", Toast.LENGTH_LONG).show();
         finish();
     }
 
@@ -214,8 +204,7 @@ public class AddCustomer extends AppCompatActivity {
             phoneNumberTextInputLayout.setErrorEnabled(false);
             faxNumberTextInputLayout.setErrorEnabled(false);
             return false;
-        }
-        else {
+        } else {
             firstNameTextInputLayout.setErrorEnabled(false);
         }
 
@@ -230,8 +219,7 @@ public class AddCustomer extends AppCompatActivity {
             phoneNumberTextInputLayout.setErrorEnabled(false);
             faxNumberTextInputLayout.setErrorEnabled(false);
             return false;
-        }
-        else {
+        } else {
             lastNameTextInputLayout.setErrorEnabled(false);
         }
         if (emailAddressEditText.getText().toString().trim().isEmpty()) {
@@ -244,8 +232,7 @@ public class AddCustomer extends AppCompatActivity {
             phoneNumberTextInputLayout.setErrorEnabled(false);
             faxNumberTextInputLayout.setErrorEnabled(false);
             return false;
-        }
-        else {
+        } else {
             emailAddressTextInputLayout.setErrorEnabled(false);
         }
         if (phoneNumberEditText.getText().toString().trim().isEmpty()) {
@@ -258,8 +245,7 @@ public class AddCustomer extends AppCompatActivity {
             //phoneNumberTextInputLayout.setErrorEnabled(false);
             faxNumberTextInputLayout.setErrorEnabled(false);
             return false;
-        }
-        else {
+        } else {
             phoneNumberTextInputLayout.setErrorEnabled(false);
         }
 
@@ -273,13 +259,13 @@ public class AddCustomer extends AppCompatActivity {
             phoneNumberTextInputLayout.setErrorEnabled(false);
             faxNumberTextInputLayout.setErrorEnabled(false);
             return false;
-        }
-        else {
+        } else {
             emailAddressTextInputLayout.setErrorEnabled(false);
         }
 
         return true;
     }
+
     private void requestFocus(View view) {
         if (view.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);

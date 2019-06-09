@@ -21,10 +21,10 @@ import java.util.concurrent.ExecutionException;
  * A simple {@link Fragment} subclass.
  */
 public class InvoiceFragment extends Fragment {
+    ListView listView;
     private Button generateInvoiceButton;
     private Button backToPreviewButton;
     private String selectedID;
-    ListView listView;
 
     public InvoiceFragment() {
         // Required empty public constructor
@@ -37,19 +37,20 @@ public class InvoiceFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_invoice, container, false);
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(),"INVOICEPREVIEWLIST").commit();
-        generateInvoiceButton=(Button) getView().findViewById(R.id.fragmentInvoice_GenerateInvoiceButton);
-        backToPreviewButton = (Button) getView().findViewById(R.id.fragmentInvoice_backToPreviewButton);
+        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(), "INVOICEPREVIEWLIST").commit();
+        generateInvoiceButton = getView().findViewById(R.id.fragmentInvoice_GenerateInvoiceButton);
+        backToPreviewButton = getView().findViewById(R.id.fragmentInvoice_backToPreviewButton);
         backToPreviewButton.setVisibility(View.INVISIBLE);
         backToPreviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(),"INVOICEPREVIEWLIST").commit();
+                getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoicePreviewListFragment(), "INVOICEPREVIEWLIST").commit();
                 backToPreviewButton.setVisibility(View.INVISIBLE);
 
             }
@@ -59,7 +60,7 @@ public class InvoiceFragment extends Fragment {
         generateInvoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MenuActivity)getActivity()).SwitchToGenerateInvoiceActivity();
+                ((MenuActivity) getActivity()).SwitchToGenerateInvoiceActivity();
 
             }
         });
@@ -70,7 +71,7 @@ public class InvoiceFragment extends Fragment {
 
 
         try {
-            ((MenuActivity)getActivity()).Setup();
+            ((MenuActivity) getActivity()).Setup();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -89,13 +90,13 @@ public class InvoiceFragment extends Fragment {
     public void setSelectedID(String id) {
 
 
-        selectedID=id;
+        selectedID = id;
 
     }
 
     public void switchToDetailView() {
         backToPreviewButton.setVisibility(View.VISIBLE);
-        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoiceViewDetailFragment(),"INVOICEPREVIEWDETAIL").commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.invoice_FrameLayout, new InvoiceViewDetailFragment(), "INVOICEPREVIEWDETAIL").commit();
 
     }
 }
